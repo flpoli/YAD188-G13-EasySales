@@ -15,7 +15,26 @@ interface OmieAPI {
 
 }
 
+// TODO: ADD companion object que retorna a implementação das funções acima. Aqui deve
+// TODO: ser feita a configuração do client, os plugins do ktor etc..
+// TODO: Código exemplo abaixo:
 
+//        companion object {
+//            fun create(): PostService {
+//
+//                return PostServiceImpl(client = HttpClient(Android){
+//                    install(Logging){
+//                        level = LogLevel.ALL
+//                    }
+//                    install(JsonFeature){
+//                        serializer = KotlinxSerializer()
+//                    }
+//                })
+//            }
+//        }
+
+
+// ------------------------
 
 //POST("https://app.omie.com.br/api/v1/geral/clientes/")
 //        val client = HttpClient(Android) {
