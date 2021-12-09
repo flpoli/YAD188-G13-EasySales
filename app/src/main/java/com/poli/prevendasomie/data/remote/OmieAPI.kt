@@ -10,19 +10,23 @@ import kotlinx.serialization.json.Json
 
 interface OmieAPI {
 
-    //POST("https://app.omie.com.br/api/v1/geral/clientes/")
-
-    suspend fun getClients(): List<ClientesCadastro> {
-        val client = HttpClient(Android) {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(kotlinx.serialization.json.Json{
-                    prettyPrint = true
-                }
-                )
-            }
-        }
-
-        return listOf(ClientesCadastro)
-    }
+    suspend fun getClientList(): List<ClientesCadastro>
+    suspend fun getClient(): ClientesCadastro
 
 }
+
+
+
+//POST("https://app.omie.com.br/api/v1/geral/clientes/")
+//        val client = HttpClient(Android) {
+//            install(JsonFeature) {
+//                serializer = KotlinxSerializer(kotlinx.serialization.json.Json{
+//                    prettyPrint = true
+//                }
+//                )
+//            }
+//        }
+
+
+
+
