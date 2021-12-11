@@ -8,31 +8,23 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val service = OmieAPI.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PreVendasOmieTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PreVendasOmieTheme {
-        Greeting("Android")
-    }
-}

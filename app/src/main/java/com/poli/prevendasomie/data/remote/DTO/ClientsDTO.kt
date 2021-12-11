@@ -7,6 +7,7 @@ data class GetClients(
     val call: String,
     val APP_KEY: String,
     val APP_SECRET: String,
+    val param: GetClientsParam
 
 
 )

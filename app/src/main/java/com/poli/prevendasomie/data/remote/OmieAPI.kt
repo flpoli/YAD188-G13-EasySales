@@ -13,7 +13,7 @@ import kotlinx.serialization.json.Json
 
 interface OmieAPI {
 
-    suspend fun getClientList(call: GetClients, param: GetClientsParam): List<ClientesCadastro>
+    suspend fun getClientList(call: GetClients): List<ClientesCadastro>
     suspend fun getClient(): ClientesCadastro
 
 
