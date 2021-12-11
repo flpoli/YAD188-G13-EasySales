@@ -1,9 +1,19 @@
 package com.poli.prevendasomie.data.remote.DTO
 
-data class ClientsDTO(
-    val clientes_cadastro: List<ClientesCadastro>,
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class GetClients(
+    val call: String,
+    val APP_KEY: String,
+    val APP_SECRET: String,
+
+
+)
+
+@Serializable
+data class GetClientsParam(
+    val apenas_importado_api: String,
     val pagina: Int,
-    val registros: Int,
-    val total_de_paginas: Int,
-    val total_de_registros: Int
+    val registros_por_pagina: Int
 )
