@@ -9,6 +9,7 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
+
 class OmieApiImpl(private val client: HttpClient): OmieAPI {
 
 
@@ -17,7 +18,10 @@ class OmieApiImpl(private val client: HttpClient): OmieAPI {
             client.post {
                 url(HttpRoutes.CLIENTS)
                 contentType(ContentType.Application.Json)
-                body = GetClients("ListarClientes", Env.APP_KEY, Env.APP_SECRET, GetClientsParam("N", 1, 1))
+                body = GetClients(
+                    "ListarClientes",
+                    Env.APP_KEY, Env.APP_SECRET,
+                    GetClientsParam("N", 1, 1))
                 }
 
             }

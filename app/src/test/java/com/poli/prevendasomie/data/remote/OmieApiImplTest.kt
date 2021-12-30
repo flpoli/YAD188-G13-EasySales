@@ -7,7 +7,7 @@ import org.junit.Test
 class OmieApiImplTest {
 
     @Test
-    fun getClientList() {
+    fun getClientList_ReturnsTrue() {
     }
 
     @Test
