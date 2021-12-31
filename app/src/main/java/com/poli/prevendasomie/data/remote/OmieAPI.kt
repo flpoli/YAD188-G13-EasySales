@@ -1,8 +1,6 @@
 package com.poli.prevendasomie.data.remote
 
-import com.poli.prevendasomie.data.remote.DTO.ClientesCadastro
-import com.poli.prevendasomie.data.remote.DTO.GetClients
-import com.poli.prevendasomie.data.remote.DTO.GetClientsParam
+import com.poli.prevendasomie.data.remote.DTO.*
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*
@@ -13,7 +11,7 @@ import kotlinx.serialization.json.Json
 
 interface OmieAPI {
 
-    suspend fun getClientList(call: GetClients): List<ClientesCadastro>
+    suspend fun getClientList(call: GetClientsCall.Companion): List<ClientsDto>
     suspend fun getClient(): ClientesCadastro
 
 
