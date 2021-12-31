@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.data.remote.DTO
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,13 +16,16 @@ data class ClientListResponse (
     val codigo_pais: String,
     val complemento: String,
     val contribuinte: String,
+    @Contextual
     val dadosBancarios: DadosBancarios,
     val endereco: String,
+    @Contextual
     val enderecoEntrega: EnderecoEntrega,
     val endereco_numero: String,
     val estado: String,
     val exterior: String,
     val inativo: String,
+    @Contextual
     val info: Info,
     val inscricao_estadual: String,
     val inscricao_municipal: String,
@@ -29,6 +33,8 @@ data class ClientListResponse (
     val optante_simples_nacional: String,
     val pessoa_fisica: String,
     val razao_social: String,
+    @Contextual
     val recomendacoes: Recomendacoes,
-    val tags: List<Tag>
+    //@Contextual
+    //val tags: List<Tag>
         )

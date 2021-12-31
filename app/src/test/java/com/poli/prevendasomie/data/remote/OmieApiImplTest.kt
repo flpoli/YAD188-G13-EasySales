@@ -8,6 +8,8 @@ class OmieApiImplTest {
 
     @Test
     fun getClientList_ReturnsTrue() {
+
+        
     }
 
     @Test

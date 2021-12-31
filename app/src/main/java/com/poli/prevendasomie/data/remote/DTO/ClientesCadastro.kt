@@ -19,11 +19,15 @@ data class ClientesCadastro(
     @Contextual
     val dadosBancarios: DadosBancarios,
     val endereco: String,
+    @Contextual
+
     val enderecoEntrega: EnderecoEntrega,
     val endereco_numero: String,
     val estado: String,
     val exterior: String,
     val inativo: String,
+    @Contextual
+
     val info: Info,
     val inscricao_estadual: String,
     val inscricao_municipal: String,
@@ -31,7 +35,8 @@ data class ClientesCadastro(
     val optante_simples_nacional: String,
     val pessoa_fisica: String,
     val razao_social: String,
+    @Contextual
     val recomendacoes: Recomendacoes,
-    val tags: List<Tag>
+    //val tags: List<Tag>
 )
 
