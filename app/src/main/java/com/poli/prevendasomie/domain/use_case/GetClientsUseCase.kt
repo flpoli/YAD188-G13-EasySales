@@ -2,6 +2,7 @@ package com.poli.prevendasomie.domain.use_case
 
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.DTO.ClientesCadastro
+import com.poli.prevendasomie.data.remote.DTO.toClients
 import com.poli.prevendasomie.domain.model.Client
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ class GetClientsUseCase @Inject constructor(private val repository: ClientsRepos
 
         try {
             emit(Resource.Loading<List<Client>>())
-            val clients = repository.getClient().map { it.toClients }
+            val clients = repository.getClients().map { it.toClients() }
             //emit(Resource.Success<List<Client>>())
 
         } catch (e: HttpException){
