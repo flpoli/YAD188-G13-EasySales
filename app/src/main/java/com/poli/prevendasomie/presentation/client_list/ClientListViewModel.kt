@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.domain.use_case.GetClientsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 
 @HiltViewModel
-class ClientListViewModel @Inject constructor(getClientsUseCase: GetClientsUseCase): ViewModel(){
+class ClientListViewModel @Inject constructor(private val getClientsUseCase: GetClientsUseCase): ViewModel(){
 
     private val _state = mutableStateOf(ClientListState())
     val state: State<ClientListState> = _state

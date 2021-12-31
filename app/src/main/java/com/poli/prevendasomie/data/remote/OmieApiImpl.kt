@@ -13,7 +13,7 @@ import io.ktor.http.*
 
 class OmieApiImpl(private val client: HttpClient): OmieAPI {
 
-    override suspend fun getClientList(call: GetClientsCall.Companion): List<ClientsDto> {
+    override suspend fun getClientList(call: GetClientsCall): List<ClientsDto> {
         return try {
             client.post {
                 url(HttpRoutes.CLIENTS)

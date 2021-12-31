@@ -20,6 +20,7 @@ data class GetClientsParam(
     val registros_por_pagina: Int
 )
 
+@Serializable
 data class ClientsDto (
     val codigo_cliente_integracao: String,
     val nome_fantasia: String
