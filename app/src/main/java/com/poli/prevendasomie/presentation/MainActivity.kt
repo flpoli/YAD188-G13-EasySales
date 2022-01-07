@@ -21,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val service = OmieAPI.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +33,10 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.ClientListScreen.route
+                        startDestination = "client_list_screen"
                     ){
-                        composable(route = Screen.ClientListScreen.route) {
-                            ClientListScreen(navController)
+                        composable("client_list_screen") {
+                            ClientListScreen(navController = navController)
                         }
                     }
                 }

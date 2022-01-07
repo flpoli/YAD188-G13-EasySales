@@ -5,38 +5,64 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.domain.use_case.GetClientsUseCase
+import com.poli.prevendasomie.data.models.ClientListEntry
+import com.poli.prevendasomie.repository.ClientsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class ClientListViewModel @Inject constructor(private val getClientsUseCase: GetClientsUseCase): ViewModel(){
+class ClientListViewModel @Inject constructor(
+    private val repository: ClientsRepository
+): ViewModel(){
 
-    private val _state = mutableStateOf(ClientListState())
-    val state: State<ClientListState> = _state
+    private val clientList = mutableStateOf<List<ClientListEntry>>(listOf())
+
 
     init {
-        getClients()
+        loadClientList()
     }
 
-    private fun getClients(){
 
-        getClientsUseCase().onEach { result ->
+
+
+    private fun loadClientList(){
+
+        viewModelScope.launch{
+
+            val result = repository.getClientList()
+
             when(result){
-                is Resource.Success<*> -> {
-                    _state.value = ClientListState(clients = result.data ?: emptyList())
+                is Resource.Success ->{
+
+                    val clientEntries = result.data?.clientesCadastro?.mapIndexed {
+                            index, it -> {
+                                ClientListEntry(
+                                    it.cnpjCpf,
+                                    it.razaoSocial,
+                                    it.nomeFantasia
+                                )
+                            }
+
+                    }
+
+                    //clientList.value += clientEntries
+
+
+
                 }
-                is Resource.Error<*> -> {
-                    _state.value = ClientListState(error = result.message ?: "An unexpected error ocurred")
-                }
-                is Resource.Loading<*> -> {
-                    _state.value = ClientListState(isLoading = true)
+                is Resource.Error -> {
+                    println("Error loading???? ClientListViewModel")
+                    println("Result? \n ${result.message}")
                 }
             }
-        }.launchIn(viewModelScope)
+
+        }
+
+
     }
 
 
