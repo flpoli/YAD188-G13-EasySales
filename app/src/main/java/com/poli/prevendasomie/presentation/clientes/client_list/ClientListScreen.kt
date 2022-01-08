@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.client_list
+package com.poli.prevendasomie.presentation.clientes.client_list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.poli.prevendasomie.presentation.client_list.components.ClientListItem
+import com.poli.prevendasomie.presentation.clientes.client_list.components.ClientListItem
 
 @Composable
 fun ClientListScreen(

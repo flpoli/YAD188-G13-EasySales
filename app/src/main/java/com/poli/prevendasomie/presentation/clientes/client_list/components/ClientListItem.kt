@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.client_list.components
+package com.poli.prevendasomie.presentation.clientes.client_list.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.client_list.ClientListViewModel
+import com.poli.prevendasomie.presentation.clientes.client_list.ClientListViewModel
 
 @Composable
 fun ClientListItem(
