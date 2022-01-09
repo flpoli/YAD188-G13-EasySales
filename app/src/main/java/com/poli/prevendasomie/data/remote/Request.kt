@@ -4,5 +4,5 @@ data class Request(
     val call: String,
     val app_key: String,
     val app_secret: String,
-    val param: Param
+    val param: List<Param>
 )

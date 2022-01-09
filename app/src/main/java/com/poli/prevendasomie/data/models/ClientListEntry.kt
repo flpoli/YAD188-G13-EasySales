@@ -1,7 +1,11 @@
 package com.poli.prevendasomie.data.models
 
+
+import com.google.gson.annotations.SerializedName
+
 data class ClientListEntry(
-    val razaoSocial: String,
-    val nomeFantasia: String,
-    val cpfCnpj: String
+
+    @SerializedName("clientes_cadastro")
+    val clientesCadastro: List<ClientesCadastroEntry>
+
 )

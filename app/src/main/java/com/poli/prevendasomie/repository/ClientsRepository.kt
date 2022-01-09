@@ -9,39 +9,23 @@ import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ClientList
 import javax.inject.Inject
 
-class ClientsRepository @Inject constructor(
+class ClientsRepository @Inject constructor(private val api: OmieAPI) {
 
-    private val api: OmieAPI
-
-){
-
-    suspend fun getClientList(): Resource<ClientList> {
+    suspend fun getClientList(request: Request): Resource<ClientList> {
 
 
-        val response = try{
+        val response = try {
 
-            val call = "ListarClientes"
-            val x = Request(
-                call,
-                APP_KEY,
-                APP_SECRET,
-                Param(
-                    "N",
-                    1,
-                    10
-                )
-            )
 
-            api.getClientList(x)
+            api.getClientList(request)
 
-        }catch(e: Exception){
+
+        } catch (e: Exception) {
             return Resource.Error("An unknown error occurred:\n $e")
         }
-
         return Resource.Success(response)
 
     }
-
 
 
 }
