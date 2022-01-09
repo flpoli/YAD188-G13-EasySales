@@ -2,66 +2,80 @@ package com.poli.prevendasomie.presentation.client_list
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue // muito importante ao utilizar "by remember"
-import androidx.compose.runtime.* // muito importante ao utilizar "by remember"
 
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.poli.prevendasomie.data.models.ClientListEntry
-import com.poli.prevendasomie.data.models.ClientesCadastroEntry
+import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 
 @Composable
 fun ClientListScreen(
     navController: NavController,
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
-//    //val state = viewModel.state.value
-//    Box(modifier = Modifier.fillMaxSize()) {
-//        LazyColumn(modifier = Modifier.fillMaxSize()) {
-////            items(state.coins) { client ->
-////                ClientListItem(
-////                    client = client,
-////
-////                )
-////            }
-//        }
-//
-//    }
 
-    ClientListItem()
+    ClientListItem(navController = navController)
+
+
+
 }
 
 @Composable
 fun ClientListItem(
+    navController: NavController,
     viewModel: ClientListViewModel = hiltViewModel(),
 
     )
+
 {
-    val clientList by  remember {   // = vs by
+    val clientList by  remember { viewModel.clientList } // = vs by
 
-        viewModel.clientList
-    }
+    LazyColumn(){
+
+        val itemCount = clientList.size
+
+        items(itemCount) {
+            viewModel.loadClientList()
+            ClientRow(rowIndex = it, entries = clientList, navController = navController)
+        }
 
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-
-            .padding(20.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = "${clientList[0]?.cnpjCpf}", // why??? java.lang.IndexOutOfBoundsException: Empty list doesn't contain element at index 0.
-            style = MaterialTheme.typography.body1,
-
-            )
 
     }
+
+}
+
+@Composable
+fun ClientRow(
+    rowIndex: Int,
+    entries: List<ClientesCadastro>,
+    navController: NavController
+){
+
+    Column {
+
+        Row {
+
+            ClientEntry(entry = entries[rowIndex], navController = navController)
+        }
+
+    }
+}
+
+@Composable
+fun ClientEntry(
+    entry: ClientesCadastro,
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: ClientListViewModel = hiltViewModel()
+){
+
+    Text(
+        text = entry.nomeFantasia,
+        modifier = Modifier.fillMaxWidth()
+    )
 }
