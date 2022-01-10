@@ -8,6 +8,8 @@ import androidx.compose.runtime.getValue // muito importante ao utilizar "by rem
 
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
@@ -57,12 +59,10 @@ fun ClientRow(
 ){
 
     Column {
-
         Row {
-
             ClientEntry(entry = entries[rowIndex], navController = navController)
+            Spacer(modifier = Modifier.height(40.dp))
         }
-
     }
 }
 
@@ -78,4 +78,5 @@ fun ClientEntry(
         text = entry.nomeFantasia,
         modifier = Modifier.fillMaxWidth()
     )
+
 }
