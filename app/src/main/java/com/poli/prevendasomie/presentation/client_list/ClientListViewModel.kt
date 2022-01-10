@@ -26,7 +26,25 @@ import kotlin.Unit.toString
 class ClientListViewModel
 @Inject constructor(private val repository: ClientsRepository): ViewModel(){
 
+
+    private var curPage = 0
+
     val clientList = mutableStateOf<List<ClientesCadastro>>(listOf())
+
+    //TODO: Pagination impl
+    var loadError = mutableStateOf("")
+    var isLoading = mutableStateOf(false)
+    var endReached = mutableStateOf(false)
+    private var isSearchStarting = true
+
+    var isSearching = mutableStateOf(false)
+
+
+
+    // TODO: implement cache
+
+
+
 
     init {
         loadClientList()
@@ -43,30 +61,34 @@ class ClientListViewModel
                 listOf(
                     Param(
                         "N",
-                        "1",
+                        curPage.toString(), // int na data class..? maybe
                         "10"
                     )
                 )
             ))
             when(result){
                 is Resource.Success ->{
+
+                                                                     //TODO: Search about this difference ¬¬
 //-------------------------------------------------------------------FUCK \/   forEach X onEach?
                     val clientEntries = result.data?.clientesCadastro?.onEach {
 
                         it -> ClientesCadastroEntry(it.nomeFantasia)
                     }
 
-                    //println(clientEntries?.get(0)?.cnpjCpf)
-
-
                     if (clientEntries != null) {
                         clientList.value += clientEntries
                     }
 
-                    //println(clientList)
-                    println(clientList.value[0].nomeFantasia)
+                    curPage++
+                    loadError.value = ""
+                    isLoading.value = false
+                    println("Parei? ViewModel. CurPage: $curPage")
                 }
                 is Resource.Error -> {
+
+                    loadError.value = result.message!!
+                    isLoading.value = false
                     println("Error loading???? ClientListViewModel")
                     println("Result? \n ${result.message}")
                 }

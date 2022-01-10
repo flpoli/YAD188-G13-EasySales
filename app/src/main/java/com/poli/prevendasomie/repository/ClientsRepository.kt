@@ -13,18 +13,12 @@ class ClientsRepository @Inject constructor(private val api: OmieAPI) {
 
     suspend fun getClientList(request: Request): Resource<ClientList> {
 
-
         val response = try {
-
-
             api.getClientList(request)
-
-
         } catch (e: Exception) {
             return Resource.Error("An unknown error occurred:\n $e")
         }
         return Resource.Success(response)
-
     }
 
 
