@@ -14,6 +14,7 @@ import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 import com.poli.prevendasomie.repository.ClientsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ class ClientListViewModel
     var isLoading = mutableStateOf(false)
     var endReached = mutableStateOf(false)
     private var isSearchStarting = true
-
+    private var cachedClientList = listOf<ClientesCadastro>()
     var isSearching = mutableStateOf(false)
 
 
@@ -49,6 +50,42 @@ class ClientListViewModel
     init {
         loadClientList()
     }
+
+
+
+
+    fun searchClientList(query: String){
+
+        val listToSearch = if(isSearchStarting){
+            clientList.value
+        }else{
+            cachedClientList
+        }
+
+        viewModelScope.launch(Dispatchers.Default){
+
+            if(query.isEmpty()){
+                clientList.value = cachedClientList
+                isSearching.value = false
+                return@launch
+            }
+
+            val results = listToSearch.filter {
+                it.nomeFantasia.contains(query.trim(), ignoreCase = true)
+            }
+
+            if(isSearchStarting){
+                cachedClientList = clientList.value
+                isSearchStarting = false
+            }
+            clientList.value = results
+            isSearching.value = true
+        }
+
+
+    }
+
+
 
     fun loadClientList(){
 

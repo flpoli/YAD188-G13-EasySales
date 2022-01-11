@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.presentation.client_list.ClientListScreen
+import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,8 +34,12 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "client_list_screen"
+                        startDestination = "main_screen"
                     ){
+
+                        composable("main_screen"){
+                            MainScreen(navController = navController)
+                        }
                         composable("client_list_screen") {
                             ClientListScreen(navController = navController)
                         }
