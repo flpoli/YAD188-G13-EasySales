@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.main_screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -11,6 +12,7 @@ import com.poli.prevendasomie.presentation.main_screen.components.Features
 import com.poli.prevendasomie.presentation.main_screen.components.GreetingSection
 import com.poli.prevendasomie.presentation.main_screen.components.TopNavBar
 
+@ExperimentalFoundationApi
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -19,7 +21,7 @@ fun MainScreen(
 
 
             GreetingSection()
-            Features(navController = navController)
+            FeatureSection(listOf())
 
 
 

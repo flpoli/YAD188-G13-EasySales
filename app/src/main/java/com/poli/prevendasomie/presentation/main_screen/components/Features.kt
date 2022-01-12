@@ -27,15 +27,7 @@ fun Features(
             .clip(RoundedCornerShape(10.dp))
             .background(color = Color.Yellow)
     ){
-        Button(onClick  = {navController.navigate(Screen.ClientListScreen.route)}){
-            Text("Clientes")
-        }
-        Button(onClick  = {navController.navigate(Screen.ClientListScreen.route)}){
-            Text("Produtos")
-        }
-        Button(onClick  = {navController.navigate(Screen.ClientListScreen.route)}){
-            Text("Pedidos")
-        }
+
 
     }
 
