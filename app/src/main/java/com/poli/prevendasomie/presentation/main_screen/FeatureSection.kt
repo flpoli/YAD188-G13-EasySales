@@ -4,34 +4,60 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.poli.prevendasomie.presentation.Screen
 import com.poli.prevendasomie.presentation.main_screen.components.FeatureItem
 
-@ExperimentalFoundationApi
 @Composable
-fun FeatureSection(features: List<Feature>) {
+fun FeatureSection(navController: NavController, modifier: Modifier ) {
 
-    Column(modifier = Modifier.fillMaxWidth()){
+    Spacer(modifier = Modifier.padding(top = 80.dp))
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 30.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
 
-        Text(
-            text = "Features",
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier
-                .padding(15.dp)
-        )
-        LazyVerticalGrid(
-            cells = GridCells.Fixed(2),
-            contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp, bottom = 100.dp),
-            modifier = Modifier.fillMaxHeight()
         ){
-            items(features.size){
-                FeatureItem(feature = features[it])
+
+        Column{
+            Text(
+                text = "Features",
+                style = MaterialTheme.typography.h4,
+                modifier = Modifier
+                    .padding(15.dp)
+
+            )
+
+            Button(
+                onClick = {navController.navigate(Screen.ClientListScreen.route)},
+                modifier = Modifier.fillMaxWidth().padding(10.dp)
+            ){
+                Text("Clientes")
+            }
+            Button(
+                onClick = {navController.navigate(Screen.ClientListScreen.route)},
+                modifier = Modifier.fillMaxWidth().padding(10.dp)
+            ){
+                Text("Produtos")
+            }
+            Button(
+                onClick = {navController.navigate(Screen.ClientListScreen.route)},
+                modifier = Modifier.fillMaxWidth().padding(10.dp)
+            ){
+                Text("Pedidos")
             }
         }
+
+
 
     }
 }
