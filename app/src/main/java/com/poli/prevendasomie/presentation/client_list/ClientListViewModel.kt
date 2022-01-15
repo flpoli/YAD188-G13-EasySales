@@ -42,17 +42,9 @@ class ClientListViewModel
 
 
 
-    // TODO: implement cache
-
-
-
-
     init {
         loadClientList()
     }
-
-
-
 
     fun searchClientList(query: String){
 
@@ -85,24 +77,24 @@ class ClientListViewModel
 
     }
 
-
-
     fun loadClientList(){
 
         viewModelScope.launch{
 
-            val result = repository.getClientList(Request(
-                "ListarClientes",
-                APP_KEY,
-                APP_SECRET,
-                listOf(
-                    Param(
-                        "N",
-                        curPage.toString(), // int na data class..? maybe
-                        "10"
+            val result = repository.getClientList(
+                Request.ListClientsRequest(
+                    "ListarClientes",
+                    APP_KEY,
+                    APP_SECRET,
+                    listOf(
+                        Param.ParamListarClientes(
+                            "N",
+                            curPage.toString(), // int na data class..? maybe
+                            "10"
+                        )
                     )
                 )
-            ))
+            )
             when(result){
                 is Resource.Success ->{
 

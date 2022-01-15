@@ -13,10 +13,10 @@ interface OmieAPI {
 
     @Headers("Content-Type:application/json")
     @POST("geral/clientes/")
-    suspend fun getClientList(@Body requestBody: Request): ClientList
+    suspend fun getClientList(@Body requestBody: Request.ListClientsRequest): ClientList
 
     @Headers("Content-Type:application/json")
     @POST("geral/clientes/")
-    suspend fun getClientByCode(@Body requestBody: Request): ClientesCadastro
+    suspend fun getClientByCode(@Body requestBody: Request.ClientByCodeRequest): ClientesCadastro
 
 }
