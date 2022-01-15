@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.poli.prevendasomie.presentation.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
@@ -56,6 +57,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("client_list_screen") {
                         ClientListScreen(navController = navController)
+                    }
+                    composable("client_detail_screen"){
+                        ClientDetailScreen(navController = navController)
                     }
                 }
             }

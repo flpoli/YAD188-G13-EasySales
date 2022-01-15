@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.client_list.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,12 +17,19 @@ import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 fun ClientRow(
     rowIndex: Int,
     entries: List<ClientesCadastro>,
-    navController: NavController
+    navController: NavController,
+    onItemClick: () -> Unit
 ){
 
 
     Column {
-        Row {
+        Row(
+            modifier = Modifier
+                .clickable {
+                    println("Cliquei no item da lista?")
+                    onItemClick()
+                }
+        ) {
             ClientEntry(entry = entries[rowIndex], navController = navController, dataIcon = painterResource(
                 id = R.drawable.account_circle
             )

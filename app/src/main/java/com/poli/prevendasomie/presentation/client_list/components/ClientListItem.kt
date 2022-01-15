@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.poli.prevendasomie.presentation.Screen
 import com.poli.prevendasomie.presentation.client_list.ClientListViewModel
 
 @Composable
@@ -54,7 +55,14 @@ fun ClientListItem(
 
             }
 
-            ClientRow(rowIndex = it, entries = clientList, navController = navController)
+            ClientRow(
+                rowIndex = it,
+                entries = clientList,
+                navController = navController,
+                onItemClick = {
+                    navController.navigate(Screen.ClientDetailScreen.route)
+                }
+            )
             Divider(color = Color.Black, thickness = 1.dp)
 
         }
