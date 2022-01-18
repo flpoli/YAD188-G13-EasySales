@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.presentation.client_detail
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Env.APP_KEY
@@ -19,9 +21,10 @@ class ClientDetailViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    val codClientOmie: String = ""
+    private val _state = mutableStateOf(ClientDetailState())
+    val state: State<ClientDetailState> = _state
 
-    fun loadClientByCode() {
+    fun loadClientByCode(codCliOmie: String) {
 
         viewModelScope.launch{
 
@@ -30,7 +33,7 @@ class ClientDetailViewModel @Inject constructor(
                     "ConsultarCliente",
                     APP_KEY,
                     APP_SECRET,
-                    listOf(Param.ParamConsultarCliente(codClientOmie))
+                    listOf(Param.ParamConsultarCliente(codCliOmie))
 
                 )
             )
@@ -39,8 +42,9 @@ class ClientDetailViewModel @Inject constructor(
             when(result) {
 
                 is Resource.Success -> {
-                    println("foi?")
-                }
+                    _state.value = ClientDetailState(client = result.data)
+
+
                 is Resource.Error -> {
                     println("Error loading???? ClientDetail")
                     println("Result? \n ${result.message}")

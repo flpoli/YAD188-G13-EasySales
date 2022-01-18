@@ -32,7 +32,6 @@ class ClientListViewModel
 
     val clientList = mutableStateOf<List<ClientesCadastro>>(listOf())
 
-    //TODO: Pagination impl
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
     var endReached = mutableStateOf(false)
