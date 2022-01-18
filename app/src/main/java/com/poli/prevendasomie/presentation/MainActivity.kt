@@ -7,9 +7,11 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.poli.prevendasomie.presentation.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
@@ -20,8 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-
-    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -58,8 +58,14 @@ class MainActivity : ComponentActivity() {
                     composable("client_list_screen") {
                         ClientListScreen(navController = navController)
                     }
-                    composable("client_detail_screen"){
-                        ClientDetailScreen(navController = navController)
+                    composable(
+                        route = Screen.ClientDetailScreen.route + "/{codigoClienteOmie}",
+                        arguments = listOf(navArgument("codigoClienteOmie"){type = NavType.StringType})
+                    ){
+                        entry ->
+                        ClientDetailScreen(
+                            navController = navController,
+                            codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!! )
                     }
                 }
             }
