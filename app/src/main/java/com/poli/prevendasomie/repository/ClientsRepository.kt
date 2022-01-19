@@ -3,13 +3,13 @@ package com.poli.prevendasomie.repository
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.ClientList
+import com.poli.prevendasomie.data.remote.responses.ListarClientes
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 import javax.inject.Inject
 
 class ClientsRepository @Inject constructor(private val api: OmieAPI) {
 
-    suspend fun getClientList(request: Request.ListClientsRequest): Resource<ClientList> {
+    suspend fun getClientList(request: Request.ListClientsRequest): Resource<ListarClientes> {
 
         val response = try {
             api.getClientList(request)
