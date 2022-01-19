@@ -26,7 +26,7 @@ class ClientDetailViewModel @Inject constructor(
 
     fun loadClientByCode(codCliOmie: String) {
 
-        viewModelScope.launch{
+        viewModelScope.launch {
 
             val result = repository.getClientByCode(
                 Request.ClientByCodeRequest(
@@ -39,17 +39,13 @@ class ClientDetailViewModel @Inject constructor(
             )
 
 
-            when(result) {
+            when (result) {
 
                 is Resource.Success -> {
                     _state.value = ClientDetailState(client = result.data)
 
-
-                is Resource.Error -> {
-                    println("Error loading???? ClientDetail")
-                    println("Result? \n ${result.message}")
                 }
-                else -> {println("else?")}
+                else -> {}
             }
         }
 

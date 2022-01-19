@@ -21,11 +21,10 @@ fun ClientDetailScreen(
 
     viewModel.loadClientByCode(codigoClienteOmie)
 
-    val clientDetails = viewModel.clientDetails.value
     Row(){
 
         Text("Oi $codigoClienteOmie ?")
-        Text("${clientDetails.nomeFantasia}")
+        Text("${.nomeFantasia}")
 
     }
 
