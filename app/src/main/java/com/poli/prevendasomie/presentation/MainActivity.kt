@@ -3,15 +3,17 @@ package com.poli.prevendasomie.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.poli.prevendasomie.navigation.Screen
+import com.poli.prevendasomie.navigation.SetupNavGraph
 import com.poli.prevendasomie.presentation.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
@@ -21,6 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,30 +49,12 @@ class MainActivity : ComponentActivity() {
 
 
 
-                val navController = rememberNavController()
+                navController = rememberNavController()
+
+                        SetupNavGraph(navController = navController)
 
 
-                NavHost(
-                    navController = navController,
-                    startDestination = "main_screen"
-                ) {
 
-                    composable("main_screen") {
-                        MainScreen(navController = navController)
-                    }
-                    composable("client_list_screen") {
-                        ClientListScreen(navController = navController)
-                    }
-                    composable(
-                        route = Screen.ClientDetailScreen.route + "/{codigoClienteOmie}",
-                        arguments = listOf(navArgument("codigoClienteOmie"){type = NavType.StringType})
-                    ){
-                        entry ->
-                        ClientDetailScreen(
-                            navController = navController,
-                            codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!! )
-                    }
-                }
             }
         }
     }

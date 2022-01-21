@@ -21,6 +21,8 @@ class ClientDetailViewModel @Inject constructor(
 
 ) : ViewModel() {
 
+
+
     private val _state = mutableStateOf(ClientDetailState())
     val state: State<ClientDetailState> = _state
 
@@ -37,7 +39,6 @@ class ClientDetailViewModel @Inject constructor(
 
                 )
             )
-
 
             when (result) {
 

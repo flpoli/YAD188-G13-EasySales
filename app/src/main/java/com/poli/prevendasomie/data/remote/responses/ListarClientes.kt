@@ -18,13 +18,13 @@ data class ListarClientes(
     val totalDeRegistros: Int
 )
 
-fun ListarClientes.toClientList(): ClientList{
-
-    return ClientList(
-        pagina = pagina,
-        registros = registros,
-        totalDePaginas = totalDePaginas,
-        totalDeRegistros = totalDeRegistros,
-        clientesCadastro = List<ClientDetail>
-    )
-}
+//fun ListarClientes.toClientList(): ClientList{
+//
+//    return ClientList(
+//        pagina = pagina,
+//        registros = registros,
+//        totalDePaginas = totalDePaginas,
+//        totalDeRegistros = totalDeRegistros
+//        //clientesCadastro = List<ClientDetail>
+//    )
+//}

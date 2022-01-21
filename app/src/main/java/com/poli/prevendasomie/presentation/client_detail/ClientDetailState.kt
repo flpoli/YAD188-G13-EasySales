@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.client_detail
 
+import androidx.compose.material.Text
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 
 data class ClientDetailState(
@@ -7,3 +8,5 @@ data class ClientDetailState(
     val client: ClientesCadastro? = null,
     val error: String = ""
 )
+
+

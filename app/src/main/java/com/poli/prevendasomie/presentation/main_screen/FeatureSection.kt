@@ -1,9 +1,6 @@
 package com.poli.prevendasomie.presentation.main_screen
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -12,8 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.poli.prevendasomie.presentation.Screen
-import com.poli.prevendasomie.presentation.main_screen.components.FeatureItem
+import com.poli.prevendasomie.navigation.Screen
 
 @Composable
 fun FeatureSection(navController: NavController, modifier: Modifier ) {
