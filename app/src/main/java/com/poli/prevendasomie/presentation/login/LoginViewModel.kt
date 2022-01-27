@@ -1,4 +1,13 @@
 package com.poli.prevendasomie.presentation.login
 
-class LoginViewModel {
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+
+@HiltViewModel
+class LoginViewModel: ViewModel() {
+
+
+
+
+
 }
