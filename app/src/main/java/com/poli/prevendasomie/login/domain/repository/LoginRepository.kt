@@ -6,5 +6,5 @@ import com.poli.prevendasomie.data.Result
 
 interface LoginRepository {
 
-    suspend fun login(credentials: Credentials): Result<LoginResponse>
+     suspend fun login(credentials: Credentials): Result<LoginResponse>
 }

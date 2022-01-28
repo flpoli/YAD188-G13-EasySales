@@ -7,5 +7,5 @@ import retrofit2.http.POST
 interface BackEndApi {
 
     @POST("login")
-    suspend fun executeLogin(credentials: Credentials): LoginResponse
+     fun executeLogin(credentials: Credentials): LoginResponse
 }

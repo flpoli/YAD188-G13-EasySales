@@ -12,10 +12,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object networkModule {
+object NetworkModule {
 
 
     @Singleton
+    @Provides
     fun provideLoginApi(): BackEndApi {
 
         return Retrofit.Builder()

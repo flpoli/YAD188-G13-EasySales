@@ -2,10 +2,7 @@ package com.poli.prevendasomie.presentation.login
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -13,17 +10,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.poli.prevendasomie.ui.theme.ButtonShape
+import com.poli.prevendasomie.R
 
 
 @Composable
 fun LoginScreen(
     navController: NavHostController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewState: LoginViewState,
+    viewModel: LoginViewModel = hiltViewModel(),
 ) {
 
     Column(
@@ -49,25 +52,12 @@ fun LoginScreen(
             onValueChange = {/*TODO*/ }
         )
 
-        Button(
+        LoginButton(
+            onClick = onLoginClicked,
+            enabled = viewState.inputsEnabled,
+        )
 
-            modifier = Modifier.padding(20.dp),
 
-            onClick = { /*TODO*/
-//            if (email.isBlank() == false && password.isBlank() == false) {
-//                onLoginClick(email)
-//                focusManager.clearFocus()
-//            } else {
-//                Toast.makeText(
-//                    context,
-//                    "Please enter email and password",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-            }
-        ) {
-            Text("Login")
-        }
 
         Text(text= "Registrar")
         Text(text= "Recuperar senha")
@@ -75,6 +65,41 @@ fun LoginScreen(
     }
 
 }
+
+@Composable
+private fun LoginButton(
+    onClick: () -> Unit,
+    enabled: Boolean,
+) {
+    PrimaryButton(
+        text = stringResource(R.string.log_in),
+        onClick = onClick,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun PrimaryButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+){
+    Button(
+        onClick = onClick,
+        shape = ButtonShape,
+        modifier = Modifier
+            .height(48.dp)
+            .fillMaxWidth(),
+        enabled = enabled
+    ){
+        Text(
+            text = text.toUpperCase(Locale.current),
+        )
+    }
+
+}
+
 //@Preview
 //@Composable
 //fun PreviewLoginScreen(navController = NavController) {
