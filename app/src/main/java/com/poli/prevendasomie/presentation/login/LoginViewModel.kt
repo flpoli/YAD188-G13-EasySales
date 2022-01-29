@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.UIText
 import com.poli.prevendasomie.login.domain.model.Credentials
+import com.poli.prevendasomie.login.domain.model.Email
 import com.poli.prevendasomie.login.domain.model.LoginResult
+import com.poli.prevendasomie.login.domain.model.Password
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,8 +33,37 @@ class LoginViewModel @Inject constructor(
         _viewState.value = LoginViewState.Submitting(
             credentials = currentCredentials
         )
+
+        viewModelScope.launch {
+
+            val loginResult = credentialsLoginUseCase(currentCredentials)
+            handleLoginResult(loginResult, currentCredentials)
+
+        }
     }
 
+    fun emailChanged(email: String){
+
+        val currentCredentials = _viewState.value.credentials
+        val currentPasswordErrorMessage = (_viewState.value as? LoginViewState.Active)?.passwordInputErrorMessage
+
+        _viewState.value = LoginViewState.Active(
+            credentials = currentCredentials.withUpdatedEmail(email),
+            emailInputErrorMessage = null,
+            passwordInputErrorMessage = currentPasswordErrorMessage
+        )
+    }
+
+    fun passwordChanged(password: String) {
+        val currentCredentials = _viewState.value.credentials
+        val currentEmailErrorMessage = (_viewState.value as? LoginViewState.Active)?.emailInputErrorMessage
+
+        _viewState.value = LoginViewState.Active(
+            credentials = currentCredentials.withUpdatedPassword(password),
+            passwordInputErrorMessage = null,
+            emailInputErrorMessage = currentEmailErrorMessage,
+        )
+    }
 
     private fun handleLoginResult(
         loginResult: LoginResult,
@@ -74,4 +106,10 @@ private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: C
             this.emptyPassword
         },
     )
+}
+private fun Credentials.withUpdatedEmail(email: String): Credentials {
+    return this.copy(email = Email(email))
+}
+private fun Credentials.withUpdatedPassword(password: String): Credentials{
+    return this.copy(password = Password(password))
 }
