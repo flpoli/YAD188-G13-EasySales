@@ -1,11 +1,11 @@
 package com.poli.prevendasomie.presentation.client_list
 
-import com.poli.prevendasomie.domain.model.Client
+import com.poli.prevendasomie.domain.model.ClientList
 
 data class ClientListState(
 
     val isLoading: Boolean = false,
-    val clients: List<Client> = emptyList(),
+    val clientes: List<ClientList> = emptyList(),
     val error: String = ""
 
 )
