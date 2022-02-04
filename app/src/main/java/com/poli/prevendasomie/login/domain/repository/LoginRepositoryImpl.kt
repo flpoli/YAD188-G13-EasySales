@@ -13,7 +13,14 @@ class LoginRepositoryImpl @Inject constructor(
 
         val chamada =  api.executeLogin(credentials)
 
-        return Result.Success(chamada)
+        when(chamada) {
+            is Result.Success -> {
+                println(chamada)}
+            is Result.Error -> {
+                println(chamada)
+            }
+        }
+        return chamada
 
 
     }
