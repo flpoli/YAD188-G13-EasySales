@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.client_list.components
+package com.poli.prevendasomie.presentation.clientes.client_list.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

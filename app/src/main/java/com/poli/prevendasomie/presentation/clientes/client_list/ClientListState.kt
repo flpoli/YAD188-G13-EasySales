@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.client_list
+package com.poli.prevendasomie.presentation.clientes.client_list
 
 import com.poli.prevendasomie.domain.model.ClientList
 

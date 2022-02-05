@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.client_detail
+package com.poli.prevendasomie.presentation.clientes.client_detail
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

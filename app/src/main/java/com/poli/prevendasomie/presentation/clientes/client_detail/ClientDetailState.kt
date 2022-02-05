@@ -1,6 +1,5 @@
-package com.poli.prevendasomie.presentation.client_detail
+package com.poli.prevendasomie.presentation.clientes.client_detail
 
-import androidx.compose.material.Text
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 
 data class ClientDetailState(

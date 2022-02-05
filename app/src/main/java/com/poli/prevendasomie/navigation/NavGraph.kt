@@ -6,10 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.poli.prevendasomie.presentation.client_detail.ClientDetailScreen
-import com.poli.prevendasomie.presentation.client_list.ClientListScreen
+import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
+import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.login.LoginScreen
-import com.poli.prevendasomie.presentation.login.LoginViewState
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 
 @Composable
@@ -17,7 +16,7 @@ fun SetupNavGraph(navController: NavHostController){
 
     NavHost(
         navController = navController,
-        startDestination =  Screen.LoginScreen.route
+        startDestination =  Screen.MainScreen.route
     ){
 
         composable("login_screen"){

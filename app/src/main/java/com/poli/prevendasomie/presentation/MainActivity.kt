@@ -5,18 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.navigation.SetupNavGraph
-import com.poli.prevendasomie.presentation.client_detail.ClientDetailScreen
-import com.poli.prevendasomie.presentation.client_list.ClientListScreen
-import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +29,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             PreVendasOmieTheme {
 
+                var selectedItem by remember { mutableStateOf(0) }
+                val items = listOf("Clientes", "Produtos", "Pedidos")
+
                 Surface(color = MaterialTheme.colors.background) {
 
                     Scaffold(
@@ -44,21 +44,40 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             )
+                        },
+                        bottomBar = {
+
+                            BottomNavigation {
+                                items.forEachIndexed { index, item ->
+                                    BottomNavigationItem(
+                                        icon = {
+                                            Icon(
+                                                Icons.Filled.Favorite,
+                                                contentDescription = null
+                                            )
+                                        },
+                                        label = { Text(item) },
+                                        selected = selectedItem == index,
+                                        onClick = { selectedItem = index }
+                                    )
+                                }
+                            }
+
                         }
-                    ){
+                    ) {
 
 
 
-                navController = rememberNavController()
+                            navController = rememberNavController()
 
-                        SetupNavGraph(navController = navController)
+                            SetupNavGraph(navController = navController)
 
 
+                        }
+
+                    }
 
             }
         }
-    }
-}
-}
-}
+    }}
 

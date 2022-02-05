@@ -4,7 +4,12 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.secrets_gradle_plugin' version '0.4'
 }
+
+def localProperties = new Properties()
+
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 android {
     compileSdk 31
@@ -16,6 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
@@ -26,7 +32,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -80,7 +88,7 @@ dependencies {
     annotationProcessor 'com.google.dagger:hilt-compiler:2.40.2'
 
 
-//    // DataStore Preferences
+    // DataStore Preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     implementation 'com.google.code.gson:gson:2.8.9'
