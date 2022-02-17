@@ -31,17 +31,16 @@ fun ClientListItem(
     val isSearching by remember {viewModel.isSearching }
 
 
-    SearchBar(
-        hint = "", // I cant make the hint disappears when box focused; how to?
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ){
-        viewModel.searchClientList(it)
-    }
+//    SearchBar(
+//        hint = "", // I cant make the hint disappears when box focused; how to?
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(16.dp)
+//    ){
+//        viewModel.searchClientList(it)
+//    }
 
-    Spacer(modifier = Modifier.height(16.dp))
-
+//    Spacer(modifier = Modifier.height(16.dp))
 
     LazyColumn(modifier = Modifier.padding( top = 80.dp, end = 0.dp)){
 
@@ -54,7 +53,6 @@ fun ClientListItem(
                 viewModel.loadClientList()
 
             }
-
             ClientRow(
                 rowIndex = it,
                 entries = clientList,

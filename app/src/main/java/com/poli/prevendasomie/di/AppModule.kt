@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    private val gson = GsonBuilder().create() // no no no no
+    private val gson = GsonBuilder().create()
 
     @Provides
     @Singleton

@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -65,19 +64,13 @@ class MainActivity : ComponentActivity() {
 
                         }
                     ) {
-
-
-
-                            navController = rememberNavController()
-
-                            SetupNavGraph(navController = navController)
-
-
-                        }
-
+                        navController = rememberNavController()
+                        SetupNavGraph(navController = navController)
                     }
 
+                }
             }
         }
-    }}
+    }
+}
 
