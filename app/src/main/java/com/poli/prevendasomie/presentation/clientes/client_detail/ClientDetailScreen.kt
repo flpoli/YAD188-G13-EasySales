@@ -1,14 +1,18 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.poli.prevendasomie.R
+import com.poli.prevendasomie.ui.theme.BlueViolet3
 
 @Composable
 fun ClientDetailScreen(
@@ -17,14 +21,6 @@ fun ClientDetailScreen(
     codigoClienteOmie: String
 ) {
 
-//    val state by remember {
-//
-//        viewModel.state
-//    }
-
-//    val client = state.client
-
-    // não.. mentira. Na verdade sim:
     viewModel.loadClientByCode(codigoClienteOmie)
 
     val state = viewModel.state.value
@@ -32,6 +28,8 @@ fun ClientDetailScreen(
 
     Box(
         modifier = Modifier
+
+            .background(color = BlueViolet3)
             .fillMaxSize()
     ) {
 
@@ -39,15 +37,16 @@ fun ClientDetailScreen(
         state.client?.let { client ->
 
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
             ) {
-
 
                 Text(
                     text = "Nome fantasia:",
                     style = MaterialTheme.typography.h2,
-
                     )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = client.nomeFantasia,
                     style = MaterialTheme.typography.body2,
@@ -57,32 +56,34 @@ fun ClientDetailScreen(
                     text = "Razão social:",
                     style = MaterialTheme.typography.h2,
                 )
-
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = client.razaoSocial,
                     style = MaterialTheme.typography.body1,
                 )
-
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = "CPF/CNPJ:",
                     style = MaterialTheme.typography.h2,
                 )
-
                 Text(
                     text = client.cnpjCpf
                 )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = "Endereço:",
                     style = MaterialTheme.typography.h2,
                 )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = "${client.endereco}, ${client.enderecoNumero} "
                 )
 
                 Text(
-                    text = "Contato:",
+                    text = stringResource(R.string.details_screen_contato),
                     style = MaterialTheme.typography.h2,
                 )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
                 )
@@ -102,3 +103,4 @@ fun ClientDetailScreen(
 fun Contato(){
 
 }
+
