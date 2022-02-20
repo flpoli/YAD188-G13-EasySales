@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.poli.prevendasomie.R
+import com.poli.prevendasomie.presentation.clientes.client_detail.components.InfoBox
 import com.poli.prevendasomie.ui.theme.BlueViolet3
 
 @Composable
@@ -40,67 +41,24 @@ fun ClientDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(20.dp),
-            ) {
-
-                Text(
-                    text = "Nome fantasia:",
-                    style = MaterialTheme.typography.h2,
-                    )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = client.nomeFantasia,
-                    style = MaterialTheme.typography.body2,
+            ){
+                InfoBox(
+                    title = "Nome",
+                    info = client.nomeFantasia,
+                    subtitle = client.cnpjCpf
                 )
-
-                Text(
-                    text = "Razão social:",
-                    style = MaterialTheme.typography.h2,
+                InfoBox(
+                    title = "Contato",
+                    info = client.email,
+                    subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
                 )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = client.razaoSocial,
-                    style = MaterialTheme.typography.body1,
+                InfoBox(
+                    title = "Endereço",
+                    info =  "${ client.endereco }, ${ client.enderecoNumero }, ${client.bairro}",
+                    subtitle = "CEP: ${client.cep}"
                 )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "CPF/CNPJ:",
-                    style = MaterialTheme.typography.h2,
-                )
-                Text(
-                    text = client.cnpjCpf
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "Endereço:",
-                    style = MaterialTheme.typography.h2,
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "${client.endereco}, ${client.enderecoNumero} "
-                )
-
-                Text(
-                    text = stringResource(R.string.details_screen_contato),
-                    style = MaterialTheme.typography.h2,
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
-                )
-                Text(
-                    text = "E-mail: ${client.email}"
-                )
-
             }
         }
 
     }
 }
-
-
-
-@Composable
-fun Contato(){
-
-}
-

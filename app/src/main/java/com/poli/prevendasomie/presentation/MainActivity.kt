@@ -36,13 +36,8 @@ class MainActivity : ComponentActivity() {
                 SetupNavGraph(navController = navController)
                 Surface(color = MaterialTheme.colors.background) {
 
-                     {
 
-//                         Screen.MainScreen() {
-//
-//                         }
 
-                    }
 
                 }
             }
