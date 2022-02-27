@@ -8,6 +8,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +25,7 @@ import androidx.navigation.NavHostController
 import com.poli.prevendasomie.ui.theme.ButtonShape
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.getString
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.ui.theme.TextFieldShape
 
 
@@ -34,8 +36,18 @@ fun LoginScreen(
 ) {
 
     val viewState = viewModel.viewState.collectAsState()
-
     val context = LocalContext.current
+
+    DisposableEffect(viewState.value) {
+
+        if(viewState.value is LoginViewState.Completed) {
+
+            navController.navigate(Screen.MainScreen.route)
+        }
+
+        onDispose {  }
+
+    }
 
     LoginContent(
         viewState = viewState.value,

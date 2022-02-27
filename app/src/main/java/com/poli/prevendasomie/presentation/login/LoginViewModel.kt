@@ -1,22 +1,23 @@
 package com.poli.prevendasomie.presentation.login
 
-import android.annotation.SuppressLint
-import android.util.Log
+import androidx.compose.runtime.snapshots.SnapshotApplyResult
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.R
-import com.poli.prevendasomie.core.UIText
+import com.poli.prevendasomie.core.UiEvent
+import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.login.domain.model.Credentials
 import com.poli.prevendasomie.login.domain.model.Email
 import com.poli.prevendasomie.login.domain.model.LoginResult
 import com.poli.prevendasomie.login.domain.model.Password
-import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import okhttp3.Route
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,13 +29,13 @@ class LoginViewModel @Inject constructor(
         MutableStateFlow(LoginViewState.Initial)
     val viewState: StateFlow<LoginViewState> = _viewState
 
+    private val _uiEvent = Channel<UiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
-    @SuppressLint("TimberArgCount")
     fun loginButtonClicked(){
 
         val currentCredentials = _viewState.value.credentials
 
-        Log.d("credenciais: ", currentCredentials.toString())
 
         _viewState.value = LoginViewState.Submitting(
             credentials = currentCredentials
@@ -43,9 +44,11 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
 
             val loginResult = credentialsLoginUseCase(currentCredentials)
-            Log.d("viewmodel - LoginResult: ", loginResult.toString())
 
             handleLoginResult(loginResult, currentCredentials)
+
+
+
 
         }
     }
@@ -84,22 +87,26 @@ class LoginViewModel @Inject constructor(
 
                 LoginViewState.SubmissionError(
                     credentials = currentCredentials,
-                    errorMessage = UIText.ResourceText(R.string.err_invalid_credentials)
+                    errorMessage = UiText.ResourceText(R.string.err_invalid_credentials)
                 )
             }
             is LoginResult.Failure.Unknown -> {
                 LoginViewState.SubmissionError(
                     credentials = currentCredentials,
-                    errorMessage = UIText.ResourceText(R.string.err_login_failure)
+                    errorMessage = UiText.ResourceText(R.string.err_login_failure)
                 )
             }
             is LoginResult.Failure.EmptyCredentials -> {
                 loginResult.toLoginViewState(currentCredentials)
             }
             is LoginResult.Success -> {
+
                 LoginViewState.Completed
+
             }
+
         }
+
 
     }
 
@@ -107,10 +114,10 @@ class LoginViewModel @Inject constructor(
 private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: Credentials): LoginViewState {
     return LoginViewState.Active(
         credentials = credentials,
-        emailInputErrorMessage = UIText.ResourceText(R.string.err_empty_email).takeIf {
+        emailInputErrorMessage = UiText.ResourceText(R.string.err_empty_email).takeIf {
             this.emptyEmail
         },
-        passwordInputErrorMessage = UIText.ResourceText(R.string.err_empty_password).takeIf {
+        passwordInputErrorMessage = UiText.ResourceText(R.string.err_empty_password).takeIf {
             this.emptyPassword
         },
     )

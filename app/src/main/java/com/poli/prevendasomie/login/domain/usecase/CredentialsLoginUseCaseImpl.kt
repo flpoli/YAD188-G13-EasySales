@@ -18,8 +18,11 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
     override suspend fun invoke(credentials: Credentials): LoginResult {
 
 
-        val loginApi = api.executeLogin(credentials)
-        println("Loginapi - Usecase: $loginApi")
+
+
+
+
+
 
         val validationResult = validateCredentials(credentials)
 
@@ -27,6 +30,7 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
             return validationResult
         }
 
+        val loginApi = api.executeLogin(credentials)
         val repoResult = loginRepository.login(credentials)
 
         return when (repoResult) {

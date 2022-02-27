@@ -11,6 +11,6 @@ import retrofit2.http.POST
 interface BackEndApi {
 
     @POST("login")
-    @Headers("Accept: application/json")
+    @Headers("Content-Type: application/json")
     suspend fun executeLogin(@Body credentials: Credentials): Result<LoginResponse>
 }
