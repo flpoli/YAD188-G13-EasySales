@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.presentation.login
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.R
@@ -14,6 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,9 +29,12 @@ class LoginViewModel @Inject constructor(
     val viewState: StateFlow<LoginViewState> = _viewState
 
 
+    @SuppressLint("TimberArgCount")
     fun loginButtonClicked(){
 
         val currentCredentials = _viewState.value.credentials
+
+        Log.d("credenciais: ", currentCredentials.toString())
 
         _viewState.value = LoginViewState.Submitting(
             credentials = currentCredentials
@@ -37,6 +43,8 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
 
             val loginResult = credentialsLoginUseCase(currentCredentials)
+            Log.d("viewmodel - LoginResult: ", loginResult.toString())
+
             handleLoginResult(loginResult, currentCredentials)
 
         }

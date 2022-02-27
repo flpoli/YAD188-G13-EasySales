@@ -12,5 +12,5 @@ interface BackEndApi {
 
     @POST("login")
     @Headers("Accept: application/json")
-    fun executeLogin(@Body credentials: Credentials): Result<LoginResponse>
+    suspend fun executeLogin(@Body credentials: Credentials): Result<LoginResponse>
 }
