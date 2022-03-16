@@ -97,8 +97,6 @@ class ClientListViewModel
             when(result){
                 is Resource.Success ->{
 
-                                                                     //TODO: Search about this difference ¬¬
-//-------------------------------------------------------------------FUCK \/   forEach X onEach?
                     val clientEntries = result.data?.clientesCadastro?.onEach {
 
                         it -> ClientesCadastroEntry(it.nomeFantasia)

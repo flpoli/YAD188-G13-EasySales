@@ -13,6 +13,7 @@ import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.presentation.pedidos.OrderListScreen
 import com.poli.prevendasomie.presentation.produtos.ProductListScreen
+import com.poli.prevendasomie.presentation.signup.SignupScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController){
@@ -24,6 +25,9 @@ fun SetupNavGraph(navController: NavHostController){
 
         composable("login_screen"){
             LoginScreen(navController = navController)
+        }
+        composable("signup_screen"){
+            SignupScreen(navController = navController)
         }
         composable("main_screen") {
             MainScreen(navController = navController)

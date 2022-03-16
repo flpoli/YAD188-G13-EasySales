@@ -49,22 +49,21 @@ fun LoginScreen(
 
     }
 
-    LoginContent(
-        viewState = viewState.value,
-        onEmailChanged = viewModel::emailChanged,
-        onPasswordChanged = viewModel::passwordChanged,
-        onLoginClicked = viewModel::loginButtonClicked,
-        onSignUpClicked = {
-            Toast.makeText(context, "TODO", Toast.LENGTH_LONG).show()
-        }
+    Column(
+        modifier = Modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        LoginContent(
+            viewState = viewState.value,
+            onEmailChanged = viewModel::emailChanged,
+            onPasswordChanged = viewModel::passwordChanged,
+            onLoginClicked = viewModel::loginButtonClicked,
+            onSignUpClicked = {
+                navController.navigate(Screen.SignUpScreen.route)
+            }
+        )
+    }
 
-
-    )
 
 }
-
-
-
-
-
-

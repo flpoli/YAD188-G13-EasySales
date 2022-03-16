@@ -14,10 +14,9 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.getString
-import com.poli.prevendasomie.ui.theme.ButtonShape
-import com.poli.prevendasomie.ui.theme.TextFieldShape
-
-
+import com.poli.prevendasomie.presentation.components.AppTextField
+import com.poli.prevendasomie.presentation.components.PrimaryButton
+import com.poli.prevendasomie.presentation.components.SignUpButton
 
 @Composable
 fun LoginContent(
@@ -55,39 +54,9 @@ private fun LoginButton(
         enabled = enabled,
     )
 }
-@Composable
-private fun SignUpButton(
-    onClick: () -> Unit,
-    enabled: Boolean,
-) {
-    PrimaryButton(
-        text = stringResource(R.string.sign_up),
-        onClick = onClick,
-        enabled = enabled,
-    )
-}
 
-@Composable
-fun PrimaryButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true
-){
-    Button(
-        onClick = onClick,
-        shape = ButtonShape,
-        modifier = Modifier
-            .height(48.dp)
-            .fillMaxWidth(),
-        enabled = enabled
-    ){
-        Text(
-            text = text.toUpperCase(Locale.current),
-        )
-    }
 
-}
+
 
 @Composable
 private fun LoginInputsColumn(
@@ -187,70 +156,6 @@ private fun PasswordInput(
     )
 }
 
-
-@Composable
-fun AppTextField(
-
-    text: String,
-    onTextChanged: (String) -> Unit,
-    labelText: String?,
-    modifier: Modifier = Modifier,
-    errorMessage: String? = null,
-    enabled: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    placeholderText: String? = null,
-){
-
-    val labelComposable: (@Composable () -> Unit)? = labelText?.let {
-
-        @Composable {
-            Text(
-                text = labelText,
-            )
-        }
-
-    }
-
-    val placeholderComposable: (@Composable () -> Unit)? = labelText?.let {
-
-        @Composable {
-            Text(
-                text = labelText,
-            )
-        }
-
-    }
-
-
-    Column {
-
-        OutlinedTextField(
-
-            value = text,
-            onValueChange = onTextChanged,
-            label = labelComposable,
-            shape = TextFieldShape,
-            modifier = Modifier
-                .heightIn(48.dp)
-                .fillMaxWidth(),
-            isError = (errorMessage != null),
-            enabled = enabled,
-            placeholder = placeholderComposable,
-        )
-
-        if(errorMessage != null){
-            Text(
-                text = errorMessage,
-                modifier = Modifier
-                    .padding(
-                        top = 4.dp,
-                        start = 16.dp
-                    )
-            )
-        }
-
-    }
-}
 
 
 

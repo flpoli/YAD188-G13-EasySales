@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.poli.prevendasomie.presentation.login.AppTextField
+import com.poli.prevendasomie.presentation.components.AppTextField
 import javax.inject.Inject
 
 @Composable

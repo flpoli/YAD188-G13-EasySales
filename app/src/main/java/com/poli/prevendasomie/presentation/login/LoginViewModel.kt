@@ -46,10 +46,6 @@ class LoginViewModel @Inject constructor(
             val loginResult = credentialsLoginUseCase(currentCredentials)
 
             handleLoginResult(loginResult, currentCredentials)
-
-
-
-
         }
     }
 
@@ -104,13 +100,10 @@ class LoginViewModel @Inject constructor(
                 LoginViewState.Completed
 
             }
-
         }
-
-
     }
-
 }
+
 private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: Credentials): LoginViewState {
     return LoginViewState.Active(
         credentials = credentials,

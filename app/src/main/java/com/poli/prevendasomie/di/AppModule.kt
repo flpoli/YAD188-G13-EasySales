@@ -20,14 +20,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    private val gson = GsonBuilder().create()
 
     @Provides
     @Singleton
     fun provideOmieApi(): OmieAPI {
 
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
             .create(OmieAPI::class.java)
@@ -39,24 +38,6 @@ class AppModule {
     fun provideClientsRepository(
         api: OmieAPI
     ) = ClientsRepository(api)
-
-//    @Provides
-//    @Singleton
-//    fun provideLoginApi(): BackEndApi {
-//
-//        return Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .baseUrl(BASE_URL)
-//            .build()
-//            .create(OmieAPI::class.java)
-//
-//    }
-
-//    @Provides
-//    @Singleton
-//    fun bindCredentialsLoginUseCase(
-//        credentialsLoginUseCase: CredentialsLoginUseCaseImpl,
-//    ): CredentialsLoginUseCase
 
 
 }
