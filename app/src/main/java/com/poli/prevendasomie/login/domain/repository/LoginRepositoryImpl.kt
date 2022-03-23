@@ -11,16 +11,16 @@ class LoginRepositoryImpl @Inject constructor(
 ): LoginRepository {
     override suspend fun login(credentials: Credentials): Result<LoginResponse> {
 
-        val chamada =  api.executeLogin(credentials)
+        val call =  api.executeLogin(credentials)
 
-        when(chamada) {
+        when(call) {
             is Result.Success -> {
-                println(chamada)}
+                println(call)}
             is Result.Error -> {
-                println(chamada)
+                println(call)
             }
         }
-        return chamada
+        return call
 
 
     }

@@ -12,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -24,11 +25,12 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideOmieApi(): OmieAPI {
+    fun provideOmieApi(client: OkHttpClient): OmieAPI {
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(BASE_URL)
+            .client(client)
             .build()
             .create(OmieAPI::class.java)
 
@@ -40,23 +42,7 @@ class AppModule {
         api: OmieAPI
     ) = ClientsRepository(api)
 
-//    @Provides
-//    @Singleton
-//    fun provideLoginApi(): BackEndApi {
-//
-//        return Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .baseUrl(BASE_URL)
-//            .build()
-//            .create(OmieAPI::class.java)
-//
-//    }
 
-//    @Provides
-//    @Singleton
-//    fun bindCredentialsLoginUseCase(
-//        credentialsLoginUseCase: CredentialsLoginUseCaseImpl,
-//    ): CredentialsLoginUseCase
 
 
 }

@@ -1,16 +1,19 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.poli.prevendasomie.R
+import com.poli.prevendasomie.presentation.clientes.client_detail.components.InfoBox
+import com.poli.prevendasomie.ui.theme.BlueViolet3
 
 @Composable
 fun ClientDetailScreen(
@@ -19,14 +22,6 @@ fun ClientDetailScreen(
     codigoClienteOmie: String
 ) {
 
-//    val state by remember {
-//
-//        viewModel.state
-//    }
-
-//    val client = state.client
-
-    // não.. mentira. Na verdade sim:
     viewModel.loadClientByCode(codigoClienteOmie)
 
     val state = viewModel.state.value
@@ -34,60 +29,36 @@ fun ClientDetailScreen(
 
     Box(
         modifier = Modifier
+
+            .background(color = BlueViolet3)
             .fillMaxSize()
-    ){
+    ) {
+
 
         state.client?.let { client ->
 
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(20.dp)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
             ){
-
-
-                item {
-                    Row(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically,
-
-                    ) {
-
-                        Text(
-                            text = "${client.nomeFantasia}"
-                        )
-                        Text(
-                            text = "${client.razaoSocial}"
-                        )
-                        Text(
-                            text = "${client.nomeFantasia}"
-                        )
-
-                    }
-                }
-
+                InfoBox(
+                    title = "Nome",
+                    info = client.nomeFantasia,
+                    subtitle = client.cnpjCpf
+                )
+                InfoBox(
+                    title = "Contato",
+                    info = client.email,
+                    subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
+                )
+                InfoBox(
+                    title = "Endereço",
+                    info =  "${ client.endereco }, ${ client.enderecoNumero }, ${client.bairro}",
+                    subtitle = "CEP: ${client.cep}"
+                )
             }
         }
+
     }
 }
-
-//Row(
-//modifier = Modifier
-//.fillMaxSize(),
-//
-//verticalAlignment = Alignment.CenterVertically
-//){
-//
-//    Column(){
-//
-//
-//        Text("Razão Social: ${state.client?.razaoSocial}")
-//        Text("Nome Fantasia: ${state.client?.nomeFantasia}")
-//        Text("CPF / CNPJ: ${state.client?.cnpjCpf}")
-//
-//
-//    }
-//
-//
-//
-//
-//}

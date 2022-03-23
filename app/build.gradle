@@ -78,7 +78,6 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
 
-
     //Dagger
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-android-compiler:2.37"
@@ -86,11 +85,9 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-rc01'
     annotationProcessor 'com.google.dagger:hilt-compiler:2.40.2'
-
-
     // DataStore Preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-
+    // Serialization
     implementation 'com.google.code.gson:gson:2.8.9'
 
 

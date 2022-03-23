@@ -4,15 +4,15 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 
-@Composable
-fun TopNavBar(function: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar { /* Top app bar content */ }
-        }
-    ){
-
-    }
-
-
-}
+//@Composable
+//fun TopNavBar(function: () -> Unit) {
+//    Scaffold(
+//        topBar = {
+//            TopAppBar { /* Top app bar content */ }
+//        }
+//    ){
+//
+//    }
+//
+//
+//}

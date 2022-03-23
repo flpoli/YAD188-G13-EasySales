@@ -1,8 +1,7 @@
 package com.poli.prevendasomie.presentation.login
 
-import com.poli.prevendasomie.core.UIText
+import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.login.domain.model.Credentials
-import com.poli.prevendasomie.login.domain.model.Email
 
 sealed class LoginViewState(
     open val credentials: Credentials,
@@ -16,8 +15,8 @@ sealed class LoginViewState(
 
     data class Active(
         override val credentials: Credentials,
-        val emailInputErrorMessage: UIText? = null,
-        val passwordInputErrorMessage: UIText? = null
+        val emailInputErrorMessage: UiText? = null,
+        val passwordInputErrorMessage: UiText? = null
     ): LoginViewState(credentials = credentials)
 
     data class Submitting(
@@ -30,7 +29,7 @@ sealed class LoginViewState(
 
     data class SubmissionError(
         override val credentials: Credentials,
-        val errorMessage: UIText
+        val errorMessage: UiText
     ):LoginViewState(
         credentials = credentials,
     )

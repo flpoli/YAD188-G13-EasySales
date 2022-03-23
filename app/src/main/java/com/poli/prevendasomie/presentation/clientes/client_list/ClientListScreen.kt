@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.clientes.client_list.components.ClientListItem
 
 @Composable
@@ -23,13 +24,11 @@ fun ClientListScreen(
 ) {
 
     ClientListItem(navController = navController)
-    AddClientFab()
+    AddClientFab(navController = navController)
 
 }
-
-
 @Composable
-fun AddClientFab() {
+fun AddClientFab(navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -40,7 +39,7 @@ fun AddClientFab() {
     ) {
         FloatingActionButton(
 
-            onClick = { /*do something*/ },
+            onClick = { navController.navigate(Screen.ClientFormScreen.route) },
             modifier = Modifier
 
         ) {
@@ -48,12 +47,8 @@ fun AddClientFab() {
                 Icons.Filled.Add,
                 contentDescription = null
             )
-
-
         }
     }
-
-
 }
 
 
