@@ -7,14 +7,14 @@
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:name="App"
+        android:name="com.poli.prevendasomie.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PreVendasOmie">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name="com.poli.prevendasomie.presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PreVendasOmie.NoActionBar">

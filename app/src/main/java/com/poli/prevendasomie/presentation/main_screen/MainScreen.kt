@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.presentation.main_screen
 
-import android.text.TextUtils.indexOf
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.poli.prevendasomie.navigation.Screen

@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.di
 
-import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.login.domain.repository.DemoLoginRepository
 import com.poli.prevendasomie.login.domain.repository.DemoTokenRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepository

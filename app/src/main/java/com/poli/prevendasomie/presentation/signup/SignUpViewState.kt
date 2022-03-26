@@ -1,8 +1,6 @@
 package com.poli.prevendasomie.presentation.signup
 
 import com.poli.prevendasomie.core.UiText
-import com.poli.prevendasomie.login.domain.model.Credentials
-import com.poli.prevendasomie.presentation.login.LoginViewState
 import com.poli.prevendasomie.signup.domain.model.UserData
 
 sealed class SignUpViewState(
