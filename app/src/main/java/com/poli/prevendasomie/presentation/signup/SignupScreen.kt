@@ -13,7 +13,6 @@ import androidx.navigation.NavHostController
 import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.SignUpButton
-import com.poli.prevendasomie.presentation.login.LoginViewState
 
 
 @Composable
