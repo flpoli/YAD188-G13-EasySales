@@ -1,13 +1,11 @@
 package com.poli.prevendasomie.presentation.clientes.client_list
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Env.APP_KEY
 import com.poli.prevendasomie.common.Env.APP_SECRET
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.data.models.ClientListEntry
 import com.poli.prevendasomie.data.models.ClientesCadastroEntry
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
@@ -15,12 +13,8 @@ import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
 import com.poli.prevendasomie.repository.ClientsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.util.Objects.toString
 import javax.inject.Inject
-import kotlin.Unit.toString
 
 
 @HiltViewModel

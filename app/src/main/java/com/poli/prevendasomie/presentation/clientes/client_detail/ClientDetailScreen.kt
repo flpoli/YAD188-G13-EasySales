@@ -2,16 +2,11 @@ package com.poli.prevendasomie.presentation.clientes.client_detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.poli.prevendasomie.R
 import com.poli.prevendasomie.presentation.clientes.client_detail.components.InfoBox
 import com.poli.prevendasomie.ui.theme.BlueViolet3
 

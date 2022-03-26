@@ -20,7 +20,7 @@ fun SetupNavGraph(navController: NavHostController){
 
     NavHost(
         navController = navController,
-        startDestination =  Screen.LoginScreen.route
+        startDestination =  Screen.MainScreen.route
     ){
 
         composable("login_screen"){

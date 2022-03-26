@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.data.remote
 
-import org.junit.Assert.*
-
 import org.junit.Test
 
 class OmieApiImplTest {

@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 data class ClientList (
 
     val clientes: List<ClientDetail>,

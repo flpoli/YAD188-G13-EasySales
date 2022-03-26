@@ -4,12 +4,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.presentation.components.AppTextField
-import javax.inject.Inject
+import com.poli.prevendasomie.presentation.components.PrimaryButton
 
 @Composable
 fun ClientFormScreen(
@@ -21,28 +19,64 @@ fun ClientFormScreen(
 
 @Composable
 fun InputColumn(
-    viewState: ClienteFormState = ClienteFormState(),
-
+    viewState: ClienteFormViewState = ClienteFormViewState(),
 
     ){
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(),
+            .padding(start = 15.dp, end = 15.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         RazaoSocialInput(
-            text = "test",
-            onTextChanged = { println("razao") },
+            text = "",
+            onTextChanged = { },
             errorMessage = null,
             enabled = true
         )
         Spacer(modifier = Modifier.height(12.dp))
-        //NomeFantasiaInput()
+
+        NomeFantasiaInput(
+            text = "",
+            onTextChanged = { },
+            errorMessage = null,
+            enabled = true
+        )
+
         Spacer(modifier = Modifier.height(12.dp))
 
+        CpfCnpjInput(
+            text = "",
+            onTextChanged = { },
+            errorMessage = null,
+            enabled = true
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+
+        EmailInput(
+            text = "",
+            onTextChanged = { },
+            errorMessage = null,
+            enabled = true
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+
+        TelefoneInput(
+            text = "",
+            onTextChanged = { },
+            errorMessage = null,
+            enabled = true
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+
+        PrimaryButton(
+            onClick = {},
+            text = "cadastrar",
+        )
 
     }
 }
@@ -66,14 +100,75 @@ fun RazaoSocialInput(
 fun NomeFantasiaInput(
     text: String,
     onTextChanged: (String) -> Unit,
-    //errorMessage: String?,
+    errorMessage: String?,
     enabled: Boolean
 ){
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
-        //errorMessage = errorMessage,
+        errorMessage = errorMessage,
         labelText = "Nome fantasia",
-        //enabled = enabled
+        enabled = enabled
+    )
+}
+@Composable
+fun CpfCnpjInput(
+    text: String,
+    onTextChanged: (String) -> Unit,
+    errorMessage: String?,
+    enabled: Boolean
+){
+    AppTextField(
+        text = text,
+        onTextChanged = onTextChanged,
+        errorMessage = errorMessage,
+        labelText = "CPF/CNPJ",
+        enabled = enabled
+    )
+}
+
+@Composable
+fun EmailInput(
+    text: String,
+    onTextChanged: (String) -> Unit,
+    errorMessage: String?,
+    enabled: Boolean
+){
+    AppTextField(
+        text = text,
+        onTextChanged = onTextChanged,
+        errorMessage = errorMessage,
+        labelText = "Email",
+        enabled = enabled
+    )
+}
+
+@Composable
+fun TelefoneInput(
+    text: String,
+    onTextChanged: (String) -> Unit,
+    errorMessage: String?,
+    enabled: Boolean
+){
+
+    //esses campos deveriam ficar em uma Row
+    // , cada campo com tamanhos diferentes
+
+    AppTextField(
+        modifier = Modifier.size(15.dp),
+        text = text,
+        onTextChanged = onTextChanged,
+        errorMessage = errorMessage,
+        labelText = "ddd",
+        enabled = enabled
+    )
+    AppTextField(
+        modifier = Modifier.size(30.dp),
+
+        text = text,
+        onTextChanged = onTextChanged,
+        errorMessage = errorMessage,
+        labelText = "Telefone",
+        enabled = enabled
     )
 }
