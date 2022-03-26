@@ -1,9 +1,9 @@
 package com.poli.prevendasomie.domain.use_case
 
-import com.poli.prevendasomie.domain.use_case.cliente_list.GetClientsUseCase
+import com.poli.prevendasomie.domain.use_case.cliente_list.GetClientListUseCase
 
 data class UseCases (
 
-    val getClientsUseCase: GetClientsUseCase
+    val getClientsUseCase: GetClientListUseCase
 
     )

@@ -1,15 +1,18 @@
-package com.poli.prevendasomie.repository
+package com.poli.prevendasomie.data.repository
 
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.ListarClientes
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
+import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
+import com.poli.prevendasomie.data.remote.responses.ListarClientesDto
+import com.poli.prevendasomie.domain.repository.ClientsRepository
 import javax.inject.Inject
 
-class ClientsRepository @Inject constructor(private val api: OmieAPI) {
 
-    suspend fun getClientList(request: Request.ListClientsRequest): Resource<ListarClientes> {
+class ClientsRepositoryImpl
+    @Inject constructor(private val api: OmieAPI): ClientsRepository {
+
+    override suspend fun getClientList(request: Request.ListClientsRequest): Resource<ListarClientesDto> {
 
         val response = try {
             api.getClientList(request)
@@ -20,7 +23,7 @@ class ClientsRepository @Inject constructor(private val api: OmieAPI) {
     }
 
 
-    suspend fun getClientByCode(request: Request.ClientByCodeRequest): Resource<ClientesCadastro>{
+    override suspend fun getClientByCode(request: Request.ClientByCodeRequest): Resource<ClientesCadastroDto> {
 
         val response = try {
             api.getClientByCode(request)
@@ -29,7 +32,6 @@ class ClientsRepository @Inject constructor(private val api: OmieAPI) {
         }
         return Resource.Success(response)
 
-        }
-
     }
 
+}

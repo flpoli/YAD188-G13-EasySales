@@ -3,14 +3,15 @@ package com.poli.prevendasomie.presentation.clientes.client_list
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.poli.prevendasomie.common.Env.APP_KEY
-import com.poli.prevendasomie.common.Env.APP_SECRET
+import com.poli.prevendasomie.BuildConfig.APP_KEY
+import com.poli.prevendasomie.BuildConfig.APP_SECRET
+
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.models.ClientesCadastroEntry
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
-import com.poli.prevendasomie.repository.ClientsRepository
+import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
+import com.poli.prevendasomie.domain.repository.ClientsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,13 +25,13 @@ class ClientListViewModel
 
     private var curPage = 0
 
-    val clientList = mutableStateOf<List<ClientesCadastro>>(listOf())
+    val clientList = mutableStateOf<List<ClientesCadastroDto>>(listOf())
 
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
     var endReached = mutableStateOf(false)
     private var isSearchStarting = true
-    private var cachedClientList = listOf<ClientesCadastro>()
+    private var cachedClientList = listOf<ClientesCadastroDto>()
     var isSearching = mutableStateOf(false)
 
 
@@ -76,7 +77,7 @@ class ClientListViewModel
 
             val result = repository.getClientList(
                 Request.ListClientsRequest(
-                    "ListarClientes",
+                    "ListarClientesDto",
                     APP_KEY,
                     APP_SECRET,
                     listOf(

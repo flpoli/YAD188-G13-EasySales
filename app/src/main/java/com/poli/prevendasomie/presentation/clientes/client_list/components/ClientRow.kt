@@ -11,12 +11,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.poli.prevendasomie.R
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastro
+import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
 
 @Composable
 fun ClientRow(
     rowIndex: Int,
-    entries: List<ClientesCadastro>,
+    entries: List<ClientesCadastroDto>,
     navController: NavController,
     onItemClick: () -> Unit
 ){
