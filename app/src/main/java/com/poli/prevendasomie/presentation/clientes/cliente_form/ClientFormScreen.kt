@@ -2,24 +2,34 @@ package com.poli.prevendasomie.presentation.clientes.cliente_form
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.PrimaryButton
 
 @Composable
 fun ClientFormScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: ClientFormViewModel = hiltViewModel()
 ){
-    InputColumn()
+
+    val viewState = viewModel.viewState.collectAsState()
+
+    InputColumn(
+        viewState = viewState.value,
+        onTextChanged = viewModel::onEmailChanged
+    )
 }
 
 
 @Composable
 fun InputColumn(
-    viewState: ClienteFormViewState = ClienteFormViewState(),
+    viewState: ClienteFormViewState,
+    onTextChanged: (String) -> Unit
 
     ){
 
@@ -56,8 +66,8 @@ fun InputColumn(
         Spacer(modifier = Modifier.height(12.dp))
 
         EmailInput(
-            text = "",
-            onTextChanged = { },
+            text = viewState.cliente.email ?: "",
+            onTextChanged = onTextChanged,
             errorMessage = null,
             enabled = true
         )

@@ -2,6 +2,7 @@ package com.poli.prevendasomie.data.remote
 
 import com.poli.prevendasomie.BuildConfig.APP_KEY
 import com.poli.prevendasomie.BuildConfig.APP_SECRET
+import com.poli.prevendasomie.domain.model.ClientesCadastro
 
 
 sealed class Request{
@@ -18,7 +19,14 @@ sealed class Request{
         val app_key: String = APP_KEY,
         val app_secret: String = APP_SECRET,
         val param: List<Param.ParamConsultarCliente>
-            )
+        )
+
+    data class IncluirCliente (
+        val call: String,
+        val app_key: String = APP_KEY,
+        val app_secret: String = APP_SECRET,
+        val param: ClientesCadastro
+    )
 }
 
 

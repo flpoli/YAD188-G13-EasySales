@@ -1,6 +1,5 @@
-package com.poli.prevendasomie.domain.use_case.cliente_list
+package com.poli.prevendasomie.domain.use_case.clients
 
-import androidx.compose.ui.res.stringResource
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
@@ -11,7 +10,6 @@ import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import retrofit2.Response.error
 import java.io.IOException
 import javax.inject.Inject
 
