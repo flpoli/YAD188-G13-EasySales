@@ -4,20 +4,23 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.use_case.cliente_list.GetClientListUseCase
+import com.poli.prevendasomie.domain.use_case.clients.GetClientListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
+
 
 @HiltViewModel
 class ClientListViewModel
 @Inject constructor(
     private val useCase: GetClientListUseCase
 
-) : ViewModel() {
+    ): ViewModel() {
+
 
     private var curPage = 0
 
@@ -29,6 +32,7 @@ class ClientListViewModel
     private var isSearchStarting = true
     private var cachedClientList = listOf<ClientesCadastro>()
     var isSearching = mutableStateOf(false)
+
 
     private val _state = mutableStateOf(ClientListState())
     val state: State<ClientListState> = _state
@@ -64,42 +68,49 @@ class ClientListViewModel
 //            clientList.value = results
 //            isSearching.value = true
 //        }
+
+
     }
 
     fun loadClientList() {
 
         useCase().onEach { result ->
 
-            when (result) {
+                when(result) {
 
-                is Resource.Success -> {
+                    is Resource.Success -> {
 
-                    _state.value = ClientListState(
+                        _state.value = ClientListState(
 
-                        isLoading = false,
-                        clientes = result.data,
-                        error = null
+                            isLoading = false,
+                            clientes = result.data,
+                            error = null
 
-                    )
+                        )
 
-                    println(result.data)
+                        println(result.data)
+                    }
+
+                    is Resource.Loading -> {
+
+                        _state.value = ClientListState(
+                            isLoading = true
+                        )
+
+                    }
+
+                    is Resource.Error -> {
+                        _state.value = ClientListState(
+
+                            error = result.message ?: "An unexpected error occurred"
+
+                        )
+                    }
+
                 }
 
-                is Resource.Loading -> {
 
-                    _state.value = ClientListState(
-                        isLoading = true
-                    )
-                }
 
-                is Resource.Error -> {
-                    _state.value = ClientListState(
-
-                        error = result.message ?: "An unexpected error occurred"
-
-                    )
-                }
-            }
         }.launchIn(viewModelScope)
 
 //        viewModelScope.launch{
@@ -130,5 +141,9 @@ class ClientListViewModel
 //                else -> {println("else?")}
 //            }
 //        }
+
+
     }
 }
+
+
