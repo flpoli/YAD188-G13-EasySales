@@ -1,8 +1,8 @@
 package com.poli.prevendasomie.domain.model
 
-data class ClientList (
+data class ListarClientes (
 
-    val clientes: List<ClientDetail>,
+    val clientes: List<ClientesCadastro>,
     val pagina: Int,
     val registros: Int,
     val totalDePaginas: Int,

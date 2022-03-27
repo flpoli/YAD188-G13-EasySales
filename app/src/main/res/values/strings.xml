@@ -7,5 +7,6 @@
     <string name="log_in">login</string>
     <string name="sign_up">sign up</string>
     <string name="details_screen_contato">Contato:</string>
+    <string name="on_http_error">An unexpected error occurred</string>
 
 </resources>

@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote
 //
 //import com.poli.prevendasomie.common.Env
-//import com.poli.prevendasomie.data.remote.dto.ClientesCadastro
+//import com.poli.prevendasomie.data.remote.dto.ClientesCadastroDto
 //import com.poli.prevendasomie.data.remote.dto.ClientsDto
 //import com.poli.prevendasomie.data.remote.dto.GetClientsCall
 //import com.poli.prevendasomie.data.remote.dto.GetClientsParam
@@ -19,7 +19,7 @@ package com.poli.prevendasomie.data.remote
 //                url(HttpRoutes.CLIENTS)
 //                contentType(ContentType.Application.Json)
 //                body = GetClientsCall(
-//                    "ListarClientes",
+//                    "ListarClientesDto",
 //                    Env.APP_KEY, Env.APP_SECRET,
 //                    GetClientsParam("N", 1, 1))
 //                }
