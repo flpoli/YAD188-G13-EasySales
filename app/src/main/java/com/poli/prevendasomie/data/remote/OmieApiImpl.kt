@@ -1,17 +1,17 @@
 package com.poli.prevendasomie.data.remote
 //
-//import com.poli.prevendasomie.common.Env
-//import com.poli.prevendasomie.data.remote.dto.ClientesCadastroDto
-//import com.poli.prevendasomie.data.remote.dto.ClientsDto
-//import com.poli.prevendasomie.data.remote.dto.GetClientsCall
-//import com.poli.prevendasomie.data.remote.dto.GetClientsParam
-//import io.ktor.client.*
-//import io.ktor.client.features.*
-//import io.ktor.client.request.*
-//import io.ktor.http.*
+// import com.poli.prevendasomie.common.Env
+// import com.poli.prevendasomie.data.remote.dto.ClientesCadastroDto
+// import com.poli.prevendasomie.data.remote.dto.ClientsDto
+// import com.poli.prevendasomie.data.remote.dto.GetClientsCall
+// import com.poli.prevendasomie.data.remote.dto.GetClientsParam
+// import io.ktor.client.*
+// import io.ktor.client.features.*
+// import io.ktor.client.request.*
+// import io.ktor.http.*
 //
 //
-//class OmieApiImpl(private val client: HttpClient): OmieAPI {
+// class OmieApiImpl(private val client: HttpClient): OmieAPI {
 //
 //    override suspend fun getClientList(call: GetClientsCall): List<ClientsDto> {
 //        return try {
@@ -40,5 +40,4 @@ package com.poli.prevendasomie.data.remote
 //
 //
 //
-//}
-
+// }

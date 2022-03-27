@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SignUpRepositoryImpl @Inject constructor(
     private val api: BackEndApi
-    ): SignUpRepository {
+) : SignUpRepository {
 
     override suspend fun signUp(userData: UserData): Result<SignUpResponse> {
 
@@ -17,18 +17,14 @@ class SignUpRepositoryImpl @Inject constructor(
         when (call) {
 
             is Result.Success -> {
-                println(call)}
-
+                println(call)
             }
+        }
 
 //            is Result.Error -> {
 //
 //            }
 
         return call
-
-
     }
-
-
 }

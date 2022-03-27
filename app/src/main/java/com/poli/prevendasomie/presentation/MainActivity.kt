@@ -3,7 +3,8 @@ package com.poli.prevendasomie.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -13,7 +14,6 @@ import androidx.navigation.compose.rememberNavController
 import com.poli.prevendasomie.navigation.SetupNavGraph
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -31,13 +31,8 @@ class MainActivity : ComponentActivity() {
                 navController = rememberNavController()
                 SetupNavGraph(navController = navController)
                 Surface(color = MaterialTheme.colors.background) {
-
-
-
-
                 }
             }
         }
     }
 }
-

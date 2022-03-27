@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.presentation.main_screen.components
 
-//@Composable
-//fun TopNavBar(function: () -> Unit) {
+// @Composable
+// fun TopNavBar(function: () -> Unit) {
 //    Scaffold(
 //        topBar = {
 //            TopAppBar { /* Top app bar content */ }
@@ -11,4 +11,4 @@ package com.poli.prevendasomie.presentation.main_screen.components
 //    }
 //
 //
-//}
+// }

@@ -1,10 +1,10 @@
 package com.poli.prevendasomie.presentation.clientes.cliente_form
 
- class ClienteFormViewState{}
+class ClienteFormViewState
 
-    //open val inputEnabled: Boolean = true
+// open val inputEnabled: Boolean = true
 
-//) {
+// ) {
 //
 //    object Initial: ClienteFormViewState()
 //
@@ -19,5 +19,4 @@ package com.poli.prevendasomie.presentation.clientes.cliente_form
 //
 //    )
 
-
-//}
+// }

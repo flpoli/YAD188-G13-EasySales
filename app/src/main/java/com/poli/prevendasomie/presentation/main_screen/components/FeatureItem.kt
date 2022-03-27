@@ -3,7 +3,11 @@ package com.poli.prevendasomie.presentation.main_screen.components
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -58,7 +62,6 @@ fun FeatureItem(
             lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
             lineTo(-100f, height.toFloat() + 100f)
             close()
-
         }
         val lightColoredPath = Path().apply {
             moveTo(lightPoint1.x, lightPoint1.y)
@@ -69,24 +72,25 @@ fun FeatureItem(
             lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
             lineTo(-100f, height.toFloat() + 100f)
             close()
-
         }
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
-        ){
+        ) {
             drawPath(
                 path = mediumColoredPath,
-                color = feature.mediumColor)
+                color = feature.mediumColor
+            )
             drawPath(
                 path = lightColoredPath,
-                color = feature.lightColor)
+                color = feature.lightColor
+            )
         }
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(15.dp)
-        ){
+        ) {
             Text(
                 text = feature.title,
                 style = MaterialTheme.typography.h6,

@@ -14,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
@@ -30,7 +29,6 @@ class AppModule {
             .client(client)
             .build()
             .create(OmieAPI::class.java)
-
     }
 
     @Provides
@@ -39,7 +37,4 @@ class AppModule {
 
         return ClientsRepositoryImpl(api)
     }
-
-
-
 }

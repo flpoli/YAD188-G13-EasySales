@@ -6,5 +6,4 @@ import com.poli.prevendasomie.login.domain.model.LoginResult
 interface CredentialsLoginUseCase {
 
     suspend operator fun invoke(credentials: Credentials): LoginResult
-
 }

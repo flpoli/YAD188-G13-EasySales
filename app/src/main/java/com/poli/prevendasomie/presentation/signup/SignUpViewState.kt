@@ -10,8 +10,7 @@ sealed class SignUpViewState(
 
 ) {
 
-
-    object Initial: SignUpViewState(
+    object Initial : SignUpViewState(
         userData = UserData(),
     )
 
@@ -20,15 +19,15 @@ sealed class SignUpViewState(
         val emailInputErrorMessage: UiText? = null,
         val passwordInputErrorMessage: UiText? = null,
         val nameInputErrorMessage: UiText? = null,
-    ): SignUpViewState(userData = userData)
+    ) : SignUpViewState(userData = userData)
 
     data class Submitting(
         override val userData: UserData,
-        ): SignUpViewState(
-            userData = userData,
-            inputEnabled = false
-        )
-    object Completed: SignUpViewState (
+    ) : SignUpViewState(
+        userData = userData,
+        inputEnabled = false
+    )
+    object Completed : SignUpViewState(
         userData = UserData(),
         inputEnabled = false
     )
@@ -36,7 +35,7 @@ sealed class SignUpViewState(
     data class SubmissionError(
         override val userData: UserData,
         val errorMessage: UiText
-    ): SignUpViewState(
+    ) : SignUpViewState(
         userData = UserData(),
     )
 }

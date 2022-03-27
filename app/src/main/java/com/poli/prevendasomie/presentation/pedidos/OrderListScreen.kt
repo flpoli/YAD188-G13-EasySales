@@ -6,4 +6,4 @@ import androidx.navigation.NavHostController
 @Composable
 fun OrderListScreen(
     navController: NavHostController
-){}
+) {}

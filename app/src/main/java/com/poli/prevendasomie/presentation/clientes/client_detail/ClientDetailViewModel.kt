@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.BuildConfig.APP_KEY
 import com.poli.prevendasomie.BuildConfig.APP_SECRET
-
-import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.domain.repository.ClientsRepository
@@ -48,10 +46,5 @@ class ClientDetailViewModel @Inject constructor(
 //                else -> {}
 //            }
         }
-
-
-
-
     }
-
 }

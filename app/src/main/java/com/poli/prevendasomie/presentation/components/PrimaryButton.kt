@@ -17,7 +17,7 @@ fun PrimaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
-){
+) {
     Button(
         onClick = onClick,
         shape = ButtonShape,
@@ -25,10 +25,9 @@ fun PrimaryButton(
             .height(48.dp)
             .fillMaxWidth(),
         enabled = enabled
-    ){
+    ) {
         Text(
             text = text.toUpperCase(Locale.current),
         )
     }
-
 }

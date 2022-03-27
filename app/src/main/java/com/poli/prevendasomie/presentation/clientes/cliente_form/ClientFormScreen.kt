@@ -1,6 +1,11 @@
 package com.poli.prevendasomie.presentation.clientes.cliente_form
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,16 +17,15 @@ import com.poli.prevendasomie.presentation.components.PrimaryButton
 @Composable
 fun ClientFormScreen(
     navController: NavHostController
-){
+) {
     InputColumn()
 }
-
 
 @Composable
 fun InputColumn(
     viewState: ClienteFormViewState = ClienteFormViewState(),
 
-    ){
+) {
 
     Column(
         modifier = Modifier
@@ -72,12 +76,10 @@ fun InputColumn(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-
         PrimaryButton(
             onClick = {},
             text = "cadastrar",
         )
-
     }
 }
 
@@ -87,7 +89,7 @@ fun RazaoSocialInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean?
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -102,7 +104,7 @@ fun NomeFantasiaInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -117,7 +119,7 @@ fun CpfCnpjInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -133,7 +135,7 @@ fun EmailInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -149,9 +151,9 @@ fun TelefoneInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
 
-    //esses campos deveriam ficar em uma Row
+    // esses campos deveriam ficar em uma Row
     // , cada campo com tamanhos diferentes
 
     AppTextField(

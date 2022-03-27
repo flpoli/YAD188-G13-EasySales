@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.remote.responses
 
-
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.ClientesCadastro
 
@@ -86,6 +85,4 @@ fun ClientesCadastroDto.toClientesCadastro(): ClientesCadastro {
         cidade = cidade,
         complemento = complemento
     )
-
-
 }

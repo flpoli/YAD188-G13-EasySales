@@ -6,4 +6,4 @@ import androidx.navigation.NavHostController
 @Composable
 fun ProductListScreen(
     navController: NavHostController
-){}
+) {}

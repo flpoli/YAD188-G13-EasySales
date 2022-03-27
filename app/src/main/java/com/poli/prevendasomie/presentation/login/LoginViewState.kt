@@ -8,20 +8,19 @@ sealed class LoginViewState(
     open val inputEnabled: Boolean = true
 ) {
 
-    object Initial: LoginViewState(
+    object Initial : LoginViewState(
         credentials = Credentials()
     )
-
 
     data class Active(
         override val credentials: Credentials,
         val emailInputErrorMessage: UiText? = null,
         val passwordInputErrorMessage: UiText? = null
-    ): LoginViewState(credentials = credentials)
+    ) : LoginViewState(credentials = credentials)
 
     data class Submitting(
         override val credentials: Credentials
-    ): LoginViewState(
+    ) : LoginViewState(
         credentials = credentials,
         inputEnabled = false
 
@@ -30,7 +29,7 @@ sealed class LoginViewState(
     data class SubmissionError(
         override val credentials: Credentials,
         val errorMessage: UiText
-    ):LoginViewState(
+    ) : LoginViewState(
         credentials = credentials,
     )
 

@@ -25,7 +25,6 @@ fun ClientListScreen(
 
     ClientListItem(navController = navController)
     AddClientFab(navController = navController)
-
 }
 @Composable
 fun AddClientFab(navController: NavController) {
@@ -50,5 +49,3 @@ fun AddClientFab(navController: NavController) {
         }
     }
 }
-
-

@@ -25,12 +25,8 @@ abstract class RepositoryModule {
         tokenRepository: DemoTokenRepository,
     ): TokenRepository
 
-
     @Binds
     abstract fun bindSignUpRepository(
         signUpRepository: SignUpRepositoryImpl
     ): SignUpRepository
-
-
-
 }

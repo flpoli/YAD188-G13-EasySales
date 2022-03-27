@@ -11,10 +11,9 @@ import javax.inject.Inject
 class CredentialsLoginUseCaseImpl @Inject constructor(
     private val loginRepository: LoginRepository,
     private val tokenRepository: TokenRepository,
-): CredentialsLoginUseCase {
+) : CredentialsLoginUseCase {
 
     override suspend fun invoke(credentials: Credentials): LoginResult {
-
 
         val validationResult = validateCredentials(credentials)
 
@@ -32,7 +31,6 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
             is Result.Error -> {
                 loginResultForError(repoResult)
             }
-
         }
     }
 
@@ -60,7 +58,4 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
             }
         }
     }
-
-    }
-
-
+}

@@ -18,15 +18,12 @@ import com.poli.prevendasomie.presentation.clientes.client_list.ClientListViewMo
 fun ClientListItem(
     navController: NavController,
     viewModel: ClientListViewModel = hiltViewModel(),
-)
-
-{
-    val state by  remember { viewModel.state }
-    val endReached by remember {viewModel.endReached }
-    val isLoading by remember {viewModel.isLoading }
-    val loadError by remember {viewModel.loadError }
-    val isSearching by remember {viewModel.isSearching }
-
+) {
+    val state by remember { viewModel.state }
+    val endReached by remember { viewModel.endReached }
+    val isLoading by remember { viewModel.isLoading }
+    val loadError by remember { viewModel.loadError }
+    val isSearching by remember { viewModel.isSearching }
 
 //    SearchBar(
 //        hint = "", // I cant make the hint disappears when box focused; how to?
@@ -39,17 +36,16 @@ fun ClientListItem(
 
 //    Spacer(modifier = Modifier.height(16.dp))
 
-    LazyColumn(modifier = Modifier.padding( top = 80.dp, end = 0.dp)){
+    LazyColumn(modifier = Modifier.padding(top = 80.dp, end = 0.dp)) {
 
         val itemCount = state.clientes?.clientes?.size
 
         if (itemCount != null) {
             items(itemCount) {
 
-                if(it >= itemCount - 1 && !endReached && !isLoading && !isSearching){
+                if (it >= itemCount - 1 && !endReached && !isLoading && !isSearching) {
 
                     viewModel.loadClientList()
-
                 }
                 ClientRow(
                     rowIndex = it,
@@ -60,9 +56,7 @@ fun ClientListItem(
                     }
                 )
                 Divider(color = Color.Black, thickness = 1.dp)
-
             }
         }
     }
-
 }

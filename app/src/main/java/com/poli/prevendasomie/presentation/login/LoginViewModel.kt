@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val credentialsLoginUseCase: CredentialsLoginUseCase,
-): ViewModel() {
+) : ViewModel() {
 
     private val _viewState: MutableStateFlow<LoginViewState> =
         MutableStateFlow(LoginViewState.Initial)
@@ -30,10 +30,9 @@ class LoginViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun loginButtonClicked(){
+    fun loginButtonClicked() {
 
         val currentCredentials = _viewState.value.credentials
-
 
         _viewState.value = LoginViewState.Submitting(
             credentials = currentCredentials
@@ -47,7 +46,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun emailChanged(email: String){
+    fun emailChanged(email: String) {
 
         val currentCredentials = _viewState.value.credentials
         val currentPasswordErrorMessage = (_viewState.value as? LoginViewState.Active)?.passwordInputErrorMessage
@@ -75,7 +74,7 @@ class LoginViewModel @Inject constructor(
         currentCredentials: Credentials,
     ) {
 
-        _viewState.value = when (loginResult){
+        _viewState.value = when (loginResult) {
 
             is LoginResult.Failure.InvalidCredentials -> {
 
@@ -96,7 +95,6 @@ class LoginViewModel @Inject constructor(
             is LoginResult.Success -> {
 
                 LoginViewState.Completed
-
             }
         }
     }
@@ -116,6 +114,6 @@ private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: C
 private fun Credentials.withUpdatedEmail(email: String): Credentials {
     return this.copy(email = Email(email))
 }
-private fun Credentials.withUpdatedPassword(password: String): Credentials{
+private fun Credentials.withUpdatedPassword(password: String): Credentials {
     return this.copy(password = Password(password))
 }
