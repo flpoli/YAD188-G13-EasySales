@@ -21,7 +21,7 @@ fun ClientListItem(
 )
 
 {
-    val clientList by  remember { viewModel.clientList } // "= vs by
+    val state by  remember { viewModel.state }
     val endReached by remember {viewModel.endReached }
     val isLoading by remember {viewModel.isLoading }
     val loadError by remember {viewModel.loadError }
@@ -41,26 +41,27 @@ fun ClientListItem(
 
     LazyColumn(modifier = Modifier.padding( top = 80.dp, end = 0.dp)){
 
-        val itemCount = clientList.size
+        val itemCount = state.clientes?.clientes?.size
 
-        items(itemCount) {
+        if (itemCount != null) {
+            items(itemCount) {
 
-            if(it >= itemCount - 1 && !endReached && !isLoading && !isSearching){
+                if(it >= itemCount - 1 && !endReached && !isLoading && !isSearching){
 
-                viewModel.loadClientList()
+                    viewModel.loadClientList()
+
+                }
+                ClientRow(
+                    rowIndex = it,
+                    entries = state.clientes?.clientes ?: emptyList(),
+                    navController = navController,
+                    onItemClick = {
+                        navController.navigate(Screen.ClientDetailScreen.route + "/${state.clientes?.clientes}") // fix route params
+                    }
+                )
+                Divider(color = Color.Black, thickness = 1.dp)
 
             }
-            ClientRow(
-                rowIndex = it,
-                entries = clientList,
-                navController = navController,
-                onItemClick = {
-                    navController.navigate(Screen.ClientDetailScreen.route + "/${clientList[it].codigoClienteOmie}")
-                    println("codigoClienteOmie: ${clientList[it].codigoClienteOmie}")
-                }
-            )
-            Divider(color = Color.Black, thickness = 1.dp)
-
         }
     }
 

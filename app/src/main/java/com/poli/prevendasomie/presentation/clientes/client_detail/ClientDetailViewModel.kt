@@ -39,14 +39,14 @@ class ClientDetailViewModel @Inject constructor(
                 )
             )
 
-            when (result) {
-
-                is Resource.Success -> {
-                    _state.value = ClientDetailState(client = result.data)
-
-                }
-                else -> {}
-            }
+//            when (result) {
+//
+//                is Resource.Success -> {
+//                    //_state.value = ClientDetailState(client = result.data)
+//
+//                }
+//                else -> {}
+//            }
         }
 
 

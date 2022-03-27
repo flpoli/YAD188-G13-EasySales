@@ -11,12 +11,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.poli.prevendasomie.R
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
+import com.poli.prevendasomie.domain.model.ClientesCadastro
 
 @Composable
 fun ClientRow(
     rowIndex: Int,
-    entries: List<ClientesCadastroDto>,
+    entries: List<ClientesCadastro>,
     navController: NavController,
     onItemClick: () -> Unit
 ){
@@ -30,7 +30,8 @@ fun ClientRow(
                     onItemClick()
                 }
         ) {
-            ClientEntry(entry = entries[rowIndex], navController = navController, dataIcon = painterResource(
+            ClientEntry(
+                entry = entries[rowIndex], navController = navController, dataIcon = painterResource(
                 id = R.drawable.account_circle
             )
             )
