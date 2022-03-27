@@ -7,5 +7,3 @@ data class ClientDetailState(
     val client: ClientesCadastroDto? = null,
     val error: String = ""
 )
-
-

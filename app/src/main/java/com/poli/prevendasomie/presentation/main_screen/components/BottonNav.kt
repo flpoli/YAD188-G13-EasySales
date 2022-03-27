@@ -17,5 +17,5 @@ fun BottomNavigation(
     contentColor: Color? = contentColorFor(backgroundColor!!),
     elevation: Dp? = BottomNavigationDefaults.Elevation,
     content: (@Composable @ExtensionFunctionType RowScope.() -> Unit)?
-): Unit {
+) {
 }

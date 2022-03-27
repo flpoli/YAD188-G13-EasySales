@@ -8,20 +8,19 @@ import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
     private val api: BackEndApi
-): LoginRepository {
+) : LoginRepository {
     override suspend fun login(credentials: Credentials): Result<LoginResponse> {
 
-        val call =  api.executeLogin(credentials)
+        val call = api.executeLogin(credentials)
 
-        when(call) {
+        when (call) {
             is Result.Success -> {
-                println(call)}
+                println(call)
+            }
             is Result.Error -> {
                 println(call)
             }
         }
         return call
-
-
     }
 }

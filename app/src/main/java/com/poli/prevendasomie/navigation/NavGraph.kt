@@ -16,17 +16,17 @@ import com.poli.prevendasomie.presentation.produtos.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
 @Composable
-fun SetupNavGraph(navController: NavHostController){
+fun SetupNavGraph(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination =  Screen.MainScreen.route
-    ){
+        startDestination = Screen.MainScreen.route
+    ) {
 
-        composable("login_screen"){
+        composable("login_screen") {
             LoginScreen(navController = navController)
         }
-        composable("signup_screen"){
+        composable("signup_screen") {
             SignupScreen(navController = navController)
         }
         composable("main_screen") {
@@ -37,20 +37,21 @@ fun SetupNavGraph(navController: NavHostController){
         }
         composable(
             route = Screen.ClientDetailScreen.route + "/{codigoClienteOmie}",
-            arguments = listOf(navArgument("codigoClienteOmie"){type = NavType.StringType})
-        ){
+            arguments = listOf(navArgument("codigoClienteOmie") { type = NavType.StringType })
+        ) {
                 entry ->
             ClientDetailScreen(
                 navController = navController,
-                codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!! )
+                codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!!
+            )
         }
-        composable("client_form_screen"){
+        composable("client_form_screen") {
             ClientFormScreen(navController = navController)
         }
-        composable("order_list_screen"){
+        composable("order_list_screen") {
             OrderListScreen(navController = navController)
         }
-        composable("product_list_screen"){
+        composable("product_list_screen") {
             ProductListScreen(navController = navController)
         }
     }

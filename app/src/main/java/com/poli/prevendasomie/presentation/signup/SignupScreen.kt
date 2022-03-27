@@ -1,6 +1,11 @@
 package com.poli.prevendasomie.presentation.signup
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -14,7 +19,6 @@ import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.SignUpButton
 
-
 @Composable
 fun SignupScreen(
     navController: NavHostController,
@@ -24,14 +28,14 @@ fun SignupScreen(
     val viewState = viewModel.viewState.collectAsState()
     val context = LocalContext.current
 
-    DisposableEffect(viewState.value){
+    DisposableEffect(viewState.value) {
 
-        if(viewState.value is SignUpViewState.Completed) {
+        if (viewState.value is SignUpViewState.Completed) {
 
             navController.navigate(Screen.LoginScreen.route)
         }
 
-        onDispose {  }
+        onDispose { }
     }
 
     SignUpContent(
@@ -41,9 +45,7 @@ fun SignupScreen(
         onPasswordChanged = viewModel::onPasswordChanged,
         onSignUpClicked = viewModel::onSignUpClicked,
     )
-
 }
-
 
 @Composable
 fun SignUpContent(
@@ -53,12 +55,12 @@ fun SignUpContent(
     onPasswordChanged: (String) -> Unit,
     onSignUpClicked: () -> Unit,
 
-    ){
+) {
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-    ){
+    ) {
 
         SignUpInputColumn(
             viewState,
@@ -67,15 +69,8 @@ fun SignUpContent(
             onPasswordChanged,
             onSignUpClicked
         )
-
     }
-
 }
-
-
-
-
-
 
 @Composable
 fun SignUpInputColumn(
@@ -94,12 +89,12 @@ fun SignUpInputColumn(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-
         NameInputField(
             text = viewState.userData.name.value,
             onTextChanged = onNameChanged,
             errorMessage = null,
-            enabled = viewState.inputEnabled)
+            enabled = viewState.inputEnabled
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -112,7 +107,7 @@ fun SignUpInputColumn(
         Spacer(modifier = Modifier.height(12.dp))
 
         PasswordInputField(
-            text = viewState.userData.password.value ,
+            text = viewState.userData.password.value,
             onTextChanged = onPasswordChanged,
             errorMessage = null,
             enabled = viewState.inputEnabled
@@ -128,18 +123,13 @@ fun SignUpInputColumn(
 //        )
 
         Spacer(modifier = Modifier.height(12.dp))
-        
+
         SignUpButton(
             onClick = onSignUpClicked,
             enabled = viewState.inputEnabled
         )
-
-
     }
-
-
 }
-
 
 @Composable
 fun NameInputField(

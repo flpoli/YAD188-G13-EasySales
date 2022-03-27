@@ -16,8 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -30,7 +28,6 @@ object NetworkModule {
                 }
             )
             .build()
-
     }
 
     @Singleton
@@ -43,6 +40,5 @@ object NetworkModule {
             .client(client)
             .build()
             .create(BackEndApi::class.java)
-
     }
 }

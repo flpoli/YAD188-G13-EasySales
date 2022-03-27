@@ -1,6 +1,6 @@
 package com.poli.prevendasomie.domain.model
 
-data class ListarClientes (
+data class ListarClientes(
 
     val clientes: List<ClientesCadastro>,
     val pagina: Int,
@@ -8,4 +8,4 @@ data class ListarClientes (
     val totalDePaginas: Int,
     val totalDeRegistros: Int
 
-    )
+)

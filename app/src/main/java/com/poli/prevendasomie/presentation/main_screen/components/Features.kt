@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 @Composable
 fun Features(
     navController: NavController
-){
+) {
 
     BoxWithConstraints(
         modifier = Modifier
@@ -23,10 +23,6 @@ fun Features(
             .aspectRatio(1f)
             .clip(RoundedCornerShape(10.dp))
             .background(color = Color.Yellow)
-    ){
-
-
+    ) {
     }
-
-
 }

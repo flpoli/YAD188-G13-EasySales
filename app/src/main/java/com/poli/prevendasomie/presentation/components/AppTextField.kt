@@ -23,7 +23,7 @@ fun AppTextField(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     placeholderText: String? = null,
-){
+) {
 
     val labelComposable: (@Composable () -> Unit)? = labelText?.let {
 
@@ -32,7 +32,6 @@ fun AppTextField(
                 text = labelText,
             )
         }
-
     }
 
     val placeholderComposable: (@Composable () -> Unit)? = labelText?.let {
@@ -42,9 +41,7 @@ fun AppTextField(
                 text = labelText,
             )
         }
-
     }
-
 
     Column {
 
@@ -62,7 +59,7 @@ fun AppTextField(
             placeholder = placeholderComposable,
         )
 
-        if(errorMessage != null){
+        if (errorMessage != null) {
             Text(
                 text = errorMessage,
                 modifier = Modifier
@@ -72,7 +69,5 @@ fun AppTextField(
                     )
             )
         }
-
     }
 }
-

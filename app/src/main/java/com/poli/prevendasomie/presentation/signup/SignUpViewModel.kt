@@ -3,7 +3,11 @@ package com.poli.prevendasomie.presentation.signup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiText
-import com.poli.prevendasomie.signup.domain.model.*
+import com.poli.prevendasomie.signup.domain.model.Email
+import com.poli.prevendasomie.signup.domain.model.Name
+import com.poli.prevendasomie.signup.domain.model.Password
+import com.poli.prevendasomie.signup.domain.model.SignUpResult
+import com.poli.prevendasomie.signup.domain.model.UserData
 import com.poli.prevendasomie.signup.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +19,6 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
-
 
     private val _viewState: MutableStateFlow<SignUpViewState> =
         MutableStateFlow(SignUpViewState.Initial)
@@ -35,19 +38,16 @@ class SignUpViewModel @Inject constructor(
             val signUpResult = signUpUseCase(currentUserData)
 
             handleSignUpResult(signUpResult, currentUserData)
-
         }
-
     }
 
-    fun onEmailChanged(email: String){
+    fun onEmailChanged(email: String) {
 
         val currentUserData = _viewState.value.userData
 
         _viewState.value = SignUpViewState.Active(
             userData = currentUserData.withUpdatedEmail(email),
         )
-
     }
 
     fun onPasswordChanged(password: String) {
@@ -70,9 +70,9 @@ class SignUpViewModel @Inject constructor(
     private fun handleSignUpResult(
         signUpResult: SignUpResult,
         currentUserData: UserData,
-    ){
+    ) {
 
-        _viewState.value = when(signUpResult) {
+        _viewState.value = when (signUpResult) {
 
             is SignUpResult.Success -> {
                 SignUpViewState.Completed
@@ -85,11 +85,8 @@ class SignUpViewModel @Inject constructor(
             }
         }
 
-        //TODO: handle submission errors
-
+        // TODO: handle submission errors
     }
-
-
 }
 
 private fun UserData.withUpdatedPassword(password: String): UserData {

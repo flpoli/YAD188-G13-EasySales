@@ -7,8 +7,8 @@ import androidx.compose.ui.platform.LocalContext
 
 sealed class UiText {
 
-    data class StringText(val value: String): UiText()
-    data class ResourceText(@StringRes val value: Int): UiText()
+    data class StringText(val value: String) : UiText()
+    data class ResourceText(@StringRes val value: Int) : UiText()
 }
 
 fun UiText.getString(context: Context): String {

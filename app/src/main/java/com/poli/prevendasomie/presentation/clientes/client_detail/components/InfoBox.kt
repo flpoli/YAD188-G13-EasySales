@@ -1,7 +1,12 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,66 +35,63 @@ fun InfoBox(
             .fillMaxWidth()
             .background(Color.Transparent)
             .padding(start = 10.dp)
-    ){
+    ) {
 
-    Column(modifier = Modifier.align(Alignment.CenterStart)) {
+        Column(modifier = Modifier.align(Alignment.CenterStart)) {
 
-
-        Text(
-            text = title,
-            textAlign = TextAlign.Start,
-            fontSize = 14.sp,
-            textDecoration = TextDecoration.None,
-            letterSpacing = 1.5.sp,
-            lineHeight = 16.sp,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(1f),
-            color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
-            fontWeight = FontWeight.Medium,
+            Text(
+                text = title,
+                textAlign = TextAlign.Start,
+                fontSize = 14.sp,
+                textDecoration = TextDecoration.None,
+                letterSpacing = 1.5.sp,
+                lineHeight = 16.sp,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(1f),
+                color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
+                fontWeight = FontWeight.Medium,
 
             )
 
-        Text(
-            text = info,
-            textAlign = TextAlign.Start,
-            fontSize = 18.sp,
-            textDecoration = TextDecoration.None,
-            letterSpacing = 0.15000000596046448.sp,
-            lineHeight = 24.sp,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(1f),
-            color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.8700000047683716f),
-            fontWeight = FontWeight.Normal,
-        )
+            Text(
+                text = info,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                textDecoration = TextDecoration.None,
+                letterSpacing = 0.15000000596046448.sp,
+                lineHeight = 24.sp,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(1f),
+                color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.8700000047683716f),
+                fontWeight = FontWeight.Normal,
+            )
 
-        Text(
-            text = subtitle,
-            textAlign = TextAlign.Start,
-            fontSize = 14.sp,
-            textDecoration = TextDecoration.None,
-            letterSpacing = 0.25.sp,
-            lineHeight = 20.sp,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(1f),
-            color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
-            fontWeight = FontWeight.Normal,
-        )
-    }
-
-
+            Text(
+                text = subtitle,
+                textAlign = TextAlign.Start,
+                fontSize = 14.sp,
+                textDecoration = TextDecoration.None,
+                letterSpacing = 0.25.sp,
+                lineHeight = 20.sp,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(1f),
+                color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
+                fontWeight = FontWeight.Normal,
+            )
+        }
     }
     Spacer(modifier = Modifier.height(20.dp))
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewInfoBox(){
+fun PreviewInfoBox() {
 
     InfoBox(
         title = "Nome",
@@ -97,6 +99,4 @@ fun PreviewInfoBox(){
         subtitle = "Joe Doe System LTDA"
 
     )
-
-
 }

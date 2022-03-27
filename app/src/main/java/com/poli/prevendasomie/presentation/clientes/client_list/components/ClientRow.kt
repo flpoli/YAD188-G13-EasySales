@@ -19,8 +19,7 @@ fun ClientRow(
     entries: List<ClientesCadastro>,
     navController: NavController,
     onItemClick: () -> Unit
-){
-
+) {
 
     Column {
         Row(
@@ -31,12 +30,12 @@ fun ClientRow(
                 }
         ) {
             ClientEntry(
-                entry = entries[rowIndex], navController = navController, dataIcon = painterResource(
-                id = R.drawable.account_circle
-            )
+                entry = entries[rowIndex], navController = navController,
+                dataIcon = painterResource(
+                    id = R.drawable.account_circle
+                )
             )
             Spacer(modifier = Modifier.height(40.dp))
         }
-
     }
 }

@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.domain.use_case.cliente_list
 
-import androidx.compose.ui.res.stringResource
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
@@ -11,14 +10,12 @@ import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import retrofit2.Response.error
 import java.io.IOException
 import javax.inject.Inject
 
 class GetClientListUseCase @Inject constructor(private val repository: ClientsRepository) {
 
     operator fun invoke(): Flow<Resource<ListarClientes>> = flow {
-
 
         val currPage: Int = 0
         val request = Request.ListClientsRequest(
@@ -37,15 +34,10 @@ class GetClientListUseCase @Inject constructor(private val repository: ClientsRe
             emit(Resource.Loading<ListarClientes>())
             val clients = repository.getClientList(request).toListarClientes()
             emit(Resource.Success(clients))
-
-        } catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error<ListarClientes>(e.localizedMessage ?: R.string.on_http_error.toString()))
-
-        } catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error<ListarClientes>(e.localizedMessage ?: R.string.on_http_error.toString()))
         }
-
     }
-
-
 }

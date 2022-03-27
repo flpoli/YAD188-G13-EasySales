@@ -22,6 +22,4 @@ abstract class UseCaseModule {
     abstract fun bindSignUpUseCase(
         signUpUseCase: SignUpUseCaseImpl
     ): SignUpUseCase
-
-
 }

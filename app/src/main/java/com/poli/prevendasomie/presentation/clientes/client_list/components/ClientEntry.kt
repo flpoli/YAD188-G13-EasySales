@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
 import com.poli.prevendasomie.domain.model.ClientesCadastro
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListViewModel
 
@@ -32,8 +31,7 @@ fun ClientEntry(
             .fillMaxWidth()
             .padding(20.dp)
 
-
-        ) {
+    ) {
         Icon(
             painter = dataIcon,
             contentDescription = null,
@@ -45,6 +43,3 @@ fun ClientEntry(
         )
     }
 }
-
-
-

@@ -1,6 +1,11 @@
 package com.poli.prevendasomie.presentation.login
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,11 +25,11 @@ fun LoginContent(
     onPasswordChanged: (String) -> Unit,
     onLoginClicked: () -> Unit,
     onSignUpClicked: () -> Unit
-){
+) {
     Box(
         modifier = Modifier
-        .fillMaxSize()
-    ){
+            .fillMaxSize()
+    ) {
         LoginInputsColumn(
             viewState,
             onEmailChanged,
@@ -33,10 +38,7 @@ fun LoginContent(
             onSignUpClicked,
         )
     }
-
 }
-
-
 
 @Composable
 private fun LoginButton(
@@ -50,9 +52,6 @@ private fun LoginButton(
     )
 }
 
-
-
-
 @Composable
 private fun LoginInputsColumn(
     viewState: LoginViewState,
@@ -60,14 +59,14 @@ private fun LoginInputsColumn(
     onPasswordChanged: (String) -> Unit,
     onLoginClicked: () -> Unit,
     onSignUpClicked: () -> Unit,
-    ){
+) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 20.dp, end = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-    ){
+    ) {
 
         EmailInput(
             text = viewState.credentials.email.value,
@@ -90,7 +89,7 @@ private fun LoginInputsColumn(
 
         )
 
-        if (viewState is LoginViewState.SubmissionError){
+        if (viewState is LoginViewState.SubmissionError) {
 
             Text(
                 text = viewState.errorMessage.getString(),
@@ -99,7 +98,6 @@ private fun LoginInputsColumn(
         }
 
         Spacer(modifier = Modifier.height(12.dp))
-
 
         LoginButton(
             onClick = onLoginClicked,
@@ -115,7 +113,6 @@ private fun LoginInputsColumn(
     }
 }
 
-
 @Composable
 private fun EmailInput(
     text: String,
@@ -123,7 +120,7 @@ private fun EmailInput(
     errorMessage: String?,
     enabled: Boolean
 
-){
+) {
 
     AppTextField(
         text = text,
@@ -132,7 +129,6 @@ private fun EmailInput(
         labelText = "Email",
         enabled = enabled
     )
-
 }
 
 @Composable
@@ -141,7 +137,7 @@ private fun PasswordInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -150,7 +146,3 @@ private fun PasswordInput(
         enabled = enabled
     )
 }
-
-
-
-

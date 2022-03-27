@@ -14,11 +14,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFERENCES_NAME)
 
 class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
-
 
     private object PreferencesKey {
         val onBoardingKey = booleanPreferencesKey(name = PREFERENCES_KEY)
@@ -26,16 +24,13 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
 
     private val dataStore = context.dataStore
 
-
     override suspend fun saveOnBoardingState(completed: Boolean) {
-
 
         dataStore.edit {
 
                 preferences ->
             preferences[PreferencesKey.onBoardingKey] = completed
         }
-
     }
 
     override fun readOnBoardingState(): Flow<Boolean> {
@@ -49,11 +44,9 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
                 }
             }
             .map {
-                preferences -> val onBoardingState = preferences[PreferencesKey.onBoardingKey] ?: false
+                    preferences ->
+                val onBoardingState = preferences[PreferencesKey.onBoardingKey] ?: false
                 onBoardingState
             }
-
     }
-
-
 }

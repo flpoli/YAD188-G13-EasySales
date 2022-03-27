@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.data.remote
 
-
-
 sealed class Param {
 
     data class ParamConsultarCliente(
@@ -13,6 +11,4 @@ sealed class Param {
         val pagina: String,
         val registros_por_pagina: String
     )
-
-
 }
