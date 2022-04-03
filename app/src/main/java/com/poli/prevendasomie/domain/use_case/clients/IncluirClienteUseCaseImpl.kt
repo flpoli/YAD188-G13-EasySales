@@ -5,7 +5,6 @@ import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.model.ListarClientes
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,9 +12,18 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-interface IncluirClienteUseCase {
+class IncluirClienteUseCaseImpl
+@Inject constructor(private val repository: ClientsRepository): IncluirClienteUseCase{
+
+    override suspend operator fun invoke(clienteCadastro: ClientesCadastro): ReqResponse {
+
+        val request = Request.IncluirCliente(
+            call = "IncluirCliente",
+            param = clienteCadastro
+        )
 
 
-    suspend operator fun invoke(clienteCadastro: ClientesCadastro): ReqResponse
+        return  repository.addNewClient(request)
 
+    }
 }

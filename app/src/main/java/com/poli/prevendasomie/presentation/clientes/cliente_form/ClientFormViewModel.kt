@@ -1,12 +1,14 @@
 package com.poli.prevendasomie.presentation.clientes.cliente_form
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.domain.model.ClientesCadastro
 import com.poli.prevendasomie.domain.model.Email
 import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +21,12 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
     fun onRegisterClicked(){
 
-        useCase()
+        viewModelScope.launch {
+
+            useCase(clienteCadastro = _viewState.value.cliente)
+
+
+        }
 
     }
 
@@ -30,10 +37,104 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
             inputError = null,
             cliente = currentData.withUpdatedEmail(email)
         )
+    }
+    fun onNomeFantasiaChanged(nomeFantasia: String){
+        val currentData = _viewState.value.cliente
 
-        println(currentData)
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedNomeFantasia(nomeFantasia)
+        )
+    }
+    fun onRazaoSocialChanged(razaoSocial: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedRazaoSocial(razaoSocial)
+        )
+    }
+    fun onCnpjCpfChanged(cnpjCpf: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedCnpjCpf(cnpjCpf)
+        )
+    }
+    fun onTelefone1DddChanged(telefone1Ddd: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedTelefone1Ddd(telefone1Ddd)
+        )
+    }
+    fun ontelefone1NumeroChanged(telefone1Numero: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedTelefone1Numero(telefone1Numero)
+        )
+    }
+    fun onEnderecoChanged(endereco: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedEndereco(endereco)
+        )
+    }
+    fun onEnderecoNumeroChanged(enderecoNumero: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedEnderecoNumero(enderecoNumero)
+        )
+    }
+    fun onBairroChanged(bairro: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedBairro(bairro)
+        )
+    }
+    fun onCepChanged(cep: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedCep(cep)
+        )
+    }
+    fun onCidadeChanged(cidade: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedCidade(cidade)
+        )
+    }
+    fun onComplementoChanged(complemento: String){
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedComplemento(complemento)
+        )
     }
 
+
+    private fun handleSubmissionResult(currentData: ClientesCadastro) {
+
+        //_viewStatw.value = when()
+
+
+
+    }
 
     private fun ClientesCadastro.withUpdatedEmail(email: String): ClientesCadastro {
         return this.copy(email = email)
