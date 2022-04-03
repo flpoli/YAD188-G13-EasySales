@@ -19,9 +19,17 @@ fun ClientFormScreen(
 
     val viewState = viewModel.viewState.collectAsState()
 
+
     InputColumn(
         viewState = viewState.value,
-        onTextChanged = viewModel::onEmailChanged
+        onEmailChanged = viewModel::onEmailChanged,
+        onRazaoSocalChanged = viewModel::onRazaoSocialChanged,
+        onNomeFantasiaChanged = viewModel::onNomeFantasiaChanged,
+        onCnpjCpfChanged = viewModel::onCnpjCpfChanged,
+        onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
+        onTelefone1Numero = viewModel::ontelefone1NumeroChanged,
+        onBtnClicked = viewModel::onRegisterClicked
+
     )
 }
 
@@ -29,7 +37,13 @@ fun ClientFormScreen(
 @Composable
 fun InputColumn(
     viewState: ClienteFormViewState,
-    onTextChanged: (String) -> Unit
+    onEmailChanged: (String) -> Unit,
+    onRazaoSocalChanged: (String) -> Unit,
+    onNomeFantasiaChanged: (String) -> Unit,
+    onCnpjCpfChanged: (String) -> Unit,
+    onTelefone1DddChanged: (String) -> Unit,
+    onTelefone1Numero: (String) -> Unit,
+    onBtnClicked: () -> Unit
 
     ){
 
@@ -41,16 +55,16 @@ fun InputColumn(
     ) {
 
         RazaoSocialInput(
-            text = "",
-            onTextChanged = { },
+            text = viewState.cliente.razaoSocial ?: "",
+            onTextChanged = onRazaoSocalChanged,
             errorMessage = null,
             enabled = true
         )
         Spacer(modifier = Modifier.height(12.dp))
 
         NomeFantasiaInput(
-            text = "",
-            onTextChanged = { },
+            text = viewState.cliente.nomeFantasia ?: "",
+            onTextChanged = onNomeFantasiaChanged,
             errorMessage = null,
             enabled = true
         )
@@ -58,8 +72,8 @@ fun InputColumn(
         Spacer(modifier = Modifier.height(12.dp))
 
         CpfCnpjInput(
-            text = "",
-            onTextChanged = { },
+            text = viewState.cliente.cnpjCpf ?: "",
+            onTextChanged = onCnpjCpfChanged,
             errorMessage = null,
             enabled = true
         )
@@ -67,15 +81,17 @@ fun InputColumn(
 
         EmailInput(
             text = viewState.cliente.email ?: "",
-            onTextChanged = onTextChanged,
+            onTextChanged = onEmailChanged,
             errorMessage = null,
             enabled = true
         )
         Spacer(modifier = Modifier.height(12.dp))
 
         TelefoneInput(
-            text = "",
-            onTextChanged = { },
+            textTelefone1Ddd = viewState.cliente.telefone1Ddd ?: "",
+            textTelefone1Numero = viewState.cliente.telefone1Numero ?: "",
+            onTelefone1DddChanged,
+            onTelefone1Numero,
             errorMessage = null,
             enabled = true
         )
@@ -84,7 +100,7 @@ fun InputColumn(
 
 
         PrimaryButton(
-            onClick = {},
+            onClick = onBtnClicked,
             text = "cadastrar",
         )
 
@@ -155,8 +171,10 @@ fun EmailInput(
 
 @Composable
 fun TelefoneInput(
-    text: String,
-    onTextChanged: (String) -> Unit,
+    textTelefone1Ddd: String,
+    textTelefone1Numero: String,
+    onTelefone1DddChanged: (String) -> Unit,
+    onTelefone1NumeroChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
 ){
@@ -166,17 +184,16 @@ fun TelefoneInput(
 
     AppTextField(
         modifier = Modifier.size(15.dp),
-        text = text,
-        onTextChanged = onTextChanged,
+        text = textTelefone1Ddd,
+        onTextChanged = onTelefone1DddChanged,
         errorMessage = errorMessage,
         labelText = "ddd",
         enabled = enabled
     )
     AppTextField(
         modifier = Modifier.size(30.dp),
-
-        text = text,
-        onTextChanged = onTextChanged,
+        text = textTelefone1Numero,
+        onTextChanged = onTelefone1NumeroChanged,
         errorMessage = errorMessage,
         labelText = "Telefone",
         enabled = enabled

@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.di
 
+import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase
+import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCaseImpl
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCaseImpl
 import com.poli.prevendasomie.signup.domain.usecase.SignUpUseCase
@@ -22,4 +24,9 @@ abstract class UseCaseModule {
     abstract fun bindSignUpUseCase(
         signUpUseCase: SignUpUseCaseImpl
     ): SignUpUseCase
+
+    @Binds
+    abstract fun bindIncluirClienteUseCase(
+        incluirClienteUseCase: IncluirClienteUseCaseImpl
+    ): IncluirClienteUseCase
 }
