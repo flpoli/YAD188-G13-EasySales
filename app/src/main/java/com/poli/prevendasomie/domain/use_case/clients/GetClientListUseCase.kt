@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.domain.use_case.cliente_list
+package com.poli.prevendasomie.domain.use_case.clients
 
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.common.Resource

@@ -4,13 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 @JvmInline
 value class AuthToken(val value: String)
-
 @JvmInline
 value class RefreshToken(val value: String)
+@JvmInline
+value class TokenExpiry(val value: String)
+@JvmInline
+value class TokenType(val value: String)
 
 data class Token(
-    @SerializedName("authToken")
     val authToken: AuthToken,
-    @SerializedName("refreshToken")
-    val refreshToken: RefreshToken
+    val tokenExpiry: TokenExpiry,
+    val tokenType: TokenType
+    //@SerializedName("refreshToken")
+    //val refreshToken: RefreshToken
 )

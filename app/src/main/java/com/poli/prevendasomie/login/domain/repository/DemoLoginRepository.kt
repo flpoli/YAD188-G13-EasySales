@@ -8,16 +8,17 @@ import com.poli.prevendasomie.login.domain.model.RefreshToken
 import com.poli.prevendasomie.login.domain.model.Token
 import javax.inject.Inject
 
-class DemoLoginRepository @Inject constructor() : LoginRepository {
-
-    override suspend fun login(credentials: Credentials): Result<LoginResponse> {
-        val defaultToken = Token(
-            AuthToken(""),
-            RefreshToken(""),
-        )
-
-        val defaultResponse = LoginResponse(defaultToken)
-
-        return Result.Success(defaultResponse)
-    }
-}
+class DemoLoginRepository @Inject constructor()
+// : LoginRepository {
+//
+//    override suspend fun login(credentials: Credentials): Result<LoginResponse> {
+//        val defaultToken = Token(
+//            AuthToken(""),
+//            RefreshToken(""),
+//        )
+//
+//        val defaultResponse = LoginResponse(defaultToken)
+//
+//        return Result.Success(defaultResponse)
+//    }
+//}

@@ -1,9 +1,6 @@
 package com.poli.prevendasomie.di
 
-import com.poli.prevendasomie.login.domain.repository.DemoLoginRepository
-import com.poli.prevendasomie.login.domain.repository.DemoTokenRepository
-import com.poli.prevendasomie.login.domain.repository.LoginRepository
-import com.poli.prevendasomie.login.domain.repository.TokenRepository
+import com.poli.prevendasomie.login.domain.repository.*
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepositoryImpl
 import dagger.Binds
@@ -17,7 +14,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindLoginRepository(
-        loginRepository: DemoLoginRepository,
+        loginRepository: LoginRepositoryImpl,
     ): LoginRepository
 
     @Binds

@@ -1,9 +1,9 @@
 package com.poli.prevendasomie.login.domain.usecase
 
+import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
-import com.poli.prevendasomie.login.domain.model.Credentials
-import com.poli.prevendasomie.login.domain.model.InvalidCredentialsException
-import com.poli.prevendasomie.login.domain.model.LoginResult
+import com.poli.prevendasomie.data.remote.toToken
+import com.poli.prevendasomie.login.domain.model.*
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
 import javax.inject.Inject
@@ -23,15 +23,33 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
 
         val repoResult = loginRepository.login(credentials)
 
-        return when (repoResult) {
-            is Result.Success -> {
-                tokenRepository.storeToken(repoResult.data.token)
-                LoginResult.Success
-            }
-            is Result.Error -> {
-                loginResultForError(repoResult)
+
+        when(repoResult) {
+
+            is Resource.Success -> {
+                val tokenResult = repoResult.data?.toToken()
+
+                tokenRepository.storeToken(
+                    Token(
+                        AuthToken(tokenResult?.authToken!!.value),
+                        TokenExpiry(""),
+                        TokenType("")))
+
+
             }
         }
+        return LoginResult.Success
+
+//        return when (repoResult) {
+//            is Result.Success -> {
+//                tokenRepository.storeToken(repoResult.data.token)
+//                LoginResult.Success
+//            }
+//            is Result.Error -> {
+//                loginResultForError(repoResult)
+//            }
+//            else -> {println("else")}
+//        }
     }
 
     private fun validateCredentials(credentials: Credentials): LoginResult.Failure.EmptyCredentials? {
@@ -59,3 +77,4 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
         }
     }
 }
+
