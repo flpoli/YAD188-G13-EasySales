@@ -7,11 +7,11 @@ value class Email(val value: String)
 value class Password(val value: String)
 
 @JvmInline
-value class Name(val value: String)
+value class Username(val value: String)
 
 data class UserData(
 
-    val name: Name = Name(""),
+    val username: Username = Username(""),
     val email: Email = Email(""),
     val password: Password = Password(""),
 )

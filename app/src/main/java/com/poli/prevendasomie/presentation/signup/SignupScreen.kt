@@ -90,7 +90,7 @@ fun SignUpInputColumn(
     ) {
 
         NameInputField(
-            text = viewState.userData.name.value,
+            text = viewState.userData.username.value,
             onTextChanged = onNameChanged,
             errorMessage = null,
             enabled = viewState.inputEnabled

@@ -1,6 +1,8 @@
 package com.poli.prevendasomie.signup.domain.usecase
 
+import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
+import com.poli.prevendasomie.data.remote.responses.toSignupResponse
 import com.poli.prevendasomie.signup.domain.model.SignUpResult
 import com.poli.prevendasomie.signup.domain.model.UserData
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
@@ -17,14 +19,20 @@ class SignUpUseCaseImpl
 
         return when (signUpResult) {
             // TODO: melhorar isso dps
-            is Result.Success -> {
-                println("logayyy hein")
+            is Resource.Success -> {
+
+                val result = signUpResult.data?.toSignupResponse()
                 SignUpResult.Success
             }
-            is Result.Error -> {
+            is Resource.Error -> {
                 println("Errinho aqui hein")
                 SignUpResult.Failure.Unknown
             }
+            else -> {
+                println("else")
+                SignUpResult.Failure.Unknown
+            }
+
         }
     }
 }

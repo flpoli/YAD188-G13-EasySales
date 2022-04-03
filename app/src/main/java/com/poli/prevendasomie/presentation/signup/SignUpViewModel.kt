@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.signup.domain.model.Email
-import com.poli.prevendasomie.signup.domain.model.Name
+import com.poli.prevendasomie.signup.domain.model.Username
 import com.poli.prevendasomie.signup.domain.model.Password
 import com.poli.prevendasomie.signup.domain.model.SignUpResult
 import com.poli.prevendasomie.signup.domain.model.UserData
@@ -96,5 +96,5 @@ private fun UserData.withUpdatedEmail(email: String): UserData {
     return this.copy(email = Email(email))
 }
 private fun UserData.withUpdatedName(name: String): UserData {
-    return this.copy(name = Name(name))
+    return this.copy(username = Username(name))
 }
