@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.repository
 
-import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
@@ -24,7 +23,7 @@ class ClientsRepositoryImpl
         return api.getClientByCode(request)
     }
 
-    override suspend fun addNewClient(request: Request.IncluirCliente): ReqResponse {
+    override suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse {
 
         return api.addNewClient(request)
     }

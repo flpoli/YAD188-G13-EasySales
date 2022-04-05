@@ -21,11 +21,11 @@ sealed class Request{
         val param: List<Param.ParamConsultarCliente>
         )
 
-    data class IncluirCliente (
-        val call: String,
+    data class IncluirClienteRequest (
+        val call: String = "IncluirCliente",
         val app_key: String = APP_KEY,
         val app_secret: String = APP_SECRET,
-        val param: ClientesCadastro
+        val param: List<ClientesCadastro>
     )
 }
 

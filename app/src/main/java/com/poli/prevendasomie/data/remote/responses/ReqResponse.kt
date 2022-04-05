@@ -11,5 +11,9 @@ data class ReqResponse(
     @SerializedName("codigo_status")
     val codigoStatus: String? = null,
     @SerializedName("descricao_status")
-    val descricaoStatus: String? = null
+    val descricaoStatus: String? = null,
+    @SerializedName("codigo_cliente_integracao")
+    val codigoClienteIntegracao: String? = null,
+    @SerializedName("codigo_cliente_omie")
+    val codigoClienteOmie: String? = null
 )
