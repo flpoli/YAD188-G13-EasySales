@@ -13,22 +13,23 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetClientListUseCase @Inject constructor(private val repository: ClientsRepository) {
+class
+GetClientListUseCase @Inject constructor(private val repository: ClientsRepository) {
 
     operator fun invoke(): Flow<Resource<ListarClientes>> = flow {
 
-        val currPage: Int = 0
         val request = Request.ListClientsRequest(
 
             call = "ListarClientes",
             param = listOf(
                 Param.ParamListarClientes(
-                    "N",
-                    currPage.toString(),
-                    "10"
+                    pagina = "1",
+                    registros_por_pagina = "500"
                 )
             )
+
         )
+
 
         try {
             emit(Resource.Loading<ListarClientes>())
