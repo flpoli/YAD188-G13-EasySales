@@ -16,6 +16,6 @@ import javax.inject.Inject
 interface IncluirClienteUseCase {
 
 
-    suspend operator fun invoke(clienteCadastro: ClientesCadastro): ReqResponse
+    suspend operator fun invoke(clienteCadastro: ClientesCadastro): ReqResponse?
 
 }

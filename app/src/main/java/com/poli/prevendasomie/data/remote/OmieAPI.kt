@@ -22,6 +22,6 @@ interface OmieAPI {
 
     @Headers("Content-Type:application/json")
     @POST("geral/clientes/")
-    suspend fun addNewClient(@Body requestBody: Request.IncluirCliente): ReqResponse
+    suspend fun addNewClient(@Body requestBody: Request.IncluirClienteRequest): ReqResponse
 
 }
