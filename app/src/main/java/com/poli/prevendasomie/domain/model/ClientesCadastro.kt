@@ -2,12 +2,15 @@ package com.poli.prevendasomie.domain.model
 
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
+import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 
 @JvmInline
 value class Email(val value: String)
 
 data class ClientesCadastro(
 
+    @SerializedName("codigo_cliente_integracao")
+    val codCliIntegracao: String? = genCodCli(),
     @SerializedName("codigo_cliente_omie")
     val codClienteOmie: Int? = 0,
     @SerializedName("nome_fantasia")

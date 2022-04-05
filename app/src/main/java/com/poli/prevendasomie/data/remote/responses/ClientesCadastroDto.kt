@@ -72,6 +72,7 @@ data class ClientesCadastroDto(
 fun ClientesCadastroDto.toClientesCadastro(): ClientesCadastro {
 
     return ClientesCadastro(
+        codCliIntegracao = codigoClienteIntegracao,
         codClienteOmie = codigoClienteOmie,
         nomeFantasia = nomeFantasia,
         razaoSocial = razaoSocial,
