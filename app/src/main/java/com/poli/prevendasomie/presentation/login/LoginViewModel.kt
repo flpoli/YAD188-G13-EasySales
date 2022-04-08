@@ -57,7 +57,6 @@ class LoginViewModel @Inject constructor(
             passwordInputErrorMessage = currentPasswordErrorMessage
         )
         println(currentCredentials)
-
     }
 
     fun passwordChanged(password: String) {
@@ -99,8 +98,6 @@ class LoginViewModel @Inject constructor(
                 LoginViewState.Completed
             }
         }
-
-
     }
 }
 

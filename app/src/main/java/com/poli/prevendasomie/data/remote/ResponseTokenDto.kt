@@ -23,4 +23,3 @@ fun ResponseTokenDto.toToken(): Token {
         tokenType = TokenType(tokenType)
     )
 }
-

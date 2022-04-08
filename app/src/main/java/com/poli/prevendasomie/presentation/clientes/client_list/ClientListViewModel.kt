@@ -14,10 +14,9 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class ClientListViewModel
-@Inject constructor(private val useCase: GetClientListUseCase): ViewModel() {
+@Inject constructor(private val useCase: GetClientListUseCase) : ViewModel() {
 
     private var curPage = 0
     val clientList = mutableStateOf<List<ClientesCadastro>>(listOf())
@@ -27,7 +26,6 @@ class ClientListViewModel
     private var isSearchStarting = true
     private var cachedClientList = listOf<ClientesCadastro>()
     var isSearching = mutableStateOf(false)
-
 
     private val _state = mutableStateOf(ClientListState())
     val state: State<ClientListState> = _state
@@ -63,39 +61,33 @@ class ClientListViewModel
             clientList.value = results
             isSearching.value = true
         }
-
-
     }
 
     fun loadClientList() {
 
+        useCase().onEach { result ->
 
-            useCase().onEach { result ->
+            when (result) {
 
-                when (result) {
-
-                    is Resource.Success -> {
-                        _state.value = ClientListState(
-                            isLoading = false,
-                            clientes = result.data,
-                            error = null
-                        )
-                        println(result.data)
-                    }
-                    is Resource.Loading -> {
-                        _state.value = ClientListState(
-                            isLoading = true
-                        )
-                    }
-                    is Resource.Error -> {
-                        _state.value = ClientListState(
-                            error = result.message ?: "An unexpected error occurred"
-                        )
-                    }
+                is Resource.Success -> {
+                    _state.value = ClientListState(
+                        isLoading = false,
+                        clientes = result.data,
+                        error = null
+                    )
+                    println(result.data)
                 }
-            }.launchIn(viewModelScope)
-        }
+                is Resource.Loading -> {
+                    _state.value = ClientListState(
+                        isLoading = true
+                    )
+                }
+                is Resource.Error -> {
+                    _state.value = ClientListState(
+                        error = result.message ?: "An unexpected error occurred"
+                    )
+                }
+            }
+        }.launchIn(viewModelScope)
     }
-
-
-
+}

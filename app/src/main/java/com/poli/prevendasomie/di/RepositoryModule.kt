@@ -1,29 +1,43 @@
 package com.poli.prevendasomie.di
 
+import android.content.Context
+import com.poli.prevendasomie.data.remote.BackEndApi
+import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
+import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.login.domain.repository.*
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepositoryImpl
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+class RepositoryModule {
 
-    @Binds
-    abstract fun bindLoginRepository(
-        loginRepository: LoginRepositoryImpl,
-    ): LoginRepository
+    @Provides
+    @Singleton
+    fun provideDataStoreOperations(@ApplicationContext context: Context): DataStoreOperations {
+        return DataStoreOperationsImpl(context = context)
+    }
 
-    @Binds
-    abstract fun bindTokenRepository(
-        tokenRepository: DemoTokenRepository,
-    ): TokenRepository
+    @Provides
+    @Singleton
+    fun provideLoginRepository(api: BackEndApi): LoginRepository {
+        return LoginRepositoryImpl(api)
+    }
 
-    @Binds
-    abstract fun bindSignUpRepository(
-        signUpRepository: SignUpRepositoryImpl
-    ): SignUpRepository
+    @Provides
+    @Singleton
+    fun provideTokenRepository(@ApplicationContext context: Context): TokenRepository {
+        return DemoTokenRepository(context)
+    }
+    @Provides
+    @Singleton
+    fun provideSignUpRepository(api: BackEndApi): SignUpRepository {
+        return SignUpRepositoryImpl(api)
+    }
 }

@@ -23,8 +23,7 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
 
         val repoResult = loginRepository.login(credentials)
 
-
-        when(repoResult) {
+        when (repoResult) {
 
             is Resource.Success -> {
                 val tokenResult = repoResult.data?.toToken()
@@ -33,23 +32,17 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
                     Token(
                         AuthToken(tokenResult?.authToken!!.value),
                         TokenExpiry(""),
-                        TokenType("")))
+                        TokenType("")
+                    )
+                )
 
+                // tokenRepository.fetchToken()
 
+//                println("Este é o Token Result? {$tokenResult}")
+//                println("Este é o token? ${tokenRepository.fetchToken()?.authToken?.value}")
             }
         }
         return LoginResult.Success
-
-//        return when (repoResult) {
-//            is Result.Success -> {
-//                tokenRepository.storeToken(repoResult.data.token)
-//                LoginResult.Success
-//            }
-//            is Result.Error -> {
-//                loginResultForError(repoResult)
-//            }
-//            else -> {println("else")}
-//        }
     }
 
     private fun validateCredentials(credentials: Credentials): LoginResult.Failure.EmptyCredentials? {
@@ -77,4 +70,3 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
         }
     }
 }
-

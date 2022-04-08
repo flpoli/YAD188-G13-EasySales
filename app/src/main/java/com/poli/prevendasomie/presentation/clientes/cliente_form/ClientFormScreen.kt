@@ -15,10 +15,9 @@ import com.poli.prevendasomie.presentation.components.PrimaryButton
 fun ClientFormScreen(
     navController: NavHostController,
     viewModel: ClientFormViewModel = hiltViewModel()
-){
+) {
 
     val viewState = viewModel.viewState.collectAsState()
-
 
     InputColumn(
         viewState = viewState.value,
@@ -33,7 +32,6 @@ fun ClientFormScreen(
     )
 }
 
-
 @Composable
 fun InputColumn(
     viewState: ClienteFormViewState,
@@ -45,7 +43,7 @@ fun InputColumn(
     onTelefone1Numero: (String) -> Unit,
     onBtnClicked: () -> Unit
 
-    ){
+) {
 
     Column(
         modifier = Modifier
@@ -98,12 +96,10 @@ fun InputColumn(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-
         PrimaryButton(
             onClick = onBtnClicked,
             text = "cadastrar",
         )
-
     }
 }
 
@@ -113,7 +109,7 @@ fun RazaoSocialInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean?
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -128,7 +124,7 @@ fun NomeFantasiaInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -143,7 +139,7 @@ fun CpfCnpjInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -159,7 +155,7 @@ fun EmailInput(
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -177,9 +173,9 @@ fun TelefoneInput(
     onTelefone1NumeroChanged: (String) -> Unit,
     errorMessage: String?,
     enabled: Boolean
-){
+) {
 
-    //esses campos deveriam ficar em uma Row
+    // esses campos deveriam ficar em uma Row
     // , cada campo com tamanhos diferentes
 
     AppTextField(
