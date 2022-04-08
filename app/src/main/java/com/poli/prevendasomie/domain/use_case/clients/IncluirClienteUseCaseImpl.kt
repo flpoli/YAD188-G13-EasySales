@@ -7,7 +7,7 @@ import com.poli.prevendasomie.domain.repository.ClientsRepository
 import javax.inject.Inject
 
 class IncluirClienteUseCaseImpl
-@Inject constructor(private val repository: ClientsRepository): IncluirClienteUseCase{
+@Inject constructor(private val repository: ClientsRepository) : IncluirClienteUseCase {
 
     override suspend operator fun invoke(clienteCadastro: ClientesCadastro): ReqResponse {
 
@@ -15,14 +15,6 @@ class IncluirClienteUseCaseImpl
             param = listOf(clienteCadastro)
         )
 
-
-
-
-
-
-
-
-        return  repository.addNewClient(request)
-
+        return repository.addNewClient(request)
     }
 }

@@ -2,7 +2,7 @@ package com.poli.prevendasomie.data.remote.responses
 
 import com.poli.prevendasomie.signup.domain.model.SignUpResponse
 
-data class ResponseSignUpDto (
+data class ResponseSignUpDto(
 
     val id: Int? = 0,
     val username: String? = "",
@@ -13,7 +13,6 @@ data class ResponseSignUpDto (
     val appKey: String? = "",
     val appSecret: String = ""
 )
-
 
 fun ResponseSignUpDto.toSignupResponse(): SignUpResponse {
 

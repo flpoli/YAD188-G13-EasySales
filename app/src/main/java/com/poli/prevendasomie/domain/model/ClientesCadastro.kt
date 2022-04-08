@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.domain.model
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
 import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 
 @JvmInline
@@ -18,11 +17,11 @@ data class ClientesCadastro(
     @SerializedName("razao_social")
     val razaoSocial: String? = "",
     @SerializedName("cnpj_cpf")
-    val cnpjCpf: String?  = "",
+    val cnpjCpf: String? = "",
     @SerializedName("telefone1_ddd")
-    val telefone1Ddd: String?  = "",
+    val telefone1Ddd: String? = "",
     @SerializedName("telefone1_numero")
-    val telefone1Numero: String?  = "",
+    val telefone1Numero: String? = "",
     @SerializedName("email")
     var email: String? = "",
     @SerializedName("endereco")
@@ -40,9 +39,9 @@ data class ClientesCadastro(
 
 )
 
-//fun ClientesCadastro.toClientesCadastroDto(): ClientesCadastroDto {
+// fun ClientesCadastro.toClientesCadastroDto(): ClientesCadastroDto {
 //
 //    return ClientesCadastroDto(
 //
 //    )
-//}
+// }

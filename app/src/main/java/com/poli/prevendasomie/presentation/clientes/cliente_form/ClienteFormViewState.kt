@@ -10,34 +10,32 @@ sealed class ClienteFormViewState(
 
 ) {
 
-    object Initial: ClienteFormViewState(
+    object Initial : ClienteFormViewState(
         cliente = ClientesCadastro()
     )
 
     data class Active(
         override val cliente: ClientesCadastro,
         val inputError: UiText? = null
-    ): ClienteFormViewState(cliente = cliente)
+    ) : ClienteFormViewState(cliente = cliente)
 
     data class Submitting(
         override val cliente: ClientesCadastro,
-        ): ClienteFormViewState(
-            cliente = cliente,
-            inputEnabled = false
-        )
+    ) : ClienteFormViewState(
+        cliente = cliente,
+        inputEnabled = false
+    )
 
     data class SubmissionError(
         override val cliente: ClientesCadastro,
         val errorMessage: UiText
 
-    ): ClienteFormViewState(cliente = cliente)
+    ) : ClienteFormViewState(cliente = cliente)
 
-    object Completed: ClienteFormViewState(
+    object Completed : ClienteFormViewState(
 
         cliente = ClientesCadastro(),
         inputEnabled = false
 
     )
-
-
 }

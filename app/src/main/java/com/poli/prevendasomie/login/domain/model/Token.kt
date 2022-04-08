@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.login.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 @JvmInline
 value class AuthToken(val value: String)
 @JvmInline
@@ -15,6 +13,6 @@ data class Token(
     val authToken: AuthToken,
     val tokenExpiry: TokenExpiry,
     val tokenType: TokenType
-    //@SerializedName("refreshToken")
-    //val refreshToken: RefreshToken
+    // @SerializedName("refreshToken")
+    // val refreshToken: RefreshToken
 )

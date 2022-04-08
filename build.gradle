@@ -11,6 +11,8 @@ buildscript {
 
         // https://github.com/ben-manes/gradle-versions-plugin
         ext.versionsPluginVersion = "0.29.0"
+
+        ext.koverVersion = "0.5.0"
     }
     repositories {
         google()
@@ -26,6 +28,7 @@ buildscript {
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
+        classpath "org.jetbrains.kotlinx:kover:$koverVersion"
 
 
 
@@ -37,12 +40,15 @@ buildscript {
 apply from: "buildscripts/versions.gradle"
 apply from: "buildscripts/githooks.gradle"
 apply from: "buildscripts/setup.gradle"
+apply from: "buildscripts/kover.gradle"
 
 subprojects {
     apply from: "../buildscripts/ktlint.gradle"
     apply from: "../buildscripts/detekt.gradle"
     apply from: "../buildscripts/versionsplugin.gradle"
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
