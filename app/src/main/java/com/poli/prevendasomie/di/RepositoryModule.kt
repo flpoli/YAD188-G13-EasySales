@@ -32,8 +32,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTokenRepository(@ApplicationContext context: Context): TokenRepository {
-        return DemoTokenRepository(context)
+    fun provideTokenRepository(dataStore: DataStoreOperations): TokenRepository {
+        return DemoTokenRepository(dataStore)
     }
     @Provides
     @Singleton

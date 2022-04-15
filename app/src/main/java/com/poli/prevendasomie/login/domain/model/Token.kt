@@ -13,6 +13,5 @@ data class Token(
     val authToken: AuthToken,
     val tokenExpiry: TokenExpiry,
     val tokenType: TokenType
-    // @SerializedName("refreshToken")
-    // val refreshToken: RefreshToken
+
 )

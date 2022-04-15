@@ -22,6 +22,8 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
         val tokenKey = stringPreferencesKey(name = "TOKEN_KEY")
         val appKeyKey = stringPreferencesKey(name = PREFERENCES_KEY) // LOL
         val appSecretKey = stringPreferencesKey(name = PREFERENCES_KEY)
+
+        //val userPrefKey = stringPreferencesKey(name)
     }
 
     private val dataStore = context.dataStore
@@ -146,6 +148,34 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
                 val appSecretKeyState = pref[PreferencesKey.appSecretKey] ?: ""
 
                 appSecretKeyState
+            }
+    }
+
+    override suspend fun saveUserPref(key: String, value: String) {
+
+        val userPrefKey = stringPreferencesKey(key)
+
+        dataStore.edit {
+            preferences -> preferences[userPrefKey] = value
+        }
+    }
+
+    override fun readUserPref(key: String): Flow<String> {
+
+        val userPrefKey = stringPreferencesKey(key)
+
+        return dataStore.data
+            .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+            .map {
+                    preferences -> val userPreferences = preferences[userPrefKey] ?: ""
+
+                    userPreferences
             }
     }
 }
