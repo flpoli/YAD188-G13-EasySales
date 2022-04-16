@@ -4,8 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.poli.prevendasomie.BuildConfig.APP_KEY
-import com.poli.prevendasomie.BuildConfig.APP_SECRET
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.domain.repository.ClientsRepository
@@ -29,10 +27,8 @@ class ClientDetailViewModel @Inject constructor(
 
             val result = repository.getClientByCode(
                 Request.ClientByCodeRequest(
-                    "ConsultarCliente",
-                    APP_KEY,
-                    APP_SECRET,
-                    listOf(Param.ParamConsultarCliente(codCliOmie))
+
+                    param = listOf(Param.ParamConsultarCliente(codCliOmie))
 
                 )
             )

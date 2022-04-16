@@ -16,7 +16,7 @@ sealed class Request {
     )
 
     data class ClientByCodeRequest(
-        val call: String,
+        val call: String = "ConsultarCliente",
         val app_key: String = APPKEY,
         val app_secret: String = APPSECRET,
         val param: List<Param.ParamConsultarCliente>
