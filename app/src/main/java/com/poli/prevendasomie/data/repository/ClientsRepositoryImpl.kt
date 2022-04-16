@@ -8,15 +8,13 @@ import com.poli.prevendasomie.data.remote.responses.ReqResponse
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import javax.inject.Inject
 
-
 class ClientsRepositoryImpl
-    @Inject constructor(private val api: OmieAPI): ClientsRepository {
+@Inject constructor(private val api: OmieAPI) : ClientsRepository {
 
     override suspend fun getClientList(request: Request.ListClientsRequest): ListarClientesDto {
 
         return api.getClientList(request)
     }
-
 
     override suspend fun getClientByCode(request: Request.ClientByCodeRequest): ClientesCadastroDto {
 
@@ -27,5 +25,4 @@ class ClientsRepositoryImpl
 
         return api.addNewClient(request)
     }
-
 }

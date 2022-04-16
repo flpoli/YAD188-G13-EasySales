@@ -22,4 +22,3 @@ fun ResponseTokenDto.toToken(): Token {
 
     )
 }
-

@@ -3,6 +3,7 @@ package com.poli.prevendasomie.login.domain.usecase
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
 import com.poli.prevendasomie.data.remote.toToken
+import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.login.domain.model.*
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
@@ -11,6 +12,8 @@ import javax.inject.Inject
 class CredentialsLoginUseCaseImpl @Inject constructor(
     private val loginRepository: LoginRepository,
     private val tokenRepository: TokenRepository,
+    private val dataStore: DataStoreOperations
+
 ) : CredentialsLoginUseCase {
 
     override suspend fun invoke(credentials: Credentials): LoginResult {
@@ -20,41 +23,25 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
         if (validationResult != null) {
             return validationResult
         }
-
-
+        
         when(val repoResult = loginRepository.login(credentials)) {
 
             is Resource.Success -> {
                 val tokenResult = repoResult.data?.headers()?.get("Authorization")
 
                 if(tokenResult != null) {
-
                     tokenRepository.storeToken(
                         Token(
                             AuthToken(tokenResult)
                         )
                     )
                 }
-
-
-
             }
             is Resource.Error -> {
                 //loginResultForError(Result.Error(repoResult.data.errorBody()))
             }
         }
         return LoginResult.Success
-
-//        return when (repoResult) {
-//            is Result.Success -> {
-//                tokenRepository.storeToken(repoResult.data.token)
-//                LoginResult.Success
-//            }
-//            is Result.Error -> {
-//                loginResultForError(repoResult)
-//            }
-//            else -> {println("else")}
-//        }
     }
 
     private fun validateCredentials(credentials: Credentials): LoginResult.Failure.EmptyCredentials? {
@@ -82,4 +69,3 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
         }
     }
 }
-

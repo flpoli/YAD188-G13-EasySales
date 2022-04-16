@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.signup.domain.usecase
 
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.data.Result
 import com.poli.prevendasomie.data.remote.responses.toSignupResponse
 import com.poli.prevendasomie.signup.domain.model.SignUpResult
 import com.poli.prevendasomie.signup.domain.model.UserData
@@ -32,7 +31,6 @@ class SignUpUseCaseImpl
                 println("else")
                 SignUpResult.Failure.Unknown
             }
-
         }
     }
 }

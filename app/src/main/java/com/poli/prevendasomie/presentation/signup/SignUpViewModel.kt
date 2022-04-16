@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.signup.domain.model.Email
-import com.poli.prevendasomie.signup.domain.model.Username
 import com.poli.prevendasomie.signup.domain.model.Password
 import com.poli.prevendasomie.signup.domain.model.SignUpResult
 import com.poli.prevendasomie.signup.domain.model.UserData
+import com.poli.prevendasomie.signup.domain.model.Username
 import com.poli.prevendasomie.signup.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

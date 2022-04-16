@@ -2,7 +2,6 @@ package com.poli.prevendasomie.data.remote.responses
 
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.model.Email
 
 data class ClientesCadastroDto(
     @SerializedName("bairro")

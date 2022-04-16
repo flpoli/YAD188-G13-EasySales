@@ -30,7 +30,6 @@ GetClientListUseCase @Inject constructor(private val repository: ClientsReposito
 
         )
 
-
         try {
             emit(Resource.Loading<ListarClientes>())
             val clients = repository.getClientList(request).toListarClientes()

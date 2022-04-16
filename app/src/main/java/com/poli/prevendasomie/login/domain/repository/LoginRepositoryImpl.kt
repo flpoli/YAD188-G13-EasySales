@@ -5,6 +5,7 @@ import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.remote.ResponseTokenDto
 import com.poli.prevendasomie.login.domain.model.Credentials
 import retrofit2.Response
+
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
@@ -26,6 +27,5 @@ class LoginRepositoryImpl @Inject constructor(
 //        }
 
         return Resource.Success(call)
-
     }
 }

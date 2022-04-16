@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.login.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 @JvmInline
 value class AuthToken(val value: String)
 @JvmInline
@@ -13,5 +11,4 @@ value class TokenType(val value: String)
 
 data class Token(
     val authToken: AuthToken,
-
 )
