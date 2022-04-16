@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.data.remote
 
-import com.poli.prevendasomie.BuildConfig.APP_KEY
-import com.poli.prevendasomie.BuildConfig.APP_SECRET
+
 import com.poli.prevendasomie.common.Constants.APPKEY
 import com.poli.prevendasomie.common.Constants.APPSECRET
 import com.poli.prevendasomie.domain.model.ClientesCadastro
