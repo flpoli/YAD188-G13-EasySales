@@ -10,7 +10,6 @@ data class UserDataModel(
     val id: Int? = 0,
     val email: String? = "",
     val username: String? = "",
-    val password: String? = "", // isso não deveria estar aqui. mas ok por enquanto
     val appKey: String? = "",
     val appSecret: String? = "",
     val accessToken: String? = ""

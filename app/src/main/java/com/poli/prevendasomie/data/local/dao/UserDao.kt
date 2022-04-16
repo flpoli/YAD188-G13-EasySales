@@ -10,6 +10,10 @@ interface UserDao {
     fun getUserByEmail(username: String): UserDataModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun persistUserData(userData: UserDataModel)
+    suspend fun persistUserData(userData: UserDataModel)
+
+    @Query("SELECT * FROM user_table")
+    suspend fun selectAllInfo(): UserDataModel
+}
 
 

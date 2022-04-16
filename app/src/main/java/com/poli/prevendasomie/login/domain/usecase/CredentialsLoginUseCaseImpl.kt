@@ -12,7 +12,6 @@ import javax.inject.Inject
 class CredentialsLoginUseCaseImpl @Inject constructor(
     private val loginRepository: LoginRepository,
     private val tokenRepository: TokenRepository,
-    private val dataStore: DataStoreOperations
 
 ) : CredentialsLoginUseCase {
 
@@ -35,6 +34,11 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
                             AuthToken(tokenResult)
                         )
                     )
+                    loginRepository.getUserDetails(tokenResult)
+
+
+
+
                 }
             }
             is Resource.Error -> {

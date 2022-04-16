@@ -20,8 +20,8 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
         val onBoardingKey = booleanPreferencesKey(name = PREFERENCES_KEY)
         val userKey = stringPreferencesKey(name = PREFERENCES_KEY)
         val tokenKey = stringPreferencesKey(name = "TOKEN_KEY")
-        val appKeyKey = stringPreferencesKey(name = PREFERENCES_KEY) // LOL
-        val appSecretKey = stringPreferencesKey(name = PREFERENCES_KEY)
+        val appKeyKey = stringPreferencesKey(name = "APP_KEY") // LOL
+        val appSecretKey = stringPreferencesKey(name = "APP_SECRET")
 
         //val userPrefKey = stringPreferencesKey(name)
     }
@@ -91,10 +91,9 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
             }
             .map {
 
-                    pref ->
-                val userKeyState = pref[PreferencesKey.userKey] ?: ""
+                    pref -> pref[PreferencesKey.userKey] ?: ""
 
-                userKeyState
+
             }
     }
     override fun readTokenKey(): Flow<String> {
@@ -125,10 +124,9 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
             }
             .map {
 
-                    pref ->
-                val appKeyKeyState = pref[PreferencesKey.appKeyKey] ?: ""
+                    pref -> pref[PreferencesKey.appKeyKey] ?: ""
 
-                appKeyKeyState
+
             }
     }
 
