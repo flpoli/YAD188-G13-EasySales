@@ -19,6 +19,9 @@ class DemoTokenRepository
 
 
     override suspend fun storeToken(token: Token) {
+
+        println("Token que vai ser salvo: $token")
+
         dataStore.saveUserPref("TOKEN_KEY", token.authToken.value)
 
     }

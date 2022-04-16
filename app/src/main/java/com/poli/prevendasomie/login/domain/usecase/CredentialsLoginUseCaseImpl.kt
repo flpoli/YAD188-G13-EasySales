@@ -35,6 +35,11 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
                             AuthToken(tokenResult)
                         )
                     )
+                    val userData = loginRepository.getUserDetails(tokenResult)
+
+
+
+
                 }
             }
             is Resource.Error -> {

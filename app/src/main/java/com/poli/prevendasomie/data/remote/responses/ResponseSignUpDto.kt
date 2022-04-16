@@ -10,7 +10,7 @@ data class ResponseSignUpDto(
     val phoneNumber: String? = "",
     val status: String? = "",
     val createdAt: String? = "",
-    val appKey: String? = "",
+    val appKey: String = "",
     val appSecret: String = ""
 )
 
