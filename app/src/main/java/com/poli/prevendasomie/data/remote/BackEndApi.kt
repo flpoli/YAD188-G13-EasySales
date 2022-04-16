@@ -12,7 +12,8 @@ interface BackEndApi {
 
     @POST("login")
     @Headers("Content-Type: application/json")
-    suspend fun executeLogin(@Body credentials: Credentials): Response<ResponseTokenDto>
+    suspend fun executeLogin(@Body credentials: Credentials): Response<Unit>
+
 
     @POST("users/registrations")
     @Headers("Content-Type: application/json")

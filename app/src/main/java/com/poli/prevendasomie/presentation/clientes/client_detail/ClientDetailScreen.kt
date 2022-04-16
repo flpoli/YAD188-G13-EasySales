@@ -44,7 +44,7 @@ fun ClientDetailScreen(
                 )
                 InfoBox(
                     title = "Contato",
-                    info = client.email ?: "sem email",
+                    info = client.email ?: "sem username",
                     subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
                 )
                 InfoBox(
