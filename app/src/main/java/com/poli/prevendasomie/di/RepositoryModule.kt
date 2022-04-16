@@ -1,6 +1,10 @@
 package com.poli.prevendasomie.di
 
+import android.app.Application
 import android.content.Context
+import androidx.room.Room
+import com.poli.prevendasomie.data.local.UserDatabase
+import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
@@ -26,14 +30,29 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(api: BackEndApi): LoginRepository {
-        return LoginRepositoryImpl(api)
+    fun provideDatabase(app: Application): UserDatabase {
+
+        return Room.databaseBuilder(
+            app,
+            UserDatabase::class.java,
+            "UserDatabase"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDao(db: UserDatabase) = db.userDao()
+
+    @Provides
+    @Singleton
+    fun provideLoginRepository(api: BackEndApi, dao: UserDao): LoginRepository {
+        return LoginRepositoryImpl(api, dao)
     }
 
     @Provides
     @Singleton
     fun provideTokenRepository(dataStore: DataStoreOperations): TokenRepository {
-        return DemoTokenRepository(dataStore)
+        return TokenRepositoryImpl(dataStore)
     }
     @Provides
     @Singleton

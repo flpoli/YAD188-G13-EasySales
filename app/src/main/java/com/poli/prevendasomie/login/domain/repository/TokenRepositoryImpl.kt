@@ -10,9 +10,8 @@ import com.poli.prevendasomie.login.domain.model.Token
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class DemoTokenRepository
+class TokenRepositoryImpl
 @Inject constructor(
-    //private val context: Context,
     private val dataStore: DataStoreOperations,
     ) : TokenRepository {
 
