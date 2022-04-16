@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.di
 
 import com.poli.prevendasomie.data.remote.BackEndApi
-import com.poli.prevendasomie.data.remote.HttpRoutes.LOGIN_URL_LOCAL
+import com.poli.prevendasomie.data.remote.HttpRoutes.LOGIN_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +36,7 @@ object NetworkModule {
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(LOGIN_URL_LOCAL)
+            .baseUrl(LOGIN_URL)
             .client(client)
             .build()
             .create(BackEndApi::class.java)
