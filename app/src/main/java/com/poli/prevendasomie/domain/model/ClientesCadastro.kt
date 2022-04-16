@@ -23,7 +23,7 @@ data class ClientesCadastro(
     val telefone1Ddd: String?  = "",
     @SerializedName("telefone1_numero")
     val telefone1Numero: String?  = "",
-    @SerializedName("email")
+    @SerializedName("username")
     var email: String? = "",
     @SerializedName("endereco")
     val endereco: String? = "",

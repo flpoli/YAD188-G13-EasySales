@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.data.remote
 
+import kotlin.String
+
 sealed class Param {
 
     data class ParamConsultarCliente(

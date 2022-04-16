@@ -3,6 +3,7 @@ package com.poli.prevendasomie.data.remote
 import com.poli.prevendasomie.BuildConfig.APP_KEY
 import com.poli.prevendasomie.BuildConfig.APP_SECRET
 import com.poli.prevendasomie.domain.model.ClientesCadastro
+import kotlin.String
 
 
 sealed class Request{

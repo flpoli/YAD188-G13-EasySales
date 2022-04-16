@@ -7,8 +7,8 @@ data class ClientesCadastroEntry(
     @SerializedName("nome_fantasia")
     val nomeFantasia: String,
 //    @SerializedName("razao_social")
-//    val razaoSocial: String,
+//    val razaoSocial: ResponseTokenDto,
 //    @SerializedName("cnpj_cpf")
-//    val cnpjCpf: String
+//    val cnpjCpf: ResponseTokenDto
 
 )

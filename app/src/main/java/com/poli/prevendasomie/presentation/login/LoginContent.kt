@@ -69,7 +69,7 @@ private fun LoginInputsColumn(
     ) {
 
         EmailInput(
-            text = viewState.credentials.email.value,
+            text = viewState.credentials.username.value,
             onTextChanged = onEmailChanged,
             errorMessage = (viewState as? LoginViewState.Active)
                 ?.emailInputErrorMessage
@@ -126,7 +126,7 @@ private fun EmailInput(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
-        labelText = "Email",
+        labelText = "Username",
         enabled = enabled
     )
 }

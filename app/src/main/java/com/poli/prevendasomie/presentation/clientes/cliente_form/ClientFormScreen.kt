@@ -164,7 +164,7 @@ fun EmailInput(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
-        labelText = "Email",
+        labelText = "Username",
         enabled = enabled
     )
 }

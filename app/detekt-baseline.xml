@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexCondition:ClientListItem.kt$it >= itemCount - 1 &amp;&amp; !endReached &amp;&amp; !isLoading &amp;&amp; !isSearching</ID>
+    <ID>ConstructorParameterNaming:Param.kt$Param.ParamConsultarCliente$val codigo_cliente_omie: String</ID>
+    <ID>ConstructorParameterNaming:Param.kt$Param.ParamListarClientes$val apenas_importado_api: String = "N"</ID>
+    <ID>ConstructorParameterNaming:Param.kt$Param.ParamListarClientes$val registros_por_pagina: String</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.ClientByCodeRequest$val app_key: String = APP_KEY</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.ClientByCodeRequest$val app_secret: String = APP_SECRET</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.IncluirClienteRequest$val app_key: String = APP_KEY</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.IncluirClienteRequest$val app_secret: String = APP_SECRET</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.ListClientsRequest$val app_key: String = APP_KEY</ID>
+    <ID>ConstructorParameterNaming:Request.kt$Request.ListClientsRequest$val app_secret: String = APP_SECRET</ID>
+    <ID>EmptyFunctionBlock:BottonNav.kt${ }</ID>
+    <ID>EmptyFunctionBlock:OmieApiImplTest.kt$OmieApiImplTest${ }</ID>
+    <ID>EmptyFunctionBlock:OrderListScreen.kt${}</ID>
+    <ID>EmptyFunctionBlock:ProductListScreen.kt${}</ID>
+    <ID>ForbiddenComment:SignUpUseCaseImpl.kt$SignUpUseCaseImpl$// TODO: melhorar isso dps</ID>
+    <ID>ForbiddenComment:SignUpViewModel.kt$SignUpViewModel$// TODO: handle submission errors</ID>
+    <ID>LongMethod:FeatureItem.kt$@Composable fun FeatureItem( feature: Feature )</ID>
+    <ID>LongParameterList:AppTextField.kt$( text: String, onTextChanged: (String) -> Unit, labelText: String?, modifier: Modifier = Modifier, errorMessage: String? = null, enabled: Boolean = true, keyboardOptions: KeyboardOptions = KeyboardOptions.Default, placeholderText: String? = null, )</ID>
+    <ID>LongParameterList:ClientFormScreen.kt$( textTelefone1Ddd: String, textTelefone1Numero: String, onTelefone1DddChanged: (String) -> Unit, onTelefone1NumeroChanged: (String) -> Unit, errorMessage: String?, enabled: Boolean )</ID>
+    <ID>LongParameterList:ClientFormScreen.kt$( viewState: ClienteFormViewState, onEmailChanged: (String) -> Unit, onRazaoSocalChanged: (String) -> Unit, onNomeFantasiaChanged: (String) -> Unit, onCnpjCpfChanged: (String) -> Unit, onTelefone1DddChanged: (String) -> Unit, onTelefone1Numero: (String) -> Unit, onBtnClicked: () -> Unit )</ID>
+    <ID>MagicNumber:Color.kt$0xFF03DAC5</ID>
+    <ID>MagicNumber:Color.kt$0xFF3700B3</ID>
+    <ID>MagicNumber:Color.kt$0xFF6200EE</ID>
+    <ID>MagicNumber:Color.kt$0xFFBB86FC</ID>
+    <ID>MagicNumber:Color.kt$0xff06164c</ID>
+    <ID>MagicNumber:Color.kt$0xff11d79b</ID>
+    <ID>MagicNumber:Color.kt$0xff36ddab</ID>
+    <ID>MagicNumber:Color.kt$0xff505cf3</ID>
+    <ID>MagicNumber:Color.kt$0xff54e1b6</ID>
+    <ID>MagicNumber:Color.kt$0xff566894</ID>
+    <ID>MagicNumber:Color.kt$0xff8f98fd</ID>
+    <ID>MagicNumber:Color.kt$0xff9aa5c4</ID>
+    <ID>MagicNumber:Color.kt$0xff9fa5fe</ID>
+    <ID>MagicNumber:Color.kt$0xffaeb4fd</ID>
+    <ID>MagicNumber:Color.kt$0xffeeeeee</ID>
+    <ID>MagicNumber:Color.kt$0xfff0bd28</ID>
+    <ID>MagicNumber:Color.kt$0xfff1c746</ID>
+    <ID>MagicNumber:Color.kt$0xfff4cf65</ID>
+    <ID>MagicNumber:Color.kt$0xfff9a27b</ID>
+    <ID>MagicNumber:Color.kt$0xfffc879a</ID>
+    <ID>MagicNumber:Color.kt$0xfffcaf90</ID>
+    <ID>MagicNumber:Color.kt$0xfffdbda1</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.05f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.1f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.35f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.3f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.4f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.65f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.75f</ID>
+    <ID>MagicNumber:FeatureItem.kt$0.7f</ID>
+    <ID>MagicNumber:FeatureItem.kt$1.4f</ID>
+    <ID>MagicNumber:FeatureItem.kt$100f</ID>
+    <ID>MagicNumber:FeatureItem.kt$3f</ID>
+    <ID>MagicNumber:Shape.kt$50</ID>
+    <ID>MaxLineLength:ClientListItem.kt$navController.navigate(Screen.ClientDetailScreen.route + "/${state.clientes?.clientes}") // fix route params</ID>
+    <ID>NewLineAtEndOfFile:ClientFormScreen.kt$com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:ClientFormViewModel.kt$com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:ClienteFormViewState.kt$com.poli.prevendasomie.presentation.clientes.cliente_form.ClienteFormViewState.kt</ID>
+    <ID>NewLineAtEndOfFile:ClientesCadastro.kt$com.poli.prevendasomie.domain.model.ClientesCadastro.kt</ID>
+    <ID>NewLineAtEndOfFile:ClientsRepositoryImpl.kt$com.poli.prevendasomie.data.repository.ClientsRepositoryImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:IncluirClienteUseCase.kt$com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase.kt</ID>
+    <ID>NewLineAtEndOfFile:NavGraph.kt$com.poli.prevendasomie.navigation.NavGraph.kt</ID>
+    <ID>NewLineAtEndOfFile:UserDao.kt$com.poli.prevendasomie.data.local.dao.UserDao.kt</ID>
+    <ID>NewLineAtEndOfFile:UserDataDto.kt$com.poli.prevendasomie.data.models.UserDataDto.kt</ID>
+    <ID>NewLineAtEndOfFile:UserDatabase.kt$com.poli.prevendasomie.data.local.UserDatabase.kt</ID>
+    <ID>NewLineAtEndOfFile:genCodCli.kt$com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli.kt</ID>
+    <ID>PackageNaming:BottonNav.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:ClientDetailScreen.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientDetailState.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientDetailViewModel.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientEntry.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClientFormScreen.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:ClientFormViewModel.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:ClientListItem.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClientListScreen.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientListState.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientListViewModel.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientRow.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClienteFormViewState.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:Feature.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
+    <ID>PackageNaming:FeatureItem.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:FeatureSection.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
+    <ID>PackageNaming:Features.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:GetClientListUseCase.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
+    <ID>PackageNaming:GreetingSection.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:IncluirClienteUseCase.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
+    <ID>PackageNaming:IncluirClienteUseCaseImpl.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
+    <ID>PackageNaming:InfoBox.kt$package com.poli.prevendasomie.presentation.clientes.client_detail.components</ID>
+    <ID>PackageNaming:MainScreen.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
+    <ID>PackageNaming:PathUtil.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:SearchBar.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:TopNavBar.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
+    <ID>PackageNaming:UseCases.kt$package com.poli.prevendasomie.domain.use_case</ID>
+    <ID>PackageNaming:genCodCli.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
+    <ID>TooManyFunctions:ClientFormViewModel.kt$ClientFormViewModel : ViewModel</ID>
+    <ID>UnusedPrivateMember:AppTextField.kt$keyboardOptions: KeyboardOptions = KeyboardOptions.Default</ID>
+    <ID>UnusedPrivateMember:AppTextField.kt$placeholderText: String? = null</ID>
+    <ID>UnusedPrivateMember:BottonNav.kt$content: (@Composable @ExtensionFunctionType RowScope.() -> Unit)?</ID>
+    <ID>UnusedPrivateMember:BottonNav.kt$contentColor: Color? = contentColorFor(backgroundColor!!)</ID>
+    <ID>UnusedPrivateMember:BottonNav.kt$elevation: Dp? = BottomNavigationDefaults.Elevation</ID>
+    <ID>UnusedPrivateMember:BottonNav.kt$modifier: Modifier? = Modifier</ID>
+    <ID>UnusedPrivateMember:ClientDetailScreen.kt$navController: NavController</ID>
+    <ID>UnusedPrivateMember:ClientDetailViewModel.kt$ClientDetailViewModel$val result = repository.getClientByCode( Request.ClientByCodeRequest( "ConsultarCliente", APP_KEY, APP_SECRET, listOf(Param.ParamConsultarCliente(codCliOmie)) ) )</ID>
+    <ID>UnusedPrivateMember:ClientEntry.kt$navController: NavController</ID>
+    <ID>UnusedPrivateMember:ClientEntry.kt$viewModel: ClientListViewModel = hiltViewModel()</ID>
+    <ID>UnusedPrivateMember:ClientFormScreen.kt$navController: NavHostController</ID>
+    <ID>UnusedPrivateMember:ClientFormViewModel.kt$ClientFormViewModel$currentData: ClientesCadastro</ID>
+    <ID>UnusedPrivateMember:ClientFormViewModel.kt$ClientFormViewModel$private fun handleSubmissionResult(currentData: ClientesCadastro)</ID>
+    <ID>UnusedPrivateMember:ClientListScreen.kt$viewModel: ClientListViewModel = hiltViewModel()</ID>
+    <ID>UnusedPrivateMember:ClientListViewModel.kt$ClientListViewModel$private var curPage = 0</ID>
+    <ID>UnusedPrivateMember:CredentialsLoginUseCaseImpl.kt$CredentialsLoginUseCaseImpl$private fun loginResultForError(repoResult: Result.Error): LoginResult.Failure</ID>
+    <ID>UnusedPrivateMember:Features.kt$navController: NavController</ID>
+    <ID>UnusedPrivateMember:LoginScreen.kt$val context = LocalContext.current</ID>
+    <ID>UnusedPrivateMember:MainActivity.kt$MainActivity$val items = listOf("Clientes", "Produtos", "Pedidos")</ID>
+    <ID>UnusedPrivateMember:MainActivity.kt$MainActivity$var selectedItem by remember { mutableStateOf(0) }</ID>
+    <ID>UnusedPrivateMember:OrderListScreen.kt$navController: NavHostController</ID>
+    <ID>UnusedPrivateMember:ProductListScreen.kt$navController: NavHostController</ID>
+    <ID>UnusedPrivateMember:SignUpUseCaseImpl.kt$SignUpUseCaseImpl$val result = signUpResult.data?.toSignupResponse()</ID>
+    <ID>UnusedPrivateMember:SignupScreen.kt$val context = LocalContext.current</ID>
+    <ID>VarCouldBeVal:MainActivity.kt$MainActivity$var selectedItem by remember { mutableStateOf(0) }</ID>
+    <ID>WildcardImport:ClientFormScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:CredentialsLoginUseCaseImpl.kt$import com.poli.prevendasomie.login.domain.model.*</ID>
+    <ID>WildcardImport:DataStoreOperationsImpl.kt$import androidx.datastore.preferences.core.*</ID>
+    <ID>WildcardImport:DemoTokenRepository.kt$import kotlinx.coroutines.flow.*</ID>
+    <ID>WildcardImport:RepositoryModule.kt$import com.poli.prevendasomie.login.domain.repository.*</ID>
+    <ID>WildcardImport:UserDao.kt$import androidx.room.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

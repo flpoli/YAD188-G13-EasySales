@@ -6,7 +6,7 @@ import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.login.domain.model.Credentials
-import com.poli.prevendasomie.login.domain.model.Email
+import com.poli.prevendasomie.login.domain.model.Username
 import com.poli.prevendasomie.login.domain.model.LoginResult
 import com.poli.prevendasomie.login.domain.model.Password
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
@@ -116,7 +116,7 @@ private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: C
     )
 }
 private fun Credentials.withUpdatedEmail(email: String): Credentials {
-    return this.copy(email = Email(email))
+    return this.copy(username = Username(email))
 }
 private fun Credentials.withUpdatedPassword(password: String): Credentials {
     return this.copy(password = Password(password))

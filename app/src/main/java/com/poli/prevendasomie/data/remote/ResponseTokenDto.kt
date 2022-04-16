@@ -8,19 +8,18 @@ import com.poli.prevendasomie.login.domain.model.TokenType
 
 data class ResponseTokenDto(
     @SerializedName("access_token")
-    val authToken: String,
+    val authToken: kotlin.String? = "",
     @SerializedName("token_expiry")
-    val tokenExpiry: String,
+    val tokenExpiry: kotlin.String? = "",
     @SerializedName("token_type")
-    val tokenType: String
+    val tokenType: kotlin.String? = ""
 )
 
 fun ResponseTokenDto.toToken(): Token {
 
     return Token(
-        authToken = AuthToken(authToken),
-        tokenExpiry = TokenExpiry(tokenExpiry),
-        tokenType = TokenType(tokenType)
+        authToken = AuthToken(authToken!!),
+
     )
 }
 
