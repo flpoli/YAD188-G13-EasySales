@@ -11,7 +11,7 @@ data class ClientesCadastro(
     @SerializedName("codigo_cliente_integracao")
     val codCliIntegracao: String? = genCodCli(),
     @SerializedName("codigo_cliente_omie")
-    val codClienteOmie: Int? = 0,
+    val codClienteOmie: Long? = 0,
     @SerializedName("nome_fantasia")
     val nomeFantasia: String? = "",
     @SerializedName("razao_social")

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.use_case.clients.GetClientListUseCase
+import com.poli.prevendasomie.domain.use_case.clients.GetClientListUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ClientListViewModel
-@Inject constructor(private val useCase: GetClientListUseCase) : ViewModel() {
+@Inject constructor(private val useCase: GetClientListUseCaseImpl) : ViewModel() {
 
     private var curPage = 0
     val clientList = mutableStateOf<List<ClientesCadastro>>(listOf())

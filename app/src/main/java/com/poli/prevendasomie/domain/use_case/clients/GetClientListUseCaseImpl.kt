@@ -14,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class
-GetClientListUseCase @Inject constructor(private val repository: ClientsRepository) {
+GetClientListUseCaseImpl @Inject constructor(private val repository: ClientsRepository) {
 
     operator fun invoke(): Flow<Resource<ListarClientes>> = flow {
 
@@ -24,7 +24,7 @@ GetClientListUseCase @Inject constructor(private val repository: ClientsReposito
             param = listOf(
                 Param.ParamListarClientes(
                     pagina = "1",
-                    registros_por_pagina = "500"
+                    registros_por_pagina = "11"
                 )
             )
 

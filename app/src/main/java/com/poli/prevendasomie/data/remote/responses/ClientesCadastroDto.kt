@@ -21,7 +21,7 @@ data class ClientesCadastroDto(
     @SerializedName("codigo_cliente_integracao")
     val codigoClienteIntegracao: String,
     @SerializedName("codigo_cliente_omie")
-    val codigoClienteOmie: Int,
+    val codigoClienteOmie: Long,
     @SerializedName("codigo_pais")
     val codigoPais: String,
     @SerializedName("complemento")
