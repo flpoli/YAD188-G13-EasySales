@@ -37,8 +37,6 @@ class LoginRepositoryImpl @Inject constructor(
         APPKEY = dao.selectAllInfo().appKey.toString()
         APPSECRET = dao.selectAllInfo().appSecret.toString()
 
-
-
         return Resource.Success(call)
     }
 }

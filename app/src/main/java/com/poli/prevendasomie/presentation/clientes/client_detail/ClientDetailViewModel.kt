@@ -4,18 +4,19 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.domain.repository.ClientsRepository
+import com.poli.prevendasomie.domain.use_case.clients.GetClientDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ClientDetailViewModel @Inject constructor(
-
-    private val repository: ClientsRepository
-
+    private val useCase: GetClientDetailsUseCase
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ClientDetailState())
@@ -25,22 +26,18 @@ class ClientDetailViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            val result = repository.getClientByCode(
-                Request.ClientByCodeRequest(
+            useCase(codCliOmie).onEach { result ->
+                when (result) {
 
-                    param = listOf(Param.ParamConsultarCliente(codCliOmie))
+                    is Resource.Success -> {
+                        _state.value = ClientDetailState(client = result.data)
 
-                )
-            )
+                    }
+                    else -> {}
+                }
+            }
 
-//            when (result) {
-//
-//                is Resource.Success -> {
-//                    //_state.value = ClientDetailState(client = result.data)
-//
-//                }
-//                else -> {}
-//            }
+
         }
     }
 }

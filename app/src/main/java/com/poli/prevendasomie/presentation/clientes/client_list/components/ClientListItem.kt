@@ -25,21 +25,10 @@ fun ClientListItem(
     val loadError by remember { viewModel.loadError }
     val isSearching by remember { viewModel.isSearching }
 
-//    SearchBar(
-//        hint = "", // I cant make the hint disappears when box focused; how to?
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(16.dp)
-//    ){
-//        viewModel.searchClientList(it)
-//    }
-
-//    Spacer(modifier = Modifier.height(16.dp))
-
     LazyColumn(modifier = Modifier.padding(top = 80.dp, end = 0.dp)) {
 
         val itemCount = state.clientes?.clientes?.size
-
+        val codIntegracao = state.clientes?.clientes?.get(1)?.codClienteOmie
         if (itemCount != null) {
             items(itemCount) {
 
@@ -52,7 +41,8 @@ fun ClientListItem(
                     entries = state.clientes?.clientes ?: emptyList(),
                     navController = navController,
                     onItemClick = {
-                        navController.navigate(Screen.ClientDetailScreen.route + "/${state.clientes?.clientes}") // fix route params
+                        navController.navigate(Screen.ClientDetailScreen.route + "/${codIntegracao}")
+                        println("NAVIGATOR? $codIntegracao")
                     }
                 )
                 Divider(color = Color.Black, thickness = 1.dp)

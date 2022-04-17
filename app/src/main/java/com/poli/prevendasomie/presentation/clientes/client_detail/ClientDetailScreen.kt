@@ -39,8 +39,8 @@ fun ClientDetailScreen(
             ) {
                 InfoBox(
                     title = "Nome",
-                    info = client.nomeFantasia,
-                    subtitle = client.cnpjCpf
+                    info = client.nomeFantasia ?: "Não informado",
+                    subtitle = client.cnpjCpf ?: "Não informado"
                 )
                 InfoBox(
                     title = "Contato",
