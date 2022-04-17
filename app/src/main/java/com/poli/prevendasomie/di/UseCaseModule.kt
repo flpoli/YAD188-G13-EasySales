@@ -12,7 +12,6 @@ import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCaseImpl
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
 import com.poli.prevendasomie.signup.domain.usecase.SignUpUseCase
 import com.poli.prevendasomie.signup.domain.usecase.SignUpUseCaseImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,7 +36,6 @@ object UseCaseModule {
 
         return SignUpUseCaseImpl(repository)
     }
-
 
     @Provides
     @Singleton

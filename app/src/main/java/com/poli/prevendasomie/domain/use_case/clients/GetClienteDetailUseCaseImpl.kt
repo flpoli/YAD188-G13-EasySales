@@ -5,9 +5,7 @@ import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.toClientesCadastro
-import com.poli.prevendasomie.data.remote.responses.toListarClientes
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.model.ListarClientes
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetClienteDetailUseCaseImpl
-    @Inject constructor(private val repository: ClientsRepository): GetClientDetailsUseCase {
+@Inject constructor(private val repository: ClientsRepository) : GetClientDetailsUseCase {
 
     override suspend fun invoke(codigoClienteOmie: String): Flow<Resource<ClientesCadastro>> = flow {
 
@@ -33,9 +31,5 @@ class GetClienteDetailUseCaseImpl
         } catch (e: IOException) {
             emit(Resource.Error<ClientesCadastro>(e.localizedMessage ?: R.string.on_http_error.toString()))
         }
-
-
-
     }
-
 }

@@ -6,9 +6,9 @@ import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.login.domain.model.Credentials
-import com.poli.prevendasomie.login.domain.model.Username
 import com.poli.prevendasomie.login.domain.model.LoginResult
 import com.poli.prevendasomie.login.domain.model.Password
+import com.poli.prevendasomie.login.domain.model.Username
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

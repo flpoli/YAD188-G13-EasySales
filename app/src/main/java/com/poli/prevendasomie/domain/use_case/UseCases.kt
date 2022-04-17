@@ -8,4 +8,4 @@ data class UseCases(
     val getClientsUseCase: GetClientListUseCaseImpl,
     val incluirClienteUseCase: IncluirClienteUseCase,
 
-    )
+)

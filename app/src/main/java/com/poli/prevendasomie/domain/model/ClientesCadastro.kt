@@ -21,7 +21,7 @@ data class ClientesCadastro(
     @SerializedName("telefone1_ddd")
     val telefone1Ddd: String? = "",
     @SerializedName("telefone1_numero")
-    val telefone1Numero: String?  = "",
+    val telefone1Numero: String? = "",
     @SerializedName("email")
     var email: String? = "",
     @SerializedName("endereco")

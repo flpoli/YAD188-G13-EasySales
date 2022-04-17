@@ -15,5 +15,3 @@ interface UserDao {
     @Query("SELECT * FROM user_table")
     suspend fun selectAllInfo(): UserDataModel
 }
-
-

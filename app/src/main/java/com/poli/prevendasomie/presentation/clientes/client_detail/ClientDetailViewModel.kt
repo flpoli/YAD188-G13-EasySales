@@ -5,9 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.data.remote.Param
-import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.use_case.clients.GetClientDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onEach
@@ -31,13 +28,10 @@ class ClientDetailViewModel @Inject constructor(
 
                     is Resource.Success -> {
                         _state.value = ClientDetailState(client = result.data)
-
                     }
                     else -> {}
                 }
             }
-
-
         }
     }
 }

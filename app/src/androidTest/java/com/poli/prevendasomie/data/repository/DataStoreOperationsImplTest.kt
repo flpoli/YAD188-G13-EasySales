@@ -6,16 +6,15 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
-import org.junit.Assert.*
-
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
-class DataStoreOperationsImplTest: CourotineTest() {
+class DataStoreOperationsImplTest : CourotineTest() {
 
     private lateinit var preferencesScope: CoroutineScope
     private lateinit var dataStore: DataStore<Preferences>

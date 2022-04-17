@@ -23,7 +23,7 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
         val appKeyKey = stringPreferencesKey(name = "APP_KEY") // LOL
         val appSecretKey = stringPreferencesKey(name = "APP_SECRET")
 
-        //val userPrefKey = stringPreferencesKey(name)
+        // val userPrefKey = stringPreferencesKey(name)
     }
 
     private val dataStore = context.dataStore
@@ -91,9 +91,8 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
             }
             .map {
 
-                    pref -> pref[PreferencesKey.userKey] ?: ""
-
-
+                    pref ->
+                pref[PreferencesKey.userKey] ?: ""
             }
     }
     override fun readTokenKey(): Flow<String> {
@@ -124,9 +123,8 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
             }
             .map {
 
-                    pref -> pref[PreferencesKey.appKeyKey] ?: ""
-
-
+                    pref ->
+                pref[PreferencesKey.appKeyKey] ?: ""
             }
     }
 
@@ -154,7 +152,8 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
         val userPrefKey = stringPreferencesKey(key)
 
         dataStore.edit {
-            preferences -> preferences[userPrefKey] = value
+                preferences ->
+            preferences[userPrefKey] = value
         }
     }
 
@@ -164,16 +163,17 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
 
         return dataStore.data
             .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
+                if (exception is IOException) {
+                    emit(emptyPreferences())
+                } else {
+                    throw exception
+                }
             }
-        }
             .map {
-                    preferences -> val userPreferences = preferences[userPrefKey] ?: ""
+                    preferences ->
+                val userPreferences = preferences[userPrefKey] ?: ""
 
-                    userPreferences
+                userPreferences
             }
     }
 }

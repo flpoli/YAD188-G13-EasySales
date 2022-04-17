@@ -2,8 +2,6 @@ package com.poli.prevendasomie.login.domain.usecase
 
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
-import com.poli.prevendasomie.data.remote.toToken
-import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.login.domain.model.*
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
@@ -22,27 +20,23 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
         if (validationResult != null) {
             return validationResult
         }
-        
-        when(val repoResult = loginRepository.login(credentials)) {
+
+        when (val repoResult = loginRepository.login(credentials)) {
 
             is Resource.Success -> {
                 val tokenResult = repoResult.data?.headers()?.get("Authorization")
 
-                if(tokenResult != null) {
+                if (tokenResult != null) {
                     tokenRepository.storeToken(
                         Token(
                             AuthToken(tokenResult)
                         )
                     )
                     loginRepository.getUserDetails(tokenResult)
-
-
-
-
                 }
             }
             is Resource.Error -> {
-                //loginResultForError(Result.Error(repoResult.data.errorBody()))
+                // loginResultForError(Result.Error(repoResult.data.errorBody()))
             }
         }
         return LoginResult.Success
