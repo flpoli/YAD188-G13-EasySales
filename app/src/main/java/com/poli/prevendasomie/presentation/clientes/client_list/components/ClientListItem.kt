@@ -41,7 +41,7 @@ fun ClientListItem(
                     entries = state.clientes?.clientes ?: emptyList(),
                     navController = navController,
                     onItemClick = {
-                        navController.navigate(Screen.ClientDetailScreen.route + "/${codIntegracao}")
+                        navController.navigate(Screen.ClientDetailScreen.route + "/$codIntegracao")
                         println("NAVIGATOR? $codIntegracao")
                     }
                 )

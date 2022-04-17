@@ -7,5 +7,4 @@ import kotlinx.coroutines.flow.Flow
 interface GetClientDetailsUseCase {
 
     suspend operator fun invoke(codigoClienteOmie: String): Flow<Resource<ClientesCadastro>>
-
 }

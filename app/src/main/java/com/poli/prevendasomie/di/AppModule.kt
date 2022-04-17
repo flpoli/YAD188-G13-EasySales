@@ -1,17 +1,13 @@
 package com.poli.prevendasomie.di
 
-import android.content.Context
 import com.google.gson.GsonBuilder
 import com.poli.prevendasomie.data.remote.HttpRoutes.BASE_URL
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
-import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
 import com.poli.prevendasomie.domain.repository.ClientsRepository
-import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -41,5 +37,4 @@ class AppModule {
 
         return ClientsRepositoryImpl(api)
     }
-
 }

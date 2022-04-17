@@ -19,8 +19,6 @@ interface DataStoreOperations {
     fun readAppKey(): Flow<String>
     fun readAppSecret(): Flow<String>
 
-
     suspend fun saveUserPref(key: String, value: String)
     fun readUserPref(key: String): Flow<String>
-
 }
