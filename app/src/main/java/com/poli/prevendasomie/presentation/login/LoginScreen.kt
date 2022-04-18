@@ -32,11 +32,16 @@ fun LoginScreen(
         onDispose { }
     }
 
+
+
     Column(
         modifier = Modifier.fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        AnimationComponent()
+
         LoginContent(
             viewState = viewState.value,
             onEmailChanged = viewModel::emailChanged,
