@@ -4,11 +4,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardActions.Companion.Default
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.ui.theme.TextFieldShape
 
@@ -22,6 +27,9 @@ fun AppTextField(
     errorMessage: String? = null,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardType: KeyboardType = KeyboardType.Text,
     placeholderText: String? = null,
 ) {
 
@@ -51,12 +59,16 @@ fun AppTextField(
             onValueChange = onTextChanged,
             label = labelComposable,
             shape = TextFieldShape,
+
             modifier = Modifier
                 .heightIn(48.dp)
                 .fillMaxWidth(),
             isError = (errorMessage != null),
             enabled = enabled,
             placeholder = placeholderComposable,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            visualTransformation = visualTransformation
         )
 
         if (errorMessage != null) {

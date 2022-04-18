@@ -6,11 +6,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.getString
@@ -85,7 +90,8 @@ private fun LoginInputsColumn(
             errorMessage = (viewState as? LoginViewState.Active)
                 ?.passwordInputErrorMessage
                 ?.getString(),
-            enabled = viewState.inputEnabled
+            enabled = viewState.inputEnabled,
+
 
         )
 
@@ -143,6 +149,18 @@ private fun PasswordInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Password",
-        enabled = enabled
+        enabled = enabled,
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardType = KeyboardType.Password,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            autoCorrect = true,
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                /*TODO*/
+            }
+        ),
     )
 }
