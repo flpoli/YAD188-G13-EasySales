@@ -54,99 +54,99 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
             }
     }
 
-    override suspend fun saveUserKey(user: String) {
-        dataStore.edit {
-                pref ->
-            pref[PreferencesKey.userKey] = user
-        }
-    }
-    override suspend fun saveTokenKey(token: String) {
-        dataStore.edit {
-                pref ->
-            pref[PreferencesKey.tokenKey] = token
-        }
-    }
-    override suspend fun saveAppKey(appKey: String) {
-        dataStore.edit {
-                pref ->
-            pref[PreferencesKey.appKeyKey] = appKey
-        }
-    }
-    override suspend fun saveAppSecret(appSecret: String) {
-        dataStore.edit {
-                pref ->
-            pref[PreferencesKey.appSecretKey] = appSecret
-        }
-    }
-
-    override fun readUserKey(): Flow<String> {
-
-        return dataStore.data
-            .catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }
-            .map {
-
-                    pref ->
-                pref[PreferencesKey.userKey] ?: ""
-            }
-    }
-    override fun readTokenKey(): Flow<String> {
-        return dataStore.data
-            .catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }
-            .map {
-
-                    pref ->
-                val tokenKeyState = pref[PreferencesKey.tokenKey] ?: ""
-
-                tokenKeyState
-            }
-    }
-    override fun readAppKey(): Flow<String> {
-        return dataStore.data
-            .catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }
-            .map {
-
-                    pref ->
-                pref[PreferencesKey.appKeyKey] ?: ""
-            }
-    }
-
-    override fun readAppSecret(): Flow<String> {
-
-        return dataStore.data
-            .catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }
-            .map {
-
-                    pref ->
-                val appSecretKeyState = pref[PreferencesKey.appSecretKey] ?: ""
-
-                appSecretKeyState
-            }
-    }
-
+//    override suspend fun saveUserKey(user: String) {
+//        dataStore.edit {
+//                pref ->
+//            pref[PreferencesKey.userKey] = user
+//        }
+//    }
+//    override suspend fun saveTokenKey(token: String) {
+//        dataStore.edit {
+//                pref ->
+//            pref[PreferencesKey.tokenKey] = token
+//        }
+//    }
+//    override suspend fun saveAppKey(appKey: String) {
+//        dataStore.edit {
+//                pref ->
+//            pref[PreferencesKey.appKeyKey] = appKey
+//        }
+//    }
+//    override suspend fun saveAppSecret(appSecret: String) {
+//        dataStore.edit {
+//                pref ->
+//            pref[PreferencesKey.appSecretKey] = appSecret
+//        }
+//    }
+//
+//    override fun readUserKey(): Flow<String> {
+//
+//        return dataStore.data
+//            .catch { exception ->
+//                if (exception is IOException) {
+//                    emit(emptyPreferences())
+//                } else {
+//                    throw exception
+//                }
+//            }
+//            .map {
+//
+//                    pref ->
+//                pref[PreferencesKey.userKey] ?: ""
+//            }
+//    }
+//    override fun readTokenKey(): Flow<String> {
+//        return dataStore.data
+//            .catch { exception ->
+//                if (exception is IOException) {
+//                    emit(emptyPreferences())
+//                } else {
+//                    throw exception
+//                }
+//            }
+//            .map {
+//
+//                    pref ->
+//                val tokenKeyState = pref[PreferencesKey.tokenKey] ?: ""
+//
+//                tokenKeyState
+//            }
+//    }
+//    override fun readAppKey(): Flow<String> {
+//        return dataStore.data
+//            .catch { exception ->
+//                if (exception is IOException) {
+//                    emit(emptyPreferences())
+//                } else {
+//                    throw exception
+//                }
+//            }
+//            .map {
+//
+//                    pref ->
+//                pref[PreferencesKey.appKeyKey] ?: ""
+//            }
+//    }
+//
+//    override fun readAppSecret(): Flow<String> {
+//
+//        return dataStore.data
+//            .catch { exception ->
+//                if (exception is IOException) {
+//                    emit(emptyPreferences())
+//                } else {
+//                    throw exception
+//                }
+//            }
+//            .map {
+//
+//                    pref ->
+//                val appSecretKeyState = pref[PreferencesKey.appSecretKey] ?: ""
+//
+//                appSecretKeyState
+//            }
+//    }
+//
     override suspend fun saveUserPref(key: String, value: String) {
 
         val userPrefKey = stringPreferencesKey(key)
@@ -175,5 +175,5 @@ class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
 
                 userPreferences
             }
-    }
+   }
 }

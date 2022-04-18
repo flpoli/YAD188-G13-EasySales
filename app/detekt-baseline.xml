@@ -62,7 +62,7 @@
     <ID>NewLineAtEndOfFile:ClienteFormViewState.kt$com.poli.prevendasomie.presentation.clientes.cliente_form.ClienteFormViewState.kt</ID>
     <ID>NewLineAtEndOfFile:ClientesCadastro.kt$com.poli.prevendasomie.domain.model.ClientesCadastro.kt</ID>
     <ID>NewLineAtEndOfFile:ClientsRepositoryImpl.kt$com.poli.prevendasomie.data.repository.ClientsRepositoryImpl.kt</ID>
-    <ID>NewLineAtEndOfFile:IncluirClienteUseCase.kt$com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase.kt</ID>
+    <ID>NewLineAtEndOfFile:IncluirClienteUseCase.kt$com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase.kt</ID>
     <ID>NewLineAtEndOfFile:NavGraph.kt$com.poli.prevendasomie.navigation.NavGraph.kt</ID>
     <ID>NewLineAtEndOfFile:UserDao.kt$com.poli.prevendasomie.data.local.dao.UserDao.kt</ID>
     <ID>NewLineAtEndOfFile:UserDataDto.kt$com.poli.prevendasomie.data.models.UserDataDto.kt</ID>
@@ -85,16 +85,18 @@
     <ID>PackageNaming:FeatureItem.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
     <ID>PackageNaming:FeatureSection.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
     <ID>PackageNaming:Features.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:GetClientListUseCaseImpl.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
+    <ID>PackageNaming:GetClientListUseCaseImpl.kt$package
+        com.poli.prevendasomie.domain.usecase.clients</ID>
     <ID>PackageNaming:GreetingSection.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:IncluirClienteUseCase.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
-    <ID>PackageNaming:IncluirClienteUseCaseImpl.kt$package com.poli.prevendasomie.domain.use_case.clients</ID>
+    <ID>PackageNaming:IncluirClienteUseCase.kt$package com.poli.prevendasomie.domain.usecase.clients</ID>
+    <ID>PackageNaming:IncluirClienteUseCaseImpl.kt$package
+        com.poli.prevendasomie.domain.usecase.clients</ID>
     <ID>PackageNaming:InfoBox.kt$package com.poli.prevendasomie.presentation.clientes.client_detail.components</ID>
     <ID>PackageNaming:MainScreen.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
     <ID>PackageNaming:PathUtil.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
     <ID>PackageNaming:SearchBar.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
     <ID>PackageNaming:TopNavBar.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:UseCases.kt$package com.poli.prevendasomie.domain.use_case</ID>
+    <ID>PackageNaming:UseCases.kt$package com.poli.prevendasomie.domain.usecase</ID>
     <ID>PackageNaming:genCodCli.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
     <ID>TooManyFunctions:ClientFormViewModel.kt$ClientFormViewModel : ViewModel</ID>
     <ID>UnusedPrivateMember:AppTextField.kt$keyboardOptions: KeyboardOptions = KeyboardOptions.Default</ID>

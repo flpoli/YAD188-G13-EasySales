@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.domain.use_case.clients.GetClientDetailsUseCase
+import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

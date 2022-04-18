@@ -1,10 +1,10 @@
 package com.poli.prevendasomie.di
 
 import com.poli.prevendasomie.domain.repository.ClientsRepository
-import com.poli.prevendasomie.domain.use_case.clients.GetClientDetailsUseCase
-import com.poli.prevendasomie.domain.use_case.clients.GetClienteDetailUseCaseImpl
-import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase
-import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
+import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
+import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCaseImpl
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase

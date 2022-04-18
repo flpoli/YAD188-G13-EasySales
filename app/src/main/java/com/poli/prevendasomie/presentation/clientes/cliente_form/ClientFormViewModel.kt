@@ -3,7 +3,7 @@ package com.poli.prevendasomie.presentation.clientes.cliente_form
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.domain.model.ClientesCadastro
-import com.poli.prevendasomie.domain.use_case.clients.IncluirClienteUseCase
+import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

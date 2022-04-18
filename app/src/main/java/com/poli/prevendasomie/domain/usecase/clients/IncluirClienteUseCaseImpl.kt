@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.domain.use_case.clients
+package com.poli.prevendasomie.domain.usecase.clients
 
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
