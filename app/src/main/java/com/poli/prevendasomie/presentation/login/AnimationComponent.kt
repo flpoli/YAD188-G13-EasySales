@@ -11,9 +11,7 @@ import com.poli.prevendasomie.R
 
 
 @Composable
-fun AnimationComponent(
-    modifier: Modifier = Modifier
-) {
+fun AnimationComponent() {
 
     val composition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(R.raw.loginamination)
