@@ -28,7 +28,7 @@ class UserDaoTest {
     private lateinit var dao: UserDao
 
     @Before
-    fun setup(){
+    fun setup() {
 
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
@@ -40,7 +40,7 @@ class UserDaoTest {
         dao = database.userDao()
     }
     @After
-    fun tearDown(){
+    fun tearDown() {
         database.close()
     }
 
@@ -61,18 +61,5 @@ class UserDaoTest {
         val getUser = dao.selectAllInfo()
 
         assertThat(getUser == user)
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.navigation
 
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -16,7 +17,10 @@ import com.poli.prevendasomie.presentation.produtos.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
 @Composable
-fun SetupNavGraph(navController: NavHostController) {
+fun SetupNavGraph(
+    navController: NavHostController,
+    scaffoldState: ScaffoldState
+) {
 
     NavHost(
         navController = navController,
@@ -46,7 +50,10 @@ fun SetupNavGraph(navController: NavHostController) {
             )
         }
         composable("client_form_screen") {
-            ClientFormScreen(navController = navController)
+            ClientFormScreen(
+                navController = navController,
+                scaffoldState = scaffoldState
+            )
         }
         composable("order_list_screen") {
             OrderListScreen(navController = navController)

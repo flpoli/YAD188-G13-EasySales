@@ -2,7 +2,11 @@ package com.poli.prevendasomie.login.domain.usecase
 
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
-import com.poli.prevendasomie.login.domain.model.*
+import com.poli.prevendasomie.login.domain.model.AuthToken
+import com.poli.prevendasomie.login.domain.model.Credentials
+import com.poli.prevendasomie.login.domain.model.InvalidCredentialsException
+import com.poli.prevendasomie.login.domain.model.LoginResult
+import com.poli.prevendasomie.login.domain.model.Token
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
 import javax.inject.Inject

@@ -8,7 +8,10 @@ import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
-import com.poli.prevendasomie.login.domain.repository.*
+import com.poli.prevendasomie.login.domain.repository.LoginRepository
+import com.poli.prevendasomie.login.domain.repository.LoginRepositoryImpl
+import com.poli.prevendasomie.login.domain.repository.TokenRepository
+import com.poli.prevendasomie.login.domain.repository.TokenRepositoryImpl
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepositoryImpl
 import dagger.Module

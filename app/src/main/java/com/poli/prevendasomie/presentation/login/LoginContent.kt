@@ -92,7 +92,6 @@ private fun LoginInputsColumn(
                 ?.getString(),
             enabled = viewState.inputEnabled,
 
-
         )
 
         if (viewState is LoginViewState.SubmissionError) {

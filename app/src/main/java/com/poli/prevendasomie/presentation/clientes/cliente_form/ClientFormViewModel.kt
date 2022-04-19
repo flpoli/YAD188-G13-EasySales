@@ -2,11 +2,15 @@ package com.poli.prevendasomie.presentation.clientes.cliente_form
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.poli.prevendasomie.core.UiEvent
+import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.domain.model.ClientesCadastro
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,11 +22,21 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
     val viewState: StateFlow<ClienteFormViewState> = _viewState
 
+    private val _uiEvent = Channel<UiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
+
     fun onRegisterClicked() {
 
         viewModelScope.launch {
 
-            useCase(clienteCadastro = _viewState.value.cliente)
+            useCase(clienteCadastro = _viewState.value.cliente)?.run {
+
+                _uiEvent.send(
+                    UiEvent.ShowSnackbar(
+                        UiText.StringText("SOME THING HAPPENED")
+                    )
+                )
+            }
         }
     }
 

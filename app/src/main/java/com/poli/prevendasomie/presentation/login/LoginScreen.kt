@@ -1,8 +1,8 @@
 package com.poli.prevendasomie.presentation.login
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -34,8 +34,6 @@ fun LoginScreen(
         onDispose { }
     }
 
-
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -46,16 +44,14 @@ fun LoginScreen(
             Modifier
                 .padding(bottom = 350.dp)
         ) {
-            AnimationComponent(
-            )
-
+            AnimationComponent()
         }
 
         Column(
             Modifier
                 .padding(top = 450.dp)
                 .align(Alignment.BottomEnd)
-        ){
+        ) {
             LoginContent(
                 viewState = viewState.value,
                 onEmailChanged = viewModel::emailChanged,

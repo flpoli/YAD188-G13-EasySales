@@ -2,7 +2,7 @@ package com.poli.prevendasomie.login.domain.repository
 
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.login.domain.model.Token
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class TokenRepositoryImpl
