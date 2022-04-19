@@ -24,7 +24,7 @@ GetClientListUseCaseImpl @Inject constructor(private val repository: ClientsRepo
             param = listOf(
                 Param.ParamListarClientes(
                     pagina = "1",
-                    registros_por_pagina = "11"
+                    registrosPorPagina = "11"
                 )
             )
 
