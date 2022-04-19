@@ -3,7 +3,7 @@ package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
 
-data class ProdutoServicoCadastro(
+data class ProdutoServicoCadastroDto(
     @SerializedName("aliquota_cofins")
     val aliquotaCofins: Int?,
     @SerializedName("aliquota_ibpt")

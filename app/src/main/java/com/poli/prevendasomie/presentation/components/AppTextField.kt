@@ -29,7 +29,6 @@ fun AppTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    //keyboardType: KeyboardType = KeyboardType.Text,
     placeholderText: String? = null,
 ) {
 

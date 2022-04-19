@@ -7,7 +7,7 @@ data class ListarProdutosDto(
     @SerializedName("pagina")
     val pagina: Int?,
     @SerializedName("produto_servico_cadastro")
-    val produtoServicoCadastro: List<ProdutoServicoCadastro>?,
+    val produtoServicoCadastro: List<ProdutoServicoCadastroDto>?,
     @SerializedName("registros")
     val registros: Int?,
     @SerializedName("total_de_paginas")

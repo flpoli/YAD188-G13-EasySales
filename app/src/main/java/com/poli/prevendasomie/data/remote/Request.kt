@@ -34,4 +34,14 @@ sealed class Request {
         val appSecret: String = APPSECRET,
         val param: List<ClientesCadastro>
     )
+
+    data class ListarProdutosRequest(
+        val call: String = "ListarProdutos",
+        @SerializedName("app_key")
+        val appKey: String = APPKEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APPSECRET,
+        val param: List<Param.ParamListarProdutos>
+
+    )
 }

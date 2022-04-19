@@ -151,10 +151,9 @@ private fun PasswordInput(
         labelText = "Password",
         enabled = enabled,
         visualTransformation = PasswordVisualTransformation(),
-        keyboardType = KeyboardType.Password,
         keyboardOptions = KeyboardOptions.Default.copy(
-            autoCorrect = true,
-            keyboardType = KeyboardType.Text,
+            autoCorrect = false,
+            keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions(

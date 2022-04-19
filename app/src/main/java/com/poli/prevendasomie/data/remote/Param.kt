@@ -13,4 +13,12 @@ sealed class Param {
         val pagina: String,
         val registros_por_pagina: String
     )
+    data class ParamListarProdutos(
+        val apenas_importado_api: String = "N",
+        val filtrar_apenas_omiepdv: String = "N",
+        val pagina: String,
+        val registros_por_pagina: String
+
+
+    )
 }
