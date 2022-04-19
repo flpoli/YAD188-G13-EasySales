@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote
 
-import com.poli.prevendasomie.data.remote.responses.ClientesCadastroDto
-import com.poli.prevendasomie.data.remote.responses.ListarClientesDto
+import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
+import com.poli.prevendasomie.data.remote.responses.clientes.ListarClientesDto
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
 import retrofit2.http.Body
 import retrofit2.http.Headers
