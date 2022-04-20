@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.ProdutoServicoCadastro
 
 data class ProdutoServicoCadastroDto(
     @SerializedName("aliquota_cofins")
@@ -102,3 +103,19 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("valor_unitario")
     val valorUnitario: Double?
 )
+
+fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
+
+    return ProdutoServicoCadastro(
+
+        codigo = codigo,
+        codigoProduto = codigoProduto,
+        codigoProdutoIntegracao = codigoProdutoIntegracao,
+        descricao = descricao,
+        descrDetalhada = descrDetalhada,
+        quantidadeEstoque = quantidadeEstoque,
+        unidade = unidade,
+        valorUnitario = valorUnitario
+
+    )
+}

@@ -45,7 +45,7 @@ fun FeatureSection(navController: NavController, modifier: Modifier) {
                 Text("Clientes")
             }
             Button(
-                onClick = { navController.navigate(Screen.ClientListScreen.route) },
+                onClick = { navController.navigate(Screen.ProductListScreen.route) },
                 modifier = Modifier.fillMaxWidth().padding(10.dp)
             ) {
                 Text("Produtos")

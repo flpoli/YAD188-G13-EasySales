@@ -18,7 +18,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.core.getString
-import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.PrimaryButton
 import kotlinx.coroutines.flow.collect
@@ -44,8 +43,7 @@ fun ClientFormScreen(
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.getString(context)
                     )
-                    navController.navigate(Screen.ClientListScreen.route)
-
+                    //    navController.navigate(Screen.ClientListScreen.route)
                 }
             }
         }

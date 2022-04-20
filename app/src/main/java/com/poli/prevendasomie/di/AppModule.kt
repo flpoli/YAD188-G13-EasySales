@@ -3,8 +3,6 @@ package com.poli.prevendasomie.di
 import com.google.gson.GsonBuilder
 import com.poli.prevendasomie.data.remote.HttpRoutes.BASE_URL
 import com.poli.prevendasomie.data.remote.OmieAPI
-import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
-import com.poli.prevendasomie.domain.repository.ClientsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,12 +27,5 @@ class AppModule {
             .client(client)
             .build()
             .create(OmieAPI::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideClientsRepository(api: OmieAPI): ClientsRepository {
-
-        return ClientsRepositoryImpl(api)
     }
 }

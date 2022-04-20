@@ -6,8 +6,13 @@ import androidx.room.Room
 import com.poli.prevendasomie.data.local.UserDatabase
 import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
+import com.poli.prevendasomie.data.remote.OmieAPI
+import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
+import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
+import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
+import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepositoryImpl
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
@@ -61,5 +66,17 @@ class RepositoryModule {
     @Singleton
     fun provideSignUpRepository(api: BackEndApi): SignUpRepository {
         return SignUpRepositoryImpl(api)
+    }
+    @Provides
+    @Singleton
+    fun provideClientsRepository(api: OmieAPI): ClientsRepository {
+
+        return ClientsRepositoryImpl(api)
+    }
+    @Provides
+    @Singleton
+    fun provideProductsRepository(api: OmieAPI): ProductsRepository {
+
+        return ProductsRepositoryImpl(api)
     }
 }

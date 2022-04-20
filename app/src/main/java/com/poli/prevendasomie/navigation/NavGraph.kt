@@ -13,7 +13,7 @@ import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScree
 import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.presentation.pedidos.OrderListScreen
-import com.poli.prevendasomie.presentation.produtos.ProductListScreen
+import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
 @Composable
@@ -49,6 +49,9 @@ fun SetupNavGraph(
                 codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!!
             )
         }
+        composable("product_list_screen") {
+            ProductListScreen(navController = navController)
+        }
         composable("client_form_screen") {
             ClientFormScreen(
                 navController = navController,
@@ -57,9 +60,6 @@ fun SetupNavGraph(
         }
         composable("order_list_screen") {
             OrderListScreen(navController = navController)
-        }
-        composable("product_list_screen") {
-            ProductListScreen(navController = navController)
         }
     }
 }
