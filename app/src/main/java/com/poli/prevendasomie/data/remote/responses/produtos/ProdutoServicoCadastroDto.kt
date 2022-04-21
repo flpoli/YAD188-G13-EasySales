@@ -29,9 +29,9 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("codigo_beneficio")
     val codigoBeneficio: String?,
     @SerializedName("codigo_familia")
-    val codigoFamilia: Int?,
+    val codigoFamilia: Long?,
     @SerializedName("codigo_produto")
-    val codigoProduto: Int?,
+    val codigoProduto: Long?,
     @SerializedName("codigo_produto_integracao")
     val codigoProdutoIntegracao: String?,
     @SerializedName("csosn_icms")

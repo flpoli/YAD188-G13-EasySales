@@ -3,6 +3,7 @@ package com.poli.prevendasomie.data.remote
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
 import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
 import com.poli.prevendasomie.data.remote.responses.clientes.ListarClientesDto
+import com.poli.prevendasomie.data.remote.responses.pedidos.ListarPedidosDto
 import com.poli.prevendasomie.data.remote.responses.produtos.ListarProdutosDto
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -25,4 +26,8 @@ interface OmieAPI {
     @Headers("Content-Type:application/json")
     @POST("geral/produtos/")
     suspend fun getProductList(@Body requestBody: Request.ListarProdutosRequest): ListarProdutosDto
+
+    @Headers("Content-Type:application/json")
+    @POST("produtos/pedido/")
+    suspend fun getOrderList(@Body requestBody: Request.ListarPedidosRequest): ListarPedidosDto
 }

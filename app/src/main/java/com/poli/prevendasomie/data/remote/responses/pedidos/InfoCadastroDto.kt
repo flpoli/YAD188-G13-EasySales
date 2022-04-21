@@ -1,8 +1,9 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.InfoCadastro
 
-data class InfoCadastro(
+data class InfoCadastroDto(
     @SerializedName("autorizado")
     val autorizado: String?,
     @SerializedName("cImpAPI")
@@ -42,3 +43,28 @@ data class InfoCadastro(
     @SerializedName("uInc")
     val uInc: String?
 )
+
+fun InfoCadastroDto.toInfoCadastro(): InfoCadastro {
+
+    return InfoCadastro(
+        autorizado = autorizado,
+        cImpAPI = cImpAPI,
+        cancelado = cancelado,
+        dAlt = dAlt,
+        dCan = dCan,
+        dFat = dFat,
+        dInc = dInc,
+        denegado = denegado,
+        devolvido = devolvido,
+        devolvidoParcial = devolvidoParcial,
+        faturado = faturado,
+        hAlt = hAlt,
+        hCan = hCan,
+        hFat = hFat,
+        hInc = hInc,
+        uAlt = uAlt,
+        uCan = uCan,
+        uFat = uFat,
+        uInc = uInc
+    )
+}

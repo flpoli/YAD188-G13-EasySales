@@ -9,7 +9,7 @@ data class UserDataModel(
     @PrimaryKey
     val id: Int? = 0,
     val email: String? = "",
-    val username: String? = "",
+    var username: String? = "",
     val appKey: String? = "",
     val appSecret: String? = "",
     val accessToken: String? = ""

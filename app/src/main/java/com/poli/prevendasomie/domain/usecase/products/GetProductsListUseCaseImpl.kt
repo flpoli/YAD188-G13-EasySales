@@ -16,7 +16,7 @@ import javax.inject.Inject
 class GetProductsListUseCaseImpl
 @Inject constructor(private val repository: ProductsRepository) : GetProductsListUseCase {
 
-    override suspend fun invoke(): Flow<Resource<ListarProdutos>> = flow {
+    override fun invoke(): Flow<Resource<ListarProdutos>> = flow {
 
         val request = Request.ListarProdutosRequest(
             param = listOf(

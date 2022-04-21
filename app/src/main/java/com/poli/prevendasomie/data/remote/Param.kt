@@ -25,6 +25,12 @@ sealed class Param {
         val pagina: String,
         @SerializedName("registros_por_pagina")
         val registrosPorPagina: String
-
+    )
+    data class ParamListarPedidos(
+        val pagina: String,
+        @SerializedName("apenas_importado_api")
+        val apenasImportadoApi: String = "N",
+        @SerializedName("registros_por_pagina")
+        val registrosPorPagina: String
     )
 }

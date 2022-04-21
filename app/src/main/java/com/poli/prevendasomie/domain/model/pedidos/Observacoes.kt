@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.data.remote.responses.pedidos
+package com.poli.prevendasomie.domain.model.pedidos
 
 import com.google.gson.annotations.SerializedName
 

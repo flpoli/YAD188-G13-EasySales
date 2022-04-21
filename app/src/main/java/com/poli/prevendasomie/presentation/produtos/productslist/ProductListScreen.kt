@@ -13,8 +13,6 @@ fun ProductListScreen(
     viewModel: ProductsListViewModel = hiltViewModel()
 ) {
 
-    viewModel.loadProductsList()
-
     val state by remember { viewModel.state }
 
     Text(

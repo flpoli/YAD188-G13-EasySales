@@ -1,8 +1,9 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.Parcela
 
-data class Parcela(
+data class ParcelaDto(
     @SerializedName("categoria_adiantamento")
     val categoriaAdiantamento: String?,
     @SerializedName("conta_corrente_adiantamento")
@@ -26,3 +27,21 @@ data class Parcela(
     @SerializedName("valor")
     val valor: Double?
 )
+
+fun ParcelaDto.toParcela(): Parcela {
+
+    return Parcela(
+        categoriaAdiantamento = categoriaAdiantamento,
+        contaCorrenteAdiantamento = contaCorrenteAdiantamento,
+        dataVencimento = dataVencimento,
+        meioPagamento = meioPagamento,
+        naoGerarBoleto = naoGerarBoleto,
+        numeroParcela = numeroParcela,
+        parcelaAdiantamento = parcelaAdiantamento,
+        percentual = percentual,
+        quantidadeDias = quantidadeDias,
+        tipoDocumento = tipoDocumento,
+        valor = valor
+
+    )
+}

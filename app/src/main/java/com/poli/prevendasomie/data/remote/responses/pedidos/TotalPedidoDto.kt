@@ -1,8 +1,9 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 
-data class TotalPedido(
+data class TotalPedidoDto(
     @SerializedName("base_calculo_icms")
     val baseCalculoIcms: Int?,
     @SerializedName("base_calculo_st")
@@ -34,3 +35,24 @@ data class TotalPedido(
     @SerializedName("valor_total_pedido")
     val valorTotalPedido: Double?
 )
+
+fun TotalPedidoDto.toTotalPedido(): TotalPedido {
+
+    return TotalPedido(
+        baseCalculoIcms = baseCalculoIcms,
+        baseCalculoSt = baseCalculoSt,
+        valorCofins = valorCofins,
+        valorCsll = valorCsll,
+        valorDeducoes = valorDeducoes,
+        valorDescontos = valorDescontos,
+        valorIPI = valorIPI,
+        valorIcms = valorIcms,
+        valorInss = valorInss,
+        valorIr = valorIr,
+        valorIss = valorIss,
+        valorMercadorias = valorMercadorias,
+        valorPis = valorPis,
+        valorSt = valorSt,
+        valorTotalPedido = valorTotalPedido
+    )
+}

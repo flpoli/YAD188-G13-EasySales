@@ -9,9 +9,11 @@ import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
+import com.poli.prevendasomie.data.repository.OrdersRepositoryImpl
 import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
+import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepositoryImpl
@@ -78,5 +80,12 @@ class RepositoryModule {
     fun provideProductsRepository(api: OmieAPI): ProductsRepository {
 
         return ProductsRepositoryImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrdersRepository(api: OmieAPI): OrdersRepository {
+
+        return OrdersRepositoryImpl(api)
     }
 }

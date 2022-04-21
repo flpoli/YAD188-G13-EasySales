@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigation
 import com.poli.prevendasomie.presentation.main_screen.components.GreetingSection
@@ -77,7 +78,7 @@ fun MainScreen(
         }
     ) {
         Column() {
-            GreetingSection()
+            GreetingSection(name = UserDataModel().username ?: "NULL")
             FeatureSection(navController, Modifier.padding(top = 30.dp))
         }
     }

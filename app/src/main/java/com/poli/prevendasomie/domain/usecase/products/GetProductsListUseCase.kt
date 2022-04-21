@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetProductsListUseCase {
 
-    suspend operator fun invoke(): Flow<Resource<ListarProdutos>>
+    operator fun invoke(): Flow<Resource<ListarProdutos>>
 }

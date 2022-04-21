@@ -1,8 +1,9 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.Produto
 
-data class Produto(
+data class ProdutoDto(
     @SerializedName("cfop")
     val cfop: String?,
     @SerializedName("cnpj_fabricante")
@@ -46,3 +47,30 @@ data class Produto(
     @SerializedName("valor_unitario")
     val valorUnitario: Double?
 )
+
+fun ProdutoDto.toProduto(): Produto {
+
+    return Produto(
+        cfop = cfop,
+        cnpjFabricante = cnpjFabricante,
+        codigo = codigo,
+        codigoProduto = codigoProduto,
+        codigoTabelaPreco = codigoTabelaPreco,
+        descricao = descricao,
+        ean = ean,
+        indicadorEscala = indicadorEscala,
+        motivoIcmsDesonerado = motivoIcmsDesonerado,
+        ncm = ncm,
+        percentualDesconto = percentualDesconto,
+        quantidade = quantidade,
+        reservado = reservado,
+        tipoDesconto = tipoDesconto,
+        unidade = unidade,
+        valorDeducao = valorDeducao,
+        valorDesconto = valorDesconto,
+        valorIcmsDesonerado = valorIcmsDesonerado,
+        valorMercadoria = valorMercadoria,
+        valorTotal = valorTotal,
+        valorUnitario = valorUnitario
+    )
+}

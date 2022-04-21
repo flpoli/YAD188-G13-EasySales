@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,34 +19,35 @@ class ProductsListViewModel @Inject constructor(
     private val _state = mutableStateOf(ProductsListState())
     val state: State<ProductsListState> = _state
 
+    init {
+        loadProductsList()
+    }
+
     fun loadProductsList() {
 
-        viewModelScope.launch {
+        useCase().onEach {
 
-            useCase().onEach {
+                result ->
 
-                    result ->
+            println(result)
 
-                println(result)
+            when (result) {
 
-                when (result) {
-
-                    is Resource.Success -> {
-                        _state.value = ProductsListState(
-                            isLoading = false,
-                            produtos = result.data,
-                            error = null
-                        )
-                    }
-                    else -> {
-                        _state.value = ProductsListState(
-                            isLoading = false,
-                            produtos = null,
-                            error = "ALGO ERRADO ACONTECEU"
-                        )
-                    }
+                is Resource.Success -> {
+                    _state.value = ProductsListState(
+                        isLoading = false,
+                        produtos = result.data,
+                        error = null
+                    )
+                }
+                else -> {
+                    _state.value = ProductsListState(
+                        isLoading = false,
+                        produtos = null,
+                        error = "ALGO ERRADO ACONTECEU"
+                    )
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }

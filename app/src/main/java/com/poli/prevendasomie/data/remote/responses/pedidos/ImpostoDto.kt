@@ -1,8 +1,9 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.Imposto
 
-data class Imposto(
+data class ImpostoDto(
     @SerializedName("cofins_padrao")
     val cofinsPadrao: CofinsPadrao?,
     @SerializedName("cofins_st")
@@ -30,3 +31,22 @@ data class Imposto(
     @SerializedName("pis_st")
     val pisSt: PisSt?
 )
+
+fun ImpostoDto.toImposto(): Imposto {
+
+    return Imposto(
+        cofinsPadrao = cofinsPadrao,
+        cofinsSt = cofinsSt,
+        csll = csll,
+        icms = icms,
+        icmsIe = icmsIe,
+        icmsSn = icmsSn,
+        icmsSt = icmsSt,
+        inss = inss,
+        ipi = ipi,
+        irrf = irrf,
+        iss = iss,
+        pisPadrao = pisPadrao,
+        pisSt = pisSt
+    )
+}

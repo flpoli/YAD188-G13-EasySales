@@ -2,7 +2,7 @@ package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
 
-data class Departamento(
+data class DepartamentoDto(
     @SerializedName("cCodDepto")
     val cCodDepto: String?,
     @SerializedName("nPerc")

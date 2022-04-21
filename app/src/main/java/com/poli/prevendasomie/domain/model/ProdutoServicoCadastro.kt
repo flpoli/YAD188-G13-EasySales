@@ -3,7 +3,7 @@ package com.poli.prevendasomie.domain.model
 data class ProdutoServicoCadastro(
 
     val codigo: String?,
-    val codigoProduto: Int?,
+    val codigoProduto: Long?,
     val codigoProdutoIntegracao: String?,
     val descricao: String?,
     val descrDetalhada: String?,
