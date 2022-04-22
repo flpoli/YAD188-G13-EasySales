@@ -1,4 +1,6 @@
-package com.poli.prevendasomie.domain.model
+package com.poli.prevendasomie.domain.model.clientes
+
+import com.poli.prevendasomie.domain.model.ClientesCadastro
 
 data class ListarClientes(
 

@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.domain.usecase.products
 
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.domain.model.ListarProdutos
+import com.poli.prevendasomie.domain.model.produtos.ListarProdutos
 import kotlinx.coroutines.flow.Flow
 
 interface GetProductsListUseCase {

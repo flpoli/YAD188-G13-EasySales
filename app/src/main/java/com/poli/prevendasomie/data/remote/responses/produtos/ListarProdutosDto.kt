@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.ListarProdutos
+import com.poli.prevendasomie.domain.model.produtos.ListarProdutos
 
 data class ListarProdutosDto(
     @SerializedName("pagina")

@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.domain.model
+package com.poli.prevendasomie.domain.model.produtos
 
 data class ListarProdutos(
 

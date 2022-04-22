@@ -3,7 +3,7 @@ package com.poli.prevendasomie.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.poli.prevendasomie.data.local.UserDatabase
+import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.remote.OmieAPI
@@ -40,18 +40,18 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(app: Application): UserDatabase {
+    fun provideDatabase(app: Application): ErpDatabase {
 
         return Room.databaseBuilder(
             app,
-            UserDatabase::class.java,
-            "UserDatabase"
+            ErpDatabase::class.java,
+            "ErpDatabase"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideUserDao(db: UserDatabase) = db.userDao()
+    fun provideUserDao(db: ErpDatabase) = db.userDao()
 
     @Provides
     @Singleton

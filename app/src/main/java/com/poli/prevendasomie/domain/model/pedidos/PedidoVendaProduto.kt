@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.domain.model
+package com.poli.prevendasomie.domain.model.pedidos
 
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 import com.poli.prevendasomie.domain.model.pedidos.Det

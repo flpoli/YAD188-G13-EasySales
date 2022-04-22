@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.ProdutoServicoCadastro
+import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 data class ProdutoServicoCadastroDto(
     @SerializedName("aliquota_cofins")
@@ -31,7 +31,7 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("codigo_familia")
     val codigoFamilia: Long?,
     @SerializedName("codigo_produto")
-    val codigoProduto: Long?,
+    val codigoProduto: Long,
     @SerializedName("codigo_produto_integracao")
     val codigoProdutoIntegracao: String?,
     @SerializedName("csosn_icms")

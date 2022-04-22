@@ -5,7 +5,7 @@ import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.clientes.toListarClientes
-import com.poli.prevendasomie.domain.model.ListarClientes
+import com.poli.prevendasomie.domain.model.clientes.ListarClientes
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
