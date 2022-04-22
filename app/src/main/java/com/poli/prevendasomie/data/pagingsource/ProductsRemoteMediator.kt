@@ -4,8 +4,12 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.room.withTransaction
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.remote.OmieAPI
+import com.poli.prevendasomie.data.remote.Param
+import com.poli.prevendasomie.data.remote.Request
+import com.poli.prevendasomie.data.remote.responses.produtos.toProdutoCadastro
 import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import javax.inject.Inject
@@ -13,8 +17,8 @@ import javax.inject.Inject
 @ExperimentalPagingApi
 class ProductsRemoteMediator
     @Inject constructor(
-        api: OmieAPI,
-        db: ErpDatabase
+        private val api: OmieAPI,
+        private val db: ErpDatabase
 ): RemoteMediator<Int, ProdutoServicoCadastro>() {
 
     private val productDao = db.productsDao()
@@ -39,7 +43,82 @@ class ProductsRemoteMediator
         state: PagingState<Int, ProdutoServicoCadastro>
     ): MediatorResult {
 
-        TODO()
+        try {
+
+            val page = when(loadType) {
+
+                LoadType.REFRESH -> {
+
+                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
+                    remoteKeys?.nextPage?.minus(1) ?: 1
+                }
+                LoadType.PREPEND -> {
+
+                    val remoteKeys = getRemoteKeyForFirstItem(state)
+                    val prevPage = remoteKeys?.prevPage ?:
+                        return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+
+                    prevPage
+                }
+                LoadType.APPEND -> {
+
+                    val remoteKeys = getRemoteKeyForLastItem(state)
+                    val nextPage = remoteKeys?.nextPage ?:
+                        return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+
+                    nextPage
+                }
+            }
+
+            val request = Request.ListarProdutosRequest(
+                param = listOf(
+                    Param.ParamListarProdutos(
+                        pagina = page.toString(), registrosPorPagina = "30"
+
+                    )
+                )
+            )
+
+            val response = api.getProductList(request)
+
+            if(response.produtoServicoCadastro.isNotEmpty()) {
+
+                db.withTransaction {
+
+                    if(loadType == LoadType.REFRESH) {
+
+                        productDao.deleteAllProducts()
+                        remoteKeysDao.deleteAllRemoteKeys()
+
+                    }
+
+                    val prevPage = response.pagina?.minus(1)
+                    val nextPage = response.pagina?.plus(1)
+
+                    val keys = response.produtoServicoCadastro.map {
+
+                        produto ->
+                            ProductsRemoteKeys(
+                                id = produto.codigoProduto.toInt(),
+                                prevPage = prevPage,
+                                nextPage = nextPage,
+                                lastUpdated = System.currentTimeMillis()
+                        )
+                    }
+
+                    val prod = response.produtoServicoCadastro.map {it.toProdutoCadastro()}
+
+                    remoteKeysDao.addAllRemoteKeys(keys)
+                    productDao.persistProductList(prod)
+                }
+            }
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
+
+
+        } catch (e: Exception) {
+            return MediatorResult.Error(e)
+
+        }
 
     }
 
