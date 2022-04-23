@@ -16,10 +16,10 @@ import javax.inject.Inject
 
 @ExperimentalPagingApi
 class ProductsRemoteMediator
-    @Inject constructor(
-        private val api: OmieAPI,
-        private val db: ErpDatabase
-): RemoteMediator<Int, ProdutoServicoCadastro>() {
+@Inject constructor(
+    private val api: OmieAPI,
+    private val db: ErpDatabase
+) : RemoteMediator<Int, ProdutoServicoCadastro>() {
 
     private val productDao = db.productsDao()
     private val remoteKeysDao = db.productRemoteKeysDao()
@@ -31,9 +31,9 @@ class ProductsRemoteMediator
         val cacheTimeout = 1440
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
-        return if(diffInMinutes.toInt() <= cacheTimeout) {
+        return if (diffInMinutes.toInt() <= cacheTimeout) {
             InitializeAction.SKIP_INITIAL_REFRESH
-        } else{
+        } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH
         }
     }
@@ -45,7 +45,7 @@ class ProductsRemoteMediator
 
         try {
 
-            val page = when(loadType) {
+            val page = when (loadType) {
 
                 LoadType.REFRESH -> {
 
@@ -55,25 +55,26 @@ class ProductsRemoteMediator
                 LoadType.PREPEND -> {
 
                     val remoteKeys = getRemoteKeyForFirstItem(state)
-                    val prevPage = remoteKeys?.prevPage ?:
-                        return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+                    val prevPage = remoteKeys?.prevPage
+                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
 
                     prevPage
                 }
                 LoadType.APPEND -> {
 
                     val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextPage = remoteKeys?.nextPage ?:
-                        return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+                    val nextPage = remoteKeys?.nextPage
+                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
 
                     nextPage
                 }
             }
 
-            val request = Request.ListarProdutosRequest(
+            var request = Request.ListarProdutosRequest(
                 param = listOf(
                     Param.ParamListarProdutos(
-                        pagina = page.toString(), registrosPorPagina = "30"
+                        pagina = page.toString(),
+                        registrosPorPagina = "3"
 
                     )
                 )
@@ -81,15 +82,14 @@ class ProductsRemoteMediator
 
             val response = api.getProductList(request)
 
-            if(response.produtoServicoCadastro.isNotEmpty()) {
+            if (response.produtoServicoCadastro.isNotEmpty()) {
 
                 db.withTransaction {
 
-                    if(loadType == LoadType.REFRESH) {
+                    if (loadType == LoadType.REFRESH) {
 
                         productDao.deleteAllProducts()
                         remoteKeysDao.deleteAllRemoteKeys()
-
                     }
 
                     val prevPage = response.pagina?.minus(1)
@@ -97,40 +97,37 @@ class ProductsRemoteMediator
 
                     val keys = response.produtoServicoCadastro.map {
 
-                        produto ->
-                            ProductsRemoteKeys(
-                                id = produto.codigoProduto.toInt(),
-                                prevPage = prevPage,
-                                nextPage = nextPage,
-                                lastUpdated = System.currentTimeMillis()
+                            produto ->
+
+
+                        ProductsRemoteKeys(
+                            id = produto.key?.plus(1) ?: 1000,
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
                         )
                     }
 
-                    val prod = response.produtoServicoCadastro.map {it.toProdutoCadastro()}
+                    val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     productDao.persistProductList(prod)
                 }
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
-
-
         } catch (e: Exception) {
             return MediatorResult.Error(e)
-
         }
-
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
 
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.codigoProduto?.let { id ->
+            state.closestItemToPosition(position)?.key?.let { id ->
 
                 remoteKeysDao.getRemoteKeys(id = id.toInt())
             }
         }
-
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
@@ -138,15 +135,15 @@ class ProductsRemoteMediator
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let {
 
                 produto ->
-                    remoteKeysDao.getRemoteKeys(id = produto.codigoProduto.toInt())
+            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
         }
     }
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
 
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let {
-                produto -> remoteKeysDao.getRemoteKeys(id = produto.codigoProduto.toInt())
+                produto ->
+            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
         }
     }
-
 }

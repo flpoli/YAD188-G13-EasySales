@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 data class ProdutoServicoCadastroDto(
+    var key: Int? = null,
     @SerializedName("aliquota_cofins")
     val aliquotaCofins: Int?,
     @SerializedName("aliquota_ibpt")
@@ -108,6 +109,7 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
 
     return ProdutoServicoCadastro(
 
+        key = key,
         codigo = codigo,
         codigoProduto = codigoProduto,
         codigoProdutoIntegracao = codigoProdutoIntegracao,

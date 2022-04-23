@@ -11,10 +11,12 @@ import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
 import com.poli.prevendasomie.data.repository.OrdersRepositoryImpl
 import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
+import com.poli.prevendasomie.data.repository.RemoteDataSourceImpl
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
+import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.LoginRepositoryImpl
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
@@ -77,9 +79,15 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideProductsRepository(api: OmieAPI): ProductsRepository {
+    fun provideProductsRepository(remote: RemoteDataSource): ProductsRepository {
 
-        return ProductsRepositoryImpl(api)
+        return ProductsRepositoryImpl(remote)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(api: OmieAPI, db: ErpDatabase): RemoteDataSource {
+        return RemoteDataSourceImpl(api, db)
     }
 
     @Provides

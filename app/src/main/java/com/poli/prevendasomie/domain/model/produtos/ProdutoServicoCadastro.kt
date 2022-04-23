@@ -6,12 +6,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "produtos_table")
 data class ProdutoServicoCadastro(
 
-
-    val codigo: String?,
-
     @PrimaryKey(autoGenerate = false)
+    val key: Int?,
+    val codigo: String?,
     val codigoProduto: Long,
-
     val codigoProdutoIntegracao: String?,
     val descricao: String?,
     val descrDetalhada: String?,

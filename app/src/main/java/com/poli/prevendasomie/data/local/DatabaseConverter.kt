@@ -11,7 +11,7 @@ class DatabaseConverter {
 
         val stringBuilder = StringBuilder()
 
-        for(item in list){
+        for (item in list) {
             stringBuilder.append(item).append(separator)
         }
 
@@ -20,10 +20,8 @@ class DatabaseConverter {
     }
 
     @TypeConverter
-    fun convertStringToList(string: String): List<String>{
+    fun convertStringToList(string: String): List<String> {
 
         return string.split(separator)
-
     }
-
 }

@@ -11,12 +11,11 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 interface ProductsDao {
 
     @Query("SELECT * FROM produtos_table")
-    suspend fun getAllProducts(): ProdutoServicoCadastro
+    fun getAllProducts(): PagingSource<Int, ProdutoServicoCadastro>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistProductList(produto: List<ProdutoServicoCadastro>)
 
     @Query("DELETE FROM produtos_table")
     suspend fun deleteAllProducts()
-
 }

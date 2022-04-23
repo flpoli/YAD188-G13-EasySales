@@ -16,7 +16,7 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
 
-               ],
+    ],
 
     version = 1
 )
@@ -27,6 +27,4 @@ abstract class ErpDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun productsDao(): ProductsDao
     abstract fun productRemoteKeysDao(): ProductRemoteKeyDao
-
-
 }
