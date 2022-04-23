@@ -16,13 +16,11 @@ import kotlinx.coroutines.flow.Flow
 class RemoteDataSourceImpl(
     private val api: OmieAPI,
     private val db: ErpDatabase
-): RemoteDataSource {
+) : RemoteDataSource {
 
     private val productDao = db.productsDao()
 
-
     override fun getAllProducts(): Flow<PagingData<ProdutoServicoCadastro>> {
-
 
         val pagingSourceFactory = { productDao.getAllProducts() }
 

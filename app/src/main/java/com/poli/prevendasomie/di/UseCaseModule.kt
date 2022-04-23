@@ -7,7 +7,6 @@ import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCaseImpl
-import com.poli.prevendasomie.domain.usecase.pedidos.GetOrdersListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCaseImpl
 import com.poli.prevendasomie.login.domain.repository.LoginRepository

@@ -99,7 +99,6 @@ class ProductsRemoteMediator
 
                             produto ->
 
-
                         ProductsRemoteKeys(
                             id = produto.key?.plus(1) ?: 1000,
                             prevPage = prevPage,

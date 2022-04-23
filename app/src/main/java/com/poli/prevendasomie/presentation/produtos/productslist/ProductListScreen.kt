@@ -16,7 +16,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
-
 @Composable
 fun ProductListScreen(
     navController: NavHostController,
@@ -24,52 +23,49 @@ fun ProductListScreen(
 ) {
 
     val state by remember { viewModel.state }
-    
+
     val allProducts = viewModel.produtos?.collectAsLazyPagingItems()
 
     if (allProducts != null) {
         ListContent(allProducts)
     }
-
 }
 
 @Composable
 fun ListContent(
     produto: LazyPagingItems<ProdutoServicoCadastro>
-){
+) {
 
     val result = handlePagingResult(produtos = produto)
 
-    if(result){
+    if (result) {
         LazyColumn(
             contentPadding = PaddingValues(all = 10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
-        ){
+        ) {
             items(
                 items = produto,
-                key = {produto -> produto.codigoProduto}
-            ){
+                key = { produto -> produto.codigoProduto }
+            ) {
 
-                    produto -> produto?.let {
+                    produto ->
+                produto?.let {
 
-
-                produto.descricao?.let { it1 ->
-                    Text(
-                        text = it1
-                    )
+                    produto.descricao?.let { it1 ->
+                        Text(
+                            text = it1
+                        )
+                    }
                 }
-            }
             }
         }
     }
-
 }
 
 @Composable
 fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boolean {
 
     produtos.apply {
-
 
         val error = when {
 
@@ -89,11 +85,6 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
                 false
             }
             else -> true
-            }
-
         }
-
     }
-
-
-
+}
