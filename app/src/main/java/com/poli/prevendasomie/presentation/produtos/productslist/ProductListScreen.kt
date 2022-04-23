@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.produtos.productslist
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -35,6 +36,8 @@ fun ProductListScreen(
 fun ListContent(
     produto: LazyPagingItems<ProdutoServicoCadastro>
 ) {
+
+    Log.d("ListContent", produto.loadState.toString())
 
     val result = handlePagingResult(produtos = produto)
 

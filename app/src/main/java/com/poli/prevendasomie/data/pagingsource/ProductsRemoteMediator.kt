@@ -70,7 +70,7 @@ class ProductsRemoteMediator
                 }
             }
 
-            var request = Request.ListarProdutosRequest(
+            val request = Request.ListarProdutosRequest(
                 param = listOf(
                     Param.ParamListarProdutos(
                         pagina = page.toString(),
@@ -124,7 +124,7 @@ class ProductsRemoteMediator
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.key?.let { id ->
 
-                remoteKeysDao.getRemoteKeys(id = id.toInt())
+                remoteKeysDao.getRemoteKeys(id = id)
             }
         }
     }
