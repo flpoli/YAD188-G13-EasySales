@@ -72,10 +72,10 @@ class ProductsRemoteMediator
                 }
             }
 
-            var request = Request.ListarProdutosRequest(
+            val request = Request.ListarProdutosRequest(
                 param = listOf(
                     Param.ParamListarProdutos(
-                        pagina = page.toString(),
+                        pagina = page.plus(1).toString(),
                         registrosPorPagina = state.config.pageSize.toString()
 
                     )
