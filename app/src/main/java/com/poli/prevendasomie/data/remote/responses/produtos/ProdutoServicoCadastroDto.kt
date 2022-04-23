@@ -1,9 +1,10 @@
 package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.ProdutoServicoCadastro
+import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 data class ProdutoServicoCadastroDto(
+    var key: Int = 1,
     @SerializedName("aliquota_cofins")
     val aliquotaCofins: Int?,
     @SerializedName("aliquota_ibpt")
@@ -31,7 +32,7 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("codigo_familia")
     val codigoFamilia: Long?,
     @SerializedName("codigo_produto")
-    val codigoProduto: Long?,
+    val codigoProduto: Long,
     @SerializedName("codigo_produto_integracao")
     val codigoProdutoIntegracao: String?,
     @SerializedName("csosn_icms")
@@ -108,6 +109,7 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
 
     return ProdutoServicoCadastro(
 
+        key = key,
         codigo = codigo,
         codigoProduto = codigoProduto,
         codigoProdutoIntegracao = codigoProdutoIntegracao,

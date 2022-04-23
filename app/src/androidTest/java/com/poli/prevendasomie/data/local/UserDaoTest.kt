@@ -24,7 +24,7 @@ class UserDaoTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: UserDatabase
+    private lateinit var database: ErpDatabase
     private lateinit var dao: UserDao
 
     @Before
@@ -32,7 +32,7 @@ class UserDaoTest {
 
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            UserDatabase::class.java
+            ErpDatabase::class.java
         )
             .allowMainThreadQueries()
             .build()

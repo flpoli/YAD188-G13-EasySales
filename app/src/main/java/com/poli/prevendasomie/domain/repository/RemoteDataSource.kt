@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.flow.Flow
 
-interface ProductsRepository {
+interface RemoteDataSource {
 
-    fun getProductList(): Flow<PagingData<ProdutoServicoCadastro>>?
+    fun getAllProducts(): Flow<PagingData<ProdutoServicoCadastro>>
 }

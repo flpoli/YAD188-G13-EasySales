@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.ClientesCadastro
 
 data class ClientesCadastroDto(
+    val id: Int = 0,
     @SerializedName("bairro")
     val bairro: String,
     @SerializedName("bloquear_exclusao")
@@ -71,6 +72,7 @@ data class ClientesCadastroDto(
 fun ClientesCadastroDto.toClientesCadastro(): ClientesCadastro {
 
     return ClientesCadastro(
+        id = id,
         codCliIntegracao = codigoClienteIntegracao,
         codClienteOmie = codigoClienteOmie,
         nomeFantasia = nomeFantasia,

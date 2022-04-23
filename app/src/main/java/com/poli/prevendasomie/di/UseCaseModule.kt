@@ -2,6 +2,7 @@ package com.poli.prevendasomie.di
 
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
+import com.poli.prevendasomie.domain.usecase.UseCases
 import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
@@ -61,5 +62,15 @@ object UseCaseModule {
     fun provideGetProductListUseCase(repository: ProductsRepository): GetProductsListUseCase {
 
         return GetProductsListUseCaseImpl(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUseCases(repository: ProductsRepository): UseCases {
+
+        return UseCases(
+            getProductListUseCase = GetProductsListUseCaseImpl(repository)
+
+        )
     }
 }

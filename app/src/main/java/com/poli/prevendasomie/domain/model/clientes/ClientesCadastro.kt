@@ -1,12 +1,18 @@
 package com.poli.prevendasomie.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 
 @JvmInline
 value class Email(val value: String)
 
+@Entity
 data class ClientesCadastro(
+
+    @PrimaryKey(autoGenerate = false)
+    val id: Int = 0,
 
     @SerializedName("codigo_cliente_integracao")
     val codCliIntegracao: String? = genCodCli(),

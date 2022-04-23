@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.PedidoVendaProduto
+import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 
 data class PedidoVendaProdutoDto(
     @SerializedName("cabecalho")

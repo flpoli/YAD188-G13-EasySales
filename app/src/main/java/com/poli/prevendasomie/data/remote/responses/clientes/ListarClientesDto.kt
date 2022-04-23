@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.clientes
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.ListarClientes
+import com.poli.prevendasomie.domain.model.clientes.ListarClientes
 
 data class ListarClientesDto(
     @SerializedName("clientes_cadastro")
