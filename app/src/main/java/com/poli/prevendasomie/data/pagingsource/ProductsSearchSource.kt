@@ -42,7 +42,7 @@ class ProductsSearchSource
                 LoadResult.Page(
                     data = produtos,
                     prevKey = apiResponse.pagina,
-                    nextKey = apiResponse.pagina?.plus(1)
+                    nextKey = apiResponse.pagina.plus(1)
                 )
             } else {
 

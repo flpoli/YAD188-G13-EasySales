@@ -10,7 +10,9 @@ import com.poli.prevendasomie.data.local.dao.OrdersRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
 import com.poli.prevendasomie.data.local.dao.UserDao
+import com.poli.prevendasomie.domain.model.ClientesCadastro
 import com.poli.prevendasomie.domain.model.UserDataModel
+import com.poli.prevendasomie.domain.model.clientes.ClientsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
@@ -19,6 +21,8 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         UserDataModel::class,
         ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
+        ClientesCadastro::class,
+        ClientsRemoteKeys::class
 
     ],
 

@@ -11,17 +11,17 @@ import javax.inject.Inject
 
 @ExperimentalPagingApi
 class ClientsRemoteMediator
-    @Inject constructor(
-        api: OmieAPI,
-        db: ErpDatabase
-    ): RemoteMediator<Int, ClientesCadastro>() {
+@Inject constructor(
+    api: OmieAPI,
+    db: ErpDatabase
+) : RemoteMediator<Int, ClientesCadastro>() {
 
     private val clientDao = db.clientDao()
     private val remoteKeysDao = db.clientRemoteKeyDao()
 
     override suspend fun initialize(): InitializeAction {
         val currentTime = System.currentTimeMillis()
-        val lastUpdated = remoteKeysDao.getRemoteKeys(id = 1)?.lastUpdated ?: 0L
+        val lastUpdated = remoteKeysDao.getRemoteKeys(id = 1).lastUpdated ?: 0L
         val cacheTimeout = 1440
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
@@ -38,7 +38,4 @@ class ClientsRemoteMediator
     ): MediatorResult {
         TODO("Not yet implemented")
     }
-
-
-
 }

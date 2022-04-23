@@ -1,12 +1,12 @@
-package com.poli.prevendasomie.domain.model.produtos
+package com.poli.prevendasomie.domain.model.clientes
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "products_keys")
-data class ProductsRemoteKeys(
+@Entity(tableName = "clients_keys")
+data class ClientsRemoteKeys(
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val prevPage: Int?,
     val nextPage: Int?,

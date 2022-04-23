@@ -16,6 +16,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
 fun ProductListScreen(
@@ -85,7 +86,12 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
                 false
             }
             error != null -> {
+                EmptyScreen(error = error)
                 false
+            }
+            produtos.itemCount < 1 -> {
+                EmptyScreen()
+                return false
             }
             else -> true
         }

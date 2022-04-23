@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.data.pagingsource
 
+import android.util.Log
+import android.util.Log.DEBUG
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -70,19 +72,20 @@ class ProductsRemoteMediator
                 }
             }
 
-            val request = Request.ListarProdutosRequest(
+            var request = Request.ListarProdutosRequest(
                 param = listOf(
                     Param.ParamListarProdutos(
                         pagina = page.toString(),
-                        registrosPorPagina = "3"
+                        registrosPorPagina = state.config.pageSize.toString()
 
                     )
                 )
             )
 
             val response = api.getProductList(request)
-
             if (response.produtoServicoCadastro.isNotEmpty()) {
+
+                Log.d("PAGE?", page.toString())
 
                 db.withTransaction {
 
@@ -92,19 +95,18 @@ class ProductsRemoteMediator
                         remoteKeysDao.deleteAllRemoteKeys()
                     }
 
-                    val prevPage = response.pagina?.minus(1)
-                    val nextPage = response.pagina?.plus(1)
-
+                    val prevPage = response.pagina.minus(1)
+                    val nextPage = response.pagina.plus(1)
                     val keys = response.produtoServicoCadastro.map {
 
                             produto ->
 
-                        ProductsRemoteKeys(
-                            id = produto.key?.plus(1) ?: 1000,
-                            prevPage = prevPage,
-                            nextPage = nextPage,
-                            lastUpdated = System.currentTimeMillis()
-                        )
+                                ProductsRemoteKeys(
+                                    id = produto.codigoProduto.toInt(),
+                                    prevPage = prevPage,
+                                    nextPage = nextPage,
+                                    lastUpdated = System.currentTimeMillis()
+                                )
                     }
 
                     val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }

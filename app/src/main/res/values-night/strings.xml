@@ -2,4 +2,6 @@
 <resources>
     <string name="details_screen_contato">Contato:</string>
     <string name="on_http_error">An unexpected error occurred</string>
+    <string name="network_error_icon">network error icon</string>
+
 </resources>
