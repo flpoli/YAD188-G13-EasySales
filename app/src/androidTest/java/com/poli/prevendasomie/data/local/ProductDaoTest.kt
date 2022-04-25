@@ -138,8 +138,8 @@ class ProductDaoTest {
 
         productRemoteKeyDao.addAllRemoteKeys(remoteKey)
 
-        val getKey = productRemoteKeyDao.getRemoteKeys(1)
+        val getKey = productRemoteKeyDao.getRemoteKeys()
 
-        assertThat(getKey == remoteKey[0])
+        assertThat(getKey == remoteKey)
     }
 }
