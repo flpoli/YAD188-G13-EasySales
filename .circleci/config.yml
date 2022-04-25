@@ -25,6 +25,8 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - store_test_results:
+          path: test-results
 
       # The next step will run the unit tests
       - android/run-tests:
