@@ -13,7 +13,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.poli.prevendasomie.R
 import com.poli.prevendasomie.navigation.Screen
+import com.poli.prevendasomie.presentation.components.AnimationComponent
 
 @Composable
 fun LoginScreen(
@@ -44,7 +46,7 @@ fun LoginScreen(
             Modifier
                 .padding(bottom = 350.dp)
         ) {
-            AnimationComponent()
+            AnimationComponent(animResource = R.raw.loginamination)
         }
 
         Column(
