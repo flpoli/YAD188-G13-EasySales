@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.data.pagingsource
 
 import android.util.Log
-import android.util.Log.DEBUG
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -54,15 +53,13 @@ class ProductsRemoteMediator
 //                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
 //                    remoteKeys?.nextPage?.minus(1) ?: 1
 
-                        if(productDao.getProductsCount() > 0){
+                    if (productDao.getProductsCount() > 0) {
 
-                            return MediatorResult.Success(endOfPaginationReached = true)
-
-                        }else {
-                            val initialPage = 0
-                            initialPage
-                        }
-
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    } else {
+                        val initialPage = 0
+                        initialPage
+                    }
                 }
                 LoadType.PREPEND -> {
 
@@ -72,21 +69,15 @@ class ProductsRemoteMediator
 //                    prevPage
 
                     return MediatorResult.Success(endOfPaginationReached = true)
-
-
                 }
                 LoadType.APPEND -> {
 
-//                    val remoteKeys = getRemoteKeyForLastItem(state)
-//                    val nextPage = remoteKeys?.nextPage
-//                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
-//                    nextPage.plus(1)
 
                     val lastRemoteKey = getLastRemoteKey()
 
-                    if(lastRemoteKey?.nextPage != null){
+                    if (lastRemoteKey?.nextPage != null) {
                         lastRemoteKey.nextPage
-                    }else {
+                    } else {
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
                 }
@@ -121,12 +112,12 @@ class ProductsRemoteMediator
 
                             produto ->
 
-                                ProductsRemoteKeys(
-                                    id = produto.id,
-                                    prevPage = prevPage,
-                                    nextPage = nextPage,
-                                    lastUpdated = System.currentTimeMillis()
-                                )
+                        ProductsRemoteKeys(
+                            id = produto.id,
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
+                        )
                     }
 
                     val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
@@ -144,7 +135,6 @@ class ProductsRemoteMediator
     private suspend fun getLastRemoteKey(): ProductsRemoteKeys? {
 
         return remoteKeysDao.getRemoteKeys().lastOrNull()
-
     }
 
 //    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {

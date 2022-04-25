@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.presentation.produtos.productslist
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -51,13 +50,13 @@ fun ListContent(
             ) {
 
                     produto ->
-                        produto?.let {
+                produto?.let {
 
-                            produto.descricao?.let { it1 ->
-                                Text(
-                                    text = it1
-                                )
-                            }
+                    produto.descricao?.let { it1 ->
+                        Text(
+                            text = it1
+                        )
+                    }
                 }
             }
         }

@@ -42,7 +42,6 @@ class ProductDaoTest {
 
         productDao = database.productsDao()
         productRemoteKeyDao = database.productRemoteKeysDao()
-
     }
     @After
     fun tearDown() {
@@ -121,7 +120,7 @@ class ProductDaoTest {
     @Test
     fun insertProductRemoteKeys() = runBlockingTest {
 
-        val remoteKey =listOf(
+        val remoteKey = listOf(
             ProductsRemoteKeys(
                 id = 1,
                 prevPage = 1,

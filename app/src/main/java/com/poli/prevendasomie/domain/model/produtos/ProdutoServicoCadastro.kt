@@ -17,4 +17,4 @@ data class ProdutoServicoCadastro(
     val unidade: String?,
     val valorUnitario: Double?,
 
-    )
+)
