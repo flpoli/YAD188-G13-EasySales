@@ -8,6 +8,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   android: circleci/android@1.0.3
+  coveralls: coveralls/coveralls@1.0.6
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -40,6 +41,16 @@ jobs:
           command: |
             ./gradlew assembleRelease
 
+  coveralls-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - coveralls/upload:
+          token: COVERALLS_KEY
+  
+
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -47,3 +58,5 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - coveralls-job
+
