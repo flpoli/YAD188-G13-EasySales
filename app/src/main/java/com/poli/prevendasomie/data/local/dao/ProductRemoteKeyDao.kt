@@ -9,11 +9,11 @@ import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
 @Dao
 interface ProductRemoteKeyDao {
 
-    @Query("SELECT * FROM products_keys WHERE id = :id")
-    suspend fun getRemoteKeys(id: Int): ProductsRemoteKeys?
+    @Query("SELECT * FROM products_keys ORDER BY id ASC")
+    suspend fun getRemoteKeys(): List<ProductsRemoteKeys>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAllRemoteKeys(productRemoteKeys: List<ProductsRemoteKeys>)
+    suspend fun addAllRemoteKeys(keys: List<ProductsRemoteKeys>)
 
     @Query("DELETE FROM products_keys")
     suspend fun deleteAllRemoteKeys()

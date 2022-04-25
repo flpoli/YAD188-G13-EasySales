@@ -41,6 +41,7 @@ class ProductDaoTest {
             .build()
 
         productDao = database.productsDao()
+        productRemoteKeyDao = database.productRemoteKeysDao()
 
     }
     @After
@@ -53,7 +54,7 @@ class ProductDaoTest {
 
         val produtos = listOf<ProdutoServicoCadastro> (
             ProdutoServicoCadastro(
-                key = 1,
+                id = 1,
                 codigo = "PRD00001",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0001",
@@ -64,7 +65,7 @@ class ProductDaoTest {
                 valorUnitario = 100.00
             ),
             ProdutoServicoCadastro(
-                key = 2,
+                id = 2,
                 codigo = "PRD00002",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0002",
@@ -87,7 +88,7 @@ class ProductDaoTest {
     fun deleteAllProducts() = runBlockingTest {
         val produtos = listOf<ProdutoServicoCadastro> (
             ProdutoServicoCadastro(
-                key = 1,
+                id = 1,
                 codigo = "PRD00001",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0001",
@@ -98,7 +99,7 @@ class ProductDaoTest {
                 valorUnitario = 100.00
             ),
             ProdutoServicoCadastro(
-                key = 2,
+                id = 2,
                 codigo = "PRD00002",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0002",

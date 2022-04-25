@@ -2,6 +2,7 @@ package com.poli.prevendasomie.di
 
 import android.app.Application
 import android.content.Context
+import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.dao.UserDao
@@ -30,6 +31,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+@ExperimentalPagingApi
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {

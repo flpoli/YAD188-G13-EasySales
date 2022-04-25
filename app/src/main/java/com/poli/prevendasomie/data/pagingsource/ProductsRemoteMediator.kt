@@ -26,19 +26,19 @@ class ProductsRemoteMediator
     private val productDao = db.productsDao()
     private val remoteKeysDao = db.productRemoteKeysDao()
 
-    override suspend fun initialize(): InitializeAction {
-
-        val currentTime = System.currentTimeMillis()
-        val lastUpdated = remoteKeysDao.getRemoteKeys(id = 1)?.lastUpdated ?: 0L
-        val cacheTimeout = 1440
-        val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
-
-        return if (diffInMinutes.toInt() <= cacheTimeout) {
-            InitializeAction.SKIP_INITIAL_REFRESH
-        } else {
-            InitializeAction.LAUNCH_INITIAL_REFRESH
-        }
-    }
+//    override suspend fun initialize(): InitializeAction {
+//
+//        val currentTime = System.currentTimeMillis()
+//        val lastUpdated = remoteKeysDao.getRemoteKeys(id = 1)?.lastUpdated ?: 0L
+//        val cacheTimeout = 1440
+//        val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
+//
+//        return if (diffInMinutes.toInt() <= cacheTimeout) {
+//            InitializeAction.SKIP_INITIAL_REFRESH
+//        } else {
+//            InitializeAction.LAUNCH_INITIAL_REFRESH
+//        }
+//    }
 
     override suspend fun load(
         loadType: LoadType,
@@ -51,31 +51,51 @@ class ProductsRemoteMediator
 
                 LoadType.REFRESH -> {
 
-                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                    remoteKeys?.nextPage?.minus(1) ?: 1
+//                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
+//                    remoteKeys?.nextPage?.minus(1) ?: 1
+
+                        if(productDao.getProductsCount() > 0){
+
+                            return MediatorResult.Success(endOfPaginationReached = true)
+
+                        }else {
+                            val initialPage = 0
+                            initialPage
+                        }
+
                 }
                 LoadType.PREPEND -> {
 
-                    val remoteKeys = getRemoteKeyForFirstItem(state)
-                    val prevPage = remoteKeys?.prevPage
-                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+//                    val remoteKeys = getRemoteKeyForFirstItem(state)
+//                    val prevPage = remoteKeys?.prevPage
+//                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+//                    prevPage
 
-                    prevPage
+                    return MediatorResult.Success(endOfPaginationReached = true)
+
+
                 }
                 LoadType.APPEND -> {
 
-                    val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextPage = remoteKeys?.nextPage
-                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+//                    val remoteKeys = getRemoteKeyForLastItem(state)
+//                    val nextPage = remoteKeys?.nextPage
+//                        ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+//                    nextPage.plus(1)
 
-                    nextPage
+                    val lastRemoteKey = getLastRemoteKey()
+
+                    if(lastRemoteKey?.nextPage != null){
+                        lastRemoteKey.nextPage
+                    }else {
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    }
                 }
             }
 
             val request = Request.ListarProdutosRequest(
                 param = listOf(
                     Param.ParamListarProdutos(
-                        pagina = page.plus(1).toString(),
+                        pagina = page.toString(),
                         registrosPorPagina = state.config.pageSize.toString()
 
                     )
@@ -86,7 +106,7 @@ class ProductsRemoteMediator
             if (response.produtoServicoCadastro.isNotEmpty()) {
 
                 Log.d("PAGE?", page.toString())
-
+                Log.d("state.pages?", state.pages.toString())
                 db.withTransaction {
 
                     if (loadType == LoadType.REFRESH) {
@@ -102,7 +122,7 @@ class ProductsRemoteMediator
                             produto ->
 
                                 ProductsRemoteKeys(
-                                    id = produto.codigoProduto.toInt(),
+                                    id = produto.id,
                                     prevPage = prevPage,
                                     nextPage = nextPage,
                                     lastUpdated = System.currentTimeMillis()
@@ -121,30 +141,36 @@ class ProductsRemoteMediator
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
+    private suspend fun getLastRemoteKey(): ProductsRemoteKeys? {
 
-        return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.key?.let { id ->
+        return remoteKeysDao.getRemoteKeys().lastOrNull()
 
-                remoteKeysDao.getRemoteKeys(id = id)
-            }
-        }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
-
-        return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let {
-
-                produto ->
-            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
-        }
-    }
-
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
-
-        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let {
-                produto ->
-            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
-        }
-    }
+//    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
+//
+//        return state.anchorPosition?.let { position ->
+//            state.closestItemToPosition(position)?.key?.let { id ->
+//
+//                remoteKeysDao.getRemoteKeys(id = id)
+//            }
+//        }
+//    }
+//
+//    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
+//
+//        return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let {
+//
+//                produto ->
+//            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
+//        }
+//    }
+//
+//    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProdutoServicoCadastro>): ProductsRemoteKeys? {
+//
+//        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let {
+//                produto ->
+//            produto.key?.let { remoteKeysDao.getRemoteKeys(id = it) }
+//        }
+//    }
 }

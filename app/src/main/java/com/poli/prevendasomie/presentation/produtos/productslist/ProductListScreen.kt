@@ -38,8 +38,6 @@ fun ListContent(
     produto: LazyPagingItems<ProdutoServicoCadastro>
 ) {
 
-    Log.d("ListContent", produto.loadState.toString())
-
     val result = handlePagingResult(produtos = produto)
 
     if (result) {
@@ -49,17 +47,17 @@ fun ListContent(
         ) {
             items(
                 items = produto,
-                key = { produto -> produto.codigoProduto }
+                key = { produto -> produto.id }
             ) {
 
                     produto ->
-                produto?.let {
+                        produto?.let {
 
-                    produto.descricao?.let { it1 ->
-                        Text(
-                            text = it1
-                        )
-                    }
+                            produto.descricao?.let { it1 ->
+                                Text(
+                                    text = it1
+                                )
+                            }
                 }
             }
         }

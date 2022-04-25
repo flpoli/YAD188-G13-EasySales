@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalPagingApi::class)
 
 package com.poli.prevendasomie.data.repository
 
@@ -13,6 +12,7 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 
+@ExperimentalPagingApi
 class RemoteDataSourceImpl(
     private val api: OmieAPI,
     private val db: ErpDatabase
@@ -25,7 +25,7 @@ class RemoteDataSourceImpl(
         val pagingSourceFactory = { productDao.getAllProducts() }
 
         return Pager(
-            config = PagingConfig(30),
+            config = PagingConfig(pageSize = 30, enablePlaceholders = false),
             remoteMediator = ProductsRemoteMediator(
                 api,
                 db
