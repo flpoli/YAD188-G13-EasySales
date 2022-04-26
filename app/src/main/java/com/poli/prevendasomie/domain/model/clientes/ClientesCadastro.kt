@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.domain.model
+package com.poli.prevendasomie.domain.model.clientes
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,12 +8,11 @@ import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 @JvmInline
 value class Email(val value: String)
 
-@Entity
+@Entity(tableName = "clients_table")
 data class ClientesCadastro(
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
     @SerializedName("codigo_cliente_integracao")
     val codCliIntegracao: String? = genCodCli(),
     @SerializedName("codigo_cliente_omie")
@@ -45,9 +44,3 @@ data class ClientesCadastro(
 
 )
 
-// fun ClientesCadastro.toClientesCadastroDto(): ClientesCadastroDto {
-//
-//    return ClientesCadastroDto(
-//
-//    )
-// }

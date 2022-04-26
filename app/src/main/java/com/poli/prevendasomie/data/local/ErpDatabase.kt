@@ -10,10 +10,10 @@ import com.poli.prevendasomie.data.local.dao.OrdersRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
 import com.poli.prevendasomie.data.local.dao.UserDao
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.UserDataModel
-import com.poli.prevendasomie.domain.model.clientes.ClientsRemoteKeys
-import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 @Database(
@@ -33,10 +33,13 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 abstract class ErpDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
     abstract fun clientDao(): ClientDao
     abstract fun clientRemoteKeyDao(): ClientRemoteKeyDao
+
     abstract fun productsDao(): ProductsDao
     abstract fun productRemoteKeysDao(): ProductRemoteKeyDao
+
     abstract fun ordersDao(): OrdersDao
     abstract fun ordersRemoteKeysDao(): OrdersRemoteKeyDao
 }

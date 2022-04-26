@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 
 @Dao
 interface ProductRemoteKeyDao {

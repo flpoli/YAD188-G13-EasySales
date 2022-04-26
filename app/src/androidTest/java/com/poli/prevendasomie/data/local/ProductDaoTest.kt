@@ -8,7 +8,7 @@ import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
-import com.poli.prevendasomie.domain.model.produtos.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

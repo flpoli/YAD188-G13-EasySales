@@ -1,6 +1,6 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail
 
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 data class ClientDetailState(
     val isLoading: Boolean = false,

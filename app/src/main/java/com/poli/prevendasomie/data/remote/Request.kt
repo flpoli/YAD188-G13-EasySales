@@ -3,13 +3,13 @@ package com.poli.prevendasomie.data.remote
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.common.Constants.APPKEY
 import com.poli.prevendasomie.common.Constants.APPSECRET
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import kotlin.String
 
 sealed class Request {
 
     data class ListClientsRequest(
-        val call: String,
+        val call: String = "ListarClientes",
         @SerializedName("app_key")
         val appKey: String = APPKEY,
         @SerializedName("app_secret")

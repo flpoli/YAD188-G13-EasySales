@@ -4,16 +4,21 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.room.withTransaction
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.remote.OmieAPI
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.data.remote.Param
+import com.poli.prevendasomie.data.remote.Request
+import com.poli.prevendasomie.data.remote.responses.clientes.toClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import javax.inject.Inject
 
 @ExperimentalPagingApi
 class ClientsRemoteMediator
 @Inject constructor(
-    api: OmieAPI,
-    db: ErpDatabase
+    private val api: OmieAPI,
+    private val db: ErpDatabase
 ) : RemoteMediator<Int, ClientesCadastro>() {
 
     private val clientDao = db.clientDao()
@@ -21,7 +26,7 @@ class ClientsRemoteMediator
 
     override suspend fun initialize(): InitializeAction {
         val currentTime = System.currentTimeMillis()
-        val lastUpdated = remoteKeysDao.getRemoteKeys(id = 1).lastUpdated ?: 0L
+        val lastUpdated = remoteKeysDao.getRemoteKeys().firstOrNull()?.lastUpdated ?: 0L
         val cacheTimeout = 1440
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
@@ -36,6 +41,98 @@ class ClientsRemoteMediator
         loadType: LoadType,
         state: PagingState<Int, ClientesCadastro>
     ): MediatorResult {
-        TODO("Not yet implemented")
+
+        try {
+
+            val page = when (loadType) {
+
+                LoadType.REFRESH -> {
+
+                    if (clientDao.getClientsCount() > 0) {
+
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    } else {
+
+                        val initialPage = 1
+
+                        initialPage
+                    }
+                }
+                LoadType.PREPEND -> {
+                    return MediatorResult.Success(endOfPaginationReached = true)
+
+                }
+                LoadType.APPEND -> {
+
+                    val lastRemoteKey = getLastRemoteKey()
+
+                    if(lastRemoteKey?.nextPage != null) {
+
+                        lastRemoteKey.nextPage
+
+                    } else {
+
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    }
+                }
+
+            }
+
+            val request = Request.ListClientsRequest(
+                param = listOf(
+                    Param.ParamListarClientes(
+                        pagina = page.toString(),
+                        registrosPorPagina = state.config.pageSize.toString()
+                    )
+                )
+            )
+
+            val response = api.getClientList(request)
+
+            if(response.clientesCadastro.isNotEmpty()) {
+
+                db.withTransaction {
+
+                    if(loadType == LoadType.REFRESH) {
+
+                        clientDao.deleteAllClients()
+                        remoteKeysDao.deleteAllRemoteKeys()
+
+                    }
+
+                    val prevPage = response.pagina.minus(1)
+                    val nextPage = response.pagina.plus(1)
+
+                    val keys = response.clientesCadastro.map {
+
+                        cliente ->
+
+                            ClientsRemoteKeys(
+                                id = cliente.id,
+                                prevPage = prevPage,
+                                nextPage = nextPage,
+                                lastUpdated = System.currentTimeMillis()
+
+                            )
+
+                    }
+
+                    val cliente = response.clientesCadastro.map { it.toClientesCadastro() }
+
+                    remoteKeysDao.addAllRemoteKeys(keys)
+                    clientDao.persistClientList(cliente)
+                }
+            }
+
+            return MediatorResult.Success(endOfPaginationReached = response.pagina != null)
+        } catch (e: Exception) {
+
+            return MediatorResult.Error(e)
+        }
+    }
+
+    private suspend fun getLastRemoteKey(): ClientsRemoteKeys? {
+
+        return remoteKeysDao.getRemoteKeys().lastOrNull()
     }
 }

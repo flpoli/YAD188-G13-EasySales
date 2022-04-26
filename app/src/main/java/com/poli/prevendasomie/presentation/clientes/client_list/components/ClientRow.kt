@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.poli.prevendasomie.R
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 @Composable
 fun ClientRow(

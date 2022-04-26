@@ -5,9 +5,9 @@ import com.poli.prevendasomie.domain.model.pedidos.ListarPedidos
 
 data class ListarPedidosDto(
     @SerializedName("pagina")
-    val pagina: Int?,
+    val pagina: Int,
     @SerializedName("pedido_venda_produto")
-    val pedidoVendaProduto: List<PedidoVendaProdutoDto>?,
+    val pedidoVendaProduto: List<PedidoVendaProdutoDto>,
     @SerializedName("registros")
     val registros: Int?,
     @SerializedName("total_de_paginas")
@@ -23,6 +23,6 @@ fun ListarPedidosDto.toListarPedidos(): ListarPedidos {
         registros = registros,
         totalDePaginas = totalDePaginas,
         totalDeRegistros = totalDeRegistros,
-        pedidoVendaProduto = pedidoVendaProduto?.map { it.toPedidoVendaProduto() } ?: emptyList()
+        pedidoVendaProduto = pedidoVendaProduto.map { it.toPedidoVendaProduto() } ?: emptyList()
     )
 }

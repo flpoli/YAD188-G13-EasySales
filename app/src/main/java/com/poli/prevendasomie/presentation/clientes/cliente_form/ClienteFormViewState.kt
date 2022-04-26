@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.presentation.clientes.cliente_form
 
 import com.poli.prevendasomie.core.UiText
-import com.poli.prevendasomie.domain.model.ClientesCadastro
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 sealed class ClienteFormViewState(
 
