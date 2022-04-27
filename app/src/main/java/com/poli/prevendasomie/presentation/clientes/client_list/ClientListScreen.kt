@@ -14,8 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.clientes.client_list.components.ClientListItem
+import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
 fun ClientListScreen(
@@ -23,7 +28,12 @@ fun ClientListScreen(
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
 
-    ClientListItem(navController = navController)
+    val allClientes = viewModel.clientes?.collectAsLazyPagingItems()
+
+    ClientListItem(
+        navController = navController,
+        cliente = allClientes
+    )
     AddClientFab(navController = navController)
 }
 @Composable
@@ -46,6 +56,38 @@ fun AddClientFab(navController: NavController) {
                 Icons.Filled.Add,
                 contentDescription = null
             )
+        }
+    }
+}
+
+@Composable
+fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {
+
+    clientes.apply {
+
+        val error = when {
+
+            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+
+            else -> null
+        }
+
+        return when {
+
+            loadState.refresh is LoadState.Loading -> {
+                false
+            }
+            error != null -> {
+                EmptyScreen(error = error)
+                false
+            }
+            clientes.itemCount < 1 -> {
+                EmptyScreen()
+                return false
+            }
+            else -> true
         }
     }
 }

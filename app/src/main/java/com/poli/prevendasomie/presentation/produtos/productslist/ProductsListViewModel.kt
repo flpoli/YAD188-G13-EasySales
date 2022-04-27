@@ -1,7 +1,5 @@
 package com.poli.prevendasomie.presentation.produtos.productslist
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,8 +10,8 @@ class ProductsListViewModel @Inject constructor(
     private val useCase: UseCases
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ProductsListState())
-    val state: State<ProductsListState> = _state
+//    private val _state = mutableStateOf(ProductsListState())
+//    val state: State<ProductsListState> = _state
 
     val produtos = useCase.getProductListUseCase()
 }

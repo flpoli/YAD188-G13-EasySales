@@ -6,14 +6,12 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.poli.prevendasomie.data.local.ErpDatabase
-import com.poli.prevendasomie.data.local.dao.OrdersRemoteKeyDao
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
-import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.pedidos.toPedidoVendaProduto
-import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -21,7 +19,7 @@ class OrdersRemoteMediator
     @Inject constructor(
         private val api: OmieAPI,
         private val db: ErpDatabase
-    ): RemoteMediator<Int, PedidoVendaProduto>() {
+    ): RemoteMediator<Int, PedidoVendaEntity>() {
 
     private val orderDao = db.ordersDao()
     private val remoteKeysDao = db.ordersRemoteKeysDao()
@@ -44,7 +42,7 @@ class OrdersRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PedidoVendaProduto>
+        state: PagingState<Int, PedidoVendaEntity>
     ): MediatorResult {
 
         try {

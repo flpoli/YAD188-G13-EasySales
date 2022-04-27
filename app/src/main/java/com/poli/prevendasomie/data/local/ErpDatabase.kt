@@ -10,19 +10,24 @@ import com.poli.prevendasomie.data.local.dao.OrdersRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
 import com.poli.prevendasomie.data.local.dao.UserDao
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
-import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
+import com.poli.prevendasomie.domain.model.UserDataModel
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 @Database(
     entities = [
+
         UserDataModel::class,
         ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
         ClientesCadastro::class,
-        ClientsRemoteKeys::class
+        ClientsRemoteKeys::class,
+        PedidoVendaEntity::class,
+        OrdersRemoteKeys::class
 
     ],
 

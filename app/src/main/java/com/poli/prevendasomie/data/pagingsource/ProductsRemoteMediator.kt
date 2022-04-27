@@ -5,12 +5,13 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
+import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.produtos.toProdutoCadastro
-import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import javax.inject.Inject
 
@@ -28,10 +29,9 @@ class ProductsRemoteMediator
 
         val currentTime = System.currentTimeMillis()
         val lastUpdated = remoteKeysDao.getRemoteKeys().firstOrNull()?.lastUpdated ?: 0L
-        val cacheTimeout = 1440
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
-        return if (diffInMinutes.toInt() <= cacheTimeout) {
+        return if (diffInMinutes.toInt() <= CACHE_TIMEOUT) {
             InitializeAction.SKIP_INITIAL_REFRESH
         } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -62,7 +62,6 @@ class ProductsRemoteMediator
                     return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 LoadType.APPEND -> {
-
 
                     val lastRemoteKey = getLastRemoteKey()
 
@@ -125,5 +124,4 @@ class ProductsRemoteMediator
 
         return remoteKeysDao.getRemoteKeys().lastOrNull()
     }
-
 }

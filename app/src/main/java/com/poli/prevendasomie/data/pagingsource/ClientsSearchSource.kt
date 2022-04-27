@@ -11,8 +11,7 @@ import javax.inject.Inject
 class ClientsSearchSource
 @Inject constructor(
     private val api: OmieAPI
-): PagingSource<Int, ClientesCadastroDto>(){
-
+) : PagingSource<Int, ClientesCadastroDto>() {
 
     override fun getRefreshKey(state: PagingState<Int, ClientesCadastroDto>): Int? {
 
@@ -36,7 +35,7 @@ class ClientsSearchSource
 
             val clientes = apiResponse.clientesCadastro
 
-            if(clientes.isNotEmpty()){
+            if (clientes.isNotEmpty()) {
 
                 LoadResult.Page(
                     data = clientes,
@@ -51,11 +50,9 @@ class ClientsSearchSource
                     nextKey = null
                 )
             }
-
         } catch (e: Exception) {
 
             LoadResult.Error(e)
         }
-
     }
 }

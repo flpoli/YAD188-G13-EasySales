@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.login.domain.repository
 
-import com.poli.prevendasomie.common.Constants.APPKEY
-import com.poli.prevendasomie.common.Constants.APPSECRET
+import com.poli.prevendasomie.common.Constants.APP_KEY
+import com.poli.prevendasomie.common.Constants.APP_SECRET
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
@@ -28,8 +28,8 @@ class LoginRepositoryImpl @Inject constructor(
 
         dao.persistUserData(call.toUserDataModel())
 
-        APPKEY = dao.selectAllInfo().appKey.toString()
-        APPSECRET = dao.selectAllInfo().appSecret.toString()
+        APP_KEY = dao.selectAllInfo().appKey.toString()
+        APP_SECRET = dao.selectAllInfo().appSecret.toString()
 
         return Resource.Success(call)
     }

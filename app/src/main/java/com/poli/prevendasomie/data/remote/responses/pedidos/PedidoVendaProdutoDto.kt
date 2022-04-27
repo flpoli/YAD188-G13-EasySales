@@ -35,7 +35,7 @@ fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
         cabecalho = cabecalho?.toCabecalho(),
         det = det?.map { it.toDet() },
         frete = frete?.toFrete(),
-        infoCadatro = infoCadastro?.toInfoCadastro(),
+        infoCadastro = infoCadastro?.toInfoCadastro(),
         informacoesAdicionais = informacoesAdicionais?.toInformacoesAdicionais(),
         listaParcelas = listaParcelas?.toListaParcelas(),
         observacoes = observacoes?.toObservacoes(),

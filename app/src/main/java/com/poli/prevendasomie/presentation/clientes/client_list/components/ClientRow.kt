@@ -15,8 +15,7 @@ import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 @Composable
 fun ClientRow(
-    rowIndex: Int,
-    entries: List<ClientesCadastro>,
+    entries: ClientesCadastro,
     navController: NavController,
     onItemClick: () -> Unit
 ) {
@@ -30,7 +29,7 @@ fun ClientRow(
                 }
         ) {
             ClientEntry(
-                entry = entries[rowIndex], navController = navController,
+                entry = entries, navController = navController,
                 dataIcon = painterResource(
                     id = R.drawable.account_circle
                 )

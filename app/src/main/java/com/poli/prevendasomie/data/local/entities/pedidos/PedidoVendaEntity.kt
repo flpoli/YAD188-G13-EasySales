@@ -1,11 +1,11 @@
-package com.poli.prevendasomie.domain.model.pedidos
+package com.poli.prevendasomie.data.local.entities.pedidos
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "orders_table")
-data class PedidoVendaProduto(
+data class PedidoVendaEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
@@ -18,4 +18,4 @@ data class PedidoVendaProduto(
     @Embedded val observacoes: Observacoes?,
     @Embedded val totalPedido: TotalPedido?,
 
-    )
+    ){}

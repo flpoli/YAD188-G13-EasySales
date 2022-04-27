@@ -5,13 +5,14 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
+import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.clientes.toClientesCadastro
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
-import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -27,10 +28,9 @@ class ClientsRemoteMediator
     override suspend fun initialize(): InitializeAction {
         val currentTime = System.currentTimeMillis()
         val lastUpdated = remoteKeysDao.getRemoteKeys().firstOrNull()?.lastUpdated ?: 0L
-        val cacheTimeout = 1440
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
-        return if (diffInMinutes.toInt() <= cacheTimeout) {
+        return if (diffInMinutes.toInt() <= CACHE_TIMEOUT) {
             InitializeAction.SKIP_INITIAL_REFRESH
         } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -60,22 +60,19 @@ class ClientsRemoteMediator
                 }
                 LoadType.PREPEND -> {
                     return MediatorResult.Success(endOfPaginationReached = true)
-
                 }
                 LoadType.APPEND -> {
 
                     val lastRemoteKey = getLastRemoteKey()
 
-                    if(lastRemoteKey?.nextPage != null) {
+                    if (lastRemoteKey?.nextPage != null) {
 
                         lastRemoteKey.nextPage
-
                     } else {
 
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
                 }
-
             }
 
             val request = Request.ListClientsRequest(
@@ -89,15 +86,14 @@ class ClientsRemoteMediator
 
             val response = api.getClientList(request)
 
-            if(response.clientesCadastro.isNotEmpty()) {
+            if (response.clientesCadastro.isNotEmpty()) {
 
                 db.withTransaction {
 
-                    if(loadType == LoadType.REFRESH) {
+                    if (loadType == LoadType.REFRESH) {
 
                         clientDao.deleteAllClients()
                         remoteKeysDao.deleteAllRemoteKeys()
-
                     }
 
                     val prevPage = response.pagina.minus(1)
@@ -105,16 +101,15 @@ class ClientsRemoteMediator
 
                     val keys = response.clientesCadastro.map {
 
-                        cliente ->
+                            cliente ->
 
-                            ClientsRemoteKeys(
-                                id = cliente.id,
-                                prevPage = prevPage,
-                                nextPage = nextPage,
-                                lastUpdated = System.currentTimeMillis()
+                        ClientsRemoteKeys(
+                            id = cliente.id,
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
 
-                            )
-
+                        )
                     }
 
                     val cliente = response.clientesCadastro.map { it.toClientesCadastro() }

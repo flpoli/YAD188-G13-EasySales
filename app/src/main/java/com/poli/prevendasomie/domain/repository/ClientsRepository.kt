@@ -1,13 +1,15 @@
 package com.poli.prevendasomie.domain.repository
 
+import androidx.paging.PagingData
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
 import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
-import com.poli.prevendasomie.data.remote.responses.clientes.ListarClientesDto
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import kotlinx.coroutines.flow.Flow
 
 interface ClientsRepository {
 
-    suspend fun getClientList(request: Request.ListClientsRequest): ListarClientesDto
+    fun getClientList(): Flow<PagingData<ClientesCadastro>>?
     suspend fun getClientByCode(request: Request.ClientByCodeRequest): ClientesCadastroDto
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
 }

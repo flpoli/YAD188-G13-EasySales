@@ -5,9 +5,12 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.poli.prevendasomie.common.Constants.API_PAGE_SIZE
 import com.poli.prevendasomie.data.local.ErpDatabase
+import com.poli.prevendasomie.data.pagingsource.ClientsRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.ProductsRemoteMediator
 import com.poli.prevendasomie.data.remote.OmieAPI
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
@@ -19,14 +22,29 @@ class RemoteDataSourceImpl(
 ) : RemoteDataSource {
 
     private val productDao = db.productsDao()
+    private val clientDao = db.clientDao()
 
     override fun getAllProducts(): Flow<PagingData<ProdutoServicoCadastro>> {
 
         val pagingSourceFactory = { productDao.getAllProducts() }
 
         return Pager(
-            config = PagingConfig(pageSize = 30, enablePlaceholders = false),
+            config = PagingConfig(pageSize = API_PAGE_SIZE, enablePlaceholders = false),
             remoteMediator = ProductsRemoteMediator(
+                api,
+                db
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
+    }
+
+    override fun getAllClients(): Flow<PagingData<ClientesCadastro>> {
+
+        val pagingSourceFactory = { clientDao.getAllClients() }
+
+        return Pager(
+            config = PagingConfig(pageSize = API_PAGE_SIZE, enablePlaceholders = false),
+            remoteMediator = ClientsRemoteMediator(
                 api,
                 db
             ),

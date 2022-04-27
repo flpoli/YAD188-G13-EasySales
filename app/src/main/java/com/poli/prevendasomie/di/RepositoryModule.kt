@@ -75,9 +75,9 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideClientsRepository(api: OmieAPI): ClientsRepository {
+    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource): ClientsRepository {
 
-        return ClientsRepositoryImpl(api)
+        return ClientsRepositoryImpl(api, remote)
     }
     @Provides
     @Singleton
