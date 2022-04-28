@@ -1,9 +1,8 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.data.remote.responses.pedidos.OutrosDetalhesDto
 
-data class InformacoesAdicionais(
+data class InformacoesAdicionaisEntity(
     @SerializedName("codProj")
     val codProj: Int?,
     @SerializedName("codVend")
@@ -24,8 +23,8 @@ data class InformacoesAdicionais(
     val numeroContrato: String?,
     @SerializedName("numero_pedido_cliente")
     val numeroPedidoCliente: String?,
-    @SerializedName("outros_detalhes")
-    val outrosDetalhes: OutrosDetalhes?,
+    // @SerializedName("outros_detalhes")
+    // val outrosDetalhes: OutrosDetalhes?,
     @SerializedName("utilizar_emails")
     val utilizarEmails: String?
 )

@@ -5,21 +5,22 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.pedidos.toPedidoVendaProduto
+import com.poli.prevendasomie.data.remote.responses.pedidos.mapDtoToPedidoEntity
 import javax.inject.Inject
 
 @ExperimentalPagingApi
 class OrdersRemoteMediator
-    @Inject constructor(
-        private val api: OmieAPI,
-        private val db: ErpDatabase
-    ): RemoteMediator<Int, PedidoVendaEntity>() {
+@Inject constructor(
+    private val api: OmieAPI,
+    private val db: ErpDatabase
+) : RemoteMediator<Int, PedidoVendaEntity>() {
 
     private val orderDao = db.ordersDao()
     private val remoteKeysDao = db.ordersRemoteKeysDao()
@@ -28,7 +29,7 @@ class OrdersRemoteMediator
 
         val currentTime = System.currentTimeMillis()
         val lastUpdated = remoteKeysDao.getRemoteKeys().firstOrNull()?.lastUpdated ?: 0L
-        val cacheTimeout = 1440
+        val cacheTimeout = CACHE_TIMEOUT
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
 
         return if (diffInMinutes.toInt() <= cacheTimeout) {
@@ -36,8 +37,6 @@ class OrdersRemoteMediator
         } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH
         }
-
-
     }
 
     override suspend fun load(
@@ -47,34 +46,30 @@ class OrdersRemoteMediator
 
         try {
 
-            val page = when(loadType) {
+            val page = when (loadType) {
 
                 LoadType.REFRESH -> {
 
-                    if (orderDao.getOrdersCount() > 0){
+                    if (orderDao.getOrdersCount() > 0) {
 
                         return MediatorResult.Success(endOfPaginationReached = true)
-
                     } else {
 
                         val initialPage = 1
                         initialPage
                     }
-
                 }
                 LoadType.PREPEND -> {
                     return MediatorResult.Success(endOfPaginationReached = true)
-
                 }
                 LoadType.APPEND -> {
 
                     val lastRemoteKey = getLastRemoteKey()
 
-                    if(lastRemoteKey?.nextPage != null){
+                    if (lastRemoteKey?.nextPage != null) {
                         lastRemoteKey.nextPage
                     } else {
                         return MediatorResult.Success(endOfPaginationReached = true)
-
                     }
                 }
             }
@@ -90,11 +85,11 @@ class OrdersRemoteMediator
 
             val response = api.getOrderList(request)
 
-            if(response.pedidoVendaProduto.isNotEmpty()) {
+            if (response.pedidoVendaProduto.isNotEmpty()) {
 
                 db.withTransaction {
 
-                    if(loadType == LoadType.REFRESH) {
+                    if (loadType == LoadType.REFRESH) {
                         orderDao.deleteAllOrders()
                         remoteKeysDao.deleteAllRemoteKeys()
                     }
@@ -103,33 +98,26 @@ class OrdersRemoteMediator
 
                     val keys = response.pedidoVendaProduto.map {
 
-                        pedido ->
-                            OrdersRemoteKeys(
-                                id = pedido.id,
-                                prevPage = prevPage,
-                                nextPage = nextPage,
-                                lastUpdated = System.currentTimeMillis()
+                            pedido ->
+                        OrdersRemoteKeys(
+                            id = pedido.id,
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
 
-                            )
-
+                        )
                     }
 
-                    val pedido = response.pedidoVendaProduto.map { it.toPedidoVendaProduto() }
+                    val pedido = response.pedidoVendaProduto.map { it.mapDtoToPedidoEntity() }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     orderDao.persistOrderList(pedido)
-
                 }
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
-
-
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }
-
-
-
     }
     private suspend fun getLastRemoteKey(): OrdersRemoteKeys? {
 

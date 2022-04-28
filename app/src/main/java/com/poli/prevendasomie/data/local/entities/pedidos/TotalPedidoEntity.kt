@@ -2,7 +2,7 @@ package com.poli.prevendasomie.data.local.entities.pedidos
 
 import com.google.gson.annotations.SerializedName
 
-data class TotalPedido(
+data class TotalPedidoEntity(
     @SerializedName("base_calculo_icms")
     val baseCalculoIcms: Int?,
     @SerializedName("base_calculo_st")

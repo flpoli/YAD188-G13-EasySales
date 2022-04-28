@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
 import androidx.room.Embedded
-import com.google.gson.annotations.SerializedName
 
 data class Parcela(
     @Embedded("categoria_adiantamento")

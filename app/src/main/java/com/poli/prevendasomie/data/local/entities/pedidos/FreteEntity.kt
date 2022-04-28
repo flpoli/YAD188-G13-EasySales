@@ -2,7 +2,7 @@ package com.poli.prevendasomie.data.local.entities.pedidos
 
 import com.google.gson.annotations.SerializedName
 
-data class Frete(
+data class FreteEntity(
     @SerializedName("codigo_rastreio")
     val codigoRastreio: String?,
     @SerializedName("codigo_tipo_entrega")

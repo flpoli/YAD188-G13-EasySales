@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
-import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 
 @Dao
 interface OrdersDao {

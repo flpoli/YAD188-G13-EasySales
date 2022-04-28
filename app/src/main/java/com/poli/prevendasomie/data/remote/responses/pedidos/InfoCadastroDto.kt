@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
 import com.poli.prevendasomie.domain.model.pedidos.InfoCadastro
 
 data class InfoCadastroDto(
@@ -47,6 +48,30 @@ data class InfoCadastroDto(
 fun InfoCadastroDto.toInfoCadastro(): InfoCadastro {
 
     return InfoCadastro(
+        autorizado = autorizado,
+        cImpAPI = cImpAPI,
+        cancelado = cancelado,
+        dAlt = dAlt,
+        dCan = dCan,
+        dFat = dFat,
+        dInc = dInc,
+        denegado = denegado,
+        devolvido = devolvido,
+        devolvidoParcial = devolvidoParcial,
+        faturado = faturado,
+        hAlt = hAlt,
+        hCan = hCan,
+        hFat = hFat,
+        hInc = hInc,
+        uAlt = uAlt,
+        uCan = uCan,
+        uFat = uFat,
+        uInc = uInc
+    )
+}
+fun InfoCadastroDto.toInfoCadastroEntity(): InfoCadastroEntity {
+
+    return InfoCadastroEntity(
         autorizado = autorizado,
         cImpAPI = cImpAPI,
         cancelado = cancelado,

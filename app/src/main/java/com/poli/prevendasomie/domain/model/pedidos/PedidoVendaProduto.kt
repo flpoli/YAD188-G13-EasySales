@@ -18,4 +18,4 @@ data class PedidoVendaProduto(
     @Embedded val observacoes: Observacoes?,
     @Embedded val totalPedido: TotalPedido?,
 
-    )
+)

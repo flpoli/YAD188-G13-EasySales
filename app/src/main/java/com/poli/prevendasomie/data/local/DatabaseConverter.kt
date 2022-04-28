@@ -29,21 +29,20 @@ class DatabaseConverter {
     @TypeConverter
     fun fromOutrosDetalhes(data: OutrosDetalhes): String {
 
-         val detalhesAsList = listOf(
+        val detalhesAsList = listOf(
 
-             data.cBairroOd,
-             data.cCEPOd,
-             data.cCidadeOd,
-             data.cCnpjCpfOd,
-             data.cEnderecoOd,
-             data.cEstadoOd,
-             data.cHoraSaidaOd,
-             data.cInscrEstadualOd,
-             data.cNomeOd,
-             data.cNomeOd,
-             data.cTelefoneOd,
-             data.dDataSaidaOd
-
+            data.cBairroOd,
+            data.cCEPOd,
+            data.cCidadeOd,
+            data.cCnpjCpfOd,
+            data.cEnderecoOd,
+            data.cEstadoOd,
+            data.cHoraSaidaOd,
+            data.cInscrEstadualOd,
+            data.cNomeOd,
+            data.cNomeOd,
+            data.cTelefoneOd,
+            data.dDataSaidaOd
 
         )
 

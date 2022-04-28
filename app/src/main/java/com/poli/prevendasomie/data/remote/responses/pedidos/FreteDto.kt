@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
 import com.poli.prevendasomie.domain.model.pedidos.Frete
 
 data class FreteDto(
@@ -47,6 +48,31 @@ data class FreteDto(
 fun FreteDto.toFrete(): Frete {
 
     return Frete(
+        codigoRastreio = codigoRastreio,
+        codigoTipoEntrega = codigoTipoEntrega,
+        codigoTransportadora = codigoTransportadora,
+        especieVolumes = especieVolumes,
+        marcaVolumes = marcaVolumes,
+        modalidade = modalidade,
+        numeracaoVolumes = numeracaoVolumes,
+        numeroLacre = numeroLacre,
+        outrasDespesas = outrasDespesas,
+        pesoBruto = pesoBruto,
+        pesoLiquido = pesoLiquido,
+        placa = placa,
+        placaEstado = placaEstado,
+        previsaoEntrega = previsaoEntrega,
+        quantidadeVolumes = quantidadeVolumes,
+        registroTransportador = registroTransportador,
+        valorFrete = valorFrete,
+        valorSeguro = valorSeguro,
+        veiculoProprio = veiculoProprio
+    )
+}
+
+fun FreteDto.toFreteEntity(): FreteEntity {
+
+    return FreteEntity(
         codigoRastreio = codigoRastreio,
         codigoTipoEntrega = codigoTipoEntrega,
         codigoTransportadora = codigoTransportadora,

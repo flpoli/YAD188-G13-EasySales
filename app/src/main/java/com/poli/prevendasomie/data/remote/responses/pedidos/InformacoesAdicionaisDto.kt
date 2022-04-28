@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.local.entities.pedidos.InformacoesAdicionaisEntity
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
 
 data class InformacoesAdicionaisDto(
@@ -44,6 +45,23 @@ fun InformacoesAdicionaisDto.toInformacoesAdicionais(): InformacoesAdicionais {
         numeroContrato = numeroContrato,
         numeroPedidoCliente = numeroPedidoCliente,
         outrosDetalhes = outrosDetalhes,
+        utilizarEmails = utilizarEmails
+    )
+}
+
+fun InformacoesAdicionaisDto.toInformacoesAdicionaisEntity(): InformacoesAdicionaisEntity {
+
+    return InformacoesAdicionaisEntity(
+        codProj = codProj,
+        codVend = codVend,
+        codigoCategoria = codigoCategoria,
+        codigoContaCorrente = codigoContaCorrente,
+        consumidorFinal = consumidorFinal,
+        contato = contato,
+        dadosAdicionaisNf = dadosAdicionaisNf,
+        enviarEmail = enviarEmail,
+        numeroContrato = numeroContrato,
+        numeroPedidoCliente = numeroPedidoCliente,
         utilizarEmails = utilizarEmails
     )
 }

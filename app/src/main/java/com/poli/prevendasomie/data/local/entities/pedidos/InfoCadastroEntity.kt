@@ -2,7 +2,7 @@ package com.poli.prevendasomie.data.local.entities.pedidos
 
 import com.google.gson.annotations.SerializedName
 
-data class InfoCadastro(
+data class InfoCadastroEntity(
     @SerializedName("autorizado")
     val autorizado: String?,
     @SerializedName("cImpAPI")

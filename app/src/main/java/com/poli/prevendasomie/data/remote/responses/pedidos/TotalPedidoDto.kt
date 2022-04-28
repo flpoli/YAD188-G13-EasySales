@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.local.entities.pedidos.TotalPedidoEntity
 import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 
 data class TotalPedidoDto(
@@ -39,6 +40,26 @@ data class TotalPedidoDto(
 fun TotalPedidoDto.toTotalPedido(): TotalPedido {
 
     return TotalPedido(
+        baseCalculoIcms = baseCalculoIcms,
+        baseCalculoSt = baseCalculoSt,
+        valorCofins = valorCofins,
+        valorCsll = valorCsll,
+        valorDeducoes = valorDeducoes,
+        valorDescontos = valorDescontos,
+        valorIPI = valorIPI,
+        valorIcms = valorIcms,
+        valorInss = valorInss,
+        valorIr = valorIr,
+        valorIss = valorIss,
+        valorMercadorias = valorMercadorias,
+        valorPis = valorPis,
+        valorSt = valorSt,
+        valorTotalPedido = valorTotalPedido
+    )
+}
+fun TotalPedidoDto.toTotalPedidoEntity(): TotalPedidoEntity {
+
+    return TotalPedidoEntity(
         baseCalculoIcms = baseCalculoIcms,
         baseCalculoSt = baseCalculoSt,
         valorCofins = valorCofins,

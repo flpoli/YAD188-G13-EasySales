@@ -1,11 +1,6 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
-import androidx.room.ColumnInfo
-import com.google.gson.annotations.SerializedName
-
-
-
-data class Cabecalho(
+data class CabecalhoEntity(
 
     val bloqueado: String?,
     val codigoCenarioImpostos: String?,

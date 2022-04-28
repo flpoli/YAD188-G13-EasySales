@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 
 data class CabecalhoDto(
@@ -37,6 +38,26 @@ data class CabecalhoDto(
 fun CabecalhoDto.toCabecalho(): Cabecalho {
 
     return Cabecalho(
+        bloqueado = bloqueado,
+        codigoCenarioImpostos = codigoCenarioImpostos,
+        codigoCliente = codigoCliente,
+        codigoEmpresa = codigoEmpresa,
+        codigoParcela = codigoParcela,
+        codigoPedido = codigoPedido,
+        codigoPedidoIntegracao = codigoPedidoIntegracao,
+        dataPrevisao = dataPrevisao,
+        etapa = etapa,
+        importadoApi = importadoApi,
+        numeroPedido = numeroPedido,
+        origemPedido = origemPedido,
+        qtdeParcelas = qtdeParcelas,
+        quantidadeItens = quantidadeItens
+    )
+}
+
+fun CabecalhoDto.toCabecalhoEntity(): CabecalhoEntity {
+
+    return CabecalhoEntity(
         bloqueado = bloqueado,
         codigoCenarioImpostos = codigoCenarioImpostos,
         codigoCliente = codigoCliente,

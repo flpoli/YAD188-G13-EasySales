@@ -1,10 +1,10 @@
 package com.poli.prevendasomie.domain.usecase.pedidos
 
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.domain.model.pedidos.ListarPedidos
+import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import kotlinx.coroutines.flow.Flow
 
 interface GetOrdersListUseCase {
 
-    operator fun invoke(): Flow<Resource<ListarPedidos>>
+    operator fun invoke(): Flow<Resource<PedidoVendaProduto>>
 }
