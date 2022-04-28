@@ -49,7 +49,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - coveralls/upload:
-          token: COVERALLS_KEY
+          token: ${{ secrets.COVERALLS_REPO_TOKEN }}
   
 
 
