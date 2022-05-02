@@ -10,7 +10,7 @@ import javax.inject.Inject
 class OrdersRepositoryImpl
 @Inject constructor(private val remote: RemoteDataSource) : OrdersRepository {
 
-    override suspend fun getOrderList(): Flow<PagingData<PedidoVendaProduto>> {
+    override fun getOrderList(): Flow<PagingData<PedidoVendaProduto>> {
 
         return remote.getAllOrders()
     }

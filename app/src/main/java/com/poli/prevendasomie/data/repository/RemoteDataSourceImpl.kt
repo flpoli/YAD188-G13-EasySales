@@ -7,12 +7,12 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.poli.prevendasomie.common.Constants.API_PAGE_SIZE
 import com.poli.prevendasomie.data.local.ErpDatabase
-import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
 import com.poli.prevendasomie.data.pagingsource.ClientsRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.OrdersRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.ProductsRemoteMediator
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
@@ -61,7 +61,7 @@ class RemoteDataSourceImpl(
         ).flow
     }
 
-    override fun getAllOrders(): Flow<PagingData<PedidoVendaEntity>> {
+    override fun getAllOrders(): Flow<PagingData<PedidoVendaProduto>> {
 
         val pagingSourceFactory = { orderDao.getAllOrders() }
 

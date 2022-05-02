@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.di
 
 import com.poli.prevendasomie.domain.repository.ClientsRepository
+import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.domain.usecase.UseCases
 import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
@@ -8,6 +9,7 @@ import com.poli.prevendasomie.domain.usecase.clients.GetClientListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.pedidos.GetOrdersListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCaseImpl
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
@@ -67,11 +69,12 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesUseCases(r1: ProductsRepository, r2: ClientsRepository): UseCases {
+    fun providesUseCases(r1: ProductsRepository, r2: ClientsRepository, r3: OrdersRepository): UseCases {
         // solução provisória aqui ^
         return UseCases(
             getProductListUseCase = GetProductsListUseCaseImpl(r1),
             getClientListUseCase = GetClientListUseCaseImpl(r2),
+            getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
         )
     }
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsListViewModel @Inject constructor(
-    private val useCase: UseCases
+    useCase: UseCases
 ) : ViewModel() {
 
 //    private val _state = mutableStateOf(ProductsListState())

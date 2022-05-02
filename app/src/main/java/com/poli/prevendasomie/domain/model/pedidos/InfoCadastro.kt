@@ -4,41 +4,41 @@ import com.google.gson.annotations.SerializedName
 
 data class InfoCadastro(
     @SerializedName("autorizado")
-    val autorizado: String?,
+    val autorizado: String? = "",
     @SerializedName("cImpAPI")
-    val cImpAPI: String?,
+    val cImpAPI: String? = "",
     @SerializedName("cancelado")
-    val cancelado: String?,
+    val cancelado: String? = "",
     @SerializedName("dAlt")
-    val dAlt: String?,
+    val dAlt: String? = "",
     @SerializedName("dCan")
-    val dCan: String?,
+    val dCan: String? = "",
     @SerializedName("dFat")
-    val dFat: String?,
+    val dFat: String? = "",
     @SerializedName("dInc")
-    val dInc: String?,
+    val dInc: String? = "",
     @SerializedName("denegado")
-    val denegado: String?,
+    val denegado: String? = "",
     @SerializedName("devolvido")
-    val devolvido: String?,
+    val devolvido: String? = "",
     @SerializedName("devolvido_parcial")
-    val devolvidoParcial: String?,
+    val devolvidoParcial: String? = "",
     @SerializedName("faturado")
-    val faturado: String?,
+    val faturado: String? = "",
     @SerializedName("hAlt")
-    val hAlt: String?,
+    val hAlt: String? = "",
     @SerializedName("hCan")
-    val hCan: String?,
+    val hCan: String? = "",
     @SerializedName("hFat")
-    val hFat: String?,
+    val hFat: String? = "",
     @SerializedName("hInc")
-    val hInc: String?,
+    val hInc: String? = "",
     @SerializedName("uAlt")
-    val uAlt: String?,
+    val uAlt: String? = "",
     @SerializedName("uCan")
-    val uCan: String?,
+    val uCan: String? = "",
     @SerializedName("uFat")
-    val uFat: String?,
+    val uFat: String? = "",
     @SerializedName("uInc")
-    val uInc: String?
+    val uInc: String? = ""
 )

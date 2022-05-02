@@ -4,41 +4,41 @@ import com.google.gson.annotations.SerializedName
 
 data class Frete(
     @SerializedName("codigo_rastreio")
-    val codigoRastreio: String?,
+    val codigoRastreio: String? = "",
     @SerializedName("codigo_tipo_entrega")
-    val codigoTipoEntrega: Int?,
+    val codigoTipoEntrega: Int? = 0,
     @SerializedName("codigo_transportadora")
-    val codigoTransportadora: Int?,
+    val codigoTransportadora: Int? = 0,
     @SerializedName("especie_volumes")
-    val especieVolumes: String?,
+    val especieVolumes: String? = "",
     @SerializedName("marca_volumes")
-    val marcaVolumes: String?,
+    val marcaVolumes: String? = "",
     @SerializedName("modalidade")
-    val modalidade: String?,
+    val modalidade: String? = "",
     @SerializedName("numeracao_volumes")
-    val numeracaoVolumes: String?,
+    val numeracaoVolumes: String? = "",
     @SerializedName("numero_lacre")
-    val numeroLacre: String?,
+    val numeroLacre: String? = "",
     @SerializedName("outras_despesas")
-    val outrasDespesas: Int?,
+    val outrasDespesas: Int? = 0,
     @SerializedName("peso_bruto")
-    val pesoBruto: Int?,
+    val pesoBruto: Int? = 0,
     @SerializedName("peso_liquido")
-    val pesoLiquido: Int?,
+    val pesoLiquido: Int? = 0,
     @SerializedName("placa")
-    val placa: String?,
+    val placa: String? = "",
     @SerializedName("placa_estado")
-    val placaEstado: String?,
+    val placaEstado: String? = "",
     @SerializedName("previsao_entrega")
-    val previsaoEntrega: String?,
+    val previsaoEntrega: String? = "",
     @SerializedName("quantidade_volumes")
-    val quantidadeVolumes: Int?,
+    val quantidadeVolumes: Int? = 0,
     @SerializedName("registro_transportador")
-    val registroTransportador: String?,
+    val registroTransportador: String? = "",
     @SerializedName("valor_frete")
-    val valorFrete: Int?,
+    val valorFrete: Int? = 0,
     @SerializedName("valor_seguro")
-    val valorSeguro: Int?,
+    val valorSeguro: Int? = 0,
     @SerializedName("veiculo_proprio")
-    val veiculoProprio: String?
+    val veiculoProprio: String? = ""
 )

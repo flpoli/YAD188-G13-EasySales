@@ -119,7 +119,7 @@ class ClientsRemoteMediator
                 }
             }
 
-            return MediatorResult.Success(endOfPaginationReached = response.pagina != null)
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
         } catch (e: Exception) {
 
             return MediatorResult.Error(e)

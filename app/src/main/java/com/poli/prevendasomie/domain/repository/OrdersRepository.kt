@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface OrdersRepository {
 
-    suspend fun getOrderList(): Flow<PagingData<PedidoVendaProduto>>?
+    fun getOrderList(): Flow<PagingData<PedidoVendaProduto>>
 }

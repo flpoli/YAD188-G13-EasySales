@@ -13,9 +13,9 @@ import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
-import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
 import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 @Database(
@@ -26,12 +26,13 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         ProductsRemoteKeys::class,
         ClientesCadastro::class,
         ClientsRemoteKeys::class,
-        PedidoVendaEntity::class,
+        PedidoVendaProduto::class,
         OrdersRemoteKeys::class
 
     ],
 
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 
 @TypeConverters(DatabaseConverter::class)
