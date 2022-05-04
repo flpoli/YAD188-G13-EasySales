@@ -12,7 +12,7 @@ import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
 import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
-import com.poli.prevendasomie.presentation.pedidos.OrderListScreen
+import com.poli.prevendasomie.presentation.pedidos.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
@@ -59,7 +59,7 @@ fun SetupNavGraph(
             )
         }
         composable("order_list_screen") {
-            OrderListScreen(navController = navController)
+            OrdersListScreen(navController = navController)
         }
     }
 }

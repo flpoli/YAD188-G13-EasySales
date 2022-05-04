@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Csll(
     @SerializedName("aliq_csll")
-    val aliqCsll: Int?,
+    val aliqCsll: Double?,
     @SerializedName("valor_csll")
-    val valorCsll: Int?
+    val valorCsll: Double?
 )

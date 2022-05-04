@@ -10,9 +10,9 @@ data class Produto(
     @SerializedName("codigo")
     val codigo: String?,
     @SerializedName("codigo_produto")
-    val codigoProduto: Int?,
+    val codigoProduto: Long?,
     @SerializedName("codigo_tabela_preco")
-    val codigoTabelaPreco: Int?,
+    val codigoTabelaPreco: Long?,
     @SerializedName("descricao")
     val descricao: String?,
     @SerializedName("ean")
@@ -34,11 +34,11 @@ data class Produto(
     @SerializedName("unidade")
     val unidade: String?,
     @SerializedName("valor_deducao")
-    val valorDeducao: Int?,
+    val valorDeducao: Double?,
     @SerializedName("valor_desconto")
-    val valorDesconto: Int?,
+    val valorDesconto: Double?,
     @SerializedName("valor_icms_desonerado")
-    val valorIcmsDesonerado: Int?,
+    val valorIcmsDesonerado: Double?,
     @SerializedName("valor_mercadoria")
     val valorMercadoria: Double?,
     @SerializedName("valor_total")

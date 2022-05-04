@@ -34,7 +34,7 @@ fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
     return PedidoVendaProduto(
         id = id,
         cabecalho = cabecalho?.toCabecalho(),
-        det = det?.map { it.toDet() },
+        // det = det?.map { it.toDet() },
         frete = frete?.toFrete(),
         infoCadastro = infoCadastro?.toInfoCadastro(),
         informacoesAdicionais = informacoesAdicionais?.toInformacoesAdicionais(),
@@ -48,13 +48,13 @@ fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
 fun PedidoVendaProdutoDto.mapDtoToPedidoEntity(): PedidoVendaEntity {
 
     return PedidoVendaEntity(
-        id = id,
+        // id = id,
         cabecalho = cabecalho?.toCabecalhoEntity(),
         frete = frete?.toFreteEntity(),
         infoCadastro = infoCadastro?.toInfoCadastroEntity(),
-        informacoesAdicionais = informacoesAdicionais?.toInformacoesAdicionaisEntity(),
-        observacoes = observacoes?.toObservacoesEntity(),
-        totalPedido = totalPedido?.toTotalPedidoEntity()
+        // informacoesAdicionais = informacoesAdicionais?.toInformacoesAdicionaisEntity(),
+        // observacoes = observacoes?.toObservacoesEntity(),
+        // totalPedido = totalPedido?.toTotalPedidoEntity()
 
     )
 }

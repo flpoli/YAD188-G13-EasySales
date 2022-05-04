@@ -3,11 +3,12 @@ package com.poli.prevendasomie.domain.model.produtos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "produtos_table")
+@Entity(tableName = "products_table")
 data class ProdutoServicoCadastro(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+
     val codigo: String?,
     val codigoProduto: Long,
     val codigoProdutoIntegracao: String?,

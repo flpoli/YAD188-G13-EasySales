@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.data.pagingsource
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -89,17 +90,16 @@ class ProductsRemoteMediator
                 db.withTransaction {
 
                     if (loadType == LoadType.REFRESH) {
-
                         productDao.deleteAllProducts()
                         remoteKeysDao.deleteAllRemoteKeys()
                     }
 
                     val prevPage = response.pagina.minus(1)
                     val nextPage = response.pagina.plus(1)
+
                     val keys = response.produtoServicoCadastro.map {
 
                             produto ->
-
                         ProductsRemoteKeys(
                             id = produto.id,
                             prevPage = prevPage,
@@ -109,9 +109,11 @@ class ProductsRemoteMediator
                     }
 
                     val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
+                    Log.d("LOG PRODUTO?", "$prod")
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     productDao.persistProductList(prod)
+                    Log.d("MEDIATOR - PERSIST", "productDao.persist")
                 }
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)

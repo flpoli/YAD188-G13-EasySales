@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class CofinsSt(
     @SerializedName("aliq_cofins_st")
-    val aliqCofinsSt: Int?,
+    val aliqCofinsSt: Double?,
     @SerializedName("base_cofins_st")
-    val baseCofinsSt: Int?,
+    val baseCofinsSt: Double?,
     @SerializedName("cod_sit_trib_cofins_st")
     val codSitTribCofinsSt: String?,
     @SerializedName("margem_cofins_st")
-    val margemCofinsSt: Int?,
+    val margemCofinsSt: Double?,
     @SerializedName("qtde_unid_trib_cofins_st")
     val qtdeUnidTribCofinsSt: Int?,
     @SerializedName("tipo_calculo_cofins_st")
     val tipoCalculoCofinsSt: String?,
     @SerializedName("valor_cofins_st")
-    val valorCofinsSt: Int?,
+    val valorCofinsSt: Double?,
     @SerializedName("valor_unid_trib_cofins_st")
-    val valorUnidTribCofinsSt: Int?
+    val valorUnidTribCofinsSt: Double?
 )

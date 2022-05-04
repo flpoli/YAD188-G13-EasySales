@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Inss(
     @SerializedName("aliq_inss")
-    val aliqInss: Int?,
+    val aliqInss: Double?,
     @SerializedName("valor_inss")
-    val valorInss: Int?
+    val valorInss: Double?
 )

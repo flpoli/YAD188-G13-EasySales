@@ -1,44 +1,31 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
-import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "frete_entity")
 data class FreteEntity(
-    @SerializedName("codigo_rastreio")
+    @PrimaryKey(autoGenerate = true)
+    val freteId: Int,
+    val orderId: Int,
+
     val codigoRastreio: String?,
-    @SerializedName("codigo_tipo_entrega")
     val codigoTipoEntrega: Int?,
-    @SerializedName("codigo_transportadora")
-    val codigoTransportadora: Int?,
-    @SerializedName("especie_volumes")
+    val codigoTransportadora: Long?,
     val especieVolumes: String?,
-    @SerializedName("marca_volumes")
     val marcaVolumes: String?,
-    @SerializedName("modalidade")
     val modalidade: String?,
-    @SerializedName("numeracao_volumes")
     val numeracaoVolumes: String?,
-    @SerializedName("numero_lacre")
     val numeroLacre: String?,
-    @SerializedName("outras_despesas")
-    val outrasDespesas: Int?,
-    @SerializedName("peso_bruto")
-    val pesoBruto: Int?,
-    @SerializedName("peso_liquido")
-    val pesoLiquido: Int?,
-    @SerializedName("placa")
+    val outrasDespesas: Double?,
+    val pesoBruto: Double?,
+    val pesoLiquido: Double?,
     val placa: String?,
-    @SerializedName("placa_estado")
     val placaEstado: String?,
-    @SerializedName("previsao_entrega")
     val previsaoEntrega: String?,
-    @SerializedName("quantidade_volumes")
     val quantidadeVolumes: Int?,
-    @SerializedName("registro_transportador")
     val registroTransportador: String?,
-    @SerializedName("valor_frete")
-    val valorFrete: Int?,
-    @SerializedName("valor_seguro")
-    val valorSeguro: Int?,
-    @SerializedName("veiculo_proprio")
+    val valorFrete: Double?,
+    val valorSeguro: Double?,
     val veiculoProprio: String?
 )

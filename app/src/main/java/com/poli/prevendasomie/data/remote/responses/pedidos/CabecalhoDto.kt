@@ -10,13 +10,13 @@ data class CabecalhoDto(
     @SerializedName("codigo_cenario_impostos")
     val codigoCenarioImpostos: String?,
     @SerializedName("codigo_cliente")
-    val codigoCliente: Int?,
+    val codigoCliente: Long?,
     @SerializedName("codigo_empresa")
-    val codigoEmpresa: Int?,
+    val codigoEmpresa: Long?,
     @SerializedName("codigo_parcela")
     val codigoParcela: String?,
     @SerializedName("codigo_pedido")
-    val codigoPedido: Int?,
+    val codigoPedido: Long?,
     @SerializedName("codigo_pedido_integracao")
     val codigoPedidoIntegracao: String?,
     @SerializedName("data_previsao")
@@ -58,6 +58,8 @@ fun CabecalhoDto.toCabecalho(): Cabecalho {
 fun CabecalhoDto.toCabecalhoEntity(): CabecalhoEntity {
 
     return CabecalhoEntity(
+        cabecalhoId = 0,
+        orderId = 0,
         bloqueado = bloqueado,
         codigoCenarioImpostos = codigoCenarioImpostos,
         codigoCliente = codigoCliente,

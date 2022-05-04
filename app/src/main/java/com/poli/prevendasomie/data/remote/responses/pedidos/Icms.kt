@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Icms(
     @SerializedName("aliq_icms")
-    val aliqIcms: Int?,
+    val aliqIcms: Double?,
     @SerializedName("base_icms")
-    val baseIcms: Int?,
+    val baseIcms: Double?,
     @SerializedName("cod_sit_trib_icms")
     val codSitTribIcms: String?,
     @SerializedName("modalidade_icms")
@@ -14,7 +14,7 @@ data class Icms(
     @SerializedName("origem_icms")
     val origemIcms: String?,
     @SerializedName("perc_red_base_icms")
-    val percRedBaseIcms: Int?,
+    val percRedBaseIcms: Double?,
     @SerializedName("valor_icms")
-    val valorIcms: Int?
+    val valorIcms: Double?
 )

@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
+import com.google.gson.Gson
+import com.poli.prevendasomie.data.local.DatabaseConverter
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
@@ -13,6 +15,7 @@ import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
 import com.poli.prevendasomie.data.repository.OrdersRepositoryImpl
 import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
 import com.poli.prevendasomie.data.repository.RemoteDataSourceImpl
+import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
 import com.poli.prevendasomie.domain.repository.OrdersRepository
@@ -50,7 +53,9 @@ class RepositoryModule {
             app,
             ErpDatabase::class.java,
             "ErpDatabase"
-        ).build()
+        )
+            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
+            .build()
     }
 
     @Provides
@@ -73,6 +78,15 @@ class RepositoryModule {
     fun provideSignUpRepository(api: BackEndApi): SignUpRepository {
         return SignUpRepositoryImpl(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(api: OmieAPI, db: ErpDatabase): RemoteDataSource {
+        return RemoteDataSourceImpl(api, db)
+    }
+
+    // ********************************************************//
+
     @Provides
     @Singleton
     fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource): ClientsRepository {
@@ -85,17 +99,12 @@ class RepositoryModule {
 
         return ProductsRepositoryImpl(remote)
     }
-
     @Provides
     @Singleton
-    fun provideRemoteDataSource(api: OmieAPI, db: ErpDatabase): RemoteDataSource {
-        return RemoteDataSourceImpl(api, db)
+    fun provideOrdersRepository(remote: RemoteDataSource): OrdersRepository {
+
+        return OrdersRepositoryImpl(remote)
     }
 
-    @Provides
-    @Singleton
-    fun provideOrdersRepository(api: OmieAPI): OrdersRepository {
-
-        return OrdersRepositoryImpl(api)
-    }
+    // *******************************************************//
 }

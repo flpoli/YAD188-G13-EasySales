@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Ide(
     @SerializedName("codigo_item")
-    val codigoItem: Int?,
+    val codigoItem: Long?,
     @SerializedName("codigo_item_integracao")
     val codigoItemIntegracao: String?,
     @SerializedName("id_ordem_producao")
-    val idOrdemProducao: Int?,
+    val idOrdemProducao: Long?,
     @SerializedName("simples_nacional")
     val simplesNacional: String?
 )

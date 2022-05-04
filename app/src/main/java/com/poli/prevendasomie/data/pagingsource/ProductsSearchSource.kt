@@ -11,7 +11,6 @@ import javax.inject.Inject
 class ProductsSearchSource
 @Inject constructor(
     private val api: OmieAPI,
-
 ) : PagingSource<Int, ProdutoServicoCadastroDto>() {
 
     override fun getRefreshKey(state: PagingState<Int, ProdutoServicoCadastroDto>): Int? {

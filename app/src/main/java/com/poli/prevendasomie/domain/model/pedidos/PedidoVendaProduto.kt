@@ -8,13 +8,14 @@ import androidx.room.PrimaryKey
 data class PedidoVendaProduto(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Int,
+
     @Embedded val cabecalho: Cabecalho?,
     @Embedded val det: List<Det>?,
     @Embedded val frete: Frete?,
     @Embedded val infoCadastro: InfoCadastro?,
     @Embedded val informacoesAdicionais: InformacoesAdicionais?,
-    @Embedded val listaParcelas: ListaParcelas?,
+    val listaParcelas: ListaParcelas?,
     @Embedded val observacoes: Observacoes?,
     @Embedded val totalPedido: TotalPedido?,
 

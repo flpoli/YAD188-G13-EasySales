@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class CofinsPadrao(
     @SerializedName("aliq_cofins")
-    val aliqCofins: Int?,
+    val aliqCofins: Double?,
     @SerializedName("base_cofins")
-    val baseCofins: Int?,
+    val baseCofins: Double?,
     @SerializedName("cod_sit_trib_cofins")
     val codSitTribCofins: String?,
     @SerializedName("qtde_unid_trib_cofins")
@@ -14,7 +14,7 @@ data class CofinsPadrao(
     @SerializedName("tipo_calculo_cofins")
     val tipoCalculoCofins: String?,
     @SerializedName("valor_cofins")
-    val valorCofins: Int?,
+    val valorCofins: Double?,
     @SerializedName("valor_unid_trib_cofins")
-    val valorUnidTribCofins: Int?
+    val valorUnidTribCofins: Double?
 )

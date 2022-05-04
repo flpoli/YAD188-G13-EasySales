@@ -1,9 +1,22 @@
 package com.poli.prevendasomie.data.local
 
+import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.poli.prevendasomie.data.local.entities.pedidos.OutrosDetalhes
+import com.google.gson.reflect.TypeToken
+import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
+import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
+import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
+import com.poli.prevendasomie.data.util.JsonParser
+import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
+import com.poli.prevendasomie.domain.model.pedidos.ListaParcelas
+import com.poli.prevendasomie.domain.model.pedidos.OutrosDetalhes
+import com.poli.prevendasomie.domain.model.pedidos.Parcela
+import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 
-class DatabaseConverter {
+@ProvidedTypeConverter
+class DatabaseConverter(
+    private val jsonParser: JsonParser
+) {
 
     private val separator = ","
 
@@ -26,38 +39,165 @@ class DatabaseConverter {
         return string.split(separator)
     }
 
-    @TypeConverter
-    fun fromOutrosDetalhes(data: OutrosDetalhes): String {
-
-        val detalhesAsList = listOf(
-
-            data.cBairroOd,
-            data.cCEPOd,
-            data.cCidadeOd,
-            data.cCnpjCpfOd,
-            data.cEnderecoOd,
-            data.cEstadoOd,
-            data.cHoraSaidaOd,
-            data.cInscrEstadualOd,
-            data.cNomeOd,
-            data.cNomeOd,
-            data.cTelefoneOd,
-            data.dDataSaidaOd
-
-        )
-
-        return convertListToString(detalhesAsList)
-    }
-
 //    @TypeConverter
-//    fun toOutrosDetalhes(data: String): OutrosDetalhes {
+//    fun fromCabecalhoJson(json: String): Cabecalho? {
 //
-//
-//
-//         return OutrosDetalhes(
-//
-//         )
-//         }
+//        return jsonParser.fromJson<Cabecalho>(
+//            json = json,
+//            type = object : TypeToken<Cabecalho>(){}.type
+//        )
 //
 //    }
+//    @TypeConverter
+//    fun toCabecalhoJson(cabecalho: Cabecalho): String? {
+//
+//        return jsonParser.toJson(
+//            obj = cabecalho,
+//            type = object : TypeToken<Cabecalho>() {}.type
+//        )
+//
+//    }
+
+    @TypeConverter
+    fun fromCabecalhoEntityJson(json: String): CabecalhoEntity? {
+
+        return jsonParser.fromJson<CabecalhoEntity>(
+            json = json,
+            type = object : TypeToken<CabecalhoEntity>() {}.type
+        )
+    }
+    @TypeConverter
+    fun toCabecalhoEntityJson(cabecalho: CabecalhoEntity): String? {
+
+        return jsonParser.toJson(
+            obj = cabecalho,
+            type = object : TypeToken<CabecalhoEntity>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromFreteJson(json: String): FreteEntity? {
+
+        return jsonParser.fromJson<FreteEntity>(
+            json = json,
+            type = object : TypeToken<FreteEntity>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun toCabecalhoJson(frete: FreteEntity): String? {
+
+        return jsonParser.toJson(
+            obj = frete,
+            type = object : TypeToken<FreteEntity>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromInfoCadastroJson(json: String): InfoCadastroEntity? {
+
+        return jsonParser.fromJson<InfoCadastroEntity>(
+            json = json,
+            type = object : TypeToken<InfoCadastroEntity>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun toInfoCadastroJson(infoCadastro: InfoCadastroEntity): String? {
+
+        return jsonParser.toJson(
+            obj = infoCadastro,
+            type = object : TypeToken<InfoCadastroEntity>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun toOutrosDetalhesJson(outrosDetalhes: OutrosDetalhes): String? {
+
+        return jsonParser.toJson(
+            obj = outrosDetalhes,
+            type = object : TypeToken<OutrosDetalhes>() {}.type
+        )
+    }
+    @TypeConverter
+    fun fromOutrosDetalhesJson(json: String): OutrosDetalhes? {
+
+        return jsonParser.fromJson<OutrosDetalhes>(
+            json = json,
+            type = object : TypeToken<OutrosDetalhes>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromInformacoesAdicionaisJson(json: String): InformacoesAdicionais? {
+
+        return jsonParser.fromJson<InformacoesAdicionais>(
+            json = json,
+            type = object : TypeToken<InformacoesAdicionais>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun toInformacoesAdicionaisJson(infoAdicionais: InformacoesAdicionais): String? {
+
+        return jsonParser.toJson(
+            obj = infoAdicionais,
+            type = object : TypeToken<InformacoesAdicionais>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromTotalPedidoJson(json: String): TotalPedido? {
+
+        return jsonParser.fromJson<TotalPedido>(
+            json = json,
+            type = object : TypeToken<TotalPedido>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun toTotalPedidoJson(totalPedido: TotalPedido): String? {
+
+        return jsonParser.toJson(
+            obj = totalPedido,
+            type = object : TypeToken<TotalPedido>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromListaParcelasJson(json: String): ListaParcelas? {
+
+        return jsonParser.fromJson<ListaParcelas>(
+            json = json,
+            type = object : TypeToken<ListaParcelas>() {}.type
+
+        )
+    }
+    @TypeConverter
+    fun toListarParcelasJson(listaParcelas: ListaParcelas): String? {
+
+        return jsonParser.toJson(
+            obj = listaParcelas,
+            type = object : TypeToken<ListaParcelas>() {}.type
+        )
+    }
+
+    @TypeConverter
+    fun fromParcelaJson(json: String): List<Parcela> {
+
+        return jsonParser.fromJson<ArrayList<Parcela>>(
+
+            json = json,
+            type = object : TypeToken<ArrayList<Parcela>>() {}.type
+
+        ) ?: emptyList()
+    }
+
+    @TypeConverter
+    fun toParcelaJson(parcela: List<Parcela>): String {
+        return jsonParser.toJson(
+            obj = parcela,
+            type = object : TypeToken<ArrayList<Parcela>>() {}.type
+        ) ?: "[]"
+    }
 }

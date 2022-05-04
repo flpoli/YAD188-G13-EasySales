@@ -10,7 +10,7 @@ data class FreteDto(
     @SerializedName("codigo_tipo_entrega")
     val codigoTipoEntrega: Int?,
     @SerializedName("codigo_transportadora")
-    val codigoTransportadora: Int?,
+    val codigoTransportadora: Long?,
     @SerializedName("especie_volumes")
     val especieVolumes: String?,
     @SerializedName("marca_volumes")
@@ -22,11 +22,11 @@ data class FreteDto(
     @SerializedName("numero_lacre")
     val numeroLacre: String?,
     @SerializedName("outras_despesas")
-    val outrasDespesas: Int?,
+    val outrasDespesas: Double?,
     @SerializedName("peso_bruto")
-    val pesoBruto: Int?,
+    val pesoBruto: Double?,
     @SerializedName("peso_liquido")
-    val pesoLiquido: Int?,
+    val pesoLiquido: Double?,
     @SerializedName("placa")
     val placa: String?,
     @SerializedName("placa_estado")
@@ -38,9 +38,9 @@ data class FreteDto(
     @SerializedName("registro_transportador")
     val registroTransportador: String?,
     @SerializedName("valor_frete")
-    val valorFrete: Int?,
+    val valorFrete: Double?,
     @SerializedName("valor_seguro")
-    val valorSeguro: Int?,
+    val valorSeguro: Double?,
     @SerializedName("veiculo_proprio")
     val veiculoProprio: String?
 )
@@ -73,6 +73,8 @@ fun FreteDto.toFrete(): Frete {
 fun FreteDto.toFreteEntity(): FreteEntity {
 
     return FreteEntity(
+        freteId = 0,
+        orderId = 0,
         codigoRastreio = codigoRastreio,
         codigoTipoEntrega = codigoTipoEntrega,
         codigoTransportadora = codigoTransportadora,
