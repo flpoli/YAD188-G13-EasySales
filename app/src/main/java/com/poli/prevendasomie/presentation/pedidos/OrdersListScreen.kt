@@ -46,17 +46,19 @@ fun ListContent(
                     pedido ->
                 pedido?.let {
 
-                    pedido.id.let { it ->
+                    pedido.cabecalho.let { it ->
 
-                        Text(
-                            text = it.toString() ?: "vazio?"
-                        )
-                //                        Text(
-                //                            text = it1.bloqueado ?: "vazio?"
-                //                        )
-                //                        Text(
-                //                            text = it1.codigoCliente.toString()
-                //                        )
+                        if (it != null) {
+                            Text(
+                                text = it.numeroPedido.toString() ?: "vazio?"
+                            )
+                        }
+                        //                        Text(
+                        //                            text = it1.bloqueado ?: "vazio?"
+                        //                        )
+                        //                        Text(
+                        //                            text = it1.codigoCliente.toString()
+                        //                        )
                     }
                 }
             }

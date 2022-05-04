@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -14,9 +13,9 @@ data class PedidoVendaEntity(
     // @Embedded val det: List<Det>?,
     val frete: FreteEntity?,
     val infoCadastro: InfoCadastroEntity?,
-    //val informacoesAdicionais: InformacoesAdicionaisEntity?,
+    // val informacoesAdicionais: InformacoesAdicionaisEntity?,
     // @Embedded val listaParcelas: ListaParcelas?,
-    //@Embedded val observacoes: ObservacoesEntity?,
-    //@Embedded val totalPedido: TotalPedidoEntity?,
+    // @Embedded val observacoes: ObservacoesEntity?,
+    // @Embedded val totalPedido: TotalPedidoEntity?,
 
 )

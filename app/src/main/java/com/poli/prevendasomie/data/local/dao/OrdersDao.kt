@@ -22,7 +22,6 @@ interface OrdersDao {
     @Query("SELECT COUNT(ID) from orders_table")
     suspend fun getOrdersCount(): Int
 
-
     /***************************************************************/
     @Query("SELECT * FROM orders_table")
     fun getAllOrdersWihoutPagination(): List<PedidoVendaProduto>

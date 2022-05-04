@@ -3,7 +3,6 @@ package com.poli.prevendasomie.data.local.entities.pedidos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "cabecalho_entity")
 data class CabecalhoEntity(
 

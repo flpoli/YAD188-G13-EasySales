@@ -33,8 +33,6 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         PedidoVendaProduto::class,
         OrdersRemoteKeys::class,
 
-
-
         PedidoVendaEntity::class,
         CabecalhoEntity::class,
         FreteEntity::class,

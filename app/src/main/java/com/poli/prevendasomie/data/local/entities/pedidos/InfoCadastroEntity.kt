@@ -11,8 +11,6 @@ data class InfoCadastroEntity(
     val infoCadastroId: Int,
     val orderId: Int,
 
-
-
     @SerializedName("autorizado")
     val autorizado: String?,
     @SerializedName("cImpAPI")

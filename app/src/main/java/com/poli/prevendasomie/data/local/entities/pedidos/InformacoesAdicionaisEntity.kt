@@ -1,10 +1,8 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import retrofit2.http.FormUrlEncoded
 
 @Entity(tableName = "informacoes_adicionais")
 data class InformacoesAdicionaisEntity(

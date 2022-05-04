@@ -8,12 +8,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.poli.prevendasomie.data.local.dao.OrdersDao
-import com.poli.prevendasomie.data.remote.responses.pedidos.OutrosDetalhesDto
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 import com.poli.prevendasomie.domain.model.pedidos.Frete
 import com.poli.prevendasomie.domain.model.pedidos.InfoCadastro
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
-import com.poli.prevendasomie.domain.model.pedidos.OutrosDetalhes
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -85,16 +83,16 @@ class OrdersDaoTest {
                     modalidade = "Caminhao",
                     numeracaoVolumes = "CX123",
                     numeroLacre = "LACRE123",
-                    outrasDespesas = 10000,
-                    pesoBruto = 15000,
-                    pesoLiquido = 1000,
+                    outrasDespesas = 10000.0,
+                    pesoBruto = 15000.0,
+                    pesoLiquido = 1000.0,
                     placa = "ABC123",
                     placaEstado = "SP",
                     previsaoEntrega = "10/10/2023",
                     quantidadeVolumes = 100,
                     registroTransportador = "não",
-                    valorFrete = 150,
-                    valorSeguro = 150,
+                    valorFrete = 150.0,
+                    valorSeguro = 150.0,
                     veiculoProprio = "não"
                 ),
                 infoCadastro = InfoCadastro(
@@ -145,20 +143,20 @@ class OrdersDaoTest {
 //                    )
                 ),
                 totalPedido = TotalPedido(
-                    baseCalculoIcms = 150,
-                    baseCalculoSt = 150,
-                    valorCofins = 70,
-                    valorCsll = 0,
-                    valorDeducoes = 0,
-                    valorDescontos = 200,
+                    baseCalculoIcms = 150.0,
+                    baseCalculoSt = 150.0,
+                    valorCofins = 70.0,
+                    valorCsll = 0.0,
+                    valorDeducoes = 0.0,
+                    valorDescontos = 200.0,
                     valorIPI = 0.0,
-                    valorIcms = 0,
-                    valorInss = 0,
-                    valorIr = 150,
-                    valorIss = 0,
+                    valorIcms = 0.0,
+                    valorInss = 0.0,
+                    valorIr = 150.0,
+                    valorIss = 0.0,
                     valorMercadorias = 15000.90,
-                    valorPis = 150,
-                    valorSt = 150,
+                    valorPis = 150.0,
+                    valorSt = 150.0,
                     valorTotalPedido = 20500.90
 
                 )

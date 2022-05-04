@@ -1,11 +1,8 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
-import androidx.room.Embedded
 import androidx.room.Relation
-import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 
 data class OrderWithDetailsTest(
-
 
     val orderId: Int,
     val pedidoVenda: PedidoVendaEntity,
@@ -27,6 +24,5 @@ data class OrderWithDetailsTest(
         entityColumn = "infoCadastroId"
     )
     val infoCadastro: InfoCadastroEntity
-
 
 )

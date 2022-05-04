@@ -100,12 +100,12 @@ class ProductsRemoteMediator
                     val keys = response.produtoServicoCadastro.map {
 
                             produto ->
-                                ProductsRemoteKeys(
-                                    id = produto.id,
-                                    prevPage = prevPage,
-                                    nextPage = nextPage,
-                                    lastUpdated = System.currentTimeMillis()
-                                )
+                        ProductsRemoteKeys(
+                            id = produto.id,
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
+                        )
                     }
 
                     val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
@@ -114,7 +114,6 @@ class ProductsRemoteMediator
                     remoteKeysDao.addAllRemoteKeys(keys)
                     productDao.persistProductList(prod)
                     Log.d("MEDIATOR - PERSIST", "productDao.persist")
-
                 }
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)

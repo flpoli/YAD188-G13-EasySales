@@ -44,7 +44,7 @@ fun InformacoesAdicionaisDto.toInformacoesAdicionais(): InformacoesAdicionais {
         enviarEmail = enviarEmail,
         numeroContrato = numeroContrato,
         numeroPedidoCliente = numeroPedidoCliente,
-        //outrosDetalhes = outrosDetalhes,
+        // outrosDetalhes = outrosDetalhes,
         utilizarEmails = utilizarEmails
     )
 }

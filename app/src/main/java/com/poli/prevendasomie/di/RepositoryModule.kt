@@ -54,7 +54,7 @@ class RepositoryModule {
             ErpDatabase::class.java,
             "ErpDatabase"
         )
-            //.addTypeConverter(DatabaseConverter(GsonParser(Gson())))
+            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()
     }
 
@@ -85,7 +85,7 @@ class RepositoryModule {
         return RemoteDataSourceImpl(api, db)
     }
 
-    //********************************************************//
+    // ********************************************************//
 
     @Provides
     @Singleton
@@ -106,5 +106,5 @@ class RepositoryModule {
         return OrdersRepositoryImpl(remote)
     }
 
-    //*******************************************************//
+    // *******************************************************//
 }
