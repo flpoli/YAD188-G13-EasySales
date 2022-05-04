@@ -1,16 +1,17 @@
 package com.poli.prevendasomie.domain.model.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.data.remote.responses.pedidos.OutrosDetalhesDto
 
 data class InformacoesAdicionais(
     @SerializedName("codProj")
-    val codProj: Int? = 0,
+    val codProj: Long? = 0,
     @SerializedName("codVend")
-    val codVend: Int? = 0,
+    val codVend: Long? = 0,
     @SerializedName("codigo_categoria")
     val codigoCategoria: String? = "",
     @SerializedName("codigo_conta_corrente")
-    val codigoContaCorrente: Int? = 0,
+    val codigoContaCorrente: Long? = 0,
     @SerializedName("consumidor_final")
     val consumidorFinal: String? = "",
     @SerializedName("contato")
@@ -23,8 +24,8 @@ data class InformacoesAdicionais(
     val numeroContrato: String? = "",
     @SerializedName("numero_pedido_cliente")
     val numeroPedidoCliente: String? = "",
-    // @SerializedName("outros_detalhes")
-    // val outrosDetalhes: OutrosDetalhesDto?,
+    //@SerializedName("outros_detalhes")
+    //val outrosDetalhes: OutrosDetalhes?,
     @SerializedName("utilizar_emails")
     val utilizarEmails: String? = ""
 )

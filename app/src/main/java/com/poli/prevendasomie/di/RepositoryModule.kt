@@ -54,7 +54,7 @@ class RepositoryModule {
             ErpDatabase::class.java,
             "ErpDatabase"
         )
-            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
+            //.addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()
     }
 
@@ -78,6 +78,15 @@ class RepositoryModule {
     fun provideSignUpRepository(api: BackEndApi): SignUpRepository {
         return SignUpRepositoryImpl(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(api: OmieAPI, db: ErpDatabase): RemoteDataSource {
+        return RemoteDataSourceImpl(api, db)
+    }
+
+    //********************************************************//
+
     @Provides
     @Singleton
     fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource): ClientsRepository {
@@ -90,17 +99,12 @@ class RepositoryModule {
 
         return ProductsRepositoryImpl(remote)
     }
-
-    @Provides
-    @Singleton
-    fun provideRemoteDataSource(api: OmieAPI, db: ErpDatabase): RemoteDataSource {
-        return RemoteDataSourceImpl(api, db)
-    }
-
     @Provides
     @Singleton
     fun provideOrdersRepository(remote: RemoteDataSource): OrdersRepository {
 
         return OrdersRepositoryImpl(remote)
     }
+
+    //*******************************************************//
 }

@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Iss(
     @SerializedName("aliq_iss")
-    val aliqIss: Int?,
+    val aliqIss: Double?,
     @SerializedName("base_iss")
-    val baseIss: Int?,
+    val baseIss: Double?,
     @SerializedName("retem_iss")
     val retemIss: String?,
     @SerializedName("valor_iss")
-    val valorIss: Int?
+    val valorIss: Double?
 )

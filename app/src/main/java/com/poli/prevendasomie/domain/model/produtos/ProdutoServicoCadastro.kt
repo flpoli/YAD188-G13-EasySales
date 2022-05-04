@@ -8,6 +8,8 @@ data class ProdutoServicoCadastro(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+
+
     val codigo: String?,
     val codigoProduto: Long,
     val codigoProdutoIntegracao: String?,

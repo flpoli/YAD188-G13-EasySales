@@ -10,15 +10,25 @@ import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 @Dao
 interface OrdersDao {
 
-    @Query("SELECT * FROM orders_table")
-    fun getAllOrders(): PagingSource<Int, PedidoVendaProduto>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistOrderList(orders: List<PedidoVendaProduto>)
+
+    @Query("SELECT * FROM orders_table")
+    fun getAllOrders(): PagingSource<Int, PedidoVendaProduto>
 
     @Query("DELETE FROM orders_table")
     suspend fun deleteAllOrders()
 
     @Query("SELECT COUNT(ID) from orders_table")
     suspend fun getOrdersCount(): Int
+
+
+    /***************************************************************/
+    @Query("SELECT * FROM orders_table")
+    fun getAllOrdersWihoutPagination(): List<PedidoVendaProduto>
+
+    @Query("SELECT * FROM orders_table WHERE id = :id")
+    fun selectOrderById(id: Int): PedidoVendaProduto
+
+    /**************************************************************/
 }

@@ -4,33 +4,33 @@ import com.google.gson.annotations.SerializedName
 
 data class TotalPedidoEntity(
     @SerializedName("base_calculo_icms")
-    val baseCalculoIcms: Int?,
+    val baseCalculoIcms: Double?,
     @SerializedName("base_calculo_st")
-    val baseCalculoSt: Int?,
+    val baseCalculoSt: Double?,
     @SerializedName("valor_cofins")
-    val valorCofins: Int?,
+    val valorCofins: Double?,
     @SerializedName("valor_csll")
-    val valorCsll: Int?,
+    val valorCsll: Double?,
     @SerializedName("valor_deducoes")
-    val valorDeducoes: Int?,
+    val valorDeducoes: Double?,
     @SerializedName("valor_descontos")
-    val valorDescontos: Int?,
+    val valorDescontos: Double?,
     @SerializedName("valor_IPI")
     val valorIPI: Double?,
     @SerializedName("valor_icms")
-    val valorIcms: Int?,
+    val valorIcms: Double?,
     @SerializedName("valor_inss")
-    val valorInss: Int?,
+    val valorInss: Double?,
     @SerializedName("valor_ir")
-    val valorIr: Int?,
+    val valorIr: Double?,
     @SerializedName("valor_iss")
-    val valorIss: Int?,
+    val valorIss: Double?,
     @SerializedName("valor_mercadorias")
     val valorMercadorias: Double?,
     @SerializedName("valor_pis")
-    val valorPis: Int?,
+    val valorPis: Double?,
     @SerializedName("valor_st")
-    val valorSt: Int?,
+    val valorSt: Double?,
     @SerializedName("valor_total_pedido")
     val valorTotalPedido: Double?
 )

@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class IcmsIe(
     @SerializedName("aliq_icms_FCP")
-    val aliqIcmsFCP: Int?,
+    val aliqIcmsFCP: Double?,
     @SerializedName("aliq_interestadual")
-    val aliqInterestadual: Int?,
+    val aliqInterestadual: Double?,
     @SerializedName("aliq_interna_uf_destino")
-    val aliqInternaUfDestino: Int?,
+    val aliqInternaUfDestino: Double?,
     @SerializedName("aliq_partilha_icms")
-    val aliqPartilhaIcms: Int?,
+    val aliqPartilhaIcms: Double?,
     @SerializedName("base_icms_uf_destino")
     val baseIcmsUfDestino: Double?,
     @SerializedName("valor_fcp_icms_inter")
-    val valorFcpIcmsInter: Int?,
+    val valorFcpIcmsInter: Double?,
     @SerializedName("valor_icms_uf_dest")
-    val valorIcmsUfDest: Int?,
+    val valorIcmsUfDest: Double?,
     @SerializedName("valor_icms_uf_remet")
-    val valorIcmsUfRemet: Int?
+    val valorIcmsUfRemet: Double?
 )

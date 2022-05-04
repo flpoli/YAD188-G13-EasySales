@@ -8,13 +8,13 @@ data class Cabecalho(
     @SerializedName("codigo_cenario_impostos")
     val codigoCenarioImpostos: String?,
     @SerializedName("codigo_cliente")
-    val codigoCliente: Int?,
+    val codigoCliente: Long?,
     @SerializedName("codigo_empresa")
-    val codigoEmpresa: Int?,
+    val codigoEmpresa: Long?,
     @SerializedName("codigo_parcela")
     val codigoParcela: String?,
     @SerializedName("codigo_pedido")
-    val codigoPedido: Int?,
+    val codigoPedido: Long?,
     @SerializedName("codigo_pedido_integracao")
     val codigoPedidoIntegracao: String?,
     @SerializedName("data_previsao")

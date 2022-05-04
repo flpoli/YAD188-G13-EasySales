@@ -8,7 +8,7 @@ data class Frete(
     @SerializedName("codigo_tipo_entrega")
     val codigoTipoEntrega: Int? = 0,
     @SerializedName("codigo_transportadora")
-    val codigoTransportadora: Int? = 0,
+    val codigoTransportadora: Long? = 0,
     @SerializedName("especie_volumes")
     val especieVolumes: String? = "",
     @SerializedName("marca_volumes")
@@ -20,11 +20,11 @@ data class Frete(
     @SerializedName("numero_lacre")
     val numeroLacre: String? = "",
     @SerializedName("outras_despesas")
-    val outrasDespesas: Int? = 0,
+    val outrasDespesas: Double? = 0.0,
     @SerializedName("peso_bruto")
-    val pesoBruto: Int? = 0,
+    val pesoBruto: Double? = 0.0,
     @SerializedName("peso_liquido")
-    val pesoLiquido: Int? = 0,
+    val pesoLiquido: Double? = 0.0,
     @SerializedName("placa")
     val placa: String? = "",
     @SerializedName("placa_estado")
@@ -36,9 +36,9 @@ data class Frete(
     @SerializedName("registro_transportador")
     val registroTransportador: String? = "",
     @SerializedName("valor_frete")
-    val valorFrete: Int? = 0,
+    val valorFrete: Double? = 0.0,
     @SerializedName("valor_seguro")
-    val valorSeguro: Int? = 0,
+    val valorSeguro: Double? = 0.0,
     @SerializedName("veiculo_proprio")
     val veiculoProprio: String? = ""
 )

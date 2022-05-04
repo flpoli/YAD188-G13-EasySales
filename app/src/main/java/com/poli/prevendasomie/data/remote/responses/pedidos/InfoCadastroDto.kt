@@ -72,6 +72,8 @@ fun InfoCadastroDto.toInfoCadastro(): InfoCadastro {
 fun InfoCadastroDto.toInfoCadastroEntity(): InfoCadastroEntity {
 
     return InfoCadastroEntity(
+        infoCadastroId = 0,
+        orderId = 0,
         autorizado = autorizado,
         cImpAPI = cImpAPI,
         cancelado = cancelado,

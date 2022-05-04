@@ -86,14 +86,8 @@ class OrdersRemoteMediator
             )
             Log.d("MEDIATOR - Request variable", "$request")
 
-
-
-
             val response = api.getOrderList(request)
-
-
             Log.d("MEDIATOR - API RESPONSE", "$response")
-
             if (response.pedidoVendaProduto.isNotEmpty()) {
 
                 db.withTransaction {
@@ -104,8 +98,6 @@ class OrdersRemoteMediator
                     }
                     val prevPage = response.pagina.minus(1)
                     val nextPage = response.pagina.plus(1)
-
-
 
                     val keys = response.pedidoVendaProduto.map {
 
@@ -120,7 +112,6 @@ class OrdersRemoteMediator
                     }
 
                     val pedido = response.pedidoVendaProduto.map { it.toPedidoVendaProduto() }
-
                     Log.d("MEDIATOR - pedido", "$pedido")
 
                     remoteKeysDao.addAllRemoteKeys(keys)
@@ -131,6 +122,8 @@ class OrdersRemoteMediator
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
         } catch (e: Exception) {
+
+            e.printStackTrace()
             return MediatorResult.Error(e)
         }
     }

@@ -6,13 +6,13 @@ import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
 
 data class InformacoesAdicionaisDto(
     @SerializedName("codProj")
-    val codProj: Int?,
+    val codProj: Long?,
     @SerializedName("codVend")
-    val codVend: Int?,
+    val codVend: Long?,
     @SerializedName("codigo_categoria")
     val codigoCategoria: String?,
     @SerializedName("codigo_conta_corrente")
-    val codigoContaCorrente: Int?,
+    val codigoContaCorrente: Long?,
     @SerializedName("consumidor_final")
     val consumidorFinal: String?,
     @SerializedName("contato")
@@ -44,7 +44,7 @@ fun InformacoesAdicionaisDto.toInformacoesAdicionais(): InformacoesAdicionais {
         enviarEmail = enviarEmail,
         numeroContrato = numeroContrato,
         numeroPedidoCliente = numeroPedidoCliente,
-        // outrosDetalhes = outrosDetalhes,
+        //outrosDetalhes = outrosDetalhes,
         utilizarEmails = utilizarEmails
     )
 }
@@ -52,6 +52,8 @@ fun InformacoesAdicionaisDto.toInformacoesAdicionais(): InformacoesAdicionais {
 fun InformacoesAdicionaisDto.toInformacoesAdicionaisEntity(): InformacoesAdicionaisEntity {
 
     return InformacoesAdicionaisEntity(
+        infoId = 0,
+        orderId = 0,
         codProj = codProj,
         codVend = codVend,
         codigoCategoria = codigoCategoria,

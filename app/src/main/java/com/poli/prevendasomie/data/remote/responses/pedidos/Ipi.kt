@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Ipi(
     @SerializedName("aliq_ipi")
-    val aliqIpi: Int?,
+    val aliqIpi: Double?,
     @SerializedName("base_ipi")
     val baseIpi: Double?,
     @SerializedName("cod_sit_trib_ipi")
@@ -18,5 +18,5 @@ data class Ipi(
     @SerializedName("valor_ipi")
     val valorIpi: Double?,
     @SerializedName("valor_unid_trib_ipi")
-    val valorUnidTribIpi: Int?
+    val valorUnidTribIpi: Double?
 )

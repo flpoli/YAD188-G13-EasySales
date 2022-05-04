@@ -7,7 +7,7 @@ data class ParcelaDto(
     @SerializedName("categoria_adiantamento")
     val categoriaAdiantamento: String?,
     @SerializedName("conta_corrente_adiantamento")
-    val contaCorrenteAdiantamento: Int?,
+    val contaCorrenteAdiantamento: Long?,
     @SerializedName("data_vencimento")
     val dataVencimento: String?,
     @SerializedName("meio_pagamento")

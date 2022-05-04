@@ -1,16 +1,26 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import retrofit2.http.FormUrlEncoded
 
+@Entity(tableName = "informacoes_adicionais")
 data class InformacoesAdicionaisEntity(
+
+    @PrimaryKey(autoGenerate = true)
+    val infoId: Int,
+    val orderId: Int,
+
     @SerializedName("codProj")
-    val codProj: Int?,
+    val codProj: Long?,
     @SerializedName("codVend")
-    val codVend: Int?,
+    val codVend: Long?,
     @SerializedName("codigo_categoria")
     val codigoCategoria: String?,
     @SerializedName("codigo_conta_corrente")
-    val codigoContaCorrente: Int?,
+    val codigoContaCorrente: Long?,
     @SerializedName("consumidor_final")
     val consumidorFinal: String?,
     @SerializedName("contato")
