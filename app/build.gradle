@@ -7,6 +7,8 @@ plugins {
 }
 
 
+apply from: "../buildscripts/jacoco.gradle"
+apply from: "../buildscripts/coveralls.gradle"
 
 android {
     compileSdk 31
@@ -52,6 +54,13 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    testOptions {
+        unitTests.all {
+            kover {
+                enabled = true
+            }
         }
     }
 }
