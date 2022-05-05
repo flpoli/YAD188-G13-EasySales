@@ -22,7 +22,7 @@ fun ClientListItem(
 
     val result = handlePagingResult(clientes = cliente!!)
     if (result) {
-        LazyColumn(modifier = Modifier.padding(top = 80.dp, end = 0.dp)) {
+        LazyColumn(modifier = Modifier.padding()) {
 
             items(
                 items = cliente,

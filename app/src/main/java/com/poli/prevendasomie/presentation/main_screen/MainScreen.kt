@@ -20,14 +20,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigation
+import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigationBar
 import com.poli.prevendasomie.presentation.main_screen.components.GreetingSection
 
 @Composable
 fun MainScreen(
-    navController: NavController,
+    navController: NavHostController,
     // viewModel: null = HiltViewModel()
 ) {
 
@@ -57,29 +58,11 @@ fun MainScreen(
         },
         bottomBar = {
 
-            BottomNavigation {
-                items.forEachIndexed { index, item ->
-                    BottomNavigationItem(
-                        icon = {
-                            Icon(
-                                Icons.Filled.Favorite,
-                                contentDescription = null
-                            )
-                        },
-                        label = { Text(item) },
-                        selected = selectedItem == index,
-                        onClick = {
-                            selectedItem = index
-                            navController.navigate(Screen.ClientListScreen.route)
-                        }
-                    )
-                }
-            }
+            BottomNavigationBar(navController = navController)
         }
     ) {
         Column() {
-            GreetingSection(name = UserDataModel().username ?: "NULL")
-            FeatureSection(navController, Modifier.padding(top = 30.dp))
+            GreetingSection(name = UserDataModel().username ?: "XYZZZZ")
         }
     }
 }
