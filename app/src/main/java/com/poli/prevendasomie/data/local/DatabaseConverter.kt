@@ -7,6 +7,7 @@ import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
 import com.poli.prevendasomie.data.util.JsonParser
+import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
 import com.poli.prevendasomie.domain.model.pedidos.ListaParcelas
 import com.poli.prevendasomie.domain.model.pedidos.OutrosDetalhes
@@ -189,6 +190,24 @@ class DatabaseConverter(
 
             json = json,
             type = object : TypeToken<ArrayList<Parcela>>() {}.type
+
+        ) ?: emptyList()
+    }
+
+    @TypeConverter
+    fun toDetJson(det: List<Det>): String {
+        return jsonParser.toJson(
+            obj = det,
+            type = object : TypeToken<ArrayList<Det>>() {}.type
+        ) ?: "[]"
+    }
+    @TypeConverter
+    fun fromDetJson(json: String): List<Det> {
+
+        return jsonParser.fromJson<ArrayList<Det>>(
+
+            json = json,
+            type = object : TypeToken<ArrayList<Det>>() {}.type
 
         ) ?: emptyList()
     }

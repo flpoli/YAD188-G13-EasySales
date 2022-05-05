@@ -1,36 +1,39 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ClientDetailViewModel @Inject constructor(
-    private val useCase: GetClientDetailsUseCase
+    private val useCase: UseCases,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ClientDetailState())
     val state: State<ClientDetailState> = _state
 
-    fun loadClientByCode(codCliOmie: String) {
+    private val _selectClient: MutableStateFlow<ClientesCadastro?> = MutableStateFlow(null)
+    val selectedClient: StateFlow<ClientesCadastro?> = _selectClient
 
-        viewModelScope.launch {
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
 
-            useCase(codCliOmie).onEach { result ->
-                when (result) {
-
-                    is Resource.Success -> {
-                        _state.value = ClientDetailState(client = result.data)
-                    }
-                    else -> {}
-                }
+            val clientId = savedStateHandle.get<Int>("clientId")
+            Log.d("VAL clientId", "$clientId")
+            _selectClient.value = clientId?.let {
+                useCase.getSelectedClientUseCase(clientId = clientId)
             }
         }
     }

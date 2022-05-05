@@ -12,12 +12,14 @@ import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
 import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
+import com.poli.prevendasomie.data.repository.LocalDataSourceImpl
 import com.poli.prevendasomie.data.repository.OrdersRepositoryImpl
 import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
 import com.poli.prevendasomie.data.repository.RemoteDataSourceImpl
 import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.DataStoreOperations
+import com.poli.prevendasomie.domain.repository.LocalDataSource
 import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
@@ -85,13 +87,19 @@ class RepositoryModule {
         return RemoteDataSourceImpl(api, db)
     }
 
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(db: ErpDatabase): LocalDataSource {
+
+        return LocalDataSourceImpl(db)
+    }
     // ********************************************************//
 
     @Provides
     @Singleton
-    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource): ClientsRepository {
+    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource): ClientsRepository {
 
-        return ClientsRepositoryImpl(api, remote)
+        return ClientsRepositoryImpl(api, remote, local)
     }
     @Provides
     @Singleton

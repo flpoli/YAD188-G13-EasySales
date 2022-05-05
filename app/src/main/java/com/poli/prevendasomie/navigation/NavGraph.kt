@@ -40,13 +40,17 @@ fun SetupNavGraph(
             ClientListScreen(navController = navController)
         }
         composable(
-            route = Screen.ClientDetailScreen.route + "/{codigoClienteOmie}",
-            arguments = listOf(navArgument("codigoClienteOmie") { type = NavType.StringType })
+            route = Screen.ClientDetailScreen.route,
+            arguments = listOf(
+                navArgument("clientId") {
+                    type = NavType.IntType
+                }
+            )
         ) {
-                entry ->
+
             ClientDetailScreen(
                 navController = navController,
-                codigoClienteOmie = entry.arguments!!.getString("codigoClienteOmie")!!
+
             )
         }
         composable("product_list_screen") {

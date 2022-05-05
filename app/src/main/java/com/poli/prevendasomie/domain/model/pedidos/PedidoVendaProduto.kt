@@ -11,7 +11,7 @@ data class PedidoVendaProduto(
     val id: Int,
 
     @Embedded val cabecalho: Cabecalho?,
-    @Embedded val det: List<Det>?,
+    val det: List<Det>?,
     @Embedded val frete: Frete?,
     @Embedded val infoCadastro: InfoCadastro?,
     @Embedded val informacoesAdicionais: InformacoesAdicionais?,

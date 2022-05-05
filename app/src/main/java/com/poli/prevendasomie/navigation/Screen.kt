@@ -4,7 +4,13 @@ sealed class Screen(val route: String) {
 
     object MainScreen : Screen("main_screen")
     object ClientListScreen : Screen("client_list_screen")
-    object ClientDetailScreen : Screen("client_detail_screen")
+
+    object ClientDetailScreen : Screen("client_detail_screen/{clientId}") {
+
+        fun passClientId(clientId: Int): String {
+            return "client_detail_screen/$clientId"
+        }
+    }
     object LoginScreen : Screen("login_screen")
     object SignUpScreen : Screen("signup_screen")
     object ClientFormScreen : Screen("client_form_screen")

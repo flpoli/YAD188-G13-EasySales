@@ -6,23 +6,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.poli.prevendasomie.presentation.clientes.client_detail.components.InfoBox
 import com.poli.prevendasomie.ui.theme.BlueViolet3
 
 @Composable
 fun ClientDetailScreen(
-    navController: NavController,
+    navController: NavHostController,
     viewModel: ClientDetailViewModel = hiltViewModel(),
-    codigoClienteOmie: String
+
 ) {
 
-    viewModel.loadClientByCode(codigoClienteOmie)
-
-    val state = viewModel.state.value
+    val selectedClient by viewModel.selectedClient.collectAsState()
 
     Box(
         modifier = Modifier
@@ -30,7 +30,7 @@ fun ClientDetailScreen(
             .fillMaxSize()
     ) {
 
-        state.client?.let { client ->
+        selectedClient?.let { client ->
 
             Column(
                 modifier = Modifier

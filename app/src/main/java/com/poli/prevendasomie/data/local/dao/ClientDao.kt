@@ -12,8 +12,12 @@ interface ClientDao {
 
     @Query("SELECT * FROM clients_table")
     fun getAllClients(): PagingSource<Int, ClientesCadastro>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistClientList(cliente: List<ClientesCadastro>)
+
+    @Query("SELECT * FROM clients_table WHERE id = :id")
+    suspend fun getClientById(id: Int): ClientesCadastro
 
     @Query("DELETE FROM clients_table")
     suspend fun deleteAllClients()

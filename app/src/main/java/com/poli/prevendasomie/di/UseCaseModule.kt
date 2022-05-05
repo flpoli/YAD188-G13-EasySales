@@ -75,6 +75,7 @@ object UseCaseModule {
             getProductListUseCase = GetProductsListUseCaseImpl(r1),
             getClientListUseCase = GetClientListUseCaseImpl(r2),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
+            getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2)
         )
     }
 }

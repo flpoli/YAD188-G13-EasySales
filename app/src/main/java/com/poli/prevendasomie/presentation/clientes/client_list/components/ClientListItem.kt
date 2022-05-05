@@ -35,8 +35,7 @@ fun ClientListItem(
                         entries = cliente,
                         navController = navController,
                         onItemClick = {
-                            navController.navigate(Screen.ClientDetailScreen.route + "/${cliente.codCliIntegracao}")
-                            println("NAVIGATOR? ${cliente.codCliIntegracao}")
+                            navController.navigate(Screen.ClientDetailScreen.passClientId(clientId = cliente.id))
                         }
                     )
                     Divider(color = Color.Black, thickness = 1.dp)
