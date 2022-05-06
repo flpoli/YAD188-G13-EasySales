@@ -23,8 +23,16 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
-
-        - name: Upload Android Release to Play Store
-            uses: r0adkll/upload-google-play@v1
+      - name: Upload Android Release to Play Store
+        uses: r0adkll/upload-google-play@v1
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
