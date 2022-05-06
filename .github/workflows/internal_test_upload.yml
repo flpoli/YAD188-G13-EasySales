@@ -26,10 +26,16 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
+
       - name: Upload Android Release to Play Store
         uses: r0adkll/upload-google-play@v1
-        
-        
+        with:
+          serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: com.poli.prevendasomie
+          releaseFile: ${{ SIGNED_RELEASE_FILE}}
+          track: internal
+          inAppUpdatePriority: 2
+
         
         
         
