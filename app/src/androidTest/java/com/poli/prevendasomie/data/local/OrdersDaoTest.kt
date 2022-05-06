@@ -11,7 +11,17 @@ import com.poli.prevendasomie.data.local.dao.OrdersDao
 import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsPadrao
 import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsSt
 import com.poli.prevendasomie.data.remote.responses.pedidos.Csll
+import com.poli.prevendasomie.data.remote.responses.pedidos.Icms
+import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsIe
+import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsSn
+import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsSt
 import com.poli.prevendasomie.data.remote.responses.pedidos.Ide
+import com.poli.prevendasomie.data.remote.responses.pedidos.Inss
+import com.poli.prevendasomie.data.remote.responses.pedidos.Ipi
+import com.poli.prevendasomie.data.remote.responses.pedidos.Irrf
+import com.poli.prevendasomie.data.remote.responses.pedidos.Iss
+import com.poli.prevendasomie.data.remote.responses.pedidos.PisPadrao
+import com.poli.prevendasomie.data.remote.responses.pedidos.PisSt
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.Frete
@@ -69,7 +79,7 @@ class OrdersDaoTest {
     fun insertOrderTest() = runBlockingTest {
 
         val mockPedidos = listOf<PedidoVendaProduto>(
-            PedidoVendaProduto(
+            element = PedidoVendaProduto(
                 id = 100,
                 cabecalho = Cabecalho(
                     bloqueado = "não",
@@ -194,11 +204,103 @@ class OrdersDaoTest {
                                 valorUnidTribCofins = 0.0
 
                             ),
-                            cofinsSt = CofinsSt(),
+                            cofinsSt = CofinsSt(
+                                aliqCofinsSt = 0.0,
+                                baseCofinsSt = 0.0,
+                                codSitTribCofinsSt = "",
+                                margemCofinsSt = 0.0,
+                                qtdeUnidTribCofinsSt = 0,
+                                tipoCalculoCofinsSt = "",
+                                valorCofinsSt = 0.0,
+                                valorUnidTribCofinsSt = 0.0
+                            ),
                             csll = Csll(
                                 aliqCsll = 5.0,
                                 valorCsll = 15.0
+                            ),
+                            icms = Icms(
+                                aliqIcms = 0.0,
+                                baseIcms = 0.0,
+                                codSitTribIcms = "",
+                                modalidadeIcms = "",
+                                origemIcms = "",
+                                percRedBaseIcms = 0.0,
+                                valorIcms = 0.0
+                            ),
+                            icmsIe = IcmsIe(
+                                aliqIcmsFCP = 0.0,
+                                aliqInterestadual = 0.0,
+                                aliqInternaUfDestino = 0.0,
+                                aliqPartilhaIcms = 0.0,
+                                baseIcmsUfDestino = 0.0,
+                                valorFcpIcmsInter = 0.0,
+                                valorIcmsUfDest = 0.0,
+                                valorIcmsUfRemet = 0.0
+                            ),
+                            icmsSn = IcmsSn(
+                                aliqIcmsSn = 0.0,
+                                baseIcmsSn = 0.0,
+                                codSitTribIcmsSn = "",
+                                origemIcmsSn = "",
+                                valorCreditoIcmsSn = 0.0,
+                                valorIcmsSn = 0.0
+                            ),
+                            icmsSt = IcmsSt(
+                                aliqIcmsOpprop = 0.0,
+                                aliqIcmsSt = 0.0,
+                                baseIcmsSt = 0.0,
+                                cest = "",
+                                codSitTribIcmsSt = "",
+                                margemIcmsSt = 0.0,
+                                modalidadeIcmsSt = "",
+                                percRedBaseIcmsSt = 0.0,
+                                valorIcmsSt = 0.0
+                            ),
+                            inss = Inss(
+                                aliqInss = 0.0,
+                                valorInss = 0.0,
+                            ),
+                            ipi = Ipi(
+                                aliqIpi = 0.0,
+                                baseIpi = 0.0,
+                                codSitTribIpi = "",
+                                enquadramentoIpi = "",
+                                qtdeUnidTribIpi = 0,
+                                tipoCalculoIpi = "",
+                                valorIpi = 0.0,
+                                valorUnidTribIpi = 0.0
+                            ),
+                            irrf = Irrf(
+                                aliqIrrf = 0.0,
+                                valorIrrf = 0.0
+                            ),
+                            iss = Iss(
+                                aliqIss = 0.0,
+                                baseIss = 0.0,
+                                retemIss = "",
+                                valorIss = 0.0
+                            ),
+                            pisPadrao = PisPadrao(
+                                aliqPis = 0.0,
+                                basePis = 0.0,
+                                codSitTribPis = "",
+                                qtdeUnidTribPis = 0,
+                                tipoCalculoPis = "",
+                                valorPis = 0.0,
+                                valorUnidTribPis = 0.0
+                            ),
+                            pisSt = PisSt(
+                                aliqPisSt = 0.0,
+                                basePisSt = 0.0,
+                                codSitTribPisSt = "",
+                                margemPisSt = 0.0,
+                                qtdeUnidTribPisSt = 0,
+                                tipoCalculoPisSt = "",
+                                valorPisSt = 0.0,
+                                valorUnidTribPisSt = 0.0
                             )
+
+
                         ),
                         infAdic = InfAdic(
                             codigoCategoriaItem = "",
@@ -212,7 +314,7 @@ class OrdersDaoTest {
                             pesoBruto = 0.0,
                             pesoLiquido = 0.0,
 
-                        ),
+                            ),
                         observacao = Observacao(
                             obsItem = "OBSERVAÇÃO ITEM"
                         ),
@@ -239,7 +341,7 @@ class OrdersDaoTest {
                             valorTotal = 500.00,
                             valorUnitario = 500.00,
 
-                        )
+                            )
 
                     )
                 ),
