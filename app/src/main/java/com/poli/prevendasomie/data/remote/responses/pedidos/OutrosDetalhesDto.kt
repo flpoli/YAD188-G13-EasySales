@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.model.pedidos.OutrosDetalhes
 
 data class OutrosDetalhesDto(
     @SerializedName("cBairroOd")
@@ -28,3 +29,20 @@ data class OutrosDetalhesDto(
     @SerializedName("dDataSaidaOd")
     val dDataSaidaOd: String?
 )
+
+fun OutrosDetalhesDto.toOutrosDetalhes(): OutrosDetalhes {
+
+    return OutrosDetalhes(
+        cBairroOd, cCEPOd,
+        cCidadeOd = cCidadeOd,
+        cCnpjCpfOd = cCnpjCpfOd,
+        cEnderecoOd = cEnderecoOd,
+        cEstadoOd = cEstadoOd,
+        cHoraSaidaOd = cHoraSaidaOd,
+        cInscrEstadualOd = cInscrEstadualOd,
+        cNomeOd = cNomeOd,
+        cNumeroOd = cNumeroOd,
+        cTelefoneOd = cTelefoneOd,
+        dDataSaidaOd = dDataSaidaOd
+    )
+}

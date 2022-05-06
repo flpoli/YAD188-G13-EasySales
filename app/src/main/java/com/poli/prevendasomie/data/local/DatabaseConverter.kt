@@ -184,17 +184,6 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun fromParcelaJson(json: String): List<Parcela> {
-
-        return jsonParser.fromJson<ArrayList<Parcela>>(
-
-            json = json,
-            type = object : TypeToken<ArrayList<Parcela>>() {}.type
-
-        ) ?: emptyList()
-    }
-
-    @TypeConverter
     fun toDetJson(det: List<Det>): String {
         return jsonParser.toJson(
             obj = det,

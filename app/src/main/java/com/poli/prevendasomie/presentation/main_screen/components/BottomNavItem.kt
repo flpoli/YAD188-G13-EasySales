@@ -12,12 +12,10 @@ sealed class BottomNavItem(
     var title: String,
     var icon: ImageVector,
     var screenRoute: String
-){
+) {
 
-
-    object Home: BottomNavItem("Home", Icons.Filled.Home, Screen.MainScreen.route )
-    object Clientes: BottomNavItem("Clientes", Icons.Filled.Contacts, Screen.ClientListScreen.route )
-    object Produtos: BottomNavItem("Produtos", Icons.Filled.AllInbox, Screen.ProductListScreen.route )
-    object Pedidos: BottomNavItem("Pedidos", Icons.Filled.Sell, Screen.OrdersListScreen.route )
-
+    object Home : BottomNavItem("Home", Icons.Filled.Home, Screen.MainScreen.route)
+    object Clientes : BottomNavItem("Clientes", Icons.Filled.Contacts, Screen.ClientListScreen.route)
+    object Produtos : BottomNavItem("Produtos", Icons.Filled.AllInbox, Screen.ProductListScreen.route)
+    object Pedidos : BottomNavItem("Pedidos", Icons.Filled.Sell, Screen.OrdersListScreen.route)
 }

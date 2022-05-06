@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.pagingsource
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -28,7 +27,6 @@ class OrdersRemoteMediator
 
     override suspend fun initialize(): InitializeAction {
 
-        Log.d("MEDIATOR - Initialize()", "Entrou na função inicialize()")
         val currentTime = System.currentTimeMillis()
         val lastUpdated = remoteKeysDao.getRemoteKeys().firstOrNull()?.lastUpdated ?: 0L
         val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
@@ -45,7 +43,6 @@ class OrdersRemoteMediator
         state: PagingState<Int, PedidoVendaProduto>
     ): MediatorResult {
 
-        Log.d("MEDIATOR - Load()", "Entrou na função LOAD()")
         try {
 
             val page = when (loadType) {
@@ -84,14 +81,9 @@ class OrdersRemoteMediator
                     )
                 )
             )
-            Log.d("MEDIATOR - Request variable", "$request")
-
             val response = api.getOrderList(request)
-            Log.d("MEDIATOR - API RESPONSE", "$response")
             if (response.pedidoVendaProduto.isNotEmpty()) {
-
                 db.withTransaction {
-
                     if (loadType == LoadType.REFRESH) {
                         orderDao.deleteAllOrders()
                         remoteKeysDao.deleteAllRemoteKeys()
@@ -112,17 +104,13 @@ class OrdersRemoteMediator
                     }
 
                     val pedido = response.pedidoVendaProduto.map { it.toPedidoVendaProduto() }
-                    Log.d("MEDIATOR - pedido", "$pedido")
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     orderDao.persistOrderList(pedido)
-
-                    Log.d("MEDIATOR - PERSIST", "ordersDao.persist")
                 }
             }
             return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
         } catch (e: Exception) {
-
             e.printStackTrace()
             return MediatorResult.Error(e)
         }

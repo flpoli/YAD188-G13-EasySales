@@ -23,8 +23,8 @@ data class InformacoesAdicionais(
     val numeroContrato: String? = "",
     @SerializedName("numero_pedido_cliente")
     val numeroPedidoCliente: String? = "",
-    // @SerializedName("outros_detalhes")
-    // val outrosDetalhes: OutrosDetalhes?,
+    @SerializedName("outros_detalhes")
+    val outrosDetalhes: OutrosDetalhes?,
     @SerializedName("utilizar_emails")
     val utilizarEmails: String? = ""
 )

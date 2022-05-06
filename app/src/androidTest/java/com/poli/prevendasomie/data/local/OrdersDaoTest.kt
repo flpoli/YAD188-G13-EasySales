@@ -8,11 +8,24 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.poli.prevendasomie.data.local.dao.OrdersDao
+import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsPadrao
+import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsSt
+import com.poli.prevendasomie.data.remote.responses.pedidos.Csll
+import com.poli.prevendasomie.data.remote.responses.pedidos.Ide
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
+import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.Frete
+import com.poli.prevendasomie.domain.model.pedidos.Imposto
+import com.poli.prevendasomie.domain.model.pedidos.InfAdic
 import com.poli.prevendasomie.domain.model.pedidos.InfoCadastro
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
+import com.poli.prevendasomie.domain.model.pedidos.ListaParcelas
+import com.poli.prevendasomie.domain.model.pedidos.Observacao
+import com.poli.prevendasomie.domain.model.pedidos.Observacoes
+import com.poli.prevendasomie.domain.model.pedidos.OutrosDetalhes
+import com.poli.prevendasomie.domain.model.pedidos.Parcela
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
+import com.poli.prevendasomie.domain.model.pedidos.Produto
 import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -55,7 +68,7 @@ class OrdersDaoTest {
     @Test
     fun insertOrderTest() = runBlockingTest {
 
-        val mockPedidos = listOf<PedidoVendaProduto> (
+        val mockPedidos = listOf<PedidoVendaProduto>(
             PedidoVendaProduto(
                 id = 100,
                 cabecalho = Cabecalho(
@@ -127,20 +140,20 @@ class OrdersDaoTest {
                     enviarEmail = "S",
                     numeroContrato = "CONTRATO123",
                     numeroPedidoCliente = "XPED123",
-//                    outrosDetalhes = OutrosDetalhes(
-//                        cBairroOd = "BARRO",
-//                        cCEPOd = "02920040",
-//                        cCidadeOd = "São Paulo",
-//                        cCnpjCpfOd = "00.000.000/0000-00",
-//                        cEnderecoOd = "RUA XYZ",
-//                        cEstadoOd = "Sp",
-//                        cHoraSaidaOd = "10:10:10",
-//                        cInscrEstadualOd = "",
-//                        cNomeOd = "NOME",
-//                        cNumeroOd = "7545",
-//                        cTelefoneOd = "119999999",
-//                        dDataSaidaOd = "27/06/2023",
-//                    )
+                    outrosDetalhes = OutrosDetalhes(
+                        cBairroOd = "BARRO",
+                        cCEPOd = "02920040",
+                        cCidadeOd = "São Paulo",
+                        cCnpjCpfOd = "00.000.000/0000-00",
+                        cEnderecoOd = "RUA XYZ",
+                        cEstadoOd = "Sp",
+                        cHoraSaidaOd = "10:10:10",
+                        cInscrEstadualOd = "",
+                        cNomeOd = "NOME",
+                        cNumeroOd = "7545",
+                        cTelefoneOd = "119999999",
+                        dDataSaidaOd = "27/06/2023",
+                    )
                 ),
                 totalPedido = TotalPedido(
                     baseCalculoIcms = 150.0,
@@ -159,6 +172,96 @@ class OrdersDaoTest {
                     valorSt = 150.0,
                     valorTotalPedido = 20500.90
 
+                ),
+                det = listOf(
+                    Det(
+                        ide = Ide(
+                            codigoItem = 321654513215,
+                            codigoItemIntegracao = "21654231321",
+                            idOrdemProducao = 216546321521,
+                            simplesNacional = "NÃO"
+
+                        ),
+                        imposto = Imposto(
+                            cofinsPadrao = CofinsPadrao(
+
+                                aliqCofins = 0.0,
+                                baseCofins = 0.0,
+                                codSitTribCofins = "",
+                                qtdeUnidTribCofins = 0,
+                                tipoCalculoCofins = "",
+                                valorCofins = 0.0,
+                                valorUnidTribCofins = 0.0
+
+                            ),
+                            cofinsSt = CofinsSt(),
+                            csll = Csll(
+                                aliqCsll = 5.0,
+                                valorCsll = 15.0
+                            )
+                        ),
+                        infAdic = InfAdic(
+                            codigoCategoriaItem = "",
+                            codigoCenarioImpostosItem = "",
+                            codigoLocalEstoque = 54654564,
+                            dadosAdicionaisItem = "",
+                            itemPedidoCompra = 54654,
+                            naoGerarFinanceiro = "",
+                            naoMovimentarEstoque = "",
+                            numeroPedidoCompra = "",
+                            pesoBruto = 0.0,
+                            pesoLiquido = 0.0,
+
+                        ),
+                        observacao = Observacao(
+                            obsItem = "OBSERVAÇÃO ITEM"
+                        ),
+                        produto = Produto(
+                            cfop = "",
+                            cnpjFabricante = "",
+                            codigo = "",
+                            codigoProduto = 151651,
+                            codigoTabelaPreco = 1551321321,
+                            descricao = "",
+                            ean = "",
+                            indicadorEscala = "",
+                            motivoIcmsDesonerado = "",
+                            ncm = "",
+                            percentualDesconto = 5.0,
+                            quantidade = 1,
+                            reservado = "",
+                            tipoDesconto = "",
+                            unidade = "",
+                            valorDeducao = 0.0,
+                            valorDesconto = 0.0,
+                            valorIcmsDesonerado = 0.0,
+                            valorMercadoria = 500.00,
+                            valorTotal = 500.00,
+                            valorUnitario = 500.00,
+
+                        )
+
+                    )
+                ),
+                listaParcelas = ListaParcelas(
+                    parcela = listOf(
+                        Parcela(
+                            categoriaAdiantamento = "",
+                            contaCorrenteAdiantamento = 12654,
+                            dataVencimento = "",
+                            meioPagamento = "",
+                            naoGerarBoleto = "",
+                            numeroParcela = 1,
+                            parcelaAdiantamento = "",
+                            percentual = 0.0,
+                            quantidadeDias = 1,
+                            tipoDocumento = "",
+                            valor = 0.0
+                        )
+                    )
+                ),
+                observacoes = Observacoes(
+                    obsVenda = "OBSERVAÇÃO DA VENDA"
                 )
             )
         )
