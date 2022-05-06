@@ -20,8 +20,8 @@ jobs:
           java-version: 11
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Upload APK file
-        uses: actions/upload-artfact@v3.0.0
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
