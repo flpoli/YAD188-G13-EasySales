@@ -6,7 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
+import com.google.gson.Gson
 import com.poli.prevendasomie.data.local.dao.UserDao
+import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.model.UserDataModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -35,6 +37,7 @@ class UserDaoTest {
             ErpDatabase::class.java
         )
             .allowMainThreadQueries()
+            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()
 
         dao = database.userDao()

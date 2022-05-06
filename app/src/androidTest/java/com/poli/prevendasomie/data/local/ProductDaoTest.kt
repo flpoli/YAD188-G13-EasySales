@@ -6,9 +6,11 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
+import com.google.gson.Gson
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -38,6 +40,7 @@ class ProductDaoTest {
                 ErpDatabase::class.java
             )
             .allowMainThreadQueries()
+            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()
 
         productDao = database.productsDao()

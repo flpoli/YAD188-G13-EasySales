@@ -7,6 +7,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
+import com.google.gson.Gson
 import com.poli.prevendasomie.data.local.dao.OrdersDao
 import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsPadrao
 import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsSt
@@ -22,6 +23,7 @@ import com.poli.prevendasomie.data.remote.responses.pedidos.Irrf
 import com.poli.prevendasomie.data.remote.responses.pedidos.Iss
 import com.poli.prevendasomie.data.remote.responses.pedidos.PisPadrao
 import com.poli.prevendasomie.data.remote.responses.pedidos.PisSt
+import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.model.pedidos.Cabecalho
 import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.Frete
@@ -65,6 +67,7 @@ class OrdersDaoTest {
                 ErpDatabase::class.java
             )
             .allowMainThreadQueries()
+            .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()
 
         ordersDao = database.ordersDao()
