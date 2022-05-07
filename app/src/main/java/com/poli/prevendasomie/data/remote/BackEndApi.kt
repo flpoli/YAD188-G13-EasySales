@@ -17,7 +17,7 @@ interface BackEndApi {
 
     @POST("users/registrations")
     @Headers("Content-Type: application/json")
-    suspend fun userRegistration(@Body userData: UserData): ResponseSignUpDto
+    suspend fun userRegistration(@Body userData: UserData): Response<Unit>
 
     @POST("users/details")
     @Headers("Content-Type: application/json")
