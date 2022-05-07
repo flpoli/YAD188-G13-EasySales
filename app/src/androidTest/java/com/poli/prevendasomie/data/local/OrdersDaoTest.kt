@@ -303,7 +303,6 @@ class OrdersDaoTest {
                                 valorUnidTribPisSt = 0.0
                             )
 
-
                         ),
                         infAdic = InfAdic(
                             codigoCategoriaItem = "",
@@ -317,7 +316,7 @@ class OrdersDaoTest {
                             pesoBruto = 0.0,
                             pesoLiquido = 0.0,
 
-                            ),
+                        ),
                         observacao = Observacao(
                             obsItem = "OBSERVAÇÃO ITEM"
                         ),
@@ -344,7 +343,7 @@ class OrdersDaoTest {
                             valorTotal = 500.00,
                             valorUnitario = 500.00,
 
-                            )
+                        )
 
                     )
                 ),
