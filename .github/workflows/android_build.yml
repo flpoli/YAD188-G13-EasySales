@@ -20,7 +20,7 @@ jobs:
         run: ./gradlew test
 
       - name: Run Instrumented Tests
-        run: ./gradlew conectedAndroidTest
+        run: ./gradlew connectedAndroidTest
 
       - name: Lint Checks
         run: ./gradlew detekt ktlintCheck lint
