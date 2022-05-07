@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.login.domain.usecase
 
+import android.util.Log
 import com.poli.prevendasomie.common.Resource
 import com.poli.prevendasomie.data.Result
 import com.poli.prevendasomie.login.domain.model.AuthToken
@@ -9,6 +10,7 @@ import com.poli.prevendasomie.login.domain.model.LoginResult
 import com.poli.prevendasomie.login.domain.model.Token
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class CredentialsLoginUseCaseImpl @Inject constructor(
@@ -25,7 +27,7 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
             return validationResult
         }
 
-        when (val repoResult = loginRepository.login(credentials)) {
+        return when (val repoResult = loginRepository.login(credentials)) {
 
             is Resource.Success -> {
                 val tokenResult = repoResult.data?.headers()?.get("Authorization")
@@ -38,12 +40,28 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
                     )
                     loginRepository.getUserDetails(tokenResult)
                 }
+                LoginResult.Success
             }
             is Resource.Error -> {
-                // loginResultForError(Result.Error(repoResult.data.errorBody()))
+
+                if (repoResult.data != null) {
+
+
+                        Log.d("Reporesult -> Login", "${repoResult.data.code()}")
+
+                        loginResultForError(
+                            Result.Error(error = HttpException(repoResult.data))
+                        )
+                }
+
+                LoginResult.Failure.Unknown
+
             }
+
+            else -> {LoginResult.Failure.Unknown}
         }
-        return LoginResult.Success
+
+
     }
 
     private fun validateCredentials(credentials: Credentials): LoginResult.Failure.EmptyCredentials? {

@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.R
@@ -42,7 +43,17 @@ class LoginViewModel @Inject constructor(
 
             val loginResult = credentialsLoginUseCase(currentCredentials)
 
+
+            if(loginResult !is LoginResult.Success){
+
+                Log.d("LOGINRESULT", "$loginResult")
+
+            }
+
             handleLoginResult(loginResult, currentCredentials)
+
+
+
         }
     }
 
@@ -56,7 +67,6 @@ class LoginViewModel @Inject constructor(
             emailInputErrorMessage = null,
             passwordInputErrorMessage = currentPasswordErrorMessage
         )
-        println(currentCredentials)
     }
 
     fun passwordChanged(password: String) {
@@ -83,11 +93,14 @@ class LoginViewModel @Inject constructor(
                     credentials = currentCredentials,
                     errorMessage = UiText.ResourceText(R.string.err_invalid_credentials)
                 )
+
             }
             is LoginResult.Failure.Unknown -> {
+
                 LoginViewState.SubmissionError(
                     credentials = currentCredentials,
-                    errorMessage = UiText.ResourceText(R.string.err_login_failure)
+                    errorMessage = UiText.ResourceText(R.string.err_login_failure),
+
                 )
             }
             is LoginResult.Failure.EmptyCredentials -> {
@@ -102,6 +115,7 @@ class LoginViewModel @Inject constructor(
 }
 
 private fun LoginResult.Failure.EmptyCredentials.toLoginViewState(credentials: Credentials): LoginViewState {
+
     return LoginViewState.Active(
         credentials = credentials,
         emailInputErrorMessage = UiText.ResourceText(R.string.err_empty_email).takeIf {

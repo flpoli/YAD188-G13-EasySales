@@ -19,6 +19,12 @@ class LoginRepositoryImpl @Inject constructor(
 
         val call = api.executeLogin(credentials)
 
+        if(call.code() != 200 ){
+
+            return Resource.Error(message = "Não foi possível logar", data = call)
+        }
+
+
         return Resource.Success(call)
     }
 
