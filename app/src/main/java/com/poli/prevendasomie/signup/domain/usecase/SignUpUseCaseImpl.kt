@@ -14,21 +14,20 @@ class SignUpUseCaseImpl
 
     override suspend fun invoke(userData: UserData): SignUpResult {
 
-        val signUpResult = signUpRepository.signUp(userData)
+        return when (val signUpResult = signUpRepository.signUp(userData)) {
 
-        return when (signUpResult) {
-            // TODO: melhorar isso dps
             is Resource.Success -> {
 
-                val result = signUpResult.data?.toSignupResponse()
+                val result = signUpResult.data
+
+
                 SignUpResult.Success
             }
             is Resource.Error -> {
-                println("Errinho aqui hein")
+
                 SignUpResult.Failure.Unknown
             }
             else -> {
-                println("else")
                 SignUpResult.Failure.Unknown
             }
         }

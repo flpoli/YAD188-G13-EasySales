@@ -46,7 +46,6 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
 
                 if (repoResult.data != null) {
 
-
                         Log.d("Reporesult -> Login", "${repoResult.data.code()}")
 
                         loginResultForError(

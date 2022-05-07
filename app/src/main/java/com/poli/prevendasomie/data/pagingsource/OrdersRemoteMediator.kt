@@ -13,6 +13,7 @@ import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.pedidos.toPedidoVendaProduto
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
+import java.lang.Exception
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -82,6 +83,8 @@ class OrdersRemoteMediator
                 )
             )
             val response = api.getOrderList(request)
+
+
             if (response.pedidoVendaProduto.isNotEmpty()) {
                 db.withTransaction {
                     if (loadType == LoadType.REFRESH) {
