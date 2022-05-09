@@ -2,9 +2,9 @@ name: Build and Publish Debug APk
 
 on:
   push:
-    branches: [ master ]
+    branches: [ internal-beta ]
   pull_request:
-    branches: [ master ]
+    branches: [ internal-beta ]
 
 
 jobs:

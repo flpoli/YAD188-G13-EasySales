@@ -22,7 +22,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.EmptyScreen
@@ -33,7 +32,7 @@ fun OrdersListScreen(
     viewModel: OrdersListViewModel = hiltViewModel(),
 
     // Navigation callback:
-    //onNavigate: (UiEvent.Navigate) -> Unit
+    // onNavigate: (UiEvent.Navigate) -> Unit
     // should try this instead of passing navController down the composable tree. Lets see...
 ) {
 
@@ -61,24 +60,20 @@ fun ListContent(
             ) {
 
                     pedido ->
-                        pedido?.let {
+                pedido?.let {
 
-                            pedido.cabecalho.let {
+                    pedido.cabecalho.let {
 
-                                if (it != null) {
-                                    Text(
-                                        text = it.numeroPedido.toString()
-                                    )
-
-                                }
-
-                            }
+                        if (it != null) {
+                            Text(
+                                text = it.numeroPedido.toString()
+                            )
                         }
+                    }
+                }
             }
         }
     }
-
-
 }
 
 @Composable

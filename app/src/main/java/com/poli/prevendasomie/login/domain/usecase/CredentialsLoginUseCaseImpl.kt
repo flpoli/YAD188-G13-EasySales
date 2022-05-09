@@ -46,21 +46,18 @@ class CredentialsLoginUseCaseImpl @Inject constructor(
 
                 if (repoResult.data != null) {
 
-                        Log.d("Reporesult -> Login", "${repoResult.data.code()}")
+                    Log.d("Reporesult -> Login", "${repoResult.data.code()}")
 
-                        loginResultForError(
-                            Result.Error(error = HttpException(repoResult.data))
-                        )
+                    loginResultForError(
+                        Result.Error(error = HttpException(repoResult.data))
+                    )
                 }
 
                 LoginResult.Failure.Unknown
-
             }
 
-            else -> {LoginResult.Failure.Unknown}
+            else -> { LoginResult.Failure.Unknown }
         }
-
-
     }
 
     private fun validateCredentials(credentials: Credentials): LoginResult.Failure.EmptyCredentials? {

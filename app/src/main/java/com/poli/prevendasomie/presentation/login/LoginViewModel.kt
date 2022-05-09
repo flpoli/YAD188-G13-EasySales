@@ -43,17 +43,12 @@ class LoginViewModel @Inject constructor(
 
             val loginResult = credentialsLoginUseCase(currentCredentials)
 
-
-            if(loginResult !is LoginResult.Success){
+            if (loginResult !is LoginResult.Success) {
 
                 Log.d("LOGINRESULT", "$loginResult")
-
             }
 
             handleLoginResult(loginResult, currentCredentials)
-
-
-
         }
     }
 
@@ -93,7 +88,6 @@ class LoginViewModel @Inject constructor(
                     credentials = currentCredentials,
                     errorMessage = UiText.ResourceText(R.string.err_invalid_credentials)
                 )
-
             }
             is LoginResult.Failure.Unknown -> {
 

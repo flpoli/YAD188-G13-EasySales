@@ -7,12 +7,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrdersFormViewModel
-@Inject constructor(): ViewModel() {
+@Inject constructor() : ViewModel() {
 
-
-    fun onAddClientClicked(
-
-    ) {
+    fun onAddClientClicked() {
         Log.d("ORDERSCREEN", "ADICIONAR CLIENTE EM PEDIDO")
     }
 }

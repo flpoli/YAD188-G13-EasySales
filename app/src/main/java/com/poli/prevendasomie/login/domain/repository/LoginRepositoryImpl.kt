@@ -20,19 +20,15 @@ class LoginRepositoryImpl @Inject constructor(
 ) : LoginRepository {
     override suspend fun login(credentials: Credentials): Resource<Response<Unit>> {
 
-
         return try {
-
 
             val call = api.executeLogin(credentials)
 
-            if(call.code() == 200){
+            if (call.code() == 200) {
                 Resource.Success(call)
             } else {
                 Resource.Error("${ call.errorBody() }")
             }
-
-
         } catch (e: HttpException) {
 
             Log.e("HttpException", "$e")
@@ -40,22 +36,14 @@ class LoginRepositoryImpl @Inject constructor(
             Resource.Error(
                 message = "Não foi possível logar: ${e.code()}, ${e.message()}"
             )
-
-
-
-        } catch (e: SocketTimeoutException){
+        } catch (e: SocketTimeoutException) {
 
             Log.e("SocketTimeoutException", "$e")
 
             Resource.Error(
-                message = "Não foi possível logar. Vamos tentar novamente? ${e.cause}")
+                message = "Não foi possível logar. Vamos tentar novamente? ${e.cause}"
+            )
         }
-
-
-
-
-
-
     }
 
     override suspend fun getUserDetails(token: String): Resource<ResponseSignUpDto> {
