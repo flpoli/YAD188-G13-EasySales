@@ -36,6 +36,7 @@ import com.poli.prevendasomie.R
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.ui.theme.DarkGrey
 import com.poli.prevendasomie.ui.theme.LightGrey
+import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
@@ -139,11 +140,14 @@ fun parseErrorMessage(error: LoadState.Error): String {
 
     return when (error.error) {
         is SocketTimeoutException -> {
-            "Server Unavailable"
+            "Server Unavailable: $error"
         }
         is ConnectException -> {
-            "Internet Unavailable"
+            "Internet Unavailable: $error"
         }
-        else -> "Unknown Error"
+        is HttpException -> {
+            "Request error: $error"
+        }
+        else -> "Unknown Error: $error"
     }
 }

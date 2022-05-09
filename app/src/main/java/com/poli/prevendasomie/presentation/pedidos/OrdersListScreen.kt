@@ -1,29 +1,46 @@
 package com.poli.prevendasomie.presentation.pedidos
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
 fun OrdersListScreen(
     navController: NavHostController,
-    viewModel: OrdersListViewModel = hiltViewModel()
+    viewModel: OrdersListViewModel = hiltViewModel(),
+
+    // Navigation callback:
+    //onNavigate: (UiEvent.Navigate) -> Unit
+    // should try this instead of passing navController down the composable tree. Lets see...
 ) {
 
     val allOrders = viewModel.pedidos.collectAsLazyPagingItems()
 
     ListContent(pedidos = allOrders)
+    OrderFab(navController = navController)
 }
 
 @Composable
@@ -44,24 +61,46 @@ fun ListContent(
             ) {
 
                     pedido ->
-                pedido?.let {
+                        pedido?.let {
 
-                    pedido.cabecalho.let { it ->
+                            pedido.cabecalho.let {
 
-                        if (it != null) {
-                            Text(
-                                text = it.numeroPedido.toString() ?: "vazio?"
-                            )
+                                if (it != null) {
+                                    Text(
+                                        text = it.numeroPedido.toString()
+                                    )
+
+                                }
+
+                            }
                         }
-                        //                        Text(
-                        //                            text = it1.bloqueado ?: "vazio?"
-                        //                        )
-                        //                        Text(
-                        //                            text = it1.codigoCliente.toString()
-                        //                        )
-                    }
-                }
             }
+        }
+    }
+
+
+}
+
+@Composable
+fun OrderFab(navController: NavController) {
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.End
+    ) {
+        FloatingActionButton(
+
+            onClick = { navController.navigate(Screen.OrderFormScreen.route) },
+            modifier = Modifier
+
+        ) {
+            Icon(
+                Icons.Filled.Add,
+                contentDescription = null
+            )
         }
     }
 }
