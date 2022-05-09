@@ -46,14 +46,17 @@ fun ListContent(
             ) {
 
                     produto ->
-                produto?.let {
+                        produto?.let {
 
-                    produto.descricao?.let { it1 ->
-                        Text(
-                            text = it1
-                        )
-                    }
-                }
+                            produto.descricao?.let { it1 ->
+                                Text(
+                                    text = "Nome: $it1"
+                                )
+                                Text(
+                                    text = "Estoque: ${ produto.quantidadeEstoque ?: "0" }"
+                                )
+                            }
+                        }
             }
         }
     }
@@ -84,7 +87,7 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
             }
             produtos.itemCount < 1 -> {
                 EmptyScreen()
-                return false
+                false
             }
             else -> true
         }

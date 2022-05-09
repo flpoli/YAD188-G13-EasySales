@@ -26,16 +26,12 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
 
-                var selectedItem by remember { mutableStateOf(0) }
-                val items = listOf("Clientes", "Produtos", "Pedidos")
 
                 SetupNavGraph(
                     navController = navController,
                     scaffoldState = scaffoldState
                 )
 
-                Surface(color = MaterialTheme.colors.background) {
-                }
             }
         }
     }

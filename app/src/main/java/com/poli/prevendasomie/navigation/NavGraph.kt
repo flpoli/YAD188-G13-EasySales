@@ -1,7 +1,10 @@
 package com.poli.prevendasomie.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,6 +15,7 @@ import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
 import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
+import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
@@ -21,49 +25,57 @@ fun SetupNavGraph(
     navController: NavHostController,
     scaffoldState: ScaffoldState
 ) {
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        scaffoldState = scaffoldState){
 
-    NavHost(
-        navController = navController,
-        startDestination = Screen.LoginScreen.route
-    ) {
-
-        composable("login_screen") {
-            LoginScreen(navController = navController)
-        }
-        composable("signup_screen") {
-            SignupScreen(navController = navController)
-        }
-        composable("main_screen") {
-            MainScreen(navController = navController)
-        }
-        composable("client_list_screen") {
-            ClientListScreen(navController = navController)
-        }
-        composable(
-            route = Screen.ClientDetailScreen.route,
-            arguments = listOf(
-                navArgument("clientId") {
-                    type = NavType.IntType
-                }
-            )
+        NavHost(
+            navController = navController,
+            startDestination = Screen.LoginScreen.route
         ) {
 
-            ClientDetailScreen(
-                navController = navController,
+            composable(Screen.LoginScreen.route) {
+                LoginScreen(navController = navController)
+            }
+            composable(Screen.SignUpScreen.route) {
+                SignupScreen(navController = navController)
+            }
+            composable(Screen.MainScreen.route) {
+                MainScreen(navController = navController)
+            }
+            composable(Screen.ClientListScreen.route) {
+                ClientListScreen(navController = navController)
+            }
+            composable(
+                route = Screen.ClientDetailScreen.route,
+                arguments = listOf(
+                    navArgument("clientId") {
+                        type = NavType.IntType
+                    }
+                )
+            ) {
 
-            )
-        }
-        composable("product_list_screen") {
-            ProductListScreen(navController = navController)
-        }
-        composable("client_form_screen") {
-            ClientFormScreen(
-                navController = navController,
-                scaffoldState = scaffoldState
-            )
-        }
-        composable("order_list_screen") {
-            OrdersListScreen(navController = navController)
+                ClientDetailScreen(
+                    navController = navController,
+
+                    )
+            }
+            composable(Screen.ProductListScreen.route) {
+                ProductListScreen(navController = navController)
+            }
+            composable(Screen.ClientFormScreen.route) {
+                ClientFormScreen(
+                    navController = navController,
+                    scaffoldState = scaffoldState
+                )
+            }
+            composable(Screen.OrdersListScreen.route) {
+                OrdersListScreen(navController = navController)
+            }
+            composable(Screen.OrderFormScreen.route){
+                OrdersFormScreen(navController = navController)
+            }
         }
     }
+
 }

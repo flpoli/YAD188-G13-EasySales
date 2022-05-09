@@ -65,7 +65,8 @@ fun AppTextField(
             placeholder = placeholderComposable,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            visualTransformation = visualTransformation
+            visualTransformation = visualTransformation,
+            singleLine = true
         )
 
         if (errorMessage != null) {
