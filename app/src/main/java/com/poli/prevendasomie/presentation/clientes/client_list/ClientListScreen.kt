@@ -34,31 +34,9 @@ fun ClientListScreen(
         navController = navController,
         cliente = allClientes
     )
-    AddClientFab(navController = navController)
+
 }
-@Composable
-fun AddClientFab(navController: NavController) {
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.End
-    ) {
-        FloatingActionButton(
-
-            onClick = { navController.navigate(Screen.ClientFormScreen.route) },
-            modifier = Modifier
-
-        ) {
-            Icon(
-                Icons.Filled.Add,
-                contentDescription = null
-            )
-        }
-    }
-}
 
 @Composable
 fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {

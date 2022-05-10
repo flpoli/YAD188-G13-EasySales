@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.FabPosition
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -18,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
@@ -25,6 +27,7 @@ import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScree
 import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigationBar
+import com.poli.prevendasomie.presentation.main_screen.components.FabButton
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
@@ -35,18 +38,26 @@ fun SetupNavGraph(
     navController: NavHostController,
     scaffoldState: ScaffoldState
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     val selectedItem by remember { mutableStateOf(0) }
     val items =
-        listOf(Screen.LoginScreen.route, Screen.MainScreen.route, "Clientes", "Produtos", "Pedidos")
+        listOf(
+            Screen.LoginScreen.route,
+            Screen.MainScreen.route,
+            "Clientes",
+            "Produtos", "Pedidos"
+        )
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         topBar = {
-            println("PRINTEI ${navController.currentBackStackEntry}")
 
-            if (navController.currentDestination?.route == Screen.LoginScreen.route) {
+            if (
+                navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
+                navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
+            ) {
                 TopAppBar(
                     title = { Text(text = items[selectedItem]) },
                     navigationIcon = {
@@ -58,7 +69,29 @@ fun SetupNavGraph(
             }
         },
 
-        bottomBar = { if (selectedItem != 0) BottomNavigationBar(navController) }
+        bottomBar = {
+            if (
+                navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
+                navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
+            ) {
+                BottomNavigationBar(navController)
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        isFloatingActionButtonDocked = false,
+        floatingActionButton = {
+
+            if (
+                navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
+                navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
+            ) {
+
+                FabButton(navController = navController)
+            }
+
+
+        }
+
     ) {
 
         NavHost(
