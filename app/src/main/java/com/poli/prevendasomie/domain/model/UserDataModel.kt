@@ -2,8 +2,9 @@ package com.poli.prevendasomie.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.poli.prevendasomie.common.Constants.USER_TABLE
 
-@Entity(tableName = "user_table")
+@Entity(tableName = USER_TABLE)
 data class UserDataModel(
 
     @PrimaryKey

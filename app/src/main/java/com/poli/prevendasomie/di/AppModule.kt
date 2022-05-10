@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.di
 
 import com.google.gson.GsonBuilder
-import com.poli.prevendasomie.data.remote.HttpRoutes.BASE_URL
+import com.poli.prevendasomie.common.Constants.BASE_URL
 import com.poli.prevendasomie.data.remote.OmieAPI
 import dagger.Module
 import dagger.Provides
