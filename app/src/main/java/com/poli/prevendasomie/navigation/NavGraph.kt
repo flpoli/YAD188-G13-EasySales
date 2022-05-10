@@ -88,8 +88,6 @@ fun SetupNavGraph(
 
                 FabButton(navController = navController)
             }
-
-
         }
 
     ) {

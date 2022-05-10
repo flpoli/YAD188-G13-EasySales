@@ -23,7 +23,6 @@ sealed class Screen(val route: String) {
         fun passClientId(clientId: Int): String {
             return "$CLIENT_DETAIL_ROUTE/$clientId"
         }
-
     }
 
     object ClientFormScreen : Screen(CLIENT_FORM_ROUTE)

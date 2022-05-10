@@ -21,7 +21,6 @@ object Constants {
     const val ORDER_LIST_ROUTE = "order_list_screen"
     const val ORDER_FORM_ROUTE = "order_form_screen"
 
-
     const val API_PAGE_SIZE: Int = 30
     const val CACHE_TIMEOUT: Int = 1440
 }
