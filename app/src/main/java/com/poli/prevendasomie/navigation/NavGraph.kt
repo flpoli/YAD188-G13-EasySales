@@ -86,7 +86,7 @@ fun SetupNavGraph(
                 navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
             ) {
 
-                FabButton(navController = navController)
+                FabButton(navController = navController) // aqui deve passar o currentBackStackEntryAsState, certo?
             }
         }
 

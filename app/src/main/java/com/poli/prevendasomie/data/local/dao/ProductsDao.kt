@@ -13,12 +13,12 @@ interface ProductsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistProductList(produtos: List<ProdutoServicoCadastro>)
 
-    @Query("SELECT * FROM products_table")
+    @Query("SELECT * FROM products_tb")
     fun getAllProducts(): PagingSource<Int, ProdutoServicoCadastro>
 
-    @Query("DELETE FROM products_table")
+    @Query("DELETE FROM products_tb")
     suspend fun deleteAllProducts()
 
-    @Query("SELECT COUNT(ID) from products_table")
+    @Query("SELECT COUNT(ID) from products_tb")
     suspend fun getProductsCount(): Int
 }
