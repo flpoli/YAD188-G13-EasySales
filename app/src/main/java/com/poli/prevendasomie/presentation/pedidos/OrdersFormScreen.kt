@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,18 +28,15 @@ fun OrdersFormScreen(
     )
 }
 
-
 @Composable
 fun AddClientBox(
     navController: NavHostController,
     onClick: () -> Unit
-){
-
+) {
 
     Box(
         modifier = Modifier
             .fillMaxWidth(.9f)
-
             .size(20.dp)
             .background(
                 color = Color.Gray,
@@ -53,12 +49,9 @@ fun AddClientBox(
 
                 onClick()
                 navController.navigate(Screen.ClientListScreen.route)
-
-
             }
     ) {
 
         Text(text = "Adicione o cliente")
     }
-
 }

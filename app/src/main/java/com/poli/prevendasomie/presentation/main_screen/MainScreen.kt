@@ -1,14 +1,7 @@
 package com.poli.prevendasomie.presentation.main_screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,7 +9,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.domain.model.UserDataModel
-import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigationBar
 import com.poli.prevendasomie.presentation.main_screen.components.GreetingSection
 
 @Composable
@@ -29,29 +21,29 @@ fun MainScreen(
     val items = listOf("Home", "Clientes", "Produtos", "Pedidos")
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = items[selectedItem]) },
-                navigationIcon = {
-                    IconButton(onClick = { /* doSomething() */ }) {
-                        Icon(Icons.Filled.Menu, contentDescription = null)
-                    }
-                },
-                actions = {
-                    IconButton(
-                        onClick = {}
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Search,
-                            contentDescription = "Search"
-                        )
-                    }
-                }
-            )
-        },
+//        topBar = {
+//            TopAppBar(
+//                title = { Text(text = items[selectedItem]) },
+//                navigationIcon = {
+//                    IconButton(onClick = { /* doSomething() */ }) {
+//                        Icon(Icons.Filled.Menu, contentDescription = null)
+//                    }
+//                },
+//                actions = {
+//                    IconButton(
+//                        onClick = {}
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Filled.Search,
+//                            contentDescription = "Search"
+//                        )
+//                    }
+//                }
+//            )
+//        },
         bottomBar = {
 
-            BottomNavigationBar(navController = navController)
+            // BottomNavigationBar(navController = navController)
         }
     ) {
         Column() {

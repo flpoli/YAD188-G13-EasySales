@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.signup.domain.usecase
 
 import com.poli.prevendasomie.common.Resource
-import com.poli.prevendasomie.data.remote.responses.toSignupResponse
 import com.poli.prevendasomie.signup.domain.model.SignUpResult
 import com.poli.prevendasomie.signup.domain.model.UserData
 import com.poli.prevendasomie.signup.domain.repository.SignUpRepository
@@ -19,7 +18,6 @@ class SignUpUseCaseImpl
             is Resource.Success -> {
 
                 val result = signUpResult.data
-
 
                 SignUpResult.Success
             }

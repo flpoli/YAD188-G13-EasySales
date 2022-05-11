@@ -84,7 +84,6 @@ class OrdersRemoteMediator
             )
             val response = api.getOrderList(request)
 
-
             if (response.pedidoVendaProduto.isNotEmpty()) {
                 db.withTransaction {
                     if (loadType == LoadType.REFRESH) {

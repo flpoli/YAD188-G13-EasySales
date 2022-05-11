@@ -2,9 +2,9 @@ name: Build and Publish Debug APk
 
 on:
   push:
-    branches: [ master ]
+    branches: [ internal-beta ]
   pull_request:
-    branches: [ master ]
+    branches: [ internal-beta ]
 
 
 jobs:
@@ -46,7 +46,7 @@ jobs:
         with:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: com.poli.prevendasomie
-          releaseFiles: app/build/outputs/apk/debug/*.apk
+          releaseFiles:  ${{ github.workspace }}/app/build/outputs/bundle/release/*.aab
           track: internal
           inAppUpdatePriority: 1
 

@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
 import com.google.gson.Gson
+import com.poli.prevendasomie.common.Constants.DATA_BASE_NAME
 import com.poli.prevendasomie.data.local.DatabaseConverter
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.dao.UserDao
@@ -54,7 +55,7 @@ class RepositoryModule {
         return Room.databaseBuilder(
             app,
             ErpDatabase::class.java,
-            "ErpDatabase"
+            DATA_BASE_NAME
         )
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .build()

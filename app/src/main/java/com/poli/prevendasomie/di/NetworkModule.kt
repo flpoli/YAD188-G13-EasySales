@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.di
 
+import com.poli.prevendasomie.common.Constants.LOGIN_URL
 import com.poli.prevendasomie.data.remote.BackEndApi
-import com.poli.prevendasomie.data.remote.HttpRoutes.LOGIN_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

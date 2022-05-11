@@ -3,12 +3,8 @@ package com.poli.prevendasomie.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.compose.rememberNavController
 import com.poli.prevendasomie.navigation.SetupNavGraph
@@ -26,12 +22,10 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
 
-
                 SetupNavGraph(
                     navController = navController,
                     scaffoldState = scaffoldState
                 )
-
             }
         }
     }

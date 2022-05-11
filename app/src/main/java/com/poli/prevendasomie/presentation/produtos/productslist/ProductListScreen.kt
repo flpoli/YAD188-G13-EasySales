@@ -46,17 +46,17 @@ fun ListContent(
             ) {
 
                     produto ->
-                        produto?.let {
+                produto?.let {
 
-                            produto.descricao?.let { it1 ->
-                                Text(
-                                    text = "Nome: $it1"
-                                )
-                                Text(
-                                    text = "Estoque: ${ produto.quantidadeEstoque ?: "0" }"
-                                )
-                            }
-                        }
+                    produto.descricao?.let { it1 ->
+                        Text(
+                            text = "Nome: $it1"
+                        )
+                        Text(
+                            text = "Estoque: ${ produto.quantidadeEstoque ?: "0" }"
+                        )
+                    }
+                }
             }
         }
     }

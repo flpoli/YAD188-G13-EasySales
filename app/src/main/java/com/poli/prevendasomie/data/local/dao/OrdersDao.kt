@@ -13,20 +13,20 @@ interface OrdersDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistOrderList(orders: List<PedidoVendaProduto>)
 
-    @Query("SELECT * FROM orders_table")
+    @Query("SELECT * FROM orders_tb")
     fun getAllOrders(): PagingSource<Int, PedidoVendaProduto>
 
-    @Query("DELETE FROM orders_table")
+    @Query("DELETE FROM orders_tb")
     suspend fun deleteAllOrders()
 
-    @Query("SELECT COUNT(ID) from orders_table")
+    @Query("SELECT COUNT(ID) from orders_tb")
     suspend fun getOrdersCount(): Int
 
     /***************************************************************/
-    @Query("SELECT * FROM orders_table")
-    fun getAllOrdersWihoutPagination(): List<PedidoVendaProduto>
+    @Query("SELECT * FROM orders_tb")
+    fun getAllOrdersWithoutPagination(): List<PedidoVendaProduto>
 
-    @Query("SELECT * FROM orders_table WHERE id = :id")
+    @Query("SELECT * FROM orders_tb WHERE id = :id")
     fun selectOrderById(id: Int): PedidoVendaProduto
 
     /**************************************************************/
