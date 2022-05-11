@@ -74,7 +74,7 @@ fun SetupNavGraph(
                 navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
                 navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
             ) {
-                BottomNavigationBar(navController)
+                BottomNavigationBar(navController = navController)
             }
         },
         floatingActionButtonPosition = FabPosition.End,

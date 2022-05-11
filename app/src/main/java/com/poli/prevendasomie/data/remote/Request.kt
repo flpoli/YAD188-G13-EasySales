@@ -3,13 +3,17 @@ package com.poli.prevendasomie.data.remote
 import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.common.Constants.APP_KEY
 import com.poli.prevendasomie.common.Constants.APP_SECRET
+import com.poli.prevendasomie.common.Constants.CALL_CONSULTAR_CLIENTE
+import com.poli.prevendasomie.common.Constants.CALL_INCLUIR_CLIENTE
+import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PEDIDOS
+import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PRODUTOS
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import kotlin.String
 
 sealed class Request {
 
     data class ListClientsRequest(
-        val call: String = "ListarClientes",
+        val call: String = CALL_LISTAR_PEDIDOS,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
@@ -18,7 +22,7 @@ sealed class Request {
     )
 
     data class ClientByCodeRequest(
-        val call: String = "ConsultarCliente",
+        val call: String = CALL_CONSULTAR_CLIENTE,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
@@ -27,7 +31,7 @@ sealed class Request {
     )
 
     data class IncluirClienteRequest(
-        val call: String = "IncluirCliente",
+        val call: String = CALL_INCLUIR_CLIENTE,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
@@ -36,7 +40,7 @@ sealed class Request {
     )
 
     data class ListarProdutosRequest(
-        val call: String = "ListarProdutos",
+        val call: String = CALL_LISTAR_PRODUTOS,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")

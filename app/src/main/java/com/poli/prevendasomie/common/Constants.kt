@@ -1,11 +1,12 @@
 package com.poli.prevendasomie.common
 
 object Constants {
+
     const val PREFERENCES_NAME = "app_preferences"
     const val PREFERENCES_KEY = "on_boarding_completed"
 
-    var APP_KEY = ""
-    var APP_SECRET = ""
+    var APP_KEY: String = ""
+    var APP_SECRET: String = ""
 
     // Navigation routes
 
@@ -25,13 +26,21 @@ object Constants {
     const val PRODUCTS_TABLE = "products_tb"
     const val ORDERS_TABLE = "orders_tb"
 
-    // ERP api constants
+    // ERP Api http routes
     const val BASE_ERP_URL: String = "https://app.omie.com.br/api/v1/"
     const val LOGIN_URL: String = "https://eazysales-api.herokuapp.com/"
     const val LOGIN_URL_LOCAL: String = "http://10.0.2.2:9000/"
     const val CLIENTS_ENDPOINT = "geral/clientes/"
     const val PRODUCTS_ENDPOINT = "geral/produtos/"
     const val ORDERS_ENDPOINT = "produtos/pedido/"
+
+    // ERP API calls
+
+    const val CALL_LISTAR_PEDIDOS = "ListarClientes"
+    const val CALL_CONSULTAR_CLIENTE = "ConsultarCliente"
+    const val CALL_INCLUIR_CLIENTE = "IncluirCliente"
+
+    const val CALL_LISTAR_PRODUTOS = "ListarProdutos"
 
     const val API_PAGE_SIZE: Int = 30
     const val CACHE_TIMEOUT: Int = 1440
