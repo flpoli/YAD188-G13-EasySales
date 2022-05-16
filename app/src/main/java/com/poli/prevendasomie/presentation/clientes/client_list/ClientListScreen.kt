@@ -2,6 +2,7 @@ package com.poli.prevendasomie.presentation.clientes.client_list
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -25,9 +26,6 @@ fun ClientListScreen(
         cliente = allClientes
     )
 
-    navController.currentBackStackEntryAsState() // algo assim não?
-
-    Log.d("NAVIGATOR", "${navController.currentBackStackEntryAsState().value}" )
 }
 
 @Composable

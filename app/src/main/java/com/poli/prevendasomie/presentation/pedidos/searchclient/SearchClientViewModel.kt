@@ -1,42 +1,45 @@
-package com.poli.prevendasomie.presentation.pedidos
+package com.poli.prevendasomie.presentation.pedidos.searchclient
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiEvent
-import com.poli.prevendasomie.navigation.Screen
+import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class OrdersFormViewModel
-@Inject constructor() : ViewModel() {
 
-    var state by mutableStateOf(OrderOverviewState())
+@HiltViewModel
+class SearchClientViewModel @Inject constructor(
+
+    useCases: UseCases
+
+): ViewModel() {
+
+    var state by mutableStateOf(SearchState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-
-    fun onEvent(event: OrderOverviewEvent) {
+    fun onEvent(event: SearchEvent){
 
         when(event) {
 
-            is OrderOverviewEvent.OnClientSelected -> {
+            is SearchEvent.OnQueryChange -> {
 
-                state = state.copy(
-                    cliente = state.cliente
-                )
+                state = state.copy(query = event.query)
             }
+            is SearchEvent.OnSearch -> {}
+            is SearchEvent.OnToggleSelectableClient -> {}
+            is SearchEvent.OnSelectClient -> {}
+
 
         }
 
     }
+
 }

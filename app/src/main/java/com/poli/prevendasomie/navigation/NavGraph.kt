@@ -23,6 +23,7 @@ import com.poli.prevendasomie.presentation.main_screen.components.FabButton
 import com.poli.prevendasomie.presentation.main_screen.components.TopBar
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersListScreen
+import com.poli.prevendasomie.presentation.pedidos.searchclient.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
@@ -71,7 +72,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.LoginScreen.route
+            startDestination = Screen.OrderFormScreen.route
         ) {
 
             composable(Screen.LoginScreen.route) {
@@ -110,7 +111,11 @@ fun SetupNavGraph(
                 OrdersListScreen(navController = navController)
             }
             composable(Screen.OrderFormScreen.route) {
-                OrdersFormScreen(navController = navController)
+                OrdersFormScreen(onNavigate = navController::navigate)
+            }
+
+            composable(Screen.ClientSelectionScreen.route){
+                ClientSelectionScreen()
             }
         }
     }

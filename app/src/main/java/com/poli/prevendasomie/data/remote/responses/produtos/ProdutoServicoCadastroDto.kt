@@ -84,11 +84,11 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("obs_internas")
     val obsInternas: String?,
     @SerializedName("per_icms_fcp")
-    val perIcmsFcp: Int?,
+    val perIcmsFcp: Float?,
     @SerializedName("peso_bruto")
-    val pesoBruto: Int?,
+    val pesoBruto: Float?,
     @SerializedName("peso_liq")
-    val pesoLiq: Int?,
+    val pesoLiq: Float?,
     @SerializedName("profundidade")
     val profundidade: Int?,
     @SerializedName("quantidade_estoque")
@@ -96,7 +96,7 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("recomendacoes_fiscais")
     val recomendacoesFiscais: RecomendacoesFiscais?,
     @SerializedName("red_base_icms")
-    val redBaseIcms: Int?,
+    val redBaseIcms: Float?,
     @SerializedName("tipoItem")
     val tipoItem: String?,
     @SerializedName("unidade")

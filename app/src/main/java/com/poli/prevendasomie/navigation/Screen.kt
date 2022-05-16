@@ -25,6 +25,8 @@ sealed class Screen(val route: String) {
         }
     }
 
+    object ClientSelectionScreen : Screen("client_selection_screen")
+
     object ClientFormScreen : Screen(CLIENT_FORM_ROUTE)
 
     object OrdersListScreen : Screen(ORDER_LIST_ROUTE)
