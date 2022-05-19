@@ -11,6 +11,7 @@ import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
+import com.poli.prevendasomie.domain.mappers.toClientEntity
 import com.poli.prevendasomie.domain.mappers.toClienteModel
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import javax.inject.Inject
@@ -110,7 +111,11 @@ class ClientsRemoteMediator
                                 )
                     }
 
-                    val cliente = response.clientesCadastro.map { it.toClienteModel() }
+                    val cliente = response.clientesCadastro.map {
+                        it
+                            .toClienteModel()
+                            .toClientEntity()
+                    }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     clientDao.persistClientList(cliente)

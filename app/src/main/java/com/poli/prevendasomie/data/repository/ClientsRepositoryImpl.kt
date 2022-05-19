@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.repository
 
 import androidx.paging.PagingData
+import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
@@ -23,11 +24,11 @@ class ClientsRepositoryImpl
         return remote.getAllClients()
     }
 
-    override fun getNonPaginatedClientList(): Flow<List<ClientesCadastro>> {
+    override fun getNonPaginatedClientList(): Result<List<ClientesCadastroEntity>> {
         return local.getNonPaginatedClients()
     }
 
-    override suspend fun getSelectedClient(clientId: Int): ClientesCadastro {
+    override suspend fun getSelectedClient(clientId: Int): ClientesCadastroEntity {
 
         return local.getSelectedClient(clientId = clientId)
     }

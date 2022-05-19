@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.clientes
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.mappers.toClienteModel
 import com.poli.prevendasomie.domain.model.clientes.ListarClientes
 
 data class ListarClientesDto(
@@ -23,6 +24,6 @@ fun ListarClientesDto.toListarClientes(): ListarClientes {
         registros = registros,
         totalDePaginas = totalDePaginas,
         totalDeRegistros = totalDeRegistros,
-        clientes = clientesCadastro.map { it.toClientesCadastro() }
+        clientes = clientesCadastro.map { it.toClienteModel() }
     )
 }

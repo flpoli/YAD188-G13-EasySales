@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.poli.prevendasomie.common.Constants.CLIENTS_TABLE
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import kotlinx.coroutines.flow.Flow
@@ -12,21 +13,21 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ClientDao {
 
-    @Query("SELECT * FROM clients_table")
+    @Query("SELECT * FROM $CLIENTS_TABLE")
     fun getAllClients(): PagingSource<Int, ClientesCadastroEntity>
 
-    @Query("SELECT * FROM clients_table")
-    fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
+    @Query("SELECT * FROM $CLIENTS_TABLE")
+    fun getNonPaginatedClients(): Result<List<ClientesCadastroEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun persistClientList(cliente: List<ClientesCadastro>)
+    suspend fun persistClientList(cliente: List<ClientesCadastroEntity>)
 
-    @Query("SELECT * FROM clients_table WHERE id = :id")
+    @Query("SELECT * FROM $CLIENTS_TABLE WHERE id = :id")
     suspend fun getClientById(id: Int): ClientesCadastroEntity
 
-    @Query("DELETE FROM clients_table")
+    @Query("DELETE FROM $CLIENTS_TABLE")
     suspend fun deleteAllClients()
 
-    @Query("SELECT COUNT(ID) from clients_table")
+    @Query("SELECT COUNT(ID) from $CLIENTS_TABLE")
     suspend fun getClientsCount(): Int
 }

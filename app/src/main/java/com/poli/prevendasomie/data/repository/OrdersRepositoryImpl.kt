@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.repository
 
 import androidx.paging.PagingData
+import com.poli.prevendasomie.domain.mappers.toClientEntity
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.repository.LocalDataSource
@@ -21,6 +22,6 @@ class OrdersRepositoryImpl
     }
 
     override suspend fun insertSelectedClient(selectedClient: ClientesCadastro) {
-        local.insertSelectedCliente(selectedClient)
+        local.insertSelectedCliente(selectedClient.toClientEntity())
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.core.UiText
+import com.poli.prevendasomie.domain.mappers.toClientModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -76,7 +77,7 @@ class ClientSelectionViewModel
                         state = state.copy(
                             isLoading = true,
                             selectableClient = clientes.map {
-                                SelectableClientUiState(it)
+                                SelectableClientUiState(it.toClientModel())
                             }
                         )
                 }

@@ -13,6 +13,7 @@ import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
@@ -28,7 +29,7 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         UserDataModel::class,
         ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
-        ClientesCadastro::class,
+        ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
         PedidoVendaProduto::class,
         OrdersRemoteKeys::class,
