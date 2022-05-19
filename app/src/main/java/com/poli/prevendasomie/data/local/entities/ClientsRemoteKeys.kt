@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class ClientsRemoteKeys(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val prevPage: Int?,
     val nextPage: Int?,
     val lastUpdated: Long?
