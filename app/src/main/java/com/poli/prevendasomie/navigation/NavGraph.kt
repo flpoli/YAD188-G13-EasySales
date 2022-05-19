@@ -22,8 +22,8 @@ import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigati
 import com.poli.prevendasomie.presentation.main_screen.components.FabButton
 import com.poli.prevendasomie.presentation.main_screen.components.TopBar
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
-import com.poli.prevendasomie.presentation.pedidos.OrdersListScreen
-import com.poli.prevendasomie.presentation.pedidos.searchclient.ClientSelectionScreen
+import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
+import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
@@ -43,7 +43,7 @@ fun SetupNavGraph(
                 navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
                 navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
             ) {
-                TopBar()
+                TopBar(navController = navController)
             }
         },
 
@@ -72,7 +72,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.OrderFormScreen.route
+            startDestination = Screen.LoginScreen.route
         ) {
 
             composable(Screen.LoginScreen.route) {
@@ -114,8 +114,8 @@ fun SetupNavGraph(
                 OrdersFormScreen(onNavigate = navController::navigate)
             }
 
-            composable(Screen.ClientSelectionScreen.route){
-                ClientSelectionScreen()
+            composable(Screen.ClientSelectionScreen.route) {
+                ClientSelectionScreen(onNavigateUp = { navController.navigateUp() })
             }
         }
     }

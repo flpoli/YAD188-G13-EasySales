@@ -12,16 +12,6 @@ import com.poli.prevendasomie.navigation.Screen
 @Composable
 fun FabButton(navController: NavController) {
 
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .padding(20.dp),
-//        verticalArrangement = Arrangement.Bottom,
-//        horizontalAlignment = Alignment.End
-//    ) {
-//
-//    }
-
     FloatingActionButton(
 
         onClick = { navController.navigate(Screen.ClientFormScreen.route) },

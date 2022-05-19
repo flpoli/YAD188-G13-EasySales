@@ -1,11 +1,9 @@
 package com.poli.prevendasomie.presentation.clientes.client_list
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -25,7 +23,6 @@ fun ClientListScreen(
         navController = navController,
         cliente = allClientes
     )
-
 }
 
 @Composable

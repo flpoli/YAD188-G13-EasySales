@@ -2,8 +2,10 @@ package com.poli.prevendasomie.di
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.google.gson.Gson
 import com.poli.prevendasomie.common.Constants.DATA_BASE_NAME
 import com.poli.prevendasomie.data.local.DatabaseConverter
@@ -35,6 +37,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 @ExperimentalPagingApi
@@ -58,6 +61,15 @@ class RepositoryModule {
             DATA_BASE_NAME
         )
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
+
+            .setQueryCallback(
+                RoomDatabase.QueryCallback {
+
+                        sqlQuery, bindArgs ->
+                    Log.i("SQL Query: ", "$sqlQuery SQL Args: $bindArgs")
+                },
+                Executors.newSingleThreadExecutor()
+            )
             .build()
     }
 
@@ -94,11 +106,12 @@ class RepositoryModule {
 
         return LocalDataSourceImpl(db)
     }
-    // ********************************************************//
+    /********************************************************/
 
     @Provides
     @Singleton
-    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource): ClientsRepository {
+    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource):
+            ClientsRepository {
 
         return ClientsRepositoryImpl(api, remote, local)
     }
@@ -110,10 +123,11 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideOrdersRepository(remote: RemoteDataSource): OrdersRepository {
+    fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource):
+            OrdersRepository {
 
-        return OrdersRepositoryImpl(remote)
+        return OrdersRepositoryImpl(remote, local)
     }
 
-    // *******************************************************//
+    /*******************************************************/
 }

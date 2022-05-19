@@ -18,6 +18,7 @@ sealed class Screen(val route: String) {
     object SignUpScreen : Screen(SIGNUP_ROUTE)
 
     object ClientListScreen : Screen(CLIENT_LIST_ROUTE)
+
     object ClientDetailScreen : Screen("$CLIENT_DETAIL_ROUTE/{clientId}") {
 
         fun passClientId(clientId: Int): String {
@@ -26,7 +27,6 @@ sealed class Screen(val route: String) {
     }
 
     object ClientSelectionScreen : Screen("client_selection_screen")
-
     object ClientFormScreen : Screen(CLIENT_FORM_ROUTE)
 
     object OrdersListScreen : Screen(ORDER_LIST_ROUTE)

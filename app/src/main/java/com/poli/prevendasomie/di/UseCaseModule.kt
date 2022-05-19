@@ -5,11 +5,13 @@ import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.domain.usecase.UseCases
 import com.poli.prevendasomie.domain.usecase.clients.GetClientDetailsUseCase
+import com.poli.prevendasomie.domain.usecase.clients.GetClientListForSelectionUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.GetClientListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.pedidos.GetOrdersListUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.pedidos.InsertSelectedClientUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCaseImpl
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
@@ -75,7 +77,9 @@ object UseCaseModule {
             getProductListUseCase = GetProductsListUseCaseImpl(r1),
             getClientListUseCase = GetClientListUseCaseImpl(r2),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
-            getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2)
+            getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2),
+            getClientListForSelectionUseCase = GetClientListForSelectionUseCaseImpl(r2),
+            insertSelectedClientUseCase = InsertSelectedClientUseCaseImpl(r3)
         )
     }
 }

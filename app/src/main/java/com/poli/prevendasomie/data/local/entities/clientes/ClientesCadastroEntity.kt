@@ -1,12 +1,16 @@
-package com.poli.prevendasomie.domain.model.clientes
+package com.poli.prevendasomie.data.local.entities.clientes
 
-
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.common.Constants.CLIENTS_TABLE
 import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 
+@Entity(tableName = CLIENTS_TABLE)
+data class ClientesCadastroEntity(
 
-data class ClientesCadastro(
-
-
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val codCliIntegracao: String? = genCodCli(),
     val codClienteOmie: Long? = 0,
     val nomeFantasia: String? = "",

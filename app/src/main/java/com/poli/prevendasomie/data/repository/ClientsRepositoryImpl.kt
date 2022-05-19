@@ -23,6 +23,10 @@ class ClientsRepositoryImpl
         return remote.getAllClients()
     }
 
+    override fun getNonPaginatedClientList(): Flow<List<ClientesCadastro>> {
+        return local.getNonPaginatedClients()
+    }
+
     override suspend fun getSelectedClient(clientId: Int): ClientesCadastro {
 
         return local.getSelectedClient(clientId = clientId)

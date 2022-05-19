@@ -15,13 +15,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.navigation.Screen
-import kotlinx.coroutines.InternalCoroutinesApi
+import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionViewModel
+import com.poli.prevendasomie.presentation.pedidos.clientselection.SelectionEvent
 
 @Composable
 fun OrdersFormScreen(
@@ -29,26 +28,33 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-
-    LaunchedEffect(key1 = true){
+    val state = viewModel
+    println("ORDER SCREEN EVENT: $state")
+    LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
 
                 event ->
-                    when(event){
+            when (event) {
 
-                        is UiEvent.Navigate -> onNavigate(event)
-                        else -> Unit
-
-                    }
-                }
+                is UiEvent.Navigate -> onNavigate(event)
+                else -> Unit
+            }
+        }
     }
 
+    Column {
 
-    AddClientBox(
+        AddClientBox(
 
-        onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
-    )
+            onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(text = "Cliente Selecionado: ")
+
+    }
 }
 
 @Composable
@@ -56,7 +62,6 @@ fun AddClientBox(
 
     onClick: () -> Unit
 ) {
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -64,13 +69,10 @@ fun AddClientBox(
     ) {
 
         Spacer(modifier = Modifier.height(12.dp))
-
         Row(
-
             modifier = Modifier
                 .background(color = Color.LightGray)
                 .padding(20.dp)
-
                 .clickable {
                     onClick()
                 }
@@ -78,32 +80,6 @@ fun AddClientBox(
         ) {
 
             Text(text = "Selecionar cliente")
-
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
-
-            modifier = Modifier
-                .background(color = Color.LightGray)
-                .padding(20.dp)
-
-
-        ) {
-
-            Text(text = "Novo produto")
-
         }
     }
-
-}
-
-
-@Preview
-@Composable
-fun PreviewClientSelectionBox() {
-
-    //AddClientBox()
-
 }

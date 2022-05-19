@@ -4,88 +4,70 @@ import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 data class ClientesCadastroDto(
-    val id: Int = 0,
+
+
     @SerializedName("bairro")
-    val bairro: String,
+    val bairro: String?,
     @SerializedName("bloquear_exclusao")
-    val bloquearExclusao: String,
+    val bloquearExclusao: String? = "",
     @SerializedName("bloquear_faturamento")
-    val bloquearFaturamento: String,
+    val bloquearFaturamento: String? = "",
     @SerializedName("cep")
-    val cep: String,
+    val cep: String?,
     @SerializedName("cidade")
-    val cidade: String,
+    val cidade: String?,
     @SerializedName("cidade_ibge")
-    val cidadeIbge: String,
+    val cidadeIbge: String? = "",
     @SerializedName("cnpj_cpf")
-    val cnpjCpf: String,
+    val cnpjCpf: String? = "",
     @SerializedName("codigo_cliente_integracao")
-    val codigoClienteIntegracao: String,
+    val codigoClienteIntegracao: String? = "",
     @SerializedName("codigo_cliente_omie")
-    val codigoClienteOmie: Long,
+    val codigoClienteOmie: Long? = 0,
     @SerializedName("codigo_pais")
-    val codigoPais: String,
+    val codigoPais: String? = "",
     @SerializedName("complemento")
-    val complemento: String,
+    val complemento: String? = "",
     @SerializedName("contribuinte")
-    val contribuinte: String,
+    val contribuinte: String? = "",
     @SerializedName("dadosBancarios")
-    val dadosBancarios: DadosBancarios,
+    val dadosBancarios: DadosBancarios? = DadosBancarios(),
     @SerializedName("username")
     val email: String? = "",
     @SerializedName("endereco")
-    val endereco: String,
+    val endereco: String? = "",
     @SerializedName("enderecoEntrega")
-    val enderecoEntrega: EnderecoEntrega,
+    val enderecoEntrega: EnderecoEntrega? = EnderecoEntrega(),
     @SerializedName("endereco_numero")
-    val enderecoNumero: String,
+    val enderecoNumero: String? = "",
     @SerializedName("estado")
-    val estado: String,
+    val estado: String? = "",
     @SerializedName("exterior")
-    val exterior: String,
+    val exterior: String? = "",
     @SerializedName("inativo")
-    val inativo: String,
+    val inativo: String? = "",
     @SerializedName("info")
-    val info: Info,
+    val info: Info? = Info(),
     @SerializedName("inscricao_estadual")
-    val inscricaoEstadual: String,
+    val inscricaoEstadual: String? = "",
     @SerializedName("inscricao_municipal")
-    val inscricaoMunicipal: String,
+    val inscricaoMunicipal: String? = "",
     @SerializedName("nome_fantasia")
-    val nomeFantasia: String,
+    val nomeFantasia: String? = "",
     @SerializedName("optante_simples_nacional")
-    val optanteSimplesNacional: String,
+    val optanteSimplesNacional: String? = "",
     @SerializedName("pessoa_fisica")
-    val pessoaFisica: String,
+    val pessoaFisica: String? = "",
     @SerializedName("razao_social")
-    val razaoSocial: String,
+    val razaoSocial: String? = "",
     @SerializedName("recomendacoes")
-    val recomendacoes: Recomendacoes,
+    val recomendacoes: Recomendacoes? = Recomendacoes(),
     @SerializedName("tags")
-    val tags: List<Tag>,
+    val tags: List<Tag>? = emptyList(),
     @SerializedName("telefone1_ddd")
-    val telefone1Ddd: String,
+    val telefone1Ddd: String? = "",
     @SerializedName("telefone1_numero")
-    val telefone1Numero: String
+    val telefone1Numero: String? = ""
 )
 
-fun ClientesCadastroDto.toClientesCadastro(): ClientesCadastro {
 
-    return ClientesCadastro(
-        id = id,
-        codCliIntegracao = codigoClienteIntegracao,
-        codClienteOmie = codigoClienteOmie,
-        nomeFantasia = nomeFantasia,
-        razaoSocial = razaoSocial,
-        cnpjCpf = cnpjCpf,
-        telefone1Ddd = telefone1Ddd,
-        telefone1Numero = telefone1Numero,
-        email = email,
-        endereco = endereco,
-        enderecoNumero = enderecoNumero,
-        bairro = bairro,
-        cep = cep,
-        cidade = cidade,
-        complemento = complemento
-    )
-}

@@ -25,6 +25,7 @@ object Constants {
     const val USER_TABLE = "user_tb"
     const val PRODUCTS_TABLE = "products_tb"
     const val ORDERS_TABLE = "orders_tb"
+    const val CLIENTS_TABLE = "clients_tb"
 
     // ERP Api http routes
     const val BASE_ERP_URL: String = "https://app.omie.com.br/api/v1/"

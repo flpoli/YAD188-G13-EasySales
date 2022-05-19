@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 
 @Dao
@@ -30,4 +31,11 @@ interface OrdersDao {
     fun selectOrderById(id: Int): PedidoVendaProduto
 
     /**************************************************************/
+
+    /* query to  add client in order */
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertClientOnOrder(selectedClient: ClientesCadastro)
+
+    /**********************************/
 }

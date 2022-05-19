@@ -5,10 +5,9 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
 
-fun NavHostController.navigate(event: UiEvent.Navigate){
+fun NavHostController.navigate(event: UiEvent.Navigate) {
 
     this.navigate(event.route)
-
 }
 
 @Composable
@@ -25,7 +24,5 @@ fun <T> NavHostController.NavigateForResult(keyResult: String, onResult: (T) -> 
         currentBackStackEntry
             ?.savedStateHandle
             ?.remove<T>(keyResult)
-
     }
-
 }

@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface ClientsRepository {
 
     fun getClientList(): Flow<PagingData<ClientesCadastro>>?
+    fun getNonPaginatedClientList(): Flow<List<ClientesCadastro>>
     suspend fun getSelectedClient(clientId: Int): ClientesCadastro
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
 }

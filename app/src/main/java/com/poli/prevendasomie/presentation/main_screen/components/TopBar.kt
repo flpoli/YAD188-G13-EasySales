@@ -22,30 +22,21 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.poli.prevendasomie.navigation.Screen
+import androidx.navigation.NavHostController
 
 @Composable
-fun TopBar() {
-
-    val selectedItem by remember { mutableStateOf(0) }
-    val items =
-        listOf(
-            Screen.LoginScreen.route,
-            Screen.MainScreen.route,
-            "Clientes",
-            "Produtos", "Pedidos"
-        )
+fun TopBar(
+    navController: NavHostController
+) {
 
     TopAppBar(
-        title = { Text(text = items[selectedItem]) },
+        title = { Text(text = navController.currentDestination?.route ?: "noo") },
         navigationIcon = {
 
             IconButton(onClick = { /* doSomething() */ }) {
@@ -54,6 +45,9 @@ fun TopBar() {
         },
 
         actions = {
+
+//            SearchTopBar("", {}, {}, {})
+
             IconButton(onClick = { /* doSomething() */ }) {
                 Icon(Icons.Filled.ImageSearch, contentDescription = null)
             }

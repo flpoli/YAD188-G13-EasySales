@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Observacoes(
     @SerializedName("obs_venda")
-    val obsVenda: String?
+    val obsVenda: String? = ""
 )

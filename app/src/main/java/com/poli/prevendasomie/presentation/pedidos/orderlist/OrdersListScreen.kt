@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.pedidos
+package com.poli.prevendasomie.presentation.pedidos.orderlist
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

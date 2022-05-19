@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class DadosBancarios(
     @SerializedName("agencia")
-    val agencia: String,
+    val agencia: String? = "",
     @SerializedName("codigo_banco")
-    val codigoBanco: String,
+    val codigoBanco: String? = "",
     @SerializedName("conta_corrente")
-    val contaCorrente: String,
+    val contaCorrente: String? = "",
     @SerializedName("doc_titular")
-    val docTitular: String,
+    val docTitular: String? = "",
     @SerializedName("nome_titular")
-    val nomeTitular: String
+    val nomeTitular: String? = ""
 )
