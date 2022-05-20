@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetClientListForSelectionUseCase {
 
-    operator fun invoke(): Result<List<ClientesCadastroEntity>>
+    operator fun invoke(): Flow<List<ClientesCadastroEntity>>
 }

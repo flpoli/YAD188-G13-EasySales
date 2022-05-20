@@ -1,10 +1,13 @@
 
 package com.poli.prevendasomie.data.repository
 
+import android.util.Log
+import android.util.Log.DEBUG
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.poli.prevendasomie.common.Constants.API_PAGE_SIZE
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
@@ -17,6 +20,7 @@ import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 @ExperimentalPagingApi
 class RemoteDataSourceImpl(
@@ -47,9 +51,11 @@ class RemoteDataSourceImpl(
 
     override fun getAllClients(): Flow<PagingData<ClientesCadastro>> {
 
-        val pagingSourceFactory = { clientDao.getAllClients() }
+        val pagingSourceFactory = clientDao.getAllClients()
 
-        return Pager(
+        pagingSourceFactory.jumpingSupported
+
+        return this.Pager(
             config = PagingConfig(
                 pageSize = API_PAGE_SIZE,
                 enablePlaceholders = false
@@ -59,7 +65,12 @@ class RemoteDataSourceImpl(
                 db
             ),
             pagingSourceFactory = pagingSourceFactory
-        ).flow
+
+        )
+
+        Log.d("Remote Data Source - Pager", "")
+
+
     }
 
     override fun getAllOrders(): Flow<PagingData<PedidoVendaProduto>> {
@@ -77,5 +88,25 @@ class RemoteDataSourceImpl(
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow
+    }
+
+    override fun Pager(
+        config: PagingConfig,
+        remoteMediator: ClientsRemoteMediator,
+        pagingSourceFactory: PagingSource<Int, ClientesCadastroEntity>
+    ): Flow<PagingData<ClientesCadastro>> {
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = API_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            remoteMediator = ClientsRemoteMediator(
+                api,
+                db
+            ),
+            pagingSourceFactory = pagingSourceFactory
+
+        )
     }
 }

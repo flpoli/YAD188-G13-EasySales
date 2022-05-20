@@ -11,6 +11,7 @@ import com.poli.prevendasomie.domain.mappers.toClientModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -70,25 +71,34 @@ class ClientSelectionViewModel
                 selectableClient = emptyList()
             )
 
-            useCase.getClientListForSelectionUseCase()
-                .onSuccess {
-                    clientes ->
+            useCase.getClientListForSelectionUseCase().map { it ->
 
-                        state = state.copy(
-                            isLoading = true,
-                            selectableClient = clientes.map {
-                                SelectableClientUiState(it.toClientModel())
-                            }
-                        )
-                }
-                .onFailure {
-                    state = state.copy(isLoading = false)
-                    _uiEvent.send(
-                        UiEvent.ShowSnackbar(
-                            UiText.StringText("ERRINHo")
-                        )
-                    )
-                }
+                state = state.copy(
+                    isLoading = true,
+                    selectableClient = it.map {SelectableClientUiState(it.toClientModel())}
+                )
+
+                println(state)
+
+            }
+//                .onSuccess {
+//                    clientes ->
+//
+//                        state = state.copy(
+//                            isLoading = true,
+//                            selectableClient = clientes.map {
+//                                SelectableClientUiState(it.toClientModel())
+//                            }
+//                        )
+//                }
+//                .onFailure {
+//                    state = state.copy(isLoading = false)
+//                    _uiEvent.send(
+//                        UiEvent.ShowSnackbar(
+//                            UiText.StringText("ERRINHo")
+//                        )
+//                    )
+//                }
 
 
         }

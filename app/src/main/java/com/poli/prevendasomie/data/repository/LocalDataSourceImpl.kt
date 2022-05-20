@@ -22,7 +22,7 @@ class LocalDataSourceImpl
         return clientDao.getClientById(id = clientId)
     }
 
-    override fun getNonPaginatedClients(): Result<List<ClientesCadastroEntity>> {
+    override fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>> {
 
         return clientDao.getNonPaginatedClients()
 

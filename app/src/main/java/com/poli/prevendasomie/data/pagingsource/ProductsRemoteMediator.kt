@@ -108,6 +108,8 @@ class ProductsRemoteMediator
                         )
                     }
 
+                   response.produtoServicoCadastro.map { if(it.imagens == null){it.imagens = emptyList()}}
+
                     val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
                     Log.d("LOG PRODUTO?", "$prod")
 

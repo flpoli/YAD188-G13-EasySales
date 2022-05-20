@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface LocalDataSource {
 
     suspend fun getSelectedClient(clientId: Int): ClientesCadastroEntity
-    fun getNonPaginatedClients(): Result<List<ClientesCadastroEntity>>
+    fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
 
     suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity)
 }

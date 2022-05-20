@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.data.pagingsource
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.poli.prevendasomie.data.remote.OmieAPI
@@ -52,7 +53,7 @@ class ProductsSearchSource
                 )
             }
         } catch (e: Exception) {
-
+            Log.d("NULL AT SEARCH SOURCE", "$e")
             LoadResult.Error(e)
         }
     }

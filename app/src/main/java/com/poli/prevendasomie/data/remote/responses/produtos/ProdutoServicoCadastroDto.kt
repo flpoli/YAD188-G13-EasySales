@@ -102,7 +102,11 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("unidade")
     val unidade: String?,
     @SerializedName("valor_unitario")
-    val valorUnitario: Double?
+    val valorUnitario: Double?,
+    @SerializedName("imagens")
+    var imagens: List<Imagens>? = listOf(Imagens("")),
+
+
 )
 
 fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
@@ -117,7 +121,8 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
         descrDetalhada = descrDetalhada,
         quantidadeEstoque = quantidadeEstoque,
         unidade = unidade,
-        valorUnitario = valorUnitario
+        valorUnitario = valorUnitario,
+        imagens = imagens,
 
     )
 }

@@ -59,22 +59,20 @@ fun ListContent(
                 key = { pedidos -> pedidos.id }
             ) {
 
-                    pedido ->
-                pedido?.let {
+            pedido ->
+                if (pedido != null) {
+                    OrderListItem(
+                        order = pedido
+                    )
+                }
 
-                    pedido.cabecalho.let {
 
-                        if (it != null) {
-                            Text(
-                                text = it.numeroPedido.toString()
-                            )
-                        }
                     }
                 }
             }
         }
-    }
-}
+
+
 
 @Composable
 fun OrderFab(navController: NavController) {

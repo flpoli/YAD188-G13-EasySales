@@ -45,22 +45,16 @@ fun ListContent(
                 key = { produto -> produto.id }
             ) {
 
-                    produto ->
-                produto?.let {
+                produto ->
+                if (produto != null) {
+                    ProductItem(produto = produto)
+                }
 
-                    produto.descricao?.let { it1 ->
-                        Text(
-                            text = "Nome: $it1"
-                        )
-                        Text(
-                            text = "Estoque: ${ produto.quantidadeEstoque ?: "0" }"
-                        )
                     }
                 }
             }
         }
-    }
-}
+
 
 @Composable
 fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boolean {

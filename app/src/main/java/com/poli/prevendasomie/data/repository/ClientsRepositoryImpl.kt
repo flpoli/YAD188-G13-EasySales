@@ -19,12 +19,12 @@ class ClientsRepositoryImpl
     private val local: LocalDataSource
 ) : ClientsRepository {
 
-    override fun getClientList(): Flow<PagingData<ClientesCadastro>> {
+    override fun getClientList(): Flow<PagingData<ClientesCadastro>>? {
 
         return remote.getAllClients()
     }
 
-    override fun getNonPaginatedClientList(): Result<List<ClientesCadastroEntity>> {
+    override fun getNonPaginatedClientList(): Flow<List<ClientesCadastroEntity>> {
         return local.getNonPaginatedClients()
     }
 

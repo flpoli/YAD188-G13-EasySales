@@ -17,7 +17,7 @@ interface ClientDao {
     fun getAllClients(): PagingSource<Int, ClientesCadastroEntity>
 
     @Query("SELECT * FROM $CLIENTS_TABLE")
-    fun getNonPaginatedClients(): Result<List<ClientesCadastroEntity>>
+    fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistClientList(cliente: List<ClientesCadastroEntity>)

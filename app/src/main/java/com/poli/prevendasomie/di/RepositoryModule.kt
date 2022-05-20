@@ -63,7 +63,7 @@ class RepositoryModule {
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
 
             .setQueryCallback(
-                RoomDatabase.QueryCallback {
+                {
 
                         sqlQuery, bindArgs ->
                     Log.i("SQL Query: ", "$sqlQuery SQL Args: $bindArgs")
