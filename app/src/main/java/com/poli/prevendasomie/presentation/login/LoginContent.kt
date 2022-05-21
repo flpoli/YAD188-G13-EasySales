@@ -92,6 +92,7 @@ private fun LoginInputsColumn(
                 ?.getString(),
             enabled = viewState.inputEnabled,
 
+
         )
 
         if (viewState is LoginViewState.SubmissionError) {
@@ -132,7 +133,8 @@ private fun EmailInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Username",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -160,5 +162,6 @@ private fun PasswordInput(
                 /*TODO*/
             }
         ),
+        trailingIcon = {}
     )
 }

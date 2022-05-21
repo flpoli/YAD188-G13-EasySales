@@ -79,7 +79,8 @@ fun SetupNavGraph(
                 LoginScreen(navController = navController)
             }
             composable(Screen.SignUpScreen.route) {
-                SignupScreen(navController = navController)
+                SignupScreen(navController = navController, scaffoldState = scaffoldState
+                )
             }
             composable(Screen.MainScreen.route) {
                 MainScreen(navController = navController)

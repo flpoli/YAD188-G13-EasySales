@@ -1,32 +1,51 @@
 package com.poli.prevendasomie.presentation.signup
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.ScaffoldState
+
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.poli.prevendasomie.core.UiEvent
+import com.poli.prevendasomie.core.getString
 import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.SignUpButton
+import com.poli.prevendasomie.ui.theme.LocalSpacing
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun SignupScreen(
     navController: NavHostController,
+    scaffoldState: ScaffoldState,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
 
     val viewState = viewModel.viewState.collectAsState()
     val context = LocalContext.current
+    val spacing = LocalSpacing.current
 
     DisposableEffect(viewState.value) {
 
@@ -38,13 +57,35 @@ fun SignupScreen(
         onDispose { }
     }
 
-    SignUpContent(
-        viewState = viewState.value,
-        onNameChanged = viewModel::onNameChanged,
-        onEmailChanged = viewModel::onEmailChanged,
-        onPasswordChanged = viewModel::onPasswordChanged,
-        onSignUpClicked = viewModel::onSignUpClicked,
-    )
+    LaunchedEffect(key1 = true){
+
+        viewModel.uiEvent.collect {
+            event -> when(event){
+                is UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message.getString(context)
+                    )
+                }
+            }
+        }
+    }
+
+
+    Column(
+        modifier = Modifier.padding(top = 20.dp)
+    ){
+
+        SignUpContent(
+            viewState = viewState.value,
+            onNameChanged = viewModel::onNameChanged,
+            onEmailChanged = viewModel::onEmailChanged,
+            onPasswordChanged = viewModel::onPasswordChanged,
+            onPasswordConfirmationChanged = viewModel::onPasswordConfirmationChanged,
+            onSignUpClicked = viewModel::onSignUpClicked,
+        )
+    }
+
+
 }
 
 @Composable
@@ -53,6 +94,7 @@ fun SignUpContent(
     onNameChanged: (String) -> Unit,
     onEmailChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
+    onPasswordConfirmationChanged: (String) -> Unit,
     onSignUpClicked: () -> Unit,
 
 ) {
@@ -67,7 +109,9 @@ fun SignUpContent(
             onNameChanged,
             onEmailChanged,
             onPasswordChanged,
-            onSignUpClicked
+            onPasswordConfirmationChanged,
+            onSignUpClicked,
+
         )
     }
 }
@@ -78,9 +122,12 @@ fun SignUpInputColumn(
     onNameChanged: (String) -> Unit,
     onEmailChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
+    onPasswordConfirmationChanged: (String) -> Unit,
     onSignUpClicked: () -> Unit,
 
+
 ) {
+
 
     Column(
         modifier = Modifier
@@ -110,17 +157,17 @@ fun SignUpInputColumn(
             text = viewState.userData.password.value,
             onTextChanged = onPasswordChanged,
             errorMessage = null,
-            enabled = viewState.inputEnabled
+            enabled = viewState.inputEnabled,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
-//        PasswordValidationInputField(
-//            text = "",
-//            onTextChanged = {},
-//            errorMessage = null,
-//            enabled = viewState.inputEnabled,
-//        )
+        PasswordValidationInputField(
+            text = viewState.userData.passwordConfirm.value,
+            onTextChanged = onPasswordConfirmationChanged,
+            errorMessage = null,
+            enabled = viewState.inputEnabled,
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -144,7 +191,8 @@ fun NameInputField(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Nome",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -161,7 +209,8 @@ fun EmailInputField(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Username",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -170,17 +219,39 @@ fun PasswordInputField(
     text: String,
     onTextChanged: (String) -> Unit,
     errorMessage: String?,
-    enabled: Boolean
+    enabled: Boolean,
 ) {
+    val showPassword = remember { mutableStateOf(false) }
 
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Password",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {
+
+
+
+            IconButton(
+
+                modifier = Modifier,
+                onClick = { showPassword.value = !showPassword.value },
+
+            ){
+                Icon(
+                    imageVector = if (showPassword.value) { Icons.Filled.Visibility } else { Icons.Filled.VisibilityOff },
+                    contentDescription = "Visibility",
+                    modifier = Modifier.clickable { showPassword.value = !showPassword.value }
+
+                )
+            }
+        }
     )
 }
+
+
+
 
 @Composable
 fun PasswordValidationInputField(
@@ -195,6 +266,7 @@ fun PasswordValidationInputField(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Repeat password",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
