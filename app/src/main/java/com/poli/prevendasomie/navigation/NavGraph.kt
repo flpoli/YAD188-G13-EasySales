@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.FabPosition
 import androidx.compose.material.Scaffold
@@ -13,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
@@ -72,7 +74,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.ClientSelectionScreen.route
+            startDestination = Screen.OrderFormScreen.route
         ) {
 
             composable(Screen.LoginScreen.route) {
@@ -112,11 +114,20 @@ fun SetupNavGraph(
                 OrdersListScreen(navController = navController)
             }
             composable(Screen.OrderFormScreen.route) {
-                OrdersFormScreen(onNavigate = navController::navigate)
+
+
+                val clientResult = navController
+                    .previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.get<ClientesCadastro>("cliente")
+
+                Log.d("ORDER SCREEN", "${clientResult?.nomeFantasia}")
+
+                OrdersFormScreen(navController = navController, onNavigate = navController::navigate)
             }
 
             composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(onNavigateUp = { /*navController.navigateUp() */})
+                ClientSelectionScreen(navController = navController,onNavigateUp = { navController.navigateUp() })
             }
         }
     }

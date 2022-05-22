@@ -28,7 +28,7 @@ class ClientsRepositoryImpl
         return local.getNonPaginatedClients()
     }
 
-    override suspend fun getSelectedClient(clientId: Int): ClientesCadastroEntity {
+    override suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity {
 
         return local.getSelectedClient(clientId = clientId)
     }

@@ -10,17 +10,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.EmptyScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormViewModel
 
 @Composable
 fun ClientSelectionScreen(
+    navController: NavHostController,
     onNavigateUp: () -> Unit,
     viewModel: ClientSelectionViewModel = hiltViewModel(),
 
@@ -50,7 +53,16 @@ fun ClientSelectionScreen(
                     SelectableClientItem(
                         selectableClientUiState = cliente,
                         onClick = {
-                            viewModel.onEvent(SelectionEvent.OnClientSelected(cliente.cliente))
+
+                            println("Cliente? - ${cliente.cliente}")
+
+                            navController.currentBackStackEntry?.savedStateHandle?.set (
+                                key = "cliente",
+                                value = cliente.cliente
+                            )
+                            navController.navigate(Screen.OrderFormScreen.route)
+
+                            //viewModel.onEvent(SelectionEvent.OnClientSelected(cliente = cliente.cliente))
                         }
                     )
 

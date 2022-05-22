@@ -5,7 +5,7 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 data class OrderOverviewState(
 
-    val cliente: ClientesCadastro = ClientesCadastro(),
+    var cliente: ClientesCadastro = ClientesCadastro(),
     val produtos: List<ProdutoServicoCadastro> = emptyList()
 
 )

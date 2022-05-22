@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.presentation.pedidos
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,19 +17,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
+import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionViewModel
-import com.poli.prevendasomie.presentation.pedidos.clientselection.SelectionEvent
 
 @Composable
 fun OrdersFormScreen(
+    navController: NavHostController,
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-    val state = viewModel
-    println("ORDER SCREEN EVENT: $state")
+    val state = viewModel.state
+    val  selectedClient= navController.previousBackStackEntry?.savedStateHandle?.get<ClientesCadastro>("cliente")
+
+
+    if(selectedClient!=null) state.cliente = selectedClient
+
+
     LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
@@ -46,41 +51,50 @@ fun OrdersFormScreen(
 
     Column {
 
-        AddClientBox(
-
+        ClientBox(
+            state = state,
             onClick = {onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route))}
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Text(text = "Cliente Selecionado: ")
 
     }
 }
 
 @Composable
-fun AddClientBox(
-
+fun ClientBox(
+    state: OrderOverviewState,
     onClick: () -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxWidth()
+            .clickable {
+                onClick()
+            }
     ) {
 
         Spacer(modifier = Modifier.height(12.dp))
         Row(
             modifier = Modifier
                 .background(color = Color.LightGray)
+                .fillMaxWidth()
                 .padding(20.dp)
-                .clickable {
-                    onClick()
-                }
 
         ) {
 
+            println(state.cliente)
+            if(state.cliente.nomeFantasia?.isEmpty() == true){
             Text(text = "Selecionar cliente")
+            } else {
+
+                Text(text = "${state.cliente.nomeFantasia}")
+
+            }
+
+
         }
     }
 }

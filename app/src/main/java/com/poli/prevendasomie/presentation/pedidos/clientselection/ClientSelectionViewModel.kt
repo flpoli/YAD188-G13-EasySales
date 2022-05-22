@@ -11,6 +11,7 @@ import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.domain.mappers.toClientModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -36,7 +37,6 @@ class ClientSelectionViewModel
         when (event) {
 
             is SelectionEvent.OnClientSelected -> {
-
                 selectClient(event)
             }
         }
@@ -50,12 +50,11 @@ class ClientSelectionViewModel
 
             val uiState = state.selectableClient.find { it.cliente == event.cliente }
 
-
             useCase.insertSelectedClientUseCase(
 
-                selectedClient = uiState?.cliente ?: return@launch
-            )
+                 selectedClient =  uiState?.cliente ?: return@launch
 
+            )
 
             _uiEvent.send(UiEvent.NavigateUp)
         }
@@ -69,25 +68,14 @@ class ClientSelectionViewModel
 
             useCase.getClientListForSelectionUseCase().collect { it ->
 
-
                 state = state.copy(
                     isLoading = false,
                     selectableClient = it.map { SelectableClientUiState(it.toClientModel()) }
                 )
 
             }
-
-
-
-
-
-
-
             }
-
-
         }
-
 }
 
 

@@ -9,7 +9,6 @@ data class CabecalhoEntity(
     @PrimaryKey(autoGenerate = true)
     val cabecalhoId: Int,
     val orderId: Int,
-
     val bloqueado: String?,
     val codigoCenarioImpostos: String?,
     val codigoCliente: Long?,

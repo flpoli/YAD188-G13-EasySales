@@ -17,7 +17,7 @@ class LocalDataSourceImpl
     private val clientDao = db.clientDao()
     private val orderDao = db.ordersDao()
 
-    override suspend fun getSelectedClient(clientId: Int): ClientesCadastroEntity {
+    override suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity {
 
         return clientDao.getClientById(id = clientId)
     }

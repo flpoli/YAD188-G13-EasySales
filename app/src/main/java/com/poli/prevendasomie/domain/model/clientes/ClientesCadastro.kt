@@ -1,12 +1,13 @@
 package com.poli.prevendasomie.domain.model.clientes
 
 
+
+import android.os.Parcelable
 import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class ClientesCadastro(
-
-
     val codCliIntegracao: String? = genCodCli(),
     val codClienteOmie: Long? = 0,
     val nomeFantasia: String? = "",
@@ -22,4 +23,4 @@ data class ClientesCadastro(
     val cidade: String? = "",
     val complemento: String? = ""
 
-)
+) : Parcelable

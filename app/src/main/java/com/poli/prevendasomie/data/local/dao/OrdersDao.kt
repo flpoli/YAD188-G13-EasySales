@@ -37,7 +37,7 @@ interface OrdersDao {
     /* query to  add client in order */
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertClientOnOrder(selectedClient: ClientesCadastroEntity)
+    suspend fun insertClientOnOrder(selectedClient: ClientesCadastroEntity)
 
     /**********************************/
 }

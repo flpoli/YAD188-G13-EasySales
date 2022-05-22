@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetClienteDetailUseCaseImpl
 @Inject constructor(private val repository: ClientsRepository) : GetClientDetailsUseCase {
 
-    override suspend fun invoke(clientId: Int): ClientesCadastro {
+    override suspend fun invoke(clientId: Long): ClientesCadastro {
 
         return repository.getSelectedClient(clientId = clientId).toClientModel()
     }

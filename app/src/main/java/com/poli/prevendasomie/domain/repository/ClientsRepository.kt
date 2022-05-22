@@ -11,6 +11,6 @@ interface ClientsRepository {
 
     fun getClientList(): Flow<PagingData<ClientesCadastroEntity>>
     fun getNonPaginatedClientList(): Flow<List<ClientesCadastroEntity>>
-    suspend fun getSelectedClient(clientId: Int): ClientesCadastroEntity
+    suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
 }

@@ -22,8 +22,8 @@ interface ClientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistClientList(cliente: List<ClientesCadastroEntity>)
 
-    @Query("SELECT * FROM $CLIENTS_TABLE WHERE id = :id")
-    suspend fun getClientById(id: Int): ClientesCadastroEntity
+    @Query("SELECT * FROM $CLIENTS_TABLE WHERE codClienteOmie = :id")
+    suspend fun getClientById(id: Long): ClientesCadastroEntity
 
     @Query("DELETE FROM $CLIENTS_TABLE")
     suspend fun deleteAllClients()

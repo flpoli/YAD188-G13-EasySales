@@ -21,6 +21,26 @@ class OrdersFormViewModel
     val uiEvent = _uiEvent.receiveAsFlow()
 
 
+    var state by mutableStateOf(OrderOverviewState())
 
 
+    fun onEvent(event: OrderOverviewEvent){
+
+        when(event) {
+
+            is OrderOverviewEvent.OnClientSelected -> {
+
+
+            }
+        }
+
+    }
+
+
+    private fun onSelected(){
+
+        
+
+
+    }
 }
