@@ -8,6 +8,7 @@ import com.poli.prevendasomie.common.Constants.MAIN_SCREEN_ROUTE
 import com.poli.prevendasomie.common.Constants.ONBOARDING_ROUTE
 import com.poli.prevendasomie.common.Constants.ORDER_FORM_ROUTE
 import com.poli.prevendasomie.common.Constants.ORDER_LIST_ROUTE
+import com.poli.prevendasomie.common.Constants.PRODUCT_FORM_SCREEN
 import com.poli.prevendasomie.common.Constants.PRODUCT_LIST_ROUTE
 import com.poli.prevendasomie.common.Constants.SIGNUP_ROUTE
 
@@ -34,4 +35,5 @@ sealed class Screen(val route: String) {
     object OrderFormScreen : Screen(ORDER_FORM_ROUTE)
 
     object ProductListScreen : Screen(PRODUCT_LIST_ROUTE)
+    object ProductFormScreen: Screen(PRODUCT_FORM_SCREEN)
 }

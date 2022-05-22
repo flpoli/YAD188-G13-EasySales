@@ -18,6 +18,7 @@ object Constants {
     const val SIGNUP_ROUTE = "signup_screen"
     const val CLIENT_FORM_ROUTE = "client_form_screen"
     const val PRODUCT_LIST_ROUTE = "product_list_screen"
+    const val PRODUCT_FORM_SCREEN = "product_form_screen"
     const val ORDER_LIST_ROUTE = "order_list_screen"
     const val ORDER_FORM_ROUTE = "order_form_screen"
 

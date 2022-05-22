@@ -28,6 +28,7 @@ import com.poli.prevendasomie.presentation.onboarding.OnboardingScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
+import com.poli.prevendasomie.presentation.produtos.productform.ProductFormScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
@@ -69,7 +70,7 @@ fun SetupNavGraph(
                 navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
             ) {
 
-                FabButton(navController = navController) // aqui deve passar o currentBackStackEntryAsState, certo?
+                FabButton(navController = navController)
             }
         }
 
@@ -111,6 +112,9 @@ fun SetupNavGraph(
             }
             composable(Screen.ProductListScreen.route) {
                 ProductListScreen(navController = navController)
+            }
+            composable(Screen.ProductFormScreen.route){
+                ProductFormScreen()
             }
             composable(Screen.ClientFormScreen.route) {
                 ClientFormScreen(

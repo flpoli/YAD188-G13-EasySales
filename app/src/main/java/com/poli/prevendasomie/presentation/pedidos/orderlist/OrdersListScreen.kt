@@ -38,7 +38,6 @@ fun OrdersListScreen(
     val allOrders = viewModel.pedidos.collectAsLazyPagingItems()
 
     ListContent(pedidos = allOrders)
-    OrderFab(navController = navController)
 }
 
 @Composable
@@ -69,29 +68,6 @@ fun ListContent(
     }
 }
 
-@Composable
-fun OrderFab(navController: NavController) {
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.End
-    ) {
-        FloatingActionButton(
-
-            onClick = { navController.navigate(Screen.OrderFormScreen.route) },
-            modifier = Modifier
-
-        ) {
-            Icon(
-                Icons.Filled.Add,
-                contentDescription = null
-            )
-        }
-    }
-}
 
 @Composable
 fun handlePagingResult(pedidos: LazyPagingItems<PedidoVendaProduto>): Boolean {
