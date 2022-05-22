@@ -6,7 +6,7 @@ import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
 
 data class ClientesCadastro(
 
-    val id: Int? = 0,
+
     val codCliIntegracao: String? = genCodCli(),
     val codClienteOmie: Long? = 0,
     val nomeFantasia: String? = "",

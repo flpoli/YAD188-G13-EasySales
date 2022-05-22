@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.pedidos.clientselection
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,6 +13,7 @@ import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,7 +43,7 @@ class ClientSelectionViewModel
     }
 
 
-    private fun selectClient(event: SelectionEvent.OnClientSelected){
+    private fun selectClient(event: SelectionEvent.OnClientSelected) {
 
 
         viewModelScope.launch {
@@ -59,54 +61,35 @@ class ClientSelectionViewModel
         }
 
 
-
     }
 
-    private fun loadClientList(){
-
+    private fun loadClientList() {
         viewModelScope.launch {
 
-            state = state.copy(
-                isLoading = true,
-                selectableClient = emptyList()
-            )
 
-            useCase.getClientListForSelectionUseCase().map { it ->
+            useCase.getClientListForSelectionUseCase().collect { it ->
+
 
                 state = state.copy(
-                    isLoading = true,
-                    selectableClient = it.map {SelectableClientUiState(it.toClientModel())}
+                    isLoading = false,
+                    selectableClient = it.map { SelectableClientUiState(it.toClientModel()) }
                 )
 
-                println(state)
+            }
+
+
+
+
+
+
 
             }
-//                .onSuccess {
-//                    clientes ->
-//
-//                        state = state.copy(
-//                            isLoading = true,
-//                            selectableClient = clientes.map {
-//                                SelectableClientUiState(it.toClientModel())
-//                            }
-//                        )
-//                }
-//                .onFailure {
-//                    state = state.copy(isLoading = false)
-//                    _uiEvent.send(
-//                        UiEvent.ShowSnackbar(
-//                            UiText.StringText("ERRINHo")
-//                        )
-//                    )
-//                }
 
 
         }
 
-
-    }
-
 }
+
 
 
 

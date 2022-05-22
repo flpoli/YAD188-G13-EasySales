@@ -17,7 +17,9 @@ fun ClientListScreen(
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
 
-    val allClientes = viewModel.clientes?.collectAsLazyPagingItems()
+    val allClientes = viewModel.clientes.collectAsLazyPagingItems()
+
+
 
     ClientListItem(
         navController = navController,

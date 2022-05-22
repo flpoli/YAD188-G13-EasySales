@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.pedidos
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -47,7 +48,7 @@ fun OrdersFormScreen(
 
         AddClientBox(
 
-            onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
+            onClick = {onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route))}
         )
 
         Spacer(modifier = Modifier.height(12.dp))

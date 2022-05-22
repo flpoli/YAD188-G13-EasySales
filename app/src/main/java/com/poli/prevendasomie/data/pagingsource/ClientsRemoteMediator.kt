@@ -8,9 +8,11 @@ import androidx.room.withTransaction
 import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
+import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
 import com.poli.prevendasomie.domain.mappers.toClientEntity
 import com.poli.prevendasomie.domain.mappers.toClienteModel
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
@@ -21,7 +23,7 @@ class ClientsRemoteMediator
 @Inject constructor(
     private val api: OmieAPI,
     private val db: ErpDatabase
-) : RemoteMediator<Int, ClientesCadastro>() {
+) : RemoteMediator<Int, ClientesCadastroEntity>() {
 
     private val clientDao = db.clientDao()
     private val remoteKeysDao = db.clientRemoteKeyDao()
@@ -40,7 +42,7 @@ class ClientsRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ClientesCadastro>
+        state: PagingState<Int, ClientesCadastroEntity>
     ): MediatorResult {
 
         try {

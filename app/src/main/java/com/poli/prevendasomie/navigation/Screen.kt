@@ -21,7 +21,7 @@ sealed class Screen(val route: String) {
 
     object ClientDetailScreen : Screen("$CLIENT_DETAIL_ROUTE/{clientId}") {
 
-        fun passClientId(clientId: Int): String {
+        fun passClientId(clientId: Long): String {
             return "$CLIENT_DETAIL_ROUTE/$clientId"
         }
     }

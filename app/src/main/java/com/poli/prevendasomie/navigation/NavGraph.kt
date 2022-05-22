@@ -72,7 +72,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.LoginScreen.route
+            startDestination = Screen.ClientSelectionScreen.route
         ) {
 
             composable(Screen.LoginScreen.route) {
@@ -92,7 +92,7 @@ fun SetupNavGraph(
                 route = Screen.ClientDetailScreen.route,
                 arguments = listOf(
                     navArgument("clientId") {
-                        type = NavType.IntType
+                        type = NavType.LongType
                     }
                 )
             ) {
@@ -116,7 +116,7 @@ fun SetupNavGraph(
             }
 
             composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(onNavigateUp = { navController.navigateUp() })
+                ClientSelectionScreen(onNavigateUp = { /*navController.navigateUp() */})
             }
         }
     }

@@ -26,10 +26,9 @@ fun ClientListItem(
 
             items(
                 items = cliente,
-                key = { cliente -> cliente.id
-                    ?: throw
-                    IllegalArgumentException("Cagou na lazycolumn pq tirei o ID da model que era entity junto") }
-            ) {
+
+
+                ) {
 
                     cliente ->
                 cliente?.let {
@@ -37,13 +36,16 @@ fun ClientListItem(
                         entries = cliente,
                         navController = navController,
                         onItemClick = {
-                            if (cliente.id != null){
-                                navController.navigate(Screen.ClientDetailScreen.passClientId(clientId = cliente.id))
+                            if (cliente.codClienteOmie != null) {
+                                navController.navigate(
+                                    Screen.ClientDetailScreen.passClientId(
+                                        clientId = cliente.codClienteOmie
+                                    )
+                                )
 
-                            }
-                            else throw IllegalArgumentException("Cagou no navigate pq tirei o ID da model que era entity junto")
+                            } else throw IllegalArgumentException("Cagou no navigate pq tirei o ID da model que era entity junto")
 
-                }
+                        }
                     )
                     Divider(color = Color.Black, thickness = 1.dp)
                 }

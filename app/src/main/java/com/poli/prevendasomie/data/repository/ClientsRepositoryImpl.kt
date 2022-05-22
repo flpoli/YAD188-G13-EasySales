@@ -19,7 +19,7 @@ class ClientsRepositoryImpl
     private val local: LocalDataSource
 ) : ClientsRepository {
 
-    override fun getClientList(): Flow<PagingData<ClientesCadastro>>? {
+    override fun getClientList(): Flow<PagingData<ClientesCadastroEntity>> {
 
         return remote.getAllClients()
     }
