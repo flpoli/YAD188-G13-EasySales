@@ -1,52 +1,63 @@
 package com.poli.prevendasomie.presentation.clientes.client_list.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Divider
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.items
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
-import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.clientes.client_list.handlePagingResult
+import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @Composable
 fun ClientListItem(
-    navController: NavController,
-    cliente: LazyPagingItems<ClientesCadastro>?
-) {
+    onItemClick: () -> Unit,
+    cliente: ClientesCadastro,
+    modifier: Modifier = Modifier
 
-    val result = handlePagingResult(clientes = cliente!!)
-    if (result) {
-        LazyColumn(modifier = Modifier.padding()) {
+    ){
 
-            items(
-                items = cliente,
+    val spacing = LocalSpacing.current
 
-            ) {
-
-                    cliente ->
-                cliente?.let {
-                    ClientRow(
-                        entries = cliente,
-                        navController = navController,
-                        onItemClick = {
-                            if (cliente.codClienteOmie != null) {
-                                navController.navigate(
-                                    Screen.ClientDetailScreen.passClientId(
-                                        clientId = cliente.codClienteOmie
-                                    )
-                                )
-                            } else throw IllegalArgumentException("Cagou no navigate pq tirei o ID da model que era entity junto")
-                        }
-                    )
-                    Divider(color = Color.Black, thickness = 1.dp)
-                }
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(5.dp))
+            .padding(spacing.spaceExtraSmall)
+            .shadow(
+                elevation = 1.dp,
+                shape = RoundedCornerShape(5.dp)
+            )
+            .background(MaterialTheme.colors.surface)
+            .clickable { onItemClick() }
+            .padding(end = spacing.spaceMedium)
+    ){
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            Column(
+                modifier = Modifier.align(Alignment.CenterVertically)
+            ){
+                Text(
+                    text = cliente.razaoSocial ?: "",
+                    style = MaterialTheme.typography.body1,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
         }
     }
+
 }
