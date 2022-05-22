@@ -63,14 +63,14 @@ fun ProductItem(
                     data = produto.imagens?.firstOrNull(),
                     builder = {
                         crossfade(true)
-                        error(R.drawable.ic_network_error)
-                        fallback(R.drawable.ic_network_error)
+                        error(R.drawable.no_image_fallback)
+                        fallback(R.drawable.no_image_fallback)
                     }
                 ),
                 contentDescription = produto.descricao,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .size(80.dp)
+                    .size(60.dp)
                     .clip(RoundedCornerShape(topStart = 5.dp))
             )
             Spacer(modifier = Modifier.width(spacing.spaceMedium))
