@@ -51,6 +51,18 @@ fun ClientListItem(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ){
                 Text(
+                    text = cliente.nomeFantasia ?: "",
+                    style = MaterialTheme.typography.body2,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = "${cliente.endereco}, ${cliente.enderecoNumero}, ${cliente.cidade}",
+                    style = MaterialTheme.typography.body1,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
                     text = cliente.razaoSocial ?: "",
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
