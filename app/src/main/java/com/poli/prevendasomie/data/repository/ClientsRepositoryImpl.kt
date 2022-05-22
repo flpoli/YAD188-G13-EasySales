@@ -5,7 +5,6 @@ import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntit
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.data.remote.responses.ReqResponse
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.repository.ClientsRepository
 import com.poli.prevendasomie.domain.repository.LocalDataSource
 import com.poli.prevendasomie.domain.repository.RemoteDataSource

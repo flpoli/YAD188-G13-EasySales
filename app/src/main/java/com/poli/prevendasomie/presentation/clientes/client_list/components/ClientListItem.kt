@@ -27,8 +27,7 @@ fun ClientListItem(
             items(
                 items = cliente,
 
-
-                ) {
+            ) {
 
                     cliente ->
                 cliente?.let {
@@ -42,9 +41,7 @@ fun ClientListItem(
                                         clientId = cliente.codClienteOmie
                                     )
                                 )
-
                             } else throw IllegalArgumentException("Cagou no navigate pq tirei o ID da model que era entity junto")
-
                         }
                     )
                     Divider(color = Color.Black, thickness = 1.dp)

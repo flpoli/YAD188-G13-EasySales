@@ -1,20 +1,16 @@
 package com.poli.prevendasomie.presentation.pedidos.clientselection
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiEvent
-import com.poli.prevendasomie.core.UiText
 import com.poli.prevendasomie.domain.mappers.toClientModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +19,7 @@ import javax.inject.Inject
 class ClientSelectionViewModel
 @Inject constructor(private val useCase: UseCases) : ViewModel() {
 
-    init{
+    init {
         loadClientList()
     }
 
@@ -42,9 +38,7 @@ class ClientSelectionViewModel
         }
     }
 
-
     private fun selectClient(event: SelectionEvent.OnClientSelected) {
-
 
         viewModelScope.launch {
 
@@ -52,19 +46,16 @@ class ClientSelectionViewModel
 
             useCase.insertSelectedClientUseCase(
 
-                 selectedClient =  uiState?.cliente ?: return@launch
+                selectedClient = uiState?.cliente ?: return@launch
 
             )
 
             _uiEvent.send(UiEvent.NavigateUp)
         }
-
-
     }
 
     private fun loadClientList() {
         viewModelScope.launch {
-
 
             useCase.getClientListForSelectionUseCase().collect { it ->
 
@@ -72,12 +63,7 @@ class ClientSelectionViewModel
                     isLoading = false,
                     selectableClient = it.map { SelectableClientUiState(it.toClientModel()) }
                 )
-
-            }
             }
         }
+    }
 }
-
-
-
-

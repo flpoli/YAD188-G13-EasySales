@@ -1,9 +1,7 @@
 package com.poli.prevendasomie.presentation.onboarding
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,11 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -26,7 +22,6 @@ import com.google.accompanist.pager.rememberPagerState
 import com.poli.prevendasomie.common.Constants.ON_BOARDING_PAGE_COUNT
 import com.poli.prevendasomie.domain.model.OnBoardingPage
 import com.poli.prevendasomie.presentation.components.AnimationComponent
-import com.poli.prevendasomie.ui.theme.LocalSpacing
 import com.poli.prevendasomie.ui.theme.activeIndicatorColor
 import com.poli.prevendasomie.ui.theme.inactiveIndicatorColor
 
@@ -34,15 +29,15 @@ import com.poli.prevendasomie.ui.theme.inactiveIndicatorColor
 @Composable
 fun OnboardingScreen(
     navController: NavHostController,
-    //viewModel: OnboardingViewModel
-){
+    // viewModel: OnboardingViewModel
+) {
 
     val pages = listOf(OnBoardingPage.First, OnBoardingPage.Second, OnBoardingPage.Third)
     val pagerState = rememberPagerState()
 
     Column(
         modifier = Modifier.fillMaxSize()
-    ){
+    ) {
 
         HorizontalPager(
             modifier = Modifier.weight(10f),
@@ -52,9 +47,8 @@ fun OnboardingScreen(
 
         ) {
 
-
-            position -> PagerScreen(onBoardingPage = pages[position])
-
+                position ->
+            PagerScreen(onBoardingPage = pages[position])
         }
         HorizontalPagerIndicator(
             modifier = Modifier
@@ -66,28 +60,23 @@ fun OnboardingScreen(
             indicatorWidth = 12.dp,
             spacing = 8.dp
         )
-
-
     }
-
 }
 
 @Composable
-fun PagerScreen(onBoardingPage: OnBoardingPage){
+fun PagerScreen(onBoardingPage: OnBoardingPage) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
 
-
         AnimationComponent(
-            animResource= onBoardingPage.anim,
+            animResource = onBoardingPage.anim,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .scale(10f)
-            )
-
+        )
 
         Text(
             modifier = Modifier
@@ -110,6 +99,5 @@ fun PagerScreen(onBoardingPage: OnBoardingPage){
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center
         )
-
     }
 }

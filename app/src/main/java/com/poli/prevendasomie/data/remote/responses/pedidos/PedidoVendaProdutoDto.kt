@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.data.remote.responses.pedidos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.data.local.entities.pedidos.relationtest.PedidoVendaEntity
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 
 data class PedidoVendaProdutoDto(
@@ -44,6 +43,3 @@ fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
 
     )
 }
-
-
-

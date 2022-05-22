@@ -25,7 +25,7 @@ fun OrderListItem(
 
     order: PedidoVendaProduto,
     modifier: Modifier = Modifier
-){
+) {
     val spacing = LocalSpacing.current
 
     Column(
@@ -39,17 +39,17 @@ fun OrderListItem(
             .background(MaterialTheme.colors.surface)
             .clickable { }
             .padding(end = spacing.spaceMedium)
-    ){
+    ) {
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
 
             Column(
                 modifier = Modifier.align(Alignment.CenterVertically)
-            ){
+            ) {
 
                 Text(
                     text = "Pedido Nº: ${ order.cabecalho?.numeroPedido ?: "" }",
@@ -70,10 +70,6 @@ fun OrderListItem(
                     overflow = TextOverflow.Ellipsis
                 )
             }
-
         }
-
     }
-
-
 }

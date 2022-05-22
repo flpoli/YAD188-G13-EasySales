@@ -30,11 +30,9 @@ fun OrdersFormScreen(
 ) {
 
     val state = viewModel.state
-    val  selectedClient= navController.previousBackStackEntry?.savedStateHandle?.get<ClientesCadastro>("cliente")
+    val selectedClient = navController.previousBackStackEntry?.savedStateHandle?.get<ClientesCadastro>("cliente")
 
-
-    if(selectedClient!=null) state.cliente = selectedClient
-
+    if (selectedClient != null) state.cliente = selectedClient
 
     LaunchedEffect(key1 = true) {
 
@@ -53,12 +51,10 @@ fun OrdersFormScreen(
 
         ClientBox(
             state = state,
-            onClick = {onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route))}
+            onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
         )
 
         Spacer(modifier = Modifier.height(12.dp))
-
-
     }
 }
 
@@ -86,15 +82,12 @@ fun ClientBox(
         ) {
 
             println(state.cliente)
-            if(state.cliente.nomeFantasia?.isEmpty() == true){
-            Text(text = "Selecionar cliente")
+            if (state.cliente.nomeFantasia?.isEmpty() == true) {
+                Text(text = "Selecionar cliente")
             } else {
 
                 Text(text = "${state.cliente.nomeFantasia}")
-
             }
-
-
         }
     }
 }

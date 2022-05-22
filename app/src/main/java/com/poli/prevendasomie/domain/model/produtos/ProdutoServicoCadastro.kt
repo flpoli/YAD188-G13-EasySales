@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.domain.model.produtos
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE

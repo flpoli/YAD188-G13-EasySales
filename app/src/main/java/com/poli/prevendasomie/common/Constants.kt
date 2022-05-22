@@ -23,7 +23,6 @@ object Constants {
 
     const val ON_BOARDING_PAGE_COUNT = 3
 
-
     // Database constants
     const val DATA_BASE_NAME = "ErpDatabase"
     const val USER_TABLE = "user_tb"

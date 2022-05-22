@@ -51,7 +51,6 @@ fun SelectableClientItem(
             Text(
                 text = cliente!!.toString()
             )
-
         }
     }
 }

@@ -11,5 +11,4 @@ interface TestDao {
     @Transaction
     @Query("SELECT * FROM orders_table_test")
     fun getPedidoECliente(): List<PedidoCliente>
-
 }

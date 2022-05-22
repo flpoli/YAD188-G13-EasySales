@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.ScaffoldState
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -22,7 +21,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -57,10 +55,11 @@ fun SignupScreen(
         onDispose { }
     }
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
-            event -> when(event){
+                event ->
+            when (event) {
                 is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.getString(context)
@@ -70,10 +69,9 @@ fun SignupScreen(
         }
     }
 
-
     Column(
         modifier = Modifier.padding(top = 20.dp)
-    ){
+    ) {
 
         SignUpContent(
             viewState = viewState.value,
@@ -84,8 +82,6 @@ fun SignupScreen(
             onSignUpClicked = viewModel::onSignUpClicked,
         )
     }
-
-
 }
 
 @Composable
@@ -125,9 +121,7 @@ fun SignUpInputColumn(
     onPasswordConfirmationChanged: (String) -> Unit,
     onSignUpClicked: () -> Unit,
 
-
 ) {
-
 
     Column(
         modifier = Modifier
@@ -231,14 +225,12 @@ fun PasswordInputField(
         enabled = enabled,
         trailingIcon = {
 
-
-
             IconButton(
 
                 modifier = Modifier,
                 onClick = { showPassword.value = !showPassword.value },
 
-            ){
+            ) {
                 Icon(
                     imageVector = if (showPassword.value) { Icons.Filled.Visibility } else { Icons.Filled.VisibilityOff },
                     contentDescription = "Visibility",
@@ -249,9 +241,6 @@ fun PasswordInputField(
         }
     )
 }
-
-
-
 
 @Composable
 fun PasswordValidationInputField(

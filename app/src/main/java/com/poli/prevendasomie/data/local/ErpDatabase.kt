@@ -9,14 +9,11 @@ import com.poli.prevendasomie.data.local.dao.OrdersDao
 import com.poli.prevendasomie.data.local.dao.OrdersRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
-import com.poli.prevendasomie.data.local.dao.TestDao
 import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.prevendasomie.data.local.entities.pedidos.relationtest.ClienteEntity
-import com.poli.prevendasomie.data.local.entities.pedidos.relationtest.PedidoVendaEntity
 import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
@@ -32,11 +29,8 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
         PedidoVendaProduto::class,
         OrdersRemoteKeys::class,
 
-
 //        PedidoVendaEntity::class,
 //        ClienteEntity::class
-
-
 
     ],
 
@@ -57,6 +51,4 @@ abstract class ErpDatabase : RoomDatabase() {
 
     abstract fun ordersDao(): OrdersDao
     abstract fun ordersRemoteKeysDao(): OrdersRemoteKeyDao
-
-
 }

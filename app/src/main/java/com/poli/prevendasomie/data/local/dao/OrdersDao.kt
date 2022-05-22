@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.prevendasomie.common.Constants.ORDERS_TABLE
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 
 @Dao

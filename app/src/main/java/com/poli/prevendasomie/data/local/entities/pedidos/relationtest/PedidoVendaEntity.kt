@@ -11,5 +11,3 @@ data class PedidoVendaEntity(
     val clientId: Int
 
 )
-
-

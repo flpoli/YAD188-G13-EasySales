@@ -3,7 +3,6 @@ package com.poli.prevendasomie.presentation.produtos.productslist
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,16 +44,14 @@ fun ListContent(
                 key = { produto -> produto.id }
             ) {
 
-                produto ->
+                    produto ->
                 if (produto != null) {
                     ProductItem(produto = produto)
                 }
-
-                    }
-                }
             }
         }
-
+    }
+}
 
 @Composable
 fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boolean {

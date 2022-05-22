@@ -13,10 +13,9 @@ class SignUpUseCaseImpl
 
     override suspend fun invoke(userData: UserData): SignUpResult {
 
-        if(userData.password != userData.passwordConfirm){
+        if (userData.password != userData.passwordConfirm) {
 
             return SignUpResult.Failure.ConfirmPasswordMatch
-
         }
 
         return when (val signUpResult = signUpRepository.signUp(userData)) {

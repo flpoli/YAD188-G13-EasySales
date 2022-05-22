@@ -39,7 +39,7 @@ val SecondaryTextColor = Color(0xFF000000)
 
 val Colors.activeIndicatorColor
     @Composable
-    get() = if(isLight) Purple500 else Purple700
+    get() = if (isLight) Purple500 else Purple700
 val Colors.inactiveIndicatorColor
     @Composable
-    get() = if(isLight) LightGrey else DarkGrey
+    get() = if (isLight) LightGrey else DarkGrey

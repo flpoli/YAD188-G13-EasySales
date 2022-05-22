@@ -4,7 +4,6 @@ import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntit
 import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
-
 fun ClientesCadastroEntity.toClientModel(): ClientesCadastro {
 
     return ClientesCadastro(
@@ -64,9 +63,7 @@ fun ClientesCadastro.toClientDto(): ClientesCadastroDto {
         cidade = cidade,
         complemento = complemento
     )
-
 }
-
 
 fun ClientesCadastroDto.toClienteModel(): ClientesCadastro {
 

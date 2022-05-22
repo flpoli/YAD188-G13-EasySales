@@ -1,10 +1,8 @@
 package com.poli.prevendasomie.data.remote.responses.clientes
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 data class ClientesCadastroDto(
-
 
     @SerializedName("bairro")
     val bairro: String?,
@@ -69,5 +67,3 @@ data class ClientesCadastroDto(
     @SerializedName("telefone1_numero")
     val telefone1Numero: String? = ""
 )
-
-

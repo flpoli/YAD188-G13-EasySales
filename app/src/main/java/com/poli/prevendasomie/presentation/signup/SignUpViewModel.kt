@@ -28,7 +28,6 @@ class SignUpViewModel @Inject constructor(
 
     val viewState: StateFlow<SignUpViewState> = _viewState
 
-
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
@@ -66,15 +65,13 @@ class SignUpViewModel @Inject constructor(
         )
     }
 
-    fun onPasswordConfirmationChanged(password: String){
+    fun onPasswordConfirmationChanged(password: String) {
 
         val currentUserData = _viewState.value.userData
 
         _viewState.value = SignUpViewState.Active(
             userData = currentUserData.withUpdatedConfirmPassword(password)
         )
-
-
     }
 
     fun onNameChanged(name: String) {
@@ -103,14 +100,11 @@ class SignUpViewModel @Inject constructor(
                     userData = currentUserData,
                     errorMessage = UiText.StringText("Senhas não conferem")
                 )
-
             }
 
             is SignUpResult.Failure.UserNameNotAvailable -> {
 
-
                 _uiEvent.send(UiEvent.ShowSnackbar(UiText.StringText("Este username já está sendo utilizado")))
-
 
                 SignUpViewState.SubmissionError(
                     userData = currentUserData,
@@ -125,7 +119,6 @@ class SignUpViewModel @Inject constructor(
                 )
             }
         }
-
     }
 }
 

@@ -13,7 +13,7 @@ import com.poli.prevendasomie.common.Constants.SIGNUP_ROUTE
 
 sealed class Screen(val route: String) {
 
-    object OnBoardingScreen: Screen(ONBOARDING_ROUTE)
+    object OnBoardingScreen : Screen(ONBOARDING_ROUTE)
     object MainScreen : Screen(MAIN_SCREEN_ROUTE)
     object LoginScreen : Screen(LOGIN_ROUTE)
     object SignUpScreen : Screen(SIGNUP_ROUTE)

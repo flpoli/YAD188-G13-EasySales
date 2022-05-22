@@ -80,7 +80,7 @@ fun SetupNavGraph(
             startDestination = Screen.LoginScreen.route
         ) {
 
-            composable(Screen.OnBoardingScreen.route){
+            composable(Screen.OnBoardingScreen.route) {
                 OnboardingScreen(navController = navController)
             }
 
@@ -88,7 +88,8 @@ fun SetupNavGraph(
                 LoginScreen(navController = navController)
             }
             composable(Screen.SignUpScreen.route) {
-                SignupScreen(navController = navController, scaffoldState = scaffoldState
+                SignupScreen(
+                    navController = navController, scaffoldState = scaffoldState
                 )
             }
             composable(Screen.MainScreen.route) {
@@ -122,7 +123,6 @@ fun SetupNavGraph(
             }
             composable(Screen.OrderFormScreen.route) {
 
-
                 val clientResult = navController
                     .previousBackStackEntry
                     ?.savedStateHandle
@@ -134,7 +134,7 @@ fun SetupNavGraph(
             }
 
             composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(navController = navController,onNavigateUp = { navController.navigateUp() })
+                ClientSelectionScreen(navController = navController, onNavigateUp = { navController.navigateUp() })
             }
         }
     }

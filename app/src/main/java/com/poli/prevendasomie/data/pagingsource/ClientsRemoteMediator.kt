@@ -12,10 +12,8 @@ import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntit
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
 import com.poli.prevendasomie.domain.mappers.toClientEntity
 import com.poli.prevendasomie.domain.mappers.toClienteModel
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -106,11 +104,11 @@ class ClientsRemoteMediator
 
                         ClientsRemoteKeys(
 
-                                    prevPage = prevPage,
-                                    nextPage = nextPage,
-                                    lastUpdated = System.currentTimeMillis()
+                            prevPage = prevPage,
+                            nextPage = nextPage,
+                            lastUpdated = System.currentTimeMillis()
 
-                                )
+                        )
                     }
 
                     val cliente = response.clientesCadastro.map {

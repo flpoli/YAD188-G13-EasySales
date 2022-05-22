@@ -106,7 +106,6 @@ data class ProdutoServicoCadastroDto(
     @SerializedName("imagens")
     var imagens: List<Imagens>? = listOf(Imagens("")),
 
-
 )
 
 fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {

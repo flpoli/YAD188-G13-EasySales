@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.google.gson.Gson
 import com.poli.prevendasomie.common.Constants.DATA_BASE_NAME
 import com.poli.prevendasomie.data.local.DatabaseConverter
@@ -61,7 +60,6 @@ class RepositoryModule {
             DATA_BASE_NAME
         )
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
-
             .setQueryCallback(
                 {
 
@@ -111,7 +109,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource):
-            ClientsRepository {
+        ClientsRepository {
 
         return ClientsRepositoryImpl(api, remote, local)
     }
@@ -124,7 +122,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource):
-            OrdersRepository {
+        OrdersRepository {
 
         return OrdersRepositoryImpl(remote, local)
     }

@@ -5,14 +5,12 @@ import androidx.room.Relation
 
 data class PedidoCliente(
 
-   @Embedded val cliente: ClienteEntity,
+    @Embedded val cliente: ClienteEntity,
 
-   @Relation(
+    @Relation(
         parentColumn = "clientId",
         entityColumn = "orderId"
-   )
-   val pedido: PedidoVendaEntity,
-
-
+    )
+    val pedido: PedidoVendaEntity,
 
 )

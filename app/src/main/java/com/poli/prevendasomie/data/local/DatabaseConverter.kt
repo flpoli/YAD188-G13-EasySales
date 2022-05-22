@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.local
 
-import android.media.Image
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.reflect.TypeToken
@@ -20,8 +19,6 @@ import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 class DatabaseConverter(
     private val jsonParser: JsonParser
 ) {
-
-
 
     @TypeConverter
     fun fromCabecalhoEntityJson(json: String): CabecalhoEntity? {
@@ -133,7 +130,7 @@ class DatabaseConverter(
     fun fromMeaningsJson(json: String): List<Imagens> {
         return jsonParser.fromJson<ArrayList<Imagens>>(
             json,
-            object : TypeToken<ArrayList<Imagens>>(){}.type
+            object : TypeToken<ArrayList<Imagens>>() {}.type
         ) ?: emptyList()
     }
 
@@ -141,7 +138,7 @@ class DatabaseConverter(
     fun toMeaningsJson(meanings: List<Imagens>): String {
         return jsonParser.toJson(
             meanings,
-            object : TypeToken<ArrayList<Imagens>>(){}.type
+            object : TypeToken<ArrayList<Imagens>>() {}.type
         ) ?: "[]"
     }
 
@@ -180,8 +177,6 @@ class DatabaseConverter(
 
         ) ?: emptyList()
     }
-
-
 
     @TypeConverter
     fun toParcelaJson(parcela: List<Parcela>): String {

@@ -7,7 +7,7 @@ sealed class SignUpResult {
     sealed class Failure : SignUpResult() {
 
         object UserNameNotAvailable : Failure()
-        object ConfirmPasswordMatch: Failure()
+        object ConfirmPasswordMatch : Failure()
         object Unknown : Failure()
     }
 }

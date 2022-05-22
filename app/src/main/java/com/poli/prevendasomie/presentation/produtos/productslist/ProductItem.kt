@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,16 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
-
 import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.ui.theme.LocalSpacing
@@ -41,10 +35,9 @@ fun ProductItem(
 
     produto: ProdutoServicoCadastro,
     modifier: Modifier = Modifier
-){
+) {
 
     val spacing = LocalSpacing.current
-
 
     Column(
         modifier = modifier
@@ -57,13 +50,13 @@ fun ProductItem(
             .background(MaterialTheme.colors.surface)
             .clickable { }
             .padding(end = spacing.spaceMedium)
-    ){
+    ) {
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
 
             Image(
                 painter = rememberImagePainter(
@@ -83,7 +76,7 @@ fun ProductItem(
             Spacer(modifier = Modifier.width(spacing.spaceMedium))
             Column(
                 modifier = Modifier.align(Alignment.CenterVertically)
-            ){
+            ) {
                 Text(
                     text = "Código: ${ produto.codigo }",
                     style = MaterialTheme.typography.body1,
