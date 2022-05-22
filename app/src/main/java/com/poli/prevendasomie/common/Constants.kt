@@ -11,6 +11,7 @@ object Constants {
     // Navigation routes
 
     const val MAIN_SCREEN_ROUTE = "main_screen"
+    const val ONBOARDING_ROUTE = "onboarding_screen"
     const val CLIENT_LIST_ROUTE = "client_list_screen"
     const val CLIENT_DETAIL_ROUTE = "client_detail_screen"
     const val LOGIN_ROUTE = "login_screen"
@@ -19,6 +20,9 @@ object Constants {
     const val PRODUCT_LIST_ROUTE = "product_list_screen"
     const val ORDER_LIST_ROUTE = "order_list_screen"
     const val ORDER_FORM_ROUTE = "order_form_screen"
+
+    const val ON_BOARDING_PAGE_COUNT = 3
+
 
     // Database constants
     const val DATA_BASE_NAME = "ErpDatabase"

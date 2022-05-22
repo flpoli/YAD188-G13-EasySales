@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.ui.theme
 
+import androidx.compose.material.Colors
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val Purple200 = Color(0xFFBB86FC)
@@ -34,3 +36,10 @@ val SecondaryColor = Color(0xffe1bee7)
 val SecondaryLightColor = Color(0xfffff1ff)
 val PrimaryTextColor = Color(0xFF000000)
 val SecondaryTextColor = Color(0xFF000000)
+
+val Colors.activeIndicatorColor
+    @Composable
+    get() = if(isLight) Purple500 else Purple700
+val Colors.inactiveIndicatorColor
+    @Composable
+    get() = if(isLight) LightGrey else DarkGrey

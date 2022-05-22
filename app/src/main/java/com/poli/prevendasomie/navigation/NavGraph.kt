@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
@@ -23,12 +24,14 @@ import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigationBar
 import com.poli.prevendasomie.presentation.main_screen.components.FabButton
 import com.poli.prevendasomie.presentation.main_screen.components.TopBar
+import com.poli.prevendasomie.presentation.onboarding.OnboardingScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
@@ -74,8 +77,12 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.OrderFormScreen.route
+            startDestination = Screen.LoginScreen.route
         ) {
+
+            composable(Screen.OnBoardingScreen.route){
+                OnboardingScreen(navController = navController)
+            }
 
             composable(Screen.LoginScreen.route) {
                 LoginScreen(navController = navController)
