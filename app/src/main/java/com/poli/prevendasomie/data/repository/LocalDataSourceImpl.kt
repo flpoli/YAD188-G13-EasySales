@@ -25,6 +25,10 @@ class LocalDataSourceImpl
         return clientDao.getNonPaginatedClients()
     }
 
+    override fun getProductsForSelection(): Flow<List<ProdutoServicoCadastro>> {
+        return productDao.getProductsForSelection()
+    }
+
     override suspend fun getSelectedProduct(productId: Long): ProdutoServicoCadastro {
 
         return productDao.getProductById(id = productId)

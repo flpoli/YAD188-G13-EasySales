@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductsDao {
@@ -16,6 +17,9 @@ interface ProductsDao {
 
     @Query("SELECT * FROM $PRODUCTS_TABLE")
     fun getAllProducts(): PagingSource<Int, ProdutoServicoCadastro>
+
+    @Query("SELECT * FROM $PRODUCTS_TABLE")
+    fun getProductsForSelection(): Flow<List<ProdutoServicoCadastro>>
 
     @Query("SELECT * FROM $PRODUCTS_TABLE WHERE codigoProduto = :id")
     suspend fun getProductById(id: Long): ProdutoServicoCadastro

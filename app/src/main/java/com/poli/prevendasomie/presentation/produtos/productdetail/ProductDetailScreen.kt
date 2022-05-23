@@ -26,7 +26,7 @@ fun ProductDetailScreen(
     ) {
 
         Text(
-            text = " Código do produto: ${ trimLeadingZeros(selectedProduct?.codigo) ?: "" }"
+            text = " Código do produto: ${ trimLeadingZeros(selectedProduct?.codigo)}"
         )
 
         Text(

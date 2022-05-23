@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.Flow
 interface LocalDataSource {
 
     suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity
-    fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
 
+    fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
+    fun getProductsForSelection(): Flow<List<ProdutoServicoCadastro>>
     suspend fun getSelectedProduct(productId: Long): ProdutoServicoCadastro
     suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity)
 

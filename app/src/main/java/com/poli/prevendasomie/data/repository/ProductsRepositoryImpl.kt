@@ -19,8 +19,14 @@ class ProductsRepositoryImpl
         return remote.getAllProducts()
     }
 
+    override fun getProductsForSelection(): Flow<List<ProdutoServicoCadastro>> {
+        return local.getProductsForSelection()
+    }
+
     override suspend fun getSelectedProduct(productId: Long): ProdutoServicoCadastro {
 
         return local.getSelectedProduct(productId = productId)
     }
+
+
 }
