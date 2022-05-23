@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
+import com.poli.prevendasomie.presentation.util.trimLeadingZeros
 import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @Composable
@@ -27,6 +28,8 @@ fun OrderListItem(
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
+
+
 
     Column(
         modifier = modifier
@@ -47,18 +50,19 @@ fun OrderListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
+
             Column(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
 
                 Text(
-                    text = "Pedido Nº: ${ order.cabecalho?.numeroPedido ?: "" }",
-                    style = MaterialTheme.typography.body1,
+                    text = "Pedido Nº: ${ trimLeadingZeros(order.cabecalho?.numeroPedido!!) }",
+                    style = MaterialTheme.typography.body2,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "Pedido Nº: ${ order.cabecalho?.codigoCliente ?: "" }",
+                    text = "Previsão Faturamento: ${ order.cabecalho.dataPrevisao ?: "" }",
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

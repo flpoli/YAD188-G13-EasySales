@@ -12,7 +12,7 @@ class ProductsRepositoryImpl
 @Inject constructor(
     private val remote: RemoteDataSource,
     private val local: LocalDataSource
-    ) : ProductsRepository {
+) : ProductsRepository {
 
     override fun getProductList(): Flow<PagingData<ProdutoServicoCadastro>> {
 

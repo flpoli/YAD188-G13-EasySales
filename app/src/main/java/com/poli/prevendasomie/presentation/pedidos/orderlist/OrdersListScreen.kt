@@ -1,21 +1,11 @@
 package com.poli.prevendasomie.presentation.pedidos.orderlist
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
@@ -62,10 +52,12 @@ fun ListContent(
                 if (pedido != null) {
                     OrderListItem(
                         onItemClick = {
-                                      navController
-                                          .navigate(
-                                              Screen.OrderDetailScreen.passOrderId(
-                                                  pedido.cabecalho?.codigoPedido!!))
+                            navController
+                                .navigate(
+                                    Screen.OrderDetailScreen.passOrderId(
+                                        pedido.cabecalho?.codigoPedido!!
+                                    )
+                                )
                         },
                         order = pedido
                     )
@@ -74,7 +66,6 @@ fun ListContent(
         }
     }
 }
-
 
 @Composable
 fun handlePagingResult(pedidos: LazyPagingItems<PedidoVendaProduto>): Boolean {

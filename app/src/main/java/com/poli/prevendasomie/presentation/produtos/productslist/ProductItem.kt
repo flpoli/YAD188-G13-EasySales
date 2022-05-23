@@ -27,6 +27,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.presentation.util.trimLeadingZeros
 import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @OptIn(ExperimentalCoilApi::class)
@@ -79,7 +80,7 @@ fun ProductListItem(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = "Código: ${ produto.codigo }",
+                    text = "Código: ${ trimLeadingZeros(produto.codigo) }",
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

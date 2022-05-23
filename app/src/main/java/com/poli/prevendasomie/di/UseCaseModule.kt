@@ -10,6 +10,7 @@ import com.poli.prevendasomie.domain.usecase.clients.GetClientListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCase
 import com.poli.prevendasomie.domain.usecase.clients.IncluirClienteUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.pedidos.GetOrderDetailImpl
 import com.poli.prevendasomie.domain.usecase.pedidos.GetOrdersListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.pedidos.InsertSelectedClientUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
@@ -77,6 +78,7 @@ object UseCaseModule {
         return UseCases(
             getProductListUseCase = GetProductsListUseCaseImpl(r1),
             getSelectedProduct = GetSelectedProductImpl(r1),
+            getOrderDetail = GetOrderDetailImpl(r3),
             getClientListUseCase = GetClientListUseCaseImpl(r2),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
             getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2),

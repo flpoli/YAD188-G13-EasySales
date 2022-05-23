@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.poli.prevendasomie.presentation.util.trimLeadingZeros
 
 @Composable
 fun ProductDetailScreen(
@@ -16,17 +17,16 @@ fun ProductDetailScreen(
     navController: NavHostController,
     viewModel: ProductDetailViewModel = hiltViewModel()
 
-){
+) {
 
     val selectedProduct by viewModel.selectedProduct.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
-    ){
-
+    ) {
 
         Text(
-            text = " Código do produto: ${ selectedProduct?.codigo ?: "" }"
+            text = " Código do produto: ${ trimLeadingZeros(selectedProduct?.codigo) ?: "" }"
         )
 
         Text(
@@ -43,10 +43,5 @@ fun ProductDetailScreen(
         Text(
             text = "Estoque: ${ selectedProduct?.quantidadeEstoque }${selectedProduct?.unidade}"
         )
-
-
-
     }
-
-
 }

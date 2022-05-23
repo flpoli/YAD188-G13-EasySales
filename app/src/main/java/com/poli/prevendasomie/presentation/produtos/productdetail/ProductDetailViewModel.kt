@@ -17,8 +17,7 @@ class ProductDetailViewModel
     private val useCase: UseCases,
     savedStateHandle: SavedStateHandle
 
-): ViewModel(){
-
+) : ViewModel() {
 
     private val _selectedProduct: MutableStateFlow<ProdutoServicoCadastro?> = MutableStateFlow(null)
     val selectedProduct: StateFlow<ProdutoServicoCadastro?> = _selectedProduct
@@ -34,6 +33,5 @@ class ProductDetailViewModel
                 useCase.getSelectedProduct(productId = productId)
             }
         }
-
     }
 }

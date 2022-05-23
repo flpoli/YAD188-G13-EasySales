@@ -55,8 +55,9 @@ fun ListContent(
                                 Screen.ProductDetailScreen
                                     .passProductId(productId = produto.codigoProduto)
                             )
-                                      },
-                        produto = produto)
+                        },
+                        produto = produto
+                    )
                 }
             }
         }

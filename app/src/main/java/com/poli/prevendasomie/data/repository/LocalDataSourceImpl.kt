@@ -2,6 +2,7 @@ package com.poli.prevendasomie.data.repository
 
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.LocalDataSource
 import kotlinx.coroutines.flow.Flow
@@ -32,5 +33,10 @@ class LocalDataSourceImpl
     override suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity) {
 
         orderDao.insertClientOnOrder(selectedClient)
+    }
+
+    override suspend fun getOrderById(orderId: Long): PedidoVendaProduto {
+
+        return orderDao.selectOrderById(orderId = orderId)
     }
 }

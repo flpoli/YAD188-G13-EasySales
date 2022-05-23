@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.navigation
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.FabPosition
 import androidx.compose.material.Scaffold
@@ -15,7 +14,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
@@ -113,7 +111,6 @@ fun SetupNavGraph(
                 ClientDetailScreen(navController = navController)
             }
 
-
             composable(Screen.ProductListScreen.route) {
                 ProductListScreen(navController = navController)
             }
@@ -121,7 +118,7 @@ fun SetupNavGraph(
             composable(
                 route = Screen.ProductDetailScreen.route,
                 arguments = listOf(
-                    navArgument("productId"){
+                    navArgument("productId") {
                         type = NavType.LongType
                     }
                 )
@@ -129,7 +126,7 @@ fun SetupNavGraph(
                 ProductDetailScreen(navController = navController)
             }
 
-            composable(Screen.ProductFormScreen.route){
+            composable(Screen.ProductFormScreen.route) {
                 ProductFormScreen()
             }
             composable(Screen.ClientFormScreen.route) {
@@ -138,9 +135,6 @@ fun SetupNavGraph(
                     scaffoldState = scaffoldState
                 )
             }
-
-
-
 
             composable(Screen.OrdersListScreen.route) {
                 OrdersListScreen(navController = navController)
@@ -153,7 +147,7 @@ fun SetupNavGraph(
                         type = NavType.LongType
                     }
                 )
-                ){
+            ) {
                 OrderDetailScreen(navController = navController)
             }
 

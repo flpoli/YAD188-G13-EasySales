@@ -26,7 +26,7 @@ fun ClientListItem(
     cliente: ClientesCadastro,
     modifier: Modifier = Modifier
 
-    ){
+) {
 
     val spacing = LocalSpacing.current
 
@@ -41,15 +41,15 @@ fun ClientListItem(
             .background(MaterialTheme.colors.surface)
             .clickable { onItemClick() }
             .padding(end = spacing.spaceMedium)
-    ){
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Column(
                 modifier = Modifier.align(Alignment.CenterVertically)
-            ){
+            ) {
                 Text(
                     text = cliente.nomeFantasia ?: "",
                     style = MaterialTheme.typography.body2,
@@ -71,5 +71,4 @@ fun ClientListItem(
             }
         }
     }
-
 }

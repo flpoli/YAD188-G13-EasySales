@@ -2,12 +2,8 @@ package com.poli.prevendasomie.presentation.clientes.client_list.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
@@ -33,18 +29,15 @@ fun ListContent(
             items(
                 items = cliente,
 
-
             ) {
 
                     cliente ->
 
                 ClientListItem(
-                    onItemClick = {navController.navigate(Screen.ClientDetailScreen.passClientId(clientId = cliente?.codClienteOmie!!))},
+                    onItemClick = { navController.navigate(Screen.ClientDetailScreen.passClientId(clientId = cliente?.codClienteOmie!!)) },
                     cliente = cliente!!
                 )
-
-                }
             }
         }
     }
-
+}

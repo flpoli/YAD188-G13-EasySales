@@ -21,6 +21,12 @@ class OrdersRepositoryImpl
         return remote.getAllOrders()
     }
 
+    override suspend fun getOrderById(orderId: Long): PedidoVendaProduto {
+
+            return local.getOrderById(orderId = orderId)
+
+    }
+
     override suspend fun insertSelectedClient(selectedClient: ClientesCadastro) {
         local.insertSelectedCliente(selectedClient.toClientEntity())
     }

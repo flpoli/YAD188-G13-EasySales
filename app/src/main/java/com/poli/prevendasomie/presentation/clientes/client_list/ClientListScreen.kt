@@ -22,9 +22,6 @@ fun ClientListScreen(
         navController = navController,
         cliente = allClientes
     )
-
-
-
 }
 
 @Composable

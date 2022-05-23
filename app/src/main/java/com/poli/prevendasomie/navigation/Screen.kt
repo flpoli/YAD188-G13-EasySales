@@ -33,21 +33,19 @@ sealed class Screen(val route: String) {
     object ClientSelectionScreen : Screen("client_selection_screen")
     object ClientFormScreen : Screen(CLIENT_FORM_ROUTE)
 
-
     object ProductListScreen : Screen(PRODUCT_LIST_ROUTE)
 
-    object ProductDetailScreen: Screen("$PRODUCT_DETAIL_ROUTE/{productId}"){
+    object ProductDetailScreen : Screen("$PRODUCT_DETAIL_ROUTE/{productId}") {
 
         fun passProductId(productId: Long): String {
             return "$PRODUCT_DETAIL_ROUTE/$productId"
         }
-
     }
-    object ProductFormScreen: Screen(PRODUCT_FORM_SCREEN)
+    object ProductFormScreen : Screen(PRODUCT_FORM_SCREEN)
 
     object OrdersListScreen : Screen(ORDER_LIST_ROUTE)
     object OrderFormScreen : Screen(ORDER_FORM_ROUTE)
-    object OrderDetailScreen: Screen("$ORDER_DETAIL_ROUTE/{orderId}"){
+    object OrderDetailScreen : Screen("$ORDER_DETAIL_ROUTE/{orderId}") {
 
         fun passOrderId(orderId: Long): String {
 

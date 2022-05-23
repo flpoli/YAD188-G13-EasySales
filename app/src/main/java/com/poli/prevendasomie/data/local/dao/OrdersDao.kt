@@ -28,8 +28,8 @@ interface OrdersDao {
     @Query("SELECT * FROM $ORDERS_TABLE")
     fun getAllOrdersWithoutPagination(): List<PedidoVendaProduto>
 
-    @Query("SELECT * FROM $ORDERS_TABLE WHERE id = :id")
-    fun selectOrderById(id: Int): PedidoVendaProduto
+    @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoPedido = :orderId")
+    suspend fun selectOrderById(orderId: Long): PedidoVendaProduto
 
     /**************************************************************/
 
