@@ -115,9 +115,9 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideProductsRepository(remote: RemoteDataSource): ProductsRepository {
+    fun provideProductsRepository(remote: RemoteDataSource, local: LocalDataSource): ProductsRepository {
 
-        return ProductsRepositoryImpl(remote)
+        return ProductsRepositoryImpl(remote, local)
     }
     @Provides
     @Singleton

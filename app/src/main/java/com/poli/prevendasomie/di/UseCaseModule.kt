@@ -14,6 +14,7 @@ import com.poli.prevendasomie.domain.usecase.pedidos.GetOrdersListUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.pedidos.InsertSelectedClientUseCaseImpl
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCase
 import com.poli.prevendasomie.domain.usecase.products.GetProductsListUseCaseImpl
+import com.poli.prevendasomie.domain.usecase.products.GetSelectedProductImpl
 import com.poli.prevendasomie.login.domain.repository.LoginRepository
 import com.poli.prevendasomie.login.domain.repository.TokenRepository
 import com.poli.prevendasomie.login.domain.usecase.CredentialsLoginUseCase
@@ -75,6 +76,7 @@ object UseCaseModule {
         // solução provisória aqui ^
         return UseCases(
             getProductListUseCase = GetProductsListUseCaseImpl(r1),
+            getSelectedProduct = GetSelectedProductImpl(r1),
             getClientListUseCase = GetClientListUseCaseImpl(r2),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
             getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2),

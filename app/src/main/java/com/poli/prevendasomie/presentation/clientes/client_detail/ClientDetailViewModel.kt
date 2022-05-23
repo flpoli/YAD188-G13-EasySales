@@ -21,8 +21,8 @@ class ClientDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ClientDetailState())
-    val state: State<ClientDetailState> = _state
+//    private val _state = mutableStateOf(ClientDetailState())
+//    val state: State<ClientDetailState> = _state
 
     private val _selectClient: MutableStateFlow<ClientesCadastro?> = MutableStateFlow(null)
     val selectedClient: StateFlow<ClientesCadastro?> = _selectClient

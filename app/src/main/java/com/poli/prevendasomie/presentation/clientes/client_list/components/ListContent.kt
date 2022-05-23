@@ -43,21 +43,6 @@ fun ListContent(
                     cliente = cliente!!
                 )
 
-//                cliente?.let {
-//                    ClientRow(
-//                        entries = cliente,
-//                        navController = navController,
-//                        onItemClick = {
-//                            if (cliente.codClienteOmie != null) {
-//                                navController.navigate(
-//                                    Screen.ClientDetailScreen.passClientId(
-//                                        clientId = cliente.codClienteOmie
-//                                    )
-//                                )
-//                            } else throw IllegalArgumentException("Cagou no navigate pq tirei o ID da model que era entity junto")
-//                        }
-//                    )
-//                    Divider(color = Color.Black, thickness = 1.dp)
                 }
             }
         }

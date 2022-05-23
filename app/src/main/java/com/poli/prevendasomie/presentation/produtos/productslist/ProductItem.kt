@@ -31,7 +31,8 @@ import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun ProductItem(
+fun ProductListItem(
+    onItemClick: () -> Unit,
 
     produto: ProdutoServicoCadastro,
     modifier: Modifier = Modifier
@@ -48,7 +49,7 @@ fun ProductItem(
                 shape = RoundedCornerShape(5.dp)
             )
             .background(MaterialTheme.colors.surface)
-            .clickable { }
+            .clickable { onItemClick() }
             .padding(end = spacing.spaceMedium)
     ) {
 

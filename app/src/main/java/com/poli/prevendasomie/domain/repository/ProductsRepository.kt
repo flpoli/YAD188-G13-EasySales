@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface ProductsRepository {
 
     fun getProductList(): Flow<PagingData<ProdutoServicoCadastro>>?
+    suspend fun getSelectedProduct(productId: Long): ProdutoServicoCadastro
 }

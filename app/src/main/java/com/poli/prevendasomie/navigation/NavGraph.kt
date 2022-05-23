@@ -28,6 +28,7 @@ import com.poli.prevendasomie.presentation.onboarding.OnboardingScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
+import com.poli.prevendasomie.presentation.produtos.productdetail.ProductDetailScreen
 import com.poli.prevendasomie.presentation.produtos.productform.ProductFormScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
@@ -110,9 +111,23 @@ fun SetupNavGraph(
 
                 ClientDetailScreen(navController = navController)
             }
+
+
             composable(Screen.ProductListScreen.route) {
                 ProductListScreen(navController = navController)
             }
+
+            composable(
+                route = Screen.ProductDetailScreen.route,
+                arguments = listOf(
+                    navArgument("productId"){
+                        type = NavType.LongType
+                    }
+                )
+            ) {
+                ProductDetailScreen(navController = navController)
+            }
+
             composable(Screen.ProductFormScreen.route){
                 ProductFormScreen()
             }
@@ -122,6 +137,10 @@ fun SetupNavGraph(
                     scaffoldState = scaffoldState
                 )
             }
+
+
+
+
             composable(Screen.OrdersListScreen.route) {
                 OrdersListScreen(navController = navController)
             }

@@ -17,6 +17,10 @@ interface ProductsDao {
     @Query("SELECT * FROM $PRODUCTS_TABLE")
     fun getAllProducts(): PagingSource<Int, ProdutoServicoCadastro>
 
+
+    @Query("SELECT * FROM $PRODUCTS_TABLE WHERE codigoProduto = :id")
+    suspend fun getProductById(id: Long): ProdutoServicoCadastro
+
     @Query("DELETE FROM $PRODUCTS_TABLE")
     suspend fun deleteAllProducts()
 

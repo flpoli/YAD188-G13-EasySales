@@ -6,12 +6,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
@@ -23,12 +25,13 @@ fun ProductListScreen(
     val allProducts = viewModel.produtos?.collectAsLazyPagingItems()
 
     if (allProducts != null) {
-        ListContent(allProducts)
+        ListContent(navController = navController, produto = allProducts)
     }
 }
 
 @Composable
 fun ListContent(
+    navController: NavController,
     produto: LazyPagingItems<ProdutoServicoCadastro>
 ) {
 
@@ -46,7 +49,14 @@ fun ListContent(
 
                     produto ->
                 if (produto != null) {
-                    ProductItem(produto = produto)
+                    ProductListItem(
+                        onItemClick = {
+                            navController.navigate(
+                                Screen.ProductDetailScreen
+                                    .passProductId(productId = produto.codigoProduto)
+                            )
+                                      },
+                        produto = produto)
                 }
             }
         }
