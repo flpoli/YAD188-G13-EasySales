@@ -31,7 +31,6 @@ class ClientDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
 
             val clientId = savedStateHandle.get<Long>("clientId")
-            Log.d("VAL clientId", "$clientId")
             _selectClient.value = clientId?.let {
                 useCase.getSelectedClientUseCase(clientId = clientId)
             }
