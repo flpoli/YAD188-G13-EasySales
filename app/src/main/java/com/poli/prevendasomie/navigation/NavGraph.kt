@@ -27,6 +27,7 @@ import com.poli.prevendasomie.presentation.main_screen.components.TopBar
 import com.poli.prevendasomie.presentation.onboarding.OnboardingScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
+import com.poli.prevendasomie.presentation.pedidos.orderdetail.OrderDetailScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
 import com.poli.prevendasomie.presentation.produtos.productdetail.ProductDetailScreen
 import com.poli.prevendasomie.presentation.produtos.productform.ProductFormScreen
@@ -144,14 +145,19 @@ fun SetupNavGraph(
             composable(Screen.OrdersListScreen.route) {
                 OrdersListScreen(navController = navController)
             }
+
+            composable(
+                route = Screen.OrderDetailScreen.route,
+                arguments = listOf(
+                    navArgument("orderId") {
+                        type = NavType.LongType
+                    }
+                )
+                ){
+                OrderDetailScreen(navController = navController)
+            }
+
             composable(Screen.OrderFormScreen.route) {
-
-                val clientResult = navController
-                    .previousBackStackEntry
-                    ?.savedStateHandle
-                    ?.get<ClientesCadastro>("cliente")
-
-                Log.d("ORDER SCREEN", "${clientResult?.nomeFantasia}")
 
                 OrdersFormScreen(navController = navController, onNavigate = navController::navigate)
             }

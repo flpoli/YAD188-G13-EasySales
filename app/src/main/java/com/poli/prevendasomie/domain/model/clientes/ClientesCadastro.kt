@@ -18,6 +18,7 @@ data class ClientesCadastro(
     val enderecoNumero: String? = "",
     val bairro: String? = "",
     val cep: String? = "",
+    val estado: String? = "",
     val cidade: String? = "",
     val complemento: String? = ""
 

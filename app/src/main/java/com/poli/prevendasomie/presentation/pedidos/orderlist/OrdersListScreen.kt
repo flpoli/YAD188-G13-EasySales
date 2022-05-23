@@ -37,11 +37,12 @@ fun OrdersListScreen(
 
     val allOrders = viewModel.pedidos.collectAsLazyPagingItems()
 
-    ListContent(pedidos = allOrders)
+    ListContent(navController = navController, pedidos = allOrders)
 }
 
 @Composable
 fun ListContent(
+    navController: NavHostController,
     pedidos: LazyPagingItems<PedidoVendaProduto>
 ) {
 
@@ -60,6 +61,12 @@ fun ListContent(
                     pedido ->
                 if (pedido != null) {
                     OrderListItem(
+                        onItemClick = {
+                                      navController
+                                          .navigate(
+                                              Screen.OrderDetailScreen.passOrderId(
+                                                  pedido.cabecalho?.codigoPedido!!))
+                        },
                         order = pedido
                     )
                 }

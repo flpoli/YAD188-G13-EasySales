@@ -19,6 +19,7 @@ data class ClientesCadastroEntity(
     val telefone1Numero: String? = "",
     var email: String? = "",
     val endereco: String? = "",
+    val estado: String? = "",
     val enderecoNumero: String? = "",
     val bairro: String? = "",
     val cep: String? = "",

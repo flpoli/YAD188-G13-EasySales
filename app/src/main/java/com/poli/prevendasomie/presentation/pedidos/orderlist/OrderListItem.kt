@@ -22,7 +22,7 @@ import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @Composable
 fun OrderListItem(
-
+    onItemClick: () -> Unit,
     order: PedidoVendaProduto,
     modifier: Modifier = Modifier
 ) {
@@ -37,7 +37,7 @@ fun OrderListItem(
                 shape = RoundedCornerShape(5.dp)
             )
             .background(MaterialTheme.colors.surface)
-            .clickable { }
+            .clickable { onItemClick() }
             .padding(end = spacing.spaceMedium)
     ) {
 

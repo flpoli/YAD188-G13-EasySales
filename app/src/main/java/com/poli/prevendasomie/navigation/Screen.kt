@@ -6,6 +6,7 @@ import com.poli.prevendasomie.common.Constants.CLIENT_LIST_ROUTE
 import com.poli.prevendasomie.common.Constants.LOGIN_ROUTE
 import com.poli.prevendasomie.common.Constants.MAIN_SCREEN_ROUTE
 import com.poli.prevendasomie.common.Constants.ONBOARDING_ROUTE
+import com.poli.prevendasomie.common.Constants.ORDER_DETAIL_ROUTE
 import com.poli.prevendasomie.common.Constants.ORDER_FORM_ROUTE
 import com.poli.prevendasomie.common.Constants.ORDER_LIST_ROUTE
 import com.poli.prevendasomie.common.Constants.PRODUCT_DETAIL_ROUTE
@@ -32,10 +33,9 @@ sealed class Screen(val route: String) {
     object ClientSelectionScreen : Screen("client_selection_screen")
     object ClientFormScreen : Screen(CLIENT_FORM_ROUTE)
 
-    object OrdersListScreen : Screen(ORDER_LIST_ROUTE)
-    object OrderFormScreen : Screen(ORDER_FORM_ROUTE)
 
     object ProductListScreen : Screen(PRODUCT_LIST_ROUTE)
+
     object ProductDetailScreen: Screen("$PRODUCT_DETAIL_ROUTE/{productId}"){
 
         fun passProductId(productId: Long): String {
@@ -44,4 +44,14 @@ sealed class Screen(val route: String) {
 
     }
     object ProductFormScreen: Screen(PRODUCT_FORM_SCREEN)
+
+    object OrdersListScreen : Screen(ORDER_LIST_ROUTE)
+    object OrderFormScreen : Screen(ORDER_FORM_ROUTE)
+    object OrderDetailScreen: Screen("$ORDER_DETAIL_ROUTE/{orderId}"){
+
+        fun passOrderId(orderId: Long): String {
+
+            return "$ORDER_DETAIL_ROUTE/$orderId"
+        }
+    }
 }
