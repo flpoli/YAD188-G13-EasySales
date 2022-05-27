@@ -11,7 +11,7 @@ import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.pedidos.toPedidoVendaProduto
+import com.poli.prevendasomie.data.remote.dto.pedidos.toPedidoVendaProduto
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import java.lang.Exception
 import javax.inject.Inject

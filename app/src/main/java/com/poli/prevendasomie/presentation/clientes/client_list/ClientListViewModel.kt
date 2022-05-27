@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ClientListViewModel
-@Inject constructor(private val useCase: UseCases) : ViewModel() {
+@Inject constructor(useCase: UseCases) : ViewModel() {
 
     val clientes = useCase.getClientListUseCase().map { it ->
 

@@ -10,7 +10,6 @@ import com.poli.prevendasomie.domain.mappers.toClientModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,17 +27,17 @@ class ClientSelectionViewModel
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun onEvent(event: SelectionEvent) {
+    fun onEvent(event: ClientSelectionEvent) {
 
         when (event) {
 
-            is SelectionEvent.OnClientSelected -> {
+            is ClientSelectionEvent.OnClientSelected -> {
                 selectClient(event)
             }
         }
     }
 
-    private fun selectClient(event: SelectionEvent.OnClientSelected) {
+    private fun selectClient(event: ClientSelectionEvent.OnClientSelected) {
 
         viewModelScope.launch {
 

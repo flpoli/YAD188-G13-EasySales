@@ -41,13 +41,6 @@ class ProductSelectionViewModel
                 )
 
             }
-
-
-
-
-
         }
-
     }
-
 }

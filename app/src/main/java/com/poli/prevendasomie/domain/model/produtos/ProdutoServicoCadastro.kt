@@ -1,12 +1,8 @@
 package com.poli.prevendasomie.domain.model.produtos
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
-import com.poli.prevendasomie.data.remote.responses.produtos.Imagens
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
 import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class ProdutoServicoCadastro(

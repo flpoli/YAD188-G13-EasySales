@@ -3,7 +3,7 @@ package com.poli.prevendasomie.domain.repository
 import androidx.paging.PagingData
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.ReqResponse
+import com.poli.prevendasomie.data.remote.dto.ReqResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ClientsRepository {

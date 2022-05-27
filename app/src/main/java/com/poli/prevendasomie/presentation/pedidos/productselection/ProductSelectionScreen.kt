@@ -32,7 +32,7 @@ fun ProductSelectionScreen(
 
                     navController.currentBackStackEntry?.savedStateHandle?.set(
                         key = "produto",
-                        value = produto.produto
+                        value = listOf(produto.produto)
                     )
                     navController.navigate(Screen.OrderFormScreen.route)
 

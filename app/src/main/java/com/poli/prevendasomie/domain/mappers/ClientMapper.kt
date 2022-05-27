@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.domain.mappers
 
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
+import com.poli.prevendasomie.data.remote.dto.clientes.ClientesCadastroDto
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 
 fun ClientesCadastroEntity.toClientModel(): ClientesCadastro {

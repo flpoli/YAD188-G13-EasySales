@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.domain.mappers
 
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
-import com.poli.prevendasomie.data.remote.responses.produtos.ProdutoServicoCadastroDto
+import com.poli.prevendasomie.data.remote.dto.produtos.ProdutoServicoCadastroDto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 

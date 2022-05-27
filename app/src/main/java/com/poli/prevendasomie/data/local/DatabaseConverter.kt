@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
-import com.poli.prevendasomie.data.remote.responses.produtos.Imagens
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
 import com.poli.prevendasomie.data.util.JsonParser
 import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais

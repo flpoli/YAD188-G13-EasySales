@@ -6,7 +6,7 @@ import androidx.paging.PagingState
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.produtos.ProdutoServicoCadastroDto
+import com.poli.prevendasomie.data.remote.dto.produtos.ProdutoServicoCadastroDto
 import javax.inject.Inject
 
 class ProductsSearchSource

@@ -3,7 +3,7 @@ package com.poli.prevendasomie.data.local.entities.produtos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
-import com.poli.prevendasomie.data.remote.responses.produtos.Imagens
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
 
 @Entity(PRODUCTS_TABLE)
 data class ProdutoEntity(

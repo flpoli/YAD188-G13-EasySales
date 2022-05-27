@@ -7,8 +7,7 @@ import com.poli.prevendasomie.common.Constants.CALL_CONSULTAR_CLIENTE
 import com.poli.prevendasomie.common.Constants.CALL_INCLUIR_CLIENTE
 import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PEDIDOS
 import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PRODUTOS
-import com.poli.prevendasomie.data.remote.responses.clientes.ClientesCadastroDto
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.data.remote.dto.clientes.ClientesCadastroDto
 import kotlin.String
 
 sealed class Request {

@@ -1,12 +1,16 @@
 package com.poli.prevendasomie.presentation.main_screen.components
 
+import androidx.compose.material.BottomNavigationDefaults.Elevation
 import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonElevation
 import androidx.compose.material.Icon
+import androidx.compose.material.ModalBottomSheetDefaults.Elevation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.poli.prevendasomie.common.Constants.CLIENT_LIST_ROUTE
 import com.poli.prevendasomie.common.Constants.ORDER_LIST_ROUTE

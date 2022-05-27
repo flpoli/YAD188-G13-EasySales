@@ -51,7 +51,6 @@ fun ClientSelectionScreen(
                     )
                     navController.navigate(Screen.OrderFormScreen.route)
 
-                    // viewModel.onEvent(SelectionEvent.OnClientSelected(cliente = cliente.cliente))
                 }
             )
         }

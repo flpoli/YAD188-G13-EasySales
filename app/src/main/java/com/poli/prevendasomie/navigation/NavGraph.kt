@@ -7,6 +7,8 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -24,6 +26,7 @@ import com.poli.prevendasomie.presentation.main_screen.components.FabButton
 import com.poli.prevendasomie.presentation.main_screen.components.TopBar
 import com.poli.prevendasomie.presentation.onboarding.OnboardingScreen
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
+import com.poli.prevendasomie.presentation.pedidos.SharedViewModel
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.pedidos.orderdetail.OrderDetailScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
@@ -39,6 +42,8 @@ fun SetupNavGraph(
     navController: NavHostController,
     scaffoldState: ScaffoldState
 ) {
+
+    val sharedViewModel: SharedViewModel = viewModel()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     Scaffold(
@@ -66,9 +71,11 @@ fun SetupNavGraph(
         isFloatingActionButtonDocked = false,
         floatingActionButton = {
 
+            
             if (
-                navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
-                navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
+                navBackStackEntry?.destination?.route != Screen.LoginScreen.route
+                && navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
+                && navBackStackEntry?.destination?.route != Screen.MainScreen.route
             ) {
 
                 FabButton(navController = navController)
