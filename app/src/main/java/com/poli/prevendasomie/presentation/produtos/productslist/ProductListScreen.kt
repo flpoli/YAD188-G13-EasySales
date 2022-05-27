@@ -44,7 +44,7 @@ fun ListContent(
         ) {
             items(
                 items = produto,
-                key = { produto -> produto.id }
+
             ) {
 
                     produto ->

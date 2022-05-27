@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class Info(
     @SerializedName("dAlt")
-    val dAlt: String?,
+    val dAlt: String? = "",
     @SerializedName("dInc")
-    val dInc: String?,
+    val dInc: String? = "",
     @SerializedName("hAlt")
-    val hAlt: String?,
+    val hAlt: String? = "",
     @SerializedName("hInc")
-    val hInc: String?,
+    val hInc: String? = "",
     @SerializedName("uAlt")
-    val uAlt: String?,
+    val uAlt: String? = "",
     @SerializedName("uInc")
-    val uInc: String?
+    val uInc: String? = ""
 )

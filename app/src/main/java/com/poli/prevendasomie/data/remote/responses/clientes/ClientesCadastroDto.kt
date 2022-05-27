@@ -30,7 +30,7 @@ data class ClientesCadastroDto(
     val contribuinte: String? = "",
     @SerializedName("dadosBancarios")
     val dadosBancarios: DadosBancarios? = DadosBancarios(),
-    @SerializedName("username")
+    @SerializedName("email")
     val email: String? = "",
     @SerializedName("endereco")
     val endereco: String? = "",

@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.poli.prevendasomie.common.Constants.API_PAGE_SIZE
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.data.pagingsource.ClientsRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.OrdersRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.ProductsRemoteMediator
@@ -42,7 +43,7 @@ class RemoteDataSourceImpl(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    override fun getAllProducts(): Flow<PagingData<ProdutoServicoCadastro>> {
+    override fun getAllProducts(): Flow<PagingData<ProdutoEntity>> {
 
         val pagingSourceFactory = { productDao.getAllProducts() }
 

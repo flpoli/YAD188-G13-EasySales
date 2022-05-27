@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote.responses.produtos
 
 import com.google.gson.annotations.SerializedName
+import com.poli.prevendasomie.domain.mappers.toProdutoCadastro
 import com.poli.prevendasomie.domain.model.produtos.ListarProdutos
 
 data class ListarProdutosDto(

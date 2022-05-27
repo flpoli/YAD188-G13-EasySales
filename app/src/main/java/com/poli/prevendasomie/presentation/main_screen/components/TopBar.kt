@@ -38,7 +38,6 @@ fun TopBar(
     TopAppBar(
         title = { Text(text = navController.currentDestination?.route ?: "noo") },
         navigationIcon = {
-
             IconButton(onClick = { /* doSomething() */ }) {
                 Icon(Icons.Filled.Menu, contentDescription = null)
             }

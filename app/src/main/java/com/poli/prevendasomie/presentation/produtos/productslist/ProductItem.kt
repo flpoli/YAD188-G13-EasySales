@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -80,19 +81,20 @@ fun ProductListItem(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = "Código: ${ trimLeadingZeros(produto.codigo) }",
+                    text = stringResource(id = R.string.cod_prod, trimLeadingZeros(produto.codigo) ),
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
+
                 )
                 Text(
                     text = produto.descricao ?: "null?",
                     style = MaterialTheme.typography.body1,
                     maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Clip
                 )
                 Text(
-                    text = produto.quantidadeEstoque.toString(),
+                    text = stringResource(id = R.string.quantidade, produto.quantidadeEstoque!!),
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

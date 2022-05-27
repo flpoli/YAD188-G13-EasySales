@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class RecomendacoesFiscais(
     @SerializedName("cnpj_fabricante")
-    val cnpjFabricante: String?,
+    val cnpjFabricante: String? = "",
     @SerializedName("cupom_fiscal")
-    val cupomFiscal: String?,
+    val cupomFiscal: String? = "",
     @SerializedName("id_cest")
-    val idCest: String?,
+    val idCest: String? = "",
     @SerializedName("id_preco_tabelado")
-    val idPrecoTabelado: Int?,
+    val idPrecoTabelado: Int? = 0,
     @SerializedName("indicador_escala")
-    val indicadorEscala: String?,
+    val indicadorEscala: String? = "",
     @SerializedName("market_place")
-    val marketPlace: String?,
+    val marketPlace: String? = "",
     @SerializedName("origem_mercadoria")
-    val origemMercadoria: String?
+    val origemMercadoria: String? = ""
 )

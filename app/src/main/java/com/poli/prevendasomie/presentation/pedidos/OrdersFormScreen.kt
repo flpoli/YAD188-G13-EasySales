@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.navigation.Screen
 
 @Composable
@@ -31,19 +32,26 @@ fun OrdersFormScreen(
 
     val state = viewModel.state
     val selectedClient = navController.previousBackStackEntry?.savedStateHandle?.get<ClientesCadastro>("cliente")
+    val selectedProduct = navController.previousBackStackEntry?.savedStateHandle?.get<List<ProdutoServicoCadastro>>("produto")
+
 
     if (selectedClient != null) state.cliente = selectedClient
+
+    if (selectedProduct != null) state.produtos = selectedProduct
+
+
+
 
     LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
 
                 event ->
-            when (event) {
+                    when (event) {
 
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
+                        is UiEvent.Navigate -> onNavigate(event)
+                        else -> Unit
+                    }
         }
     }
 
@@ -53,8 +61,12 @@ fun OrdersFormScreen(
             state = state,
             onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
         )
-
         Spacer(modifier = Modifier.height(12.dp))
+
+        ProductBox(
+            state = state,
+            onClick = {onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
+            )
     }
 }
 
@@ -66,7 +78,8 @@ fun ClientBox(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable {
                 onClick()
             }
@@ -87,6 +100,41 @@ fun ClientBox(
             } else {
 
                 Text(text = "${state.cliente.nomeFantasia}")
+            }
+        }
+    }
+}
+
+@Composable
+fun ProductBox(
+    state: OrderOverviewState,
+    onClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            }
+    ) {
+
+        Spacer(modifier = Modifier.height(12.dp))
+        Row(
+            modifier = Modifier
+                .background(color = Color.LightGray)
+                .fillMaxWidth()
+                .padding(20.dp)
+
+        ) {
+
+            println(state.produtos)
+            if (state.produtos.isEmpty()) {
+                Text(text = "Selecionar produto")
+            } else {
+
+                Text(text = "${state.produtos}")
             }
         }
     }

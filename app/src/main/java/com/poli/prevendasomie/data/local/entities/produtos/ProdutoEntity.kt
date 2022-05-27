@@ -1,17 +1,14 @@
-package com.poli.prevendasomie.domain.model.produtos
+package com.poli.prevendasomie.data.local.entities.produtos
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
 import com.poli.prevendasomie.data.remote.responses.produtos.Imagens
-import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
-@Parcelize
-data class ProdutoServicoCadastro(
-
-
+@Entity(PRODUCTS_TABLE)
+data class ProdutoEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val codigo: String?,
     val codigoProduto: Long,
     val codigoProdutoIntegracao: String?,
@@ -22,4 +19,4 @@ data class ProdutoServicoCadastro(
     val valorUnitario: Double?,
     val imagens: List<Imagens>? = listOf(Imagens(""))
 
-): Parcelable
+)

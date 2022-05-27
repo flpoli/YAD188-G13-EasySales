@@ -2,6 +2,7 @@ package com.poli.prevendasomie.data.repository
 
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.LocalDataSource
@@ -25,11 +26,11 @@ class LocalDataSourceImpl
         return clientDao.getNonPaginatedClients()
     }
 
-    override fun getProductsForSelection(): Flow<List<ProdutoServicoCadastro>> {
+    override fun getProductsForSelection(): Flow<List<ProdutoEntity>> {
         return productDao.getProductsForSelection()
     }
 
-    override suspend fun getSelectedProduct(productId: Long): ProdutoServicoCadastro {
+    override suspend fun getSelectedProduct(productId: Long): ProdutoEntity {
 
         return productDao.getProductById(id = productId)
     }

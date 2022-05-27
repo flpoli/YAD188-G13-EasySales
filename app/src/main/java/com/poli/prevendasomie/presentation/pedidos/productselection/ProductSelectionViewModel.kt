@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.poli.prevendasomie.core.UiEvent
+import com.poli.prevendasomie.domain.mappers.toProdutoModel
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -36,7 +37,7 @@ class ProductSelectionViewModel
 
                 state = state.copy(
                     isLoading = false,
-                    selectableProduct = it.map {SelectableProductUiState(it)}
+                    selectableProduct = it.map {SelectableProductUiState(it.toProdutoModel())}
                 )
 
             }

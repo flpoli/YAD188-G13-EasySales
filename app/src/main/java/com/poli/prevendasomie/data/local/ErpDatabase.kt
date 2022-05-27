@@ -14,6 +14,7 @@ import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
@@ -22,12 +23,12 @@ import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
     entities = [
 
         UserDataModel::class,
-        ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
         ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
-        PedidoVendaProduto::class,
+        ProdutoEntity::class,
         OrdersRemoteKeys::class,
+        PedidoVendaProduto::class
 
 //        PedidoVendaEntity::class,
 //        ClienteEntity::class

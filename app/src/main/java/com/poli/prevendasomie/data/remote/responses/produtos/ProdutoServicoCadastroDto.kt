@@ -4,124 +4,108 @@ import com.google.gson.annotations.SerializedName
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 data class ProdutoServicoCadastroDto(
-    var id: Int = 1,
     @SerializedName("aliquota_cofins")
-    val aliquotaCofins: Int?,
+    val aliquotaCofins: Int? = 0,
     @SerializedName("aliquota_ibpt")
-    val aliquotaIbpt: Int?,
+    val aliquotaIbpt: Int? = 0,
     @SerializedName("aliquota_icms")
-    val aliquotaIcms: Int?,
+    val aliquotaIcms: Int? = 0,
     @SerializedName("aliquota_pis")
-    val aliquotaPis: Int?,
+    val aliquotaPis: Int? = 0,
     @SerializedName("altura")
-    val altura: Int?,
+    val altura: Int? = 0,
     @SerializedName("bloqueado")
-    val bloqueado: String?,
+    val bloqueado: String? = "",
     @SerializedName("bloquear_exclusao")
-    val bloquearExclusao: String?,
+    val bloquearExclusao: String? = "",
     @SerializedName("cest")
-    val cest: String?,
+    val cest: String? = "",
     @SerializedName("cfop")
-    val cfop: String?,
+    val cfop: String? = "",
     @SerializedName("codInt_familia")
-    val codIntFamilia: String?,
+    val codIntFamilia: String? = "",
     @SerializedName("codigo")
-    val codigo: String?,
+    val codigo: String? = "",
     @SerializedName("codigo_beneficio")
-    val codigoBeneficio: String?,
+    val codigoBeneficio: String? = "",
     @SerializedName("codigo_familia")
-    val codigoFamilia: Long?,
+    val codigoFamilia: Long? = 0,
     @SerializedName("codigo_produto")
     val codigoProduto: Long,
     @SerializedName("codigo_produto_integracao")
-    val codigoProdutoIntegracao: String?,
+    val codigoProdutoIntegracao: String? = "",
     @SerializedName("csosn_icms")
-    val csosnIcms: String?,
+    val csosnIcms: String? = "",
     @SerializedName("cst_cofins")
-    val cstCofins: String?,
+    val cstCofins: String? = "",
     @SerializedName("cst_icms")
-    val cstIcms: String?,
+    val cstIcms: String? = "",
     @SerializedName("cst_pis")
-    val cstPis: String?,
+    val cstPis: String? = "",
     @SerializedName("dadosIbpt")
-    val dadosIbpt: DadosIbpt?,
+    val dadosIbpt: DadosIbpt? = DadosIbpt(),
     @SerializedName("descr_detalhada")
-    val descrDetalhada: String?,
+    val descrDetalhada: String? = "",
     @SerializedName("descricao")
-    val descricao: String?,
+    val descricao: String? = "",
     @SerializedName("descricao_familia")
-    val descricaoFamilia: String?,
+    val descricaoFamilia: String? = "",
     @SerializedName("dias_crossdocking")
-    val diasCrossdocking: Int?,
+    val diasCrossdocking: Int? = 0,
     @SerializedName("dias_garantia")
-    val diasGarantia: Int?,
+    val diasGarantia: Int? = 0,
     @SerializedName("ean")
-    val ean: String?,
+    val ean: String? = "",
     @SerializedName("estoque_minimo")
-    val estoqueMinimo: Int?,
+    val estoqueMinimo: Int? = 0,
     @SerializedName("exibir_descricao_nfe")
-    val exibirDescricaoNfe: String?,
+    val exibirDescricaoNfe: String? = "",
     @SerializedName("exibir_descricao_pedido")
-    val exibirDescricaoPedido: String?,
+    val exibirDescricaoPedido: String? = "",
     @SerializedName("importado_api")
-    val importadoApi: String?,
+    val importadoApi: String? = "",
     @SerializedName("inativo")
-    val inativo: String?,
+    val inativo: String? = "",
     @SerializedName("info")
-    val info: Info?,
+    val info: Info? = Info(),
     @SerializedName("largura")
-    val largura: Int?,
+    val largura: Int? = 0,
     @SerializedName("lead_time")
-    val leadTime: Int?,
+    val leadTime: Int? = 0,
     @SerializedName("marca")
-    val marca: String?,
+    val marca: String? = "",
     @SerializedName("modelo")
-    val modelo: String?,
+    val modelo: String? = "",
     @SerializedName("motivo_deson_icms")
-    val motivoDesonIcms: String?,
+    val motivoDesonIcms: String? = "",
     @SerializedName("ncm")
-    val ncm: String?,
+    val ncm: String? = "",
     @SerializedName("obs_internas")
-    val obsInternas: String?,
+    val obsInternas: String? = "",
     @SerializedName("per_icms_fcp")
-    val perIcmsFcp: Float?,
+    val perIcmsFcp: Float? = 0f,
     @SerializedName("peso_bruto")
-    val pesoBruto: Float?,
+    val pesoBruto: Float? = 0f,
     @SerializedName("peso_liq")
-    val pesoLiq: Float?,
+    val pesoLiq: Float? = 0f,
     @SerializedName("profundidade")
-    val profundidade: Int?,
+    val profundidade: Int? = 0,
     @SerializedName("quantidade_estoque")
-    val quantidadeEstoque: Int?,
+    val quantidadeEstoque: Int? = 0,
     @SerializedName("recomendacoes_fiscais")
-    val recomendacoesFiscais: RecomendacoesFiscais?,
+    val recomendacoesFiscais: RecomendacoesFiscais? = RecomendacoesFiscais(),
     @SerializedName("red_base_icms")
-    val redBaseIcms: Float?,
+    val redBaseIcms: Float? = 0f,
     @SerializedName("tipoItem")
-    val tipoItem: String?,
+    val tipoItem: String? = "",
     @SerializedName("unidade")
-    val unidade: String?,
+    val unidade: String? = "",
     @SerializedName("valor_unitario")
-    val valorUnitario: Double?,
+    val valorUnitario: Double? = 0.0,
     @SerializedName("imagens")
     var imagens: List<Imagens>? = listOf(Imagens("")),
 
 )
 
-fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
 
-    return ProdutoServicoCadastro(
 
-        id = id,
-        codigo = codigo,
-        codigoProduto = codigoProduto,
-        codigoProdutoIntegracao = codigoProdutoIntegracao,
-        descricao = descricao,
-        descrDetalhada = descrDetalhada,
-        quantidadeEstoque = quantidadeEstoque,
-        unidade = unidade,
-        valorUnitario = valorUnitario,
-        imagens = imagens,
-
-    )
-}

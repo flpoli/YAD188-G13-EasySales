@@ -3,6 +3,7 @@ package com.poli.prevendasomie.presentation.produtos.productdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.poli.prevendasomie.domain.mappers.toProdutoModel
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +31,7 @@ class ProductDetailViewModel
 
             _selectedProduct.value = productId?.let {
 
-                useCase.getSelectedProduct(productId = productId)
+                useCase.getSelectedProduct(productId = productId).toProdutoModel()
             }
         }
     }

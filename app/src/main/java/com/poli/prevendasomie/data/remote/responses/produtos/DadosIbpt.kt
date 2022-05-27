@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class DadosIbpt(
     @SerializedName("aliqEstadual")
-    val aliqEstadual: Int?,
+    val aliqEstadual: Int? = 0,
     @SerializedName("aliqFederal")
-    val aliqFederal: Int?,
+    val aliqFederal: Int? = 0,
     @SerializedName("aliqMunicipal")
-    val aliqMunicipal: Int?,
+    val aliqMunicipal: Int? = 0,
     @SerializedName("chave")
-    val chave: String?,
+    val chave: String? = "",
     @SerializedName("fonte")
-    val fonte: String?,
+    val fonte: String? = "",
     @SerializedName("valido_ate")
-    val validoAte: String?,
+    val validoAte: String? = "",
     @SerializedName("valido_de")
-    val validoDe: String?,
+    val validoDe: String? = "",
     @SerializedName("versao")
-    val versao: String?
+    val versao: String? = ""
 )

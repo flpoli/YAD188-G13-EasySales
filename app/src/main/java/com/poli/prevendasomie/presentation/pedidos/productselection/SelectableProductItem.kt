@@ -1,4 +1,4 @@
-package com.poli.prevendasomie.presentation.pedidos.clientselection
+package com.poli.prevendasomie.presentation.pedidos.productselection
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,15 +19,14 @@ import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.ui.theme.LocalSpacing
 
 @Composable
-fun SelectableClientItem(
+fun SelectableProductItem(
 
-    selectableClientUiState: SelectableClientUiState,
+    selectableProductUiState: SelectableProductUiState,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
+){
 
-) {
-
-    val cliente = selectableClientUiState.cliente
+    val produto = selectableProductUiState.produto
     val spacing = LocalSpacing.current
 
     Column(
@@ -49,7 +48,7 @@ fun SelectableClientItem(
         ) {
 
             Text(
-                text = cliente.nomeFantasia!!
+                text = produto.toString()
             )
         }
     }

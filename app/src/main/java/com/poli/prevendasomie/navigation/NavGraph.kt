@@ -27,6 +27,7 @@ import com.poli.prevendasomie.presentation.pedidos.OrdersFormScreen
 import com.poli.prevendasomie.presentation.pedidos.clientselection.ClientSelectionScreen
 import com.poli.prevendasomie.presentation.pedidos.orderdetail.OrderDetailScreen
 import com.poli.prevendasomie.presentation.pedidos.orderlist.OrdersListScreen
+import com.poli.prevendasomie.presentation.pedidos.productselection.ProductSelectionScreen
 import com.poli.prevendasomie.presentation.produtos.productdetail.ProductDetailScreen
 import com.poli.prevendasomie.presentation.produtos.productform.ProductFormScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
@@ -158,6 +159,10 @@ fun SetupNavGraph(
 
             composable(Screen.ClientSelectionScreen.route) {
                 ClientSelectionScreen(navController = navController, onNavigateUp = { navController.navigateUp() })
+            }
+
+            composable(Screen.ProductSelectionScreen.route) {
+                ProductSelectionScreen(navController = navController)
             }
         }
     }
