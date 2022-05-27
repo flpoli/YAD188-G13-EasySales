@@ -19,6 +19,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -95,7 +96,7 @@ fun SelectableProductItem(
                         onValueChange = {},
                         singleLine = true,
                         modifier = Modifier
-                            .width(16.dp)
+                            .width(32.dp)
                             .border(
                                 shape = RoundedCornerShape(5.dp),
                                 width = 0.5.dp,
@@ -110,6 +111,16 @@ fun SelectableProductItem(
                     ){
                         Icon(
                             imageVector = Icons.Default.Add,
+                            contentDescription = "",
+                            tint = Color.Green
+                        )
+                    }
+
+                    IconButton(
+                        onClick = {}
+                    ){
+                        Icon(
+                            imageVector = Icons.Default.Check,
                             contentDescription = "",
                             tint = Color.Green
                         )
