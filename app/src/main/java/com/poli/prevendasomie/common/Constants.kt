@@ -44,13 +44,16 @@ object Constants {
     const val LOGIN_URL_LOCAL: String = "http://10.0.2.2:9000/"
     const val CLIENTS_ENDPOINT = "geral/clientes/"
     const val PRODUCTS_ENDPOINT = "geral/produtos/"
+    const val ESTOQUE_ENDPOINT = "estoque/consulta/"
     const val ORDERS_ENDPOINT = "produtos/pedido/"
 
     // ERP API calls
 
-    const val CALL_LISTAR_PEDIDOS = "ListarClientes"
+    const val CALL_LISTAR_CLIENTES = "ListarClientes"
     const val CALL_CONSULTAR_CLIENTE = "ConsultarCliente"
     const val CALL_INCLUIR_CLIENTE = "IncluirCliente"
+    const val CALL_LISTAR_PEDIDOS = "ListarPedidos"
+    const val CALL_LISTAR_POSICAO = "ListarPosEstoque"
 
     const val CALL_LISTAR_PRODUTOS = "ListarProdutos"
 

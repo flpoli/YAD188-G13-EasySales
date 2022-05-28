@@ -5,7 +5,9 @@ import com.poli.prevendasomie.common.Constants.APP_KEY
 import com.poli.prevendasomie.common.Constants.APP_SECRET
 import com.poli.prevendasomie.common.Constants.CALL_CONSULTAR_CLIENTE
 import com.poli.prevendasomie.common.Constants.CALL_INCLUIR_CLIENTE
+import com.poli.prevendasomie.common.Constants.CALL_LISTAR_CLIENTES
 import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PEDIDOS
+import com.poli.prevendasomie.common.Constants.CALL_LISTAR_POSICAO
 import com.poli.prevendasomie.common.Constants.CALL_LISTAR_PRODUTOS
 import com.poli.prevendasomie.data.remote.dto.clientes.ClientesCadastroDto
 import kotlin.String
@@ -13,7 +15,7 @@ import kotlin.String
 sealed class Request {
 
     data class ListClientsRequest(
-        val call: String = CALL_LISTAR_PEDIDOS,
+        val call: String = CALL_LISTAR_CLIENTES,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
@@ -49,12 +51,22 @@ sealed class Request {
 
     )
     data class ListarPedidosRequest(
-        val call: String = "ListarPedidos",
+        val call: String = CALL_LISTAR_PEDIDOS,
         @SerializedName("app_key")
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
         val appSecret: String = APP_SECRET,
         val param: List<Param.ParamListarPedidos>
 
+    )
+
+    data class ListarPosicaoEstoque(
+
+        val call: String = CALL_LISTAR_POSICAO,
+        @SerializedName("app_key")
+        val appKey: String = APP_KEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APP_SECRET,
+        val param: List<Param.ParamListarPosicao>
     )
 }
