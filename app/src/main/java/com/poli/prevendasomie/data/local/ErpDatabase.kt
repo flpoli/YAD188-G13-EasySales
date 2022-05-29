@@ -17,7 +17,6 @@ import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntit
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.domain.model.UserDataModel
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 @Database(
     entities = [

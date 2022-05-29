@@ -14,10 +14,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class ProductSelectionViewModel
-@Inject constructor(private val useCase: UseCases): ViewModel() {
+@Inject constructor(private val useCase: UseCases) : ViewModel() {
 
     init {
         loadProductList()
@@ -28,8 +27,7 @@ class ProductSelectionViewModel
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-
-    private fun loadProductList(){
+    private fun loadProductList() {
 
         viewModelScope.launch {
 
@@ -37,9 +35,8 @@ class ProductSelectionViewModel
 
                 state = state.copy(
                     isLoading = false,
-                    selectableProduct = it.map {SelectableProductUiState(it.toProdutoModel())}
+                    selectableProduct = it.map { SelectableProductUiState(it.toProdutoModel()) }
                 )
-
             }
         }
     }

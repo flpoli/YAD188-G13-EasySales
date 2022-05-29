@@ -23,8 +23,7 @@ class OrdersRepositoryImpl
 
     override suspend fun getOrderById(orderId: Long): PedidoVendaProduto {
 
-            return local.getOrderById(orderId = orderId)
-
+        return local.getOrderById(orderId = orderId)
     }
 
     override suspend fun insertSelectedClient(selectedClient: ClientesCadastro) {

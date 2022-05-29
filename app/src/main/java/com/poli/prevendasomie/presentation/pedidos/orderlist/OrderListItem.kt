@@ -29,8 +29,6 @@ fun OrderListItem(
 ) {
     val spacing = LocalSpacing.current
 
-
-
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(5.dp))
@@ -49,7 +47,6 @@ fun OrderListItem(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
 
             Column(
                 modifier = Modifier.align(Alignment.CenterVertically)

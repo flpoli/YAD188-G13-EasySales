@@ -7,21 +7,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.navArgument
 import androidx.paging.compose.items
 import com.poli.prevendasomie.core.UiEvent
-import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.pedidos.OrderOverviewEvent
 import com.poli.prevendasomie.presentation.pedidos.OrdersFormViewModel
 
 @Composable
 fun ClientSelectionScreen(
-    //navController: NavHostController,
+    // navController: NavHostController,
     onNavigateUp: () -> Unit,
     viewModel: OrdersFormViewModel = hiltViewModel(),
 
-    ) {
+) {
 
     LaunchedEffect(key1 = true) {
 
@@ -53,9 +50,6 @@ fun ClientSelectionScreen(
 //                        value = cliente.cliente
 //                    )
 //                    navController.navigate(Screen.OrderFormScreen.route)
-
-
-
                 }
             )
         }

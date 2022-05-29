@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.remote.dto.estoque
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Produto(

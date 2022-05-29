@@ -7,7 +7,6 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -71,11 +70,10 @@ fun SetupNavGraph(
         isFloatingActionButtonDocked = false,
         floatingActionButton = {
 
-            
             if (
-                navBackStackEntry?.destination?.route != Screen.LoginScreen.route
-                && navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
-                && navBackStackEntry?.destination?.route != Screen.MainScreen.route
+                navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
+                navBackStackEntry?.destination?.route != Screen.SignUpScreen.route &&
+                navBackStackEntry?.destination?.route != Screen.MainScreen.route
             ) {
 
                 FabButton(navController = navController)
@@ -86,7 +84,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.ProductListScreen.route
+            startDestination = Screen.LoginScreen.route
         ) {
 
             composable(Screen.OnBoardingScreen.route) {

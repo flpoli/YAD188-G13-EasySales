@@ -14,9 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,14 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.pedidos.clientselection.SelectionState
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.updateAndGet
-import java.util.ArrayList
 
 @Composable
 fun OrdersFormScreen(
@@ -41,22 +33,19 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-    val state =  viewModel.state.collectAsState()
+    val state = viewModel.state.collectAsState()
     Log.d("STATE SCREEN:", "${state.value}")
-
-
-
 
     LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
 
                 event ->
-                    when (event) {
+            when (event) {
 
-                        is UiEvent.Navigate -> onNavigate(event)
-                        else -> Unit
-                    }
+                is UiEvent.Navigate -> onNavigate(event)
+                else -> Unit
+            }
         }
     }
 
@@ -70,8 +59,8 @@ fun OrdersFormScreen(
 
         ProductBox(
             state = state.value,
-            onClick = {onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
-            )
+            onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
+        )
     }
 }
 
@@ -104,15 +93,11 @@ fun ClientBox(
                 Text(text = "Selecionar cliente")
             } else {
 
-                    Text(text = "${state.cliente}")
-                }
-
-                }
-
+                Text(text = "${state.cliente}")
             }
         }
-
-
+    }
+}
 
 @Composable
 fun ProductBox(

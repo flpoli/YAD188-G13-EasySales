@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ProdutoServicoCadastro(
 
-
     val codigo: String?,
     val codigoProduto: Long,
     val codigoProdutoIntegracao: String?,
@@ -28,4 +27,4 @@ data class ProdutoServicoCadastro(
     val obsInternas: String?,
     val imagens: List<Imagens>? = listOf(Imagens(""))
 
-): Parcelable
+) : Parcelable

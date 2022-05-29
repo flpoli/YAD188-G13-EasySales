@@ -7,5 +7,5 @@ sealed class OrderOverviewEvent {
 
     object OnNavigateToList : OrderOverviewEvent()
     data class OnClientSelected(val cliente: ClientesCadastro) : OrderOverviewEvent()
-    data class OnProductSelected(val produtos: List<ProdutoServicoCadastro>): OrderOverviewEvent()
+    data class OnProductSelected(val produtos: List<ProdutoServicoCadastro>) : OrderOverviewEvent()
 }

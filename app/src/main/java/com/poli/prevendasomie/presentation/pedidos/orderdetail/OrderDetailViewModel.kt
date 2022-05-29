@@ -11,18 +11,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class OrderDetailViewModel @Inject constructor(
 
     private val useCase: UseCases,
     savedStateHandle: SavedStateHandle
 
-): ViewModel(){
+) : ViewModel() {
 
     private val _selectedOrder: MutableStateFlow<PedidoVendaProduto?> = MutableStateFlow(null)
     val selectedOrder: StateFlow<PedidoVendaProduto?> = _selectedOrder
-
 
     init {
 
@@ -34,9 +32,6 @@ class OrderDetailViewModel @Inject constructor(
 
                 useCase.getOrderDetail(orderId = orderId)
             }
-
         }
-
     }
-
 }

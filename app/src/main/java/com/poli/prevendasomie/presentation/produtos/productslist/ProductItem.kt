@@ -82,7 +82,7 @@ fun ProductListItem(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = stringResource(id = R.string.cod_prod, trimLeadingZeros(produto.codigo) ),
+                    text = stringResource(id = R.string.cod_prod, trimLeadingZeros(produto.codigo)),
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

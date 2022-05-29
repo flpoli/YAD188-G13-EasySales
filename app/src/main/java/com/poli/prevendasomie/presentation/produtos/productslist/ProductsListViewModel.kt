@@ -13,11 +13,10 @@ class ProductsListViewModel @Inject constructor(
     private val useCase: UseCases
 ) : ViewModel() {
 
-
     val produtos = useCase.getProductListUseCase()?.map { it ->
 
-            it.map {
-                it.toProdutoModel()
-            }
+        it.map {
+            it.toProdutoModel()
+        }
     }
 }

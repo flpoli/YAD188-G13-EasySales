@@ -1,7 +1,6 @@
 package com.poli.prevendasomie.domain.usecase.products
 
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import javax.inject.Inject
 

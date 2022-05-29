@@ -1,10 +1,8 @@
 package com.poli.prevendasomie.presentation.pedidos
 
 import android.util.Log
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,9 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,7 +26,7 @@ class OrdersFormViewModel
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    private val  _state = MutableStateFlow(OrderOverviewState())
+    private val _state = MutableStateFlow(OrderOverviewState())
     val state: StateFlow<OrderOverviewState> = _state
 
     var clientState by mutableStateOf(SelectionState())
@@ -38,27 +34,22 @@ class OrdersFormViewModel
     init {
         loadClientList()
     }
-     fun onEvent(event: OrderOverviewEvent) {
+    fun onEvent(event: OrderOverviewEvent) {
 
         when (event) {
 
             is OrderOverviewEvent.OnClientSelected -> {
 
                 onClientSelected(event)
-
             }
             is OrderOverviewEvent.OnProductSelected -> {
-
             }
-
-
         }
     }
 
     private fun onClientSelected(event: OrderOverviewEvent.OnClientSelected) {
 
         viewModelScope.launch {
-
 
             _state.emit(
 
@@ -78,13 +69,7 @@ class OrdersFormViewModel
             Log.d("_STATE VM", "${_state.value}")
             Log.d("STATE VM", "${state.value}")
             _uiEvent.send(UiEvent.NavigateUp)
-
-
-
         }
-
-
-
     }
 
     private fun loadClientList() {

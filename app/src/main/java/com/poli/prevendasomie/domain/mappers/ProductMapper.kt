@@ -4,7 +4,6 @@ import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.data.remote.dto.produtos.ProdutoServicoCadastroDto
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
-
 fun ProdutoServicoCadastro.toProdutoDto(): ProdutoServicoCadastroDto {
 
     return ProdutoServicoCadastroDto(
@@ -20,7 +19,6 @@ fun ProdutoServicoCadastro.toProdutoDto(): ProdutoServicoCadastroDto {
         imagens = imagens
 
     )
-
 }
 
 fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
@@ -36,7 +34,6 @@ fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
         valorUnitario = valorUnitario,
         imagens = imagens,
 
-
         descricaoFamilia = descricaoFamilia,
         diasGarantia = diasGarantia,
         altura = altura,
@@ -48,7 +45,7 @@ fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
         pesoLiq = pesoLiq,
         obsInternas = obsInternas
 
-        )
+    )
 }
 
 fun ProdutoEntity.toProdutoModel(): ProdutoServicoCadastro {
@@ -81,7 +78,6 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
 
     return ProdutoServicoCadastro(
 
-
         codigo = codigo,
         codigoProduto = codigoProduto,
         codigoProdutoIntegracao = codigoProdutoIntegracao,
@@ -103,5 +99,5 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
         pesoLiq = pesoLiq,
         obsInternas = obsInternas
 
-        )
+    )
 }

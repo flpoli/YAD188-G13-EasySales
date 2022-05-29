@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.flow.Flow
 
 @Dao

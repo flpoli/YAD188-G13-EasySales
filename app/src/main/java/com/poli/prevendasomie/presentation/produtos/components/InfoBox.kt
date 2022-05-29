@@ -9,22 +9,17 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AttachMoney
-import androidx.compose.material.icons.filled.Money
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.poli.prevendasomie.R
 
 @Composable
 fun InfoBox(
@@ -35,8 +30,7 @@ fun InfoBox(
     smallText: String,
     textColor: Color
 
-    ) {
-
+) {
 
     Row(verticalAlignment = Alignment.CenterVertically) {
 
@@ -69,7 +63,7 @@ fun InfoBox(
 
 @Composable
 @Preview(showBackground = true)
-fun InfoBoxPreview(){
+fun InfoBoxPreview() {
     InfoBox(
         icon = Icons.Default.AttachMoney,
         iconColor = MaterialTheme.colors.primary,

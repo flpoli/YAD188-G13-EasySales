@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.navigation.Screen
-import com.poli.prevendasomie.presentation.pedidos.clientselection.SelectableClientItem
 
 @Composable
 fun ProductSelectionScreen(
@@ -16,12 +15,9 @@ fun ProductSelectionScreen(
     navController: NavHostController,
     viewModel: ProductSelectionViewModel = hiltViewModel()
 
-
-){
+) {
 
     val state = viewModel.state
-
-
 
     LazyColumn(modifier = Modifier.padding()) {
 
@@ -37,10 +33,8 @@ fun ProductSelectionScreen(
                         value = listOf(produto.produto)
                     )
                     navController.navigate(Screen.OrderFormScreen.route)
-
                 }
             )
         }
     }
-
 }

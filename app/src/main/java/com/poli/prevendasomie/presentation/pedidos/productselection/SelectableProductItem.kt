@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -27,8 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.ui.theme.LocalSpacing
 
@@ -72,17 +69,16 @@ fun SelectableProductItem(
                     text = produto.descricao!!
                 )
 
-
                 // mudar para AnimatedVisibility dps;
 
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
-                ){
+                ) {
 
                     IconButton(
                         onClick = {}
-                    ){
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Remove,
                             contentDescription = "",
@@ -105,10 +101,9 @@ fun SelectableProductItem(
 
                     )
 
-
                     IconButton(
                         onClick = {}
-                    ){
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = "",
@@ -118,7 +113,7 @@ fun SelectableProductItem(
 
                     IconButton(
                         onClick = {}
-                    ){
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Check,
                             contentDescription = "",
@@ -126,12 +121,7 @@ fun SelectableProductItem(
                         )
                     }
                 }
-
-
-
             }
-
-
 
             AnimatedVisibility(visible = selectableProductUiState.isExpanded) {
 
@@ -142,10 +132,7 @@ fun SelectableProductItem(
 //                    Text(
 //                        text = produto.descricao!!
 //                    )
-
-
-                }
-
             }
         }
     }
+}

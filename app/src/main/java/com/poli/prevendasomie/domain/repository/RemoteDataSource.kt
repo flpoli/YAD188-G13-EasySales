@@ -4,7 +4,6 @@ import androidx.paging.PagingData
 import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteDataSource {

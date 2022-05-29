@@ -105,6 +105,3 @@ data class ProdutoServicoCadastroDto(
     var imagens: List<Imagens>? = listOf(Imagens("")),
 
 )
-
-
-

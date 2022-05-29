@@ -18,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Inventory
 import androidx.compose.runtime.Composable
@@ -65,7 +64,6 @@ fun ProductDetailScreen(
 
     ) {
 
-
         Box(
             contentAlignment = Alignment.TopCenter,
             modifier = Modifier
@@ -90,11 +88,9 @@ fun ProductDetailScreen(
                     .fillMaxWidth()
 
             )
-
         }
 
         Divider()
-
 
         Text(
             text = "Código",
@@ -144,24 +140,20 @@ fun ProductDetailScreen(
             InfoBox(
                 icon = Icons.Default.Inventory,
                 iconColor = MaterialTheme.colors.primary,
-                bigText = "${selectedProduct?.quantidadeEstoque.toString()}${selectedProduct?.unidade}",
+                bigText = "${selectedProduct?.quantidadeEstoque}${selectedProduct?.unidade}",
                 smallText = "estoque disponível",
                 textColor = Color.Black
             )
         }
 
-
-
-        Column(
-        ) {
+        Column() {
 
             val isVisible = remember { mutableStateOf(false) }
 
-            val icon = if(isVisible.value){
-                 Icons.Default.ArrowDropUp
+            val icon = if (isVisible.value) {
+                Icons.Default.ArrowDropUp
             } else {
                 Icons.Default.ArrowDropDown
-
             }
 
             Row(
@@ -169,9 +161,8 @@ fun ProductDetailScreen(
                 modifier = Modifier.clickable {
 
                     isVisible.value = !isVisible.value
-
                 }
-            ){
+            ) {
                 Text(
                     text = "Outras informações"
                 )
@@ -186,22 +177,14 @@ fun ProductDetailScreen(
                 )
             }
 
-
             Column() {
                 AnimatedVisibility(visible = isVisible.value) {
 
                     MoreInfoBox(
                         selectedProduct = selectedProduct!!
                     )
-
                 }
             }
-
-
-
         }
     }
 }
-
-
-

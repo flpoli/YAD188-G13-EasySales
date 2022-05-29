@@ -2,7 +2,6 @@ package com.poli.prevendasomie.data.repository
 
 import androidx.paging.PagingData
 import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.LocalDataSource
 import com.poli.prevendasomie.domain.repository.ProductsRepository
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
@@ -28,6 +27,4 @@ class ProductsRepositoryImpl
 
         return local.getSelectedProduct(productId = productId)
     }
-
-
 }

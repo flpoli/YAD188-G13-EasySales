@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.pagingsource
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -15,7 +14,6 @@ import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
 import com.poli.prevendasomie.domain.mappers.toProdutoCadastro
 import com.poli.prevendasomie.domain.mappers.toProdutoEntity
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -101,7 +99,6 @@ class ProductsRemoteMediator
 
                     val keys = response.produtoServicoCadastro.map {
 
-
                         ProductsRemoteKeys(
                             prevPage = prevPage,
                             nextPage = nextPage,
@@ -116,7 +113,6 @@ class ProductsRemoteMediator
                         it
                             .toProdutoCadastro()
                             .toProdutoEntity()
-
                     }
 
                     remoteKeysDao.addAllRemoteKeys(keys)

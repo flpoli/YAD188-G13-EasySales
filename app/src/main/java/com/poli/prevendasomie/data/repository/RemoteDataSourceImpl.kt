@@ -13,7 +13,6 @@ import com.poli.prevendasomie.data.pagingsource.OrdersRemoteMediator
 import com.poli.prevendasomie.data.pagingsource.ProductsRemoteMediator
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 

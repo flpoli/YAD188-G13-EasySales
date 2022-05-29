@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,9 +23,7 @@ fun OrderDetailScreen(
     viewModel: OrderDetailViewModel = hiltViewModel()
 ) {
 
-
     val selectedOrder by viewModel.selectedOrder.collectAsState()
-
 
     Column(
         modifier = modifier
@@ -38,9 +35,7 @@ fun OrderDetailScreen(
                 border = BorderStroke(2.dp, color = Color.Black)
             )
 
-    ){
-
-
+    ) {
 
         Text(text = "Produtos:")
 
@@ -50,8 +45,7 @@ fun OrderDetailScreen(
 
             produto.produto?.let {
 
-
-                Row(){
+                Row() {
 
                     Text(text = it.quantidade.toString())
                     Text(text = it.descricao.toString())
@@ -62,5 +56,4 @@ fun OrderDetailScreen(
             }
         }
     }
-
 }

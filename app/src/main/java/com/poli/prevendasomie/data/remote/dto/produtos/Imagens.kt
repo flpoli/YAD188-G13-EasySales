@@ -8,4 +8,4 @@ import kotlinx.parcelize.Parcelize
 data class Imagens(
     @SerializedName("url_imagem")
     val urlImagem: String? = ""
-): Parcelable
+) : Parcelable

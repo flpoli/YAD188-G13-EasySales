@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Height
 import androidx.compose.material.icons.filled.HorizontalRule
 import androidx.compose.material.icons.filled.OpenInFull
-
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
@@ -20,12 +19,11 @@ fun MoreInfoBox(
 
     selectedProduct: ProdutoServicoCadastro
 
+) {
 
-){
+    Column() {
 
-    Column(){
-
-        if(selectedProduct.descrDetalhada?.isNotEmpty() == true) {
+        if (selectedProduct.descrDetalhada?.isNotEmpty() == true) {
             Text(
                 text = "Descrição detalhada:"
             )
@@ -34,7 +32,6 @@ fun MoreInfoBox(
             )
         }
 
-
         Text(
             text = "Dimensões"
         )
@@ -42,8 +39,7 @@ fun MoreInfoBox(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly,
 
-            ){
-
+        ) {
 
             InfoBox(
                 icon = Icons.Default.Height,
@@ -68,13 +64,6 @@ fun MoreInfoBox(
                 smallText = "profundidade",
                 textColor = Color.Black
             )
-
-
         }
-
-
-
-
     }
-
 }
