@@ -86,7 +86,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.LoginScreen.route
+            startDestination = Screen.ProductListScreen.route
         ) {
 
             composable(Screen.OnBoardingScreen.route) {
@@ -165,7 +165,7 @@ fun SetupNavGraph(
             }
 
             composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(navController = navController, onNavigateUp = { navController.navigateUp() })
+                ClientSelectionScreen(onNavigateUp = { navController.navigateUp() })
             }
 
             composable(Screen.ProductSelectionScreen.route) {

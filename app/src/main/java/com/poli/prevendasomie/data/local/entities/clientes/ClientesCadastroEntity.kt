@@ -3,7 +3,7 @@ package com.poli.prevendasomie.data.local.entities.clientes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.prevendasomie.common.Constants.CLIENTS_TABLE
-import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
+import com.poli.prevendasomie.presentation.util.genCodCli
 
 @Entity(tableName = CLIENTS_TABLE)
 data class ClientesCadastroEntity(

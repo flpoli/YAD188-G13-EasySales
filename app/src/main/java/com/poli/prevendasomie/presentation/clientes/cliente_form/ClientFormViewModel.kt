@@ -152,6 +152,7 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
         return this.copy(nomeFantasia = nomeFantasia)
     }
     private fun ClientesCadastro.withUpdatedCnpjCpf(cnpjCpf: String): ClientesCadastro {
+
         return this.copy(cnpjCpf = cnpjCpf)
     }
     private fun ClientesCadastro.withUpdatedTelefone1Ddd(telefone1Ddd: String): ClientesCadastro {

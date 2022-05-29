@@ -1,7 +1,7 @@
 package com.poli.prevendasomie.domain.model.clientes
 
 import android.os.Parcelable
-import com.poli.prevendasomie.presentation.clientes.cliente_form.genCodCli
+import com.poli.prevendasomie.presentation.util.genCodCli
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

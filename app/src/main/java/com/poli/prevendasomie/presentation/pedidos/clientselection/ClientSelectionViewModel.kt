@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.pedidos.clientselection
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -33,6 +34,7 @@ class ClientSelectionViewModel
 
             is ClientSelectionEvent.OnClientSelected -> {
                 selectClient(event)
+
             }
         }
     }

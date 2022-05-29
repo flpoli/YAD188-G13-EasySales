@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.pedidos
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +28,10 @@ import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.prevendasomie.navigation.Screen
+import com.poli.prevendasomie.presentation.pedidos.clientselection.SelectionState
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.updateAndGet
 import java.util.ArrayList
 
 @Composable
@@ -31,14 +41,8 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-    val state = viewModel.state
-    val selectedClient = navController.previousBackStackEntry?.savedStateHandle?.get<ClientesCadastro>("cliente")
-    val selectedProduct = navController.previousBackStackEntry?.savedStateHandle?.get<List<ProdutoServicoCadastro>>("produto")
-
-
-    if (selectedClient != null) state.cliente = selectedClient
-
-    if (selectedProduct != null) state.produtos = selectedProduct
+    val state =  viewModel.state.collectAsState()
+    Log.d("STATE SCREEN:", "${state.value}")
 
 
 
@@ -59,13 +63,13 @@ fun OrdersFormScreen(
     Column {
 
         ClientBox(
-            state = state,
+            state = state.value,
             onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
         )
         Spacer(modifier = Modifier.height(12.dp))
 
         ProductBox(
-            state = state,
+            state = state.value,
             onClick = {onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
             )
     }
@@ -95,16 +99,20 @@ fun ClientBox(
 
         ) {
 
-            println(state.cliente)
             if (state.cliente.nomeFantasia?.isEmpty() == true) {
+
                 Text(text = "Selecionar cliente")
             } else {
 
-                Text(text = "${state.cliente.nomeFantasia}")
+                    Text(text = "${state.cliente}")
+                }
+
+                }
+
             }
         }
-    }
-}
+
+
 
 @Composable
 fun ProductBox(

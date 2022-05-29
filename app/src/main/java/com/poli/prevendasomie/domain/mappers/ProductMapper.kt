@@ -36,6 +36,18 @@ fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
         valorUnitario = valorUnitario,
         imagens = imagens,
 
+
+        descricaoFamilia = descricaoFamilia,
+        diasGarantia = diasGarantia,
+        altura = altura,
+        largura = largura,
+        profundidade = profundidade,
+        marca = marca,
+        modelo = modelo,
+        pesoBruto = pesoBruto,
+        pesoLiq = pesoLiq,
+        obsInternas = obsInternas
+
         )
 }
 
@@ -51,6 +63,17 @@ fun ProdutoEntity.toProdutoModel(): ProdutoServicoCadastro {
         unidade = unidade,
         valorUnitario = valorUnitario,
         imagens = imagens,
+
+        descricaoFamilia = descricaoFamilia,
+        diasGarantia = diasGarantia,
+        altura = altura,
+        largura = largura,
+        profundidade = profundidade,
+        marca = marca,
+        modelo = modelo,
+        pesoBruto = pesoBruto,
+        pesoLiq = pesoLiq,
+        obsInternas = obsInternas
     )
 }
 
@@ -68,6 +91,17 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
         unidade = unidade,
         valorUnitario = valorUnitario,
         imagens = imagens,
+
+        descricaoFamilia = descricaoFamilia,
+        diasGarantia = diasGarantia,
+        altura = altura,
+        largura = largura,
+        profundidade = profundidade,
+        marca = marca,
+        modelo = modelo,
+        pesoBruto = pesoBruto,
+        pesoLiq = pesoLiq,
+        obsInternas = obsInternas
 
         )
 }

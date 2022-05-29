@@ -16,6 +16,16 @@ data class ProdutoServicoCadastro(
     val quantidadeEstoque: Int?,
     val unidade: String?,
     val valorUnitario: Double?,
+    val descricaoFamilia: String?,
+    val diasGarantia: Int?,
+    val altura: Int?,
+    val largura: Int?,
+    val profundidade: Int?,
+    val pesoBruto: Float?,
+    val pesoLiq: Float?,
+    val marca: String?,
+    val modelo: String?,
+    val obsInternas: String?,
     val imagens: List<Imagens>? = listOf(Imagens(""))
 
 ): Parcelable

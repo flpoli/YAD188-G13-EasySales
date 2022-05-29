@@ -28,6 +28,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.presentation.util.parseImageUrl
 import com.poli.prevendasomie.presentation.util.trimLeadingZeros
 import com.poli.prevendasomie.ui.theme.LocalSpacing
 
@@ -63,7 +64,7 @@ fun ProductListItem(
 
             Image(
                 painter = rememberImagePainter(
-                    data = produto.imagens?.firstOrNull(),
+                    data = produto.imagens?.firstOrNull()?.urlImagem?.let { parseImageUrl(it) },
                     builder = {
                         crossfade(true)
                         error(R.drawable.no_image_fallback)
@@ -71,10 +72,10 @@ fun ProductListItem(
                     }
                 ),
                 contentDescription = produto.descricao,
-                contentScale = ContentScale.Fit,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(60.dp)
-                    .clip(RoundedCornerShape(topStart = 5.dp))
+                    .size(80.dp)
+                    .clip(RoundedCornerShape(topStart = 5.dp, bottomStart = 5.dp))
             )
             Spacer(modifier = Modifier.width(spacing.spaceMedium))
             Column(

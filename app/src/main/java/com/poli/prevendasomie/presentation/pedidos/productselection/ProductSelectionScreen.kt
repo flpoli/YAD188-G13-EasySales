@@ -21,6 +21,8 @@ fun ProductSelectionScreen(
 
     val state = viewModel.state
 
+
+
     LazyColumn(modifier = Modifier.padding()) {
 
         items(state.selectableProduct) {
