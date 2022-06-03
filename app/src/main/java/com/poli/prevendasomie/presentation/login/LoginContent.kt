@@ -132,7 +132,8 @@ private fun EmailInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Username",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -160,5 +161,6 @@ private fun PasswordInput(
                 /*TODO*/
             }
         ),
+        trailingIcon = {}
     )
 }

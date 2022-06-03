@@ -3,16 +3,17 @@ package com.poli.prevendasomie.presentation.produtos.productslist
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.navigation.Screen
 import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
@@ -24,12 +25,13 @@ fun ProductListScreen(
     val allProducts = viewModel.produtos?.collectAsLazyPagingItems()
 
     if (allProducts != null) {
-        ListContent(allProducts)
+        ListContent(navController = navController, produto = allProducts)
     }
 }
 
 @Composable
 fun ListContent(
+    navController: NavController,
     produto: LazyPagingItems<ProdutoServicoCadastro>
 ) {
 
@@ -42,20 +44,20 @@ fun ListContent(
         ) {
             items(
                 items = produto,
-                key = { produto -> produto.id }
+
             ) {
 
                     produto ->
-                produto?.let {
-
-                    produto.descricao?.let { it1 ->
-                        Text(
-                            text = "Nome: $it1"
-                        )
-                        Text(
-                            text = "Estoque: ${ produto.quantidadeEstoque ?: "0" }"
-                        )
-                    }
+                if (produto != null) {
+                    ProductListItem(
+                        onItemClick = {
+                            navController.navigate(
+                                Screen.ProductDetailScreen
+                                    .passProductId(productId = produto.codigoProduto)
+                            )
+                        },
+                        produto = produto
+                    )
                 }
             }
         }

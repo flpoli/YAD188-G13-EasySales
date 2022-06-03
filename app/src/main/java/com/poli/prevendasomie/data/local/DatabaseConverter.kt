@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
 import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
 import com.poli.prevendasomie.data.util.JsonParser
 import com.poli.prevendasomie.domain.model.pedidos.Det
 import com.poli.prevendasomie.domain.model.pedidos.InformacoesAdicionais
@@ -18,46 +19,6 @@ import com.poli.prevendasomie.domain.model.pedidos.TotalPedido
 class DatabaseConverter(
     private val jsonParser: JsonParser
 ) {
-
-    private val separator = ","
-
-    @TypeConverter
-    fun convertListToString(list: List<String?>): String {
-
-        val stringBuilder = StringBuilder()
-
-        for (item in list) {
-            stringBuilder.append(item).append(separator)
-        }
-
-        stringBuilder.setLength(stringBuilder.length - separator.length)
-        return stringBuilder.toString()
-    }
-
-    @TypeConverter
-    fun convertStringToList(string: String): List<String> {
-
-        return string.split(separator)
-    }
-
-//    @TypeConverter
-//    fun fromCabecalhoJson(json: String): Cabecalho? {
-//
-//        return jsonParser.fromJson<Cabecalho>(
-//            json = json,
-//            type = object : TypeToken<Cabecalho>(){}.type
-//        )
-//
-//    }
-//    @TypeConverter
-//    fun toCabecalhoJson(cabecalho: Cabecalho): String? {
-//
-//        return jsonParser.toJson(
-//            obj = cabecalho,
-//            type = object : TypeToken<Cabecalho>() {}.type
-//        )
-//
-//    }
 
     @TypeConverter
     fun fromCabecalhoEntityJson(json: String): CabecalhoEntity? {
@@ -163,6 +124,22 @@ class DatabaseConverter(
             obj = totalPedido,
             type = object : TypeToken<TotalPedido>() {}.type
         )
+    }
+
+    @TypeConverter
+    fun fromMeaningsJson(json: String): List<Imagens> {
+        return jsonParser.fromJson<ArrayList<Imagens>>(
+            json,
+            object : TypeToken<ArrayList<Imagens>>() {}.type
+        ) ?: emptyList()
+    }
+
+    @TypeConverter
+    fun toMeaningsJson(meanings: List<Imagens>): String {
+        return jsonParser.toJson(
+            meanings,
+            object : TypeToken<ArrayList<Imagens>>() {}.type
+        ) ?: "[]"
     }
 
     @TypeConverter

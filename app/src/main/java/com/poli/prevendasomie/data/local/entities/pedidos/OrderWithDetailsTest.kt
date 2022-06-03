@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.local.entities.pedidos
 
 import androidx.room.Relation
+import com.poli.prevendasomie.data.local.entities.pedidos.relationtest.PedidoVendaEntity
 
 data class OrderWithDetailsTest(
 

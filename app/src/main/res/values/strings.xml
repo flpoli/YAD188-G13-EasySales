@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PreVendasOmie</string>
+    <string name="app_name">EasySales</string>
     <string name="err_invalid_credentials">Your email and/or password are incorrect.</string>
     <string name="err_login_failure">There was a problem logging in. Please check your internet connection and try again.</string>
     <string name="err_empty_email">Empty Email</string>
@@ -10,5 +10,6 @@
     <string name="sign_up">sign up</string>
     <string name="details_screen_contato">Contato:</string>
     <string name="on_http_error">An unexpected error occurred</string>
-
+    <string name="quantidade">Quantidade: %d</string>
+    <string name="cod_prod">Código: %s</string>
 </resources>

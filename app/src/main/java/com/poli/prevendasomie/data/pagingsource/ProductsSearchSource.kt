@@ -1,11 +1,12 @@
 package com.poli.prevendasomie.data.pagingsource
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.produtos.ProdutoServicoCadastroDto
+import com.poli.prevendasomie.data.remote.dto.produtos.ProdutoServicoCadastroDto
 import javax.inject.Inject
 
 class ProductsSearchSource
@@ -52,7 +53,7 @@ class ProductsSearchSource
                 )
             }
         } catch (e: Exception) {
-
+            Log.d("NULL AT SEARCH SOURCE", "$e")
             LoadResult.Error(e)
         }
     }

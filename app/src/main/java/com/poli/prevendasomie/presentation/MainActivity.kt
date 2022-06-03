@@ -10,12 +10,15 @@ import androidx.navigation.compose.rememberNavController
 import com.poli.prevendasomie.navigation.SetupNavGraph
 import com.poli.prevendasomie.ui.theme.PreVendasOmieTheme
 import dagger.hilt.android.AndroidEntryPoint
+import io.sentry.Sentry
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Sentry.captureMessage("MainActivity - onCreate")
+
         setContent {
             PreVendasOmieTheme {
 

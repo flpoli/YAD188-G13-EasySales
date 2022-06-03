@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasySales</string>
+    <string name="quantidade">Quantidade: %d</string>
+    <string name="cod_prod">Código: %s</string>
+    <string name="err_invalid_credentials">Email ou senha estão incorretos</string>
+    <string name="details_screen_contato">Contato:</string>
+    <string name="on_http_error">Um erro inesperado ocorreu</string>
+    <string name="err_login_failure">Houve um problema ao logar. Confira a sua conexão e tente novamente</string>
+</resources>

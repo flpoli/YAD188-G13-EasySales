@@ -14,5 +14,6 @@ data class UserData(
     val username: Username = Username(""),
     val email: Email = Email(""),
     val password: Password = Password(""),
+    val passwordConfirm: Password = Password("")
 
 )

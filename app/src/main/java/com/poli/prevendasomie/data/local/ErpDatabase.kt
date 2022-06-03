@@ -13,30 +13,24 @@ import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
 import com.poli.prevendasomie.data.local.entities.OrdersRemoteKeys
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
-import com.poli.prevendasomie.data.local.entities.pedidos.CabecalhoEntity
-import com.poli.prevendasomie.data.local.entities.pedidos.FreteEntity
-import com.poli.prevendasomie.data.local.entities.pedidos.InfoCadastroEntity
-import com.poli.prevendasomie.data.local.entities.pedidos.PedidoVendaEntity
+import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.domain.model.UserDataModel
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
 import com.poli.prevendasomie.domain.model.pedidos.PedidoVendaProduto
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 
 @Database(
     entities = [
 
         UserDataModel::class,
-        ProdutoServicoCadastro::class,
         ProductsRemoteKeys::class,
-        ClientesCadastro::class,
+        ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
-        PedidoVendaProduto::class,
+        ProdutoEntity::class,
         OrdersRemoteKeys::class,
+        PedidoVendaProduto::class
 
-        PedidoVendaEntity::class,
-        CabecalhoEntity::class,
-        FreteEntity::class,
-        InfoCadastroEntity::class,
+//        PedidoVendaEntity::class,
+//        ClienteEntity::class
 
     ],
 

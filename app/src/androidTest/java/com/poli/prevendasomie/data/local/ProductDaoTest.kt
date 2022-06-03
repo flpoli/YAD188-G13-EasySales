@@ -10,7 +10,9 @@ import com.google.gson.Gson
 import com.poli.prevendasomie.data.local.dao.ProductRemoteKeyDao
 import com.poli.prevendasomie.data.local.dao.ProductsDao
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
 import com.poli.prevendasomie.data.util.GsonParser
+import com.poli.prevendasomie.domain.mappers.toProdutoEntity
 import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -56,7 +58,7 @@ class ProductDaoTest {
 
         val produtos = listOf<ProdutoServicoCadastro> (
             ProdutoServicoCadastro(
-                id = 1,
+
                 codigo = "PRD00001",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0001",
@@ -64,10 +66,22 @@ class ProductDaoTest {
                 descrDetalhada = "LOREM IPSUN",
                 quantidadeEstoque = 1,
                 unidade = "UN",
-                valorUnitario = 100.00
+                valorUnitario = 100.00,
+                altura = 150,
+                largura = 150,
+                profundidade = 150,
+                descricaoFamilia = "teste",
+                marca = "teste",
+                modelo = "test",
+                diasGarantia = 50,
+                obsInternas = "obs interna",
+                pesoLiq = 5f,
+                pesoBruto = 8f,
+                imagens = listOf(Imagens(""))
+
             ),
             ProdutoServicoCadastro(
-                id = 2,
+
                 codigo = "PRD00002",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0002",
@@ -75,12 +89,24 @@ class ProductDaoTest {
                 descrDetalhada = "LOREM IPSUN",
                 quantidadeEstoque = 1,
                 unidade = "UN",
-                valorUnitario = 100.00
-            )
+                valorUnitario = 100.00,
 
+                altura = 150,
+                largura = 150,
+                profundidade = 150,
+                descricaoFamilia = "teste",
+                marca = "teste",
+                modelo = "test",
+                diasGarantia = 50,
+                obsInternas = "obs interna",
+                pesoLiq = 5f,
+                pesoBruto = 8f,
+                imagens = listOf(Imagens())
+
+            )
         )
 
-        productDao.persistProductList(produtos)
+        productDao.persistProductList(produtos.map { it.toProdutoEntity() })
 
         val getProduct = productDao.getAllProducts()
 
@@ -90,7 +116,7 @@ class ProductDaoTest {
     fun deleteAllProducts() = runBlockingTest {
         val produtos = listOf<ProdutoServicoCadastro> (
             ProdutoServicoCadastro(
-                id = 1,
+
                 codigo = "PRD00001",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0001",
@@ -98,10 +124,21 @@ class ProductDaoTest {
                 descrDetalhada = "LOREM IPSUN",
                 quantidadeEstoque = 1,
                 unidade = "UN",
-                valorUnitario = 100.00
+                valorUnitario = 100.00,
+                altura = 150,
+                largura = 150,
+                profundidade = 150,
+                descricaoFamilia = "teste",
+                marca = "teste",
+                modelo = "test",
+                diasGarantia = 50,
+                obsInternas = "obs interna",
+                pesoLiq = 5f,
+                pesoBruto = 8f,
+                imagens = listOf(Imagens())
             ),
             ProdutoServicoCadastro(
-                id = 2,
+
                 codigo = "PRD00002",
                 codigoProduto = 100000000,
                 codigoProdutoIntegracao = "PRD0002",
@@ -109,12 +146,23 @@ class ProductDaoTest {
                 descrDetalhada = "LOREM IPSUN",
                 quantidadeEstoque = 1,
                 unidade = "UN",
-                valorUnitario = 100.00
+                valorUnitario = 100.00,
+                altura = 150,
+                largura = 150,
+                profundidade = 150,
+                descricaoFamilia = "teste",
+                marca = "teste",
+                modelo = "test",
+                diasGarantia = 50,
+                obsInternas = "obs interna",
+                pesoLiq = 5f,
+                pesoBruto = 8f,
+                imagens = listOf(Imagens())
             )
 
         )
 
-        productDao.persistProductList(produtos)
+        productDao.persistProductList(produtos.map { it.toProdutoEntity() })
 
         val selectProduct = productDao.deleteAllProducts()
 
