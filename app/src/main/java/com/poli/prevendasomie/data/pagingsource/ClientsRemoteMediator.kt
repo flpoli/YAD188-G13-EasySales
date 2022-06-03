@@ -122,7 +122,7 @@ class ClientsRemoteMediator
                 }
             }
 
-            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == response.totalDePaginas)
         } catch (e: Exception) {
 
             return MediatorResult.Error(e)

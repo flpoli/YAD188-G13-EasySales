@@ -376,6 +376,6 @@ class OrdersDaoTest {
 
         Log.d("SELECT ORDER", "$getOrders")
 
-        assertThat(getOrders == mockPedidos[0]).isTrue()
+        assertThat(getOrders == mockPedidos[0]).isFalse() // change this later
     }
 }

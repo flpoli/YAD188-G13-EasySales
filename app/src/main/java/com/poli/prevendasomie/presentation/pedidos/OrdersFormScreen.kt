@@ -13,14 +13,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.navigation.Screen
@@ -33,8 +34,14 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-    val state = viewModel.state.collectAsState()
-    Log.d("STATE SCREEN:", "${state.value}")
+    val key = viewModel.key
+
+    val state by remember(key) { viewModel.state }
+
+    // val test = produceState(initialValue = true) { value = viewModel.state }.value
+
+    Log.d("STATE", "$state")
+    Log.d("STATE - KEY", "$key")
 
     LaunchedEffect(key1 = true) {
 
@@ -52,13 +59,14 @@ fun OrdersFormScreen(
     Column {
 
         ClientBox(
-            state = state.value,
+
+            state = state,
             onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
         )
         Spacer(modifier = Modifier.height(12.dp))
 
         ProductBox(
-            state = state.value,
+            state = state,
             onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
         )
     }
@@ -75,6 +83,7 @@ fun ClientBox(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
+
                 onClick()
             }
     ) {
@@ -88,13 +97,9 @@ fun ClientBox(
 
         ) {
 
-            if (state.cliente.nomeFantasia?.isEmpty() == true) {
+            Text(text = "selecionar?   ")
 
-                Text(text = "Selecionar cliente")
-            } else {
-
-                Text(text = "${state.cliente}")
-            }
+            Text(text = "${state.cliente.nomeFantasia}")
         }
     }
 }

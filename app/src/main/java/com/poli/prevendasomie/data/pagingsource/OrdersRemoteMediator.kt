@@ -111,7 +111,7 @@ class OrdersRemoteMediator
                     orderDao.persistOrderList(pedido)
                 }
             }
-            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == response.totalDePaginas)
         } catch (e: Exception) {
             e.printStackTrace()
             return MediatorResult.Error(e)

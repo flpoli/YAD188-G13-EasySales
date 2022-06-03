@@ -216,7 +216,11 @@ fun PasswordInputField(
     enabled: Boolean,
 ) {
     val showPassword = remember { mutableStateOf(false) }
-
+    val icon = if (showPassword.value) {
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
@@ -232,7 +236,7 @@ fun PasswordInputField(
 
             ) {
                 Icon(
-                    imageVector = if (showPassword.value) { Icons.Filled.Visibility } else { Icons.Filled.VisibilityOff },
+                    imageVector = icon,
                     contentDescription = "Visibility",
                     modifier = Modifier.clickable { showPassword.value = !showPassword.value }
 

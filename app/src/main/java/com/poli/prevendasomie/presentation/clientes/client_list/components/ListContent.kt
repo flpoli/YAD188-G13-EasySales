@@ -34,7 +34,12 @@ fun ListContent(
                     cliente ->
 
                 ClientListItem(
-                    onItemClick = { navController.navigate(Screen.ClientDetailScreen.passClientId(clientId = cliente?.codClienteOmie!!)) },
+                    onItemClick = {
+                        navController.navigate(
+                            Screen.ClientDetailScreen
+                                .passClientId(clientId = cliente?.codClienteOmie!!)
+                        )
+                    },
                     cliente = cliente!!
                 )
             }

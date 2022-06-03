@@ -93,6 +93,8 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
+    implementation 'io.sentry:sentry-android:5.7.4'
+
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

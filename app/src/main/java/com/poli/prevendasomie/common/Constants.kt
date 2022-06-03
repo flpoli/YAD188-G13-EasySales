@@ -54,8 +54,9 @@ object Constants {
     const val CALL_INCLUIR_CLIENTE = "IncluirCliente"
     const val CALL_LISTAR_PEDIDOS = "ListarPedidos"
     const val CALL_LISTAR_POSICAO = "ListarPosEstoque"
-
     const val CALL_LISTAR_PRODUTOS = "ListarProdutos"
+
+    // Paging config
 
     const val API_PAGE_SIZE: Int = 30
     const val CACHE_TIMEOUT: Int = 1440

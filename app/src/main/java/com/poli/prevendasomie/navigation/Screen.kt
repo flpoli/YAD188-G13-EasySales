@@ -48,7 +48,9 @@ sealed class Screen(val route: String) {
     object ProductSelectionScreen : Screen(PRODUCT_SELECTION_ROUTE)
 
     object OrdersListScreen : Screen(ORDER_LIST_ROUTE)
+
     object OrderFormScreen : Screen(ORDER_FORM_ROUTE)
+
     object OrderDetailScreen : Screen("$ORDER_DETAIL_ROUTE/{orderId}") {
 
         fun passOrderId(orderId: Long): String {

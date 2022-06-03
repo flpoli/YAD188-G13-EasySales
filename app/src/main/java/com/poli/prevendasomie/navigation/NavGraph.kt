@@ -163,7 +163,7 @@ fun SetupNavGraph(
             }
 
             composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(onNavigateUp = { navController.navigateUp() })
+                ClientSelectionScreen(navController = navController, /*onNavigateUp = { navController.navigateUp() }*/)
             }
 
             composable(Screen.ProductSelectionScreen.route) {
