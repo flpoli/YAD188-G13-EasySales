@@ -145,7 +145,8 @@ fun RazaoSocialInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Razão social",
-        enabled = enabled!!
+        enabled = enabled!!,
+        trailingIcon = {}
     )
 }
 @Composable
@@ -160,7 +161,8 @@ fun NomeFantasiaInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Nome fantasia",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 @Composable
@@ -175,7 +177,8 @@ fun CpfCnpjInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "CPF/CNPJ",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -191,7 +194,8 @@ fun EmailInput(
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Username",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }
 
@@ -214,7 +218,8 @@ fun TelefoneInput(
         onTextChanged = onTelefone1DddChanged,
         errorMessage = errorMessage,
         labelText = "ddd",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
     AppTextField(
         modifier = Modifier.size(30.dp),
@@ -222,6 +227,7 @@ fun TelefoneInput(
         onTextChanged = onTelefone1NumeroChanged,
         errorMessage = errorMessage,
         labelText = "Telefone",
-        enabled = enabled
+        enabled = enabled,
+        trailingIcon = {}
     )
 }

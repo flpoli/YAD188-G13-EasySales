@@ -2,6 +2,7 @@ package com.poli.prevendasomie.di
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
 import com.google.gson.Gson
@@ -35,6 +36,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 @ExperimentalPagingApi
@@ -58,6 +60,14 @@ class RepositoryModule {
             DATA_BASE_NAME
         )
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
+            .setQueryCallback(
+                {
+
+                        sqlQuery, bindArgs ->
+                    Log.i("SQL Query: ", "$sqlQuery SQL Args: $bindArgs")
+                },
+                Executors.newSingleThreadExecutor()
+            )
             .build()
     }
 
@@ -94,26 +104,28 @@ class RepositoryModule {
 
         return LocalDataSourceImpl(db)
     }
-    // ********************************************************//
+    /********************************************************/
 
     @Provides
     @Singleton
-    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource): ClientsRepository {
+    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource):
+        ClientsRepository {
 
         return ClientsRepositoryImpl(api, remote, local)
     }
     @Provides
     @Singleton
-    fun provideProductsRepository(remote: RemoteDataSource): ProductsRepository {
+    fun provideProductsRepository(remote: RemoteDataSource, local: LocalDataSource): ProductsRepository {
 
-        return ProductsRepositoryImpl(remote)
+        return ProductsRepositoryImpl(remote, local)
     }
     @Provides
     @Singleton
-    fun provideOrdersRepository(remote: RemoteDataSource): OrdersRepository {
+    fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource):
+        OrdersRepository {
 
-        return OrdersRepositoryImpl(remote)
+        return OrdersRepositoryImpl(remote, local)
     }
 
-    // *******************************************************//
+    /*******************************************************/
 }

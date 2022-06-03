@@ -1,6 +1,5 @@
 package com.poli.prevendasomie.data.pagingsource
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -9,11 +8,12 @@ import androidx.room.withTransaction
 import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.ProductsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.produtos.toProdutoCadastro
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.domain.mappers.toProdutoCadastro
+import com.poli.prevendasomie.domain.mappers.toProdutoEntity
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -21,7 +21,7 @@ class ProductsRemoteMediator
 @Inject constructor(
     private val api: OmieAPI,
     private val db: ErpDatabase
-) : RemoteMediator<Int, ProdutoServicoCadastro>() {
+) : RemoteMediator<Int, ProdutoEntity>() {
 
     private val productDao = db.productsDao()
     private val remoteKeysDao = db.productRemoteKeysDao()
@@ -41,7 +41,7 @@ class ProductsRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ProdutoServicoCadastro>
+        state: PagingState<Int, ProdutoEntity>
     ): MediatorResult {
 
         try {
@@ -99,24 +99,27 @@ class ProductsRemoteMediator
 
                     val keys = response.produtoServicoCadastro.map {
 
-                            produto ->
                         ProductsRemoteKeys(
-                            id = produto.id,
                             prevPage = prevPage,
                             nextPage = nextPage,
                             lastUpdated = System.currentTimeMillis()
                         )
                     }
 
-                    val prod = response.produtoServicoCadastro.map { it.toProdutoCadastro() }
-                    Log.d("LOG PRODUTO?", "$prod")
+                    response.produtoServicoCadastro.map { if (it.imagens == null) { it.imagens = emptyList() } }
+
+                    val prod = response.produtoServicoCadastro.map {
+
+                        it
+                            .toProdutoCadastro()
+                            .toProdutoEntity()
+                    }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     productDao.persistProductList(prod)
-                    Log.d("MEDIATOR - PERSIST", "productDao.persist")
                 }
             }
-            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == response.totalDePaginas)
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }

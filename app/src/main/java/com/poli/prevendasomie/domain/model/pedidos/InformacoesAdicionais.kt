@@ -24,7 +24,7 @@ data class InformacoesAdicionais(
     @SerializedName("numero_pedido_cliente")
     val numeroPedidoCliente: String? = "",
     @SerializedName("outros_detalhes")
-    val outrosDetalhes: OutrosDetalhes?,
+    val outrosDetalhes: OutrosDetalhes? = OutrosDetalhes(),
     @SerializedName("utilizar_emails")
     val utilizarEmails: String? = ""
 )

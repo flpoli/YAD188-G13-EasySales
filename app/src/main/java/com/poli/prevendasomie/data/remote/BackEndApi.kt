@@ -1,6 +1,6 @@
 package com.poli.prevendasomie.data.remote
 
-import com.poli.prevendasomie.data.remote.responses.ResponseSignUpDto
+import com.poli.prevendasomie.data.remote.dto.ResponseSignUpDto
 import com.poli.prevendasomie.login.domain.model.Credentials
 import com.poli.prevendasomie.signup.domain.model.UserData
 import retrofit2.Response

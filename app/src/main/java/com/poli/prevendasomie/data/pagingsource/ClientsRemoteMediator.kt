@@ -8,11 +8,12 @@ import androidx.room.withTransaction
 import com.poli.prevendasomie.common.Constants.CACHE_TIMEOUT
 import com.poli.prevendasomie.data.local.ErpDatabase
 import com.poli.prevendasomie.data.local.entities.ClientsRemoteKeys
+import com.poli.prevendasomie.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.remote.Param
 import com.poli.prevendasomie.data.remote.Request
-import com.poli.prevendasomie.data.remote.responses.clientes.toClientesCadastro
-import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
+import com.poli.prevendasomie.domain.mappers.toClientEntity
+import com.poli.prevendasomie.domain.mappers.toClienteModel
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -20,7 +21,7 @@ class ClientsRemoteMediator
 @Inject constructor(
     private val api: OmieAPI,
     private val db: ErpDatabase
-) : RemoteMediator<Int, ClientesCadastro>() {
+) : RemoteMediator<Int, ClientesCadastroEntity>() {
 
     private val clientDao = db.clientDao()
     private val remoteKeysDao = db.clientRemoteKeyDao()
@@ -39,7 +40,7 @@ class ClientsRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ClientesCadastro>
+        state: PagingState<Int, ClientesCadastroEntity>
     ): MediatorResult {
 
         try {
@@ -101,10 +102,8 @@ class ClientsRemoteMediator
 
                     val keys = response.clientesCadastro.map {
 
-                            cliente ->
-
                         ClientsRemoteKeys(
-                            id = cliente.id,
+
                             prevPage = prevPage,
                             nextPage = nextPage,
                             lastUpdated = System.currentTimeMillis()
@@ -112,14 +111,18 @@ class ClientsRemoteMediator
                         )
                     }
 
-                    val cliente = response.clientesCadastro.map { it.toClientesCadastro() }
+                    val cliente = response.clientesCadastro.map {
+                        it
+                            .toClienteModel()
+                            .toClientEntity()
+                    }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     clientDao.persistClientList(cliente)
                 }
             }
 
-            return MediatorResult.Success(endOfPaginationReached = response.pagina == null)
+            return MediatorResult.Success(endOfPaginationReached = response.pagina == response.totalDePaginas)
         } catch (e: Exception) {
 
             return MediatorResult.Error(e)

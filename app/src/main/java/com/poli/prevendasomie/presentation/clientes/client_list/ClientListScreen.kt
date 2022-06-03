@@ -7,7 +7,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.poli.prevendasomie.domain.model.clientes.ClientesCadastro
-import com.poli.prevendasomie.presentation.clientes.client_list.components.ClientListItem
+import com.poli.prevendasomie.presentation.clientes.client_list.components.ListContent
 import com.poli.prevendasomie.presentation.components.EmptyScreen
 
 @Composable
@@ -16,9 +16,9 @@ fun ClientListScreen(
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
 
-    val allClientes = viewModel.clientes?.collectAsLazyPagingItems()
+    val allClientes = viewModel.clientes.collectAsLazyPagingItems()
 
-    ClientListItem(
+    ListContent(
         navController = navController,
         cliente = allClientes
     )

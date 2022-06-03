@@ -4,27 +4,27 @@ import com.google.gson.annotations.SerializedName
 
 data class OutrosDetalhes(
     @SerializedName("cBairroOd")
-    val cBairroOd: String?,
+    val cBairroOd: String? = "",
     @SerializedName("cCEPOd")
-    val cCEPOd: String?,
+    val cCEPOd: String? = "",
     @SerializedName("cCidadeOd")
-    val cCidadeOd: String?,
+    val cCidadeOd: String? = "",
     @SerializedName("cCnpjCpfOd")
-    val cCnpjCpfOd: String?,
+    val cCnpjCpfOd: String? = "",
     @SerializedName("cEnderecoOd")
-    val cEnderecoOd: String?,
+    val cEnderecoOd: String? = "",
     @SerializedName("cEstadoOd")
-    val cEstadoOd: String?,
+    val cEstadoOd: String? = "",
     @SerializedName("cHoraSaidaOd")
-    val cHoraSaidaOd: String?,
+    val cHoraSaidaOd: String? = "",
     @SerializedName("cInscrEstadualOd")
-    val cInscrEstadualOd: String?,
+    val cInscrEstadualOd: String? = "",
     @SerializedName("cNomeOd")
-    val cNomeOd: String?,
+    val cNomeOd: String? = "",
     @SerializedName("cNumeroOd")
-    val cNumeroOd: String?,
+    val cNumeroOd: String? = "",
     @SerializedName("cTelefoneOd")
-    val cTelefoneOd: String?,
+    val cTelefoneOd: String? = "",
     @SerializedName("dDataSaidaOd")
-    val dDataSaidaOd: String?
+    val dDataSaidaOd: String? = ""
 )

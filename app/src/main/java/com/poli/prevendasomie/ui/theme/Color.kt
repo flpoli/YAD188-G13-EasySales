@@ -1,5 +1,7 @@
 package com.poli.prevendasomie.ui.theme
 
+import androidx.compose.material.Colors
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val Purple200 = Color(0xFFBB86FC)
@@ -26,3 +28,18 @@ val LightGreen3 = Color(0xff11d79b)
 val BlueViolet1 = Color(0xffaeb4fd)
 val BlueViolet2 = Color(0xff9fa5fe)
 val BlueViolet3 = Color(0xff8f98fd)
+
+val PrimaryColor = Color(0xffba68c8)
+val PrimaryLightColor = Color(0xffee98fb)
+val PrimaryDarkColor = Color(0xff883997)
+val SecondaryColor = Color(0xffe1bee7)
+val SecondaryLightColor = Color(0xfffff1ff)
+val PrimaryTextColor = Color(0xFF000000)
+val SecondaryTextColor = Color(0xFF000000)
+
+val Colors.activeIndicatorColor
+    @Composable
+    get() = if (isLight) Purple500 else Purple700
+val Colors.inactiveIndicatorColor
+    @Composable
+    get() = if (isLight) LightGrey else DarkGrey

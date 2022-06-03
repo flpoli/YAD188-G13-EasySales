@@ -2,7 +2,7 @@ package com.poli.prevendasomie.domain.model.pedidos
 
 import androidx.room.Embedded
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.data.remote.responses.pedidos.Ide
+import com.poli.prevendasomie.data.remote.dto.pedidos.Ide
 
 data class Det(
 

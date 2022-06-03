@@ -1,6 +1,7 @@
 package com.poli.prevendasomie.data.remote
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 import kotlin.String
 
 sealed class Param {
@@ -32,5 +33,11 @@ sealed class Param {
         val apenasImportadoApi: String = "N",
         @SerializedName("registros_por_pagina")
         val registrosPorPagina: String
+    )
+
+    data class ParamListarPosicao(
+        val nPagina: Int = 0,
+        val nRegPorPagina: Int = 0,
+        val dDataPosicao: Date
     )
 }

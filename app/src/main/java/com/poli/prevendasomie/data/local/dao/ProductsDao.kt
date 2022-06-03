@@ -5,20 +5,28 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.poli.prevendasomie.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
+import com.poli.prevendasomie.data.local.entities.produtos.ProdutoEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun persistProductList(produtos: List<ProdutoServicoCadastro>)
+    suspend fun persistProductList(produtos: List<ProdutoEntity>)
 
-    @Query("SELECT * FROM products_tb")
-    fun getAllProducts(): PagingSource<Int, ProdutoServicoCadastro>
+    @Query("SELECT * FROM $PRODUCTS_TABLE")
+    fun getAllProducts(): PagingSource<Int, ProdutoEntity>
 
-    @Query("DELETE FROM products_tb")
+    @Query("SELECT * FROM $PRODUCTS_TABLE")
+    fun getProductsForSelection(): Flow<List<ProdutoEntity>>
+
+    @Query("SELECT * FROM $PRODUCTS_TABLE WHERE codigoProduto = :id")
+    suspend fun getProductById(id: Long): ProdutoEntity
+
+    @Query("DELETE FROM $PRODUCTS_TABLE")
     suspend fun deleteAllProducts()
 
-    @Query("SELECT COUNT(ID) from products_tb")
+    @Query("SELECT COUNT(ID) from $PRODUCTS_TABLE")
     suspend fun getProductsCount(): Int
 }

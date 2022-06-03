@@ -1,14 +1,11 @@
 package com.poli.prevendasomie.domain.model.produtos
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.poli.prevendasomie.common.Constants.PRODUCTS_TABLE
+import android.os.Parcelable
+import com.poli.prevendasomie.data.remote.dto.produtos.Imagens
+import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = PRODUCTS_TABLE)
+@Parcelize
 data class ProdutoServicoCadastro(
-
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
 
     val codigo: String?,
     val codigoProduto: Long,
@@ -18,5 +15,16 @@ data class ProdutoServicoCadastro(
     val quantidadeEstoque: Int?,
     val unidade: String?,
     val valorUnitario: Double?,
+    val descricaoFamilia: String?,
+    val diasGarantia: Int?,
+    val altura: Int?,
+    val largura: Int?,
+    val profundidade: Int?,
+    val pesoBruto: Float?,
+    val pesoLiq: Float?,
+    val marca: String?,
+    val modelo: String?,
+    val obsInternas: String?,
+    val imagens: List<Imagens>? = listOf(Imagens(""))
 
-)
+) : Parcelable

@@ -13,11 +13,14 @@ class SignUpUseCaseImpl
 
     override suspend fun invoke(userData: UserData): SignUpResult {
 
+        if (userData.password != userData.passwordConfirm) {
+
+            return SignUpResult.Failure.ConfirmPasswordMatch
+        }
+
         return when (val signUpResult = signUpRepository.signUp(userData)) {
 
             is Resource.Success -> {
-
-                val result = signUpResult.data
 
                 SignUpResult.Success
             }

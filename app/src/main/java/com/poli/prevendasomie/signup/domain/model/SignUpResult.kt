@@ -6,6 +6,8 @@ sealed class SignUpResult {
 
     sealed class Failure : SignUpResult() {
 
-        object Unknown : Failure() // only this for now
+        object UserNameNotAvailable : Failure()
+        object ConfirmPasswordMatch : Failure()
+        object Unknown : Failure()
     }
 }

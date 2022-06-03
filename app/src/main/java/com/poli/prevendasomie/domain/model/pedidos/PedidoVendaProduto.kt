@@ -10,14 +10,13 @@ data class PedidoVendaProduto(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-
-    @Embedded val cabecalho: Cabecalho?,
-    val det: List<Det>?,
+    @Embedded val cabecalho: Cabecalho? = Cabecalho(),
+    val det: List<Det>? = emptyList(),
     @Embedded val frete: Frete?,
-    @Embedded val infoCadastro: InfoCadastro?,
-    @Embedded val informacoesAdicionais: InformacoesAdicionais?,
-    val listaParcelas: ListaParcelas?,
-    @Embedded val observacoes: Observacoes?,
-    @Embedded val totalPedido: TotalPedido?,
+    @Embedded val infoCadastro: InfoCadastro? = InfoCadastro(),
+    @Embedded val informacoesAdicionais: InformacoesAdicionais? = InformacoesAdicionais(),
+    val listaParcelas: ListaParcelas? = ListaParcelas(),
+    @Embedded val observacoes: Observacoes? = Observacoes(),
+    @Embedded val totalPedido: TotalPedido? = TotalPedido(),
 
 )

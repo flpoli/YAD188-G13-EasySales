@@ -1,8 +1,5 @@
 package com.poli.prevendasomie.presentation.clientes.client_detail
 
-import android.util.Log
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,17 +18,13 @@ class ClientDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ClientDetailState())
-    val state: State<ClientDetailState> = _state
-
     private val _selectClient: MutableStateFlow<ClientesCadastro?> = MutableStateFlow(null)
     val selectedClient: StateFlow<ClientesCadastro?> = _selectClient
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
 
-            val clientId = savedStateHandle.get<Int>("clientId")
-            Log.d("VAL clientId", "$clientId")
+            val clientId = savedStateHandle.get<Long>("clientId")
             _selectClient.value = clientId?.let {
                 useCase.getSelectedClientUseCase(clientId = clientId)
             }

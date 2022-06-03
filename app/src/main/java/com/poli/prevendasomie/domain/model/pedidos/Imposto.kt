@@ -1,19 +1,19 @@
 package com.poli.prevendasomie.domain.model.pedidos
 
 import com.google.gson.annotations.SerializedName
-import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsPadrao
-import com.poli.prevendasomie.data.remote.responses.pedidos.CofinsSt
-import com.poli.prevendasomie.data.remote.responses.pedidos.Csll
-import com.poli.prevendasomie.data.remote.responses.pedidos.Icms
-import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsIe
-import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsSn
-import com.poli.prevendasomie.data.remote.responses.pedidos.IcmsSt
-import com.poli.prevendasomie.data.remote.responses.pedidos.Inss
-import com.poli.prevendasomie.data.remote.responses.pedidos.Ipi
-import com.poli.prevendasomie.data.remote.responses.pedidos.Irrf
-import com.poli.prevendasomie.data.remote.responses.pedidos.Iss
-import com.poli.prevendasomie.data.remote.responses.pedidos.PisPadrao
-import com.poli.prevendasomie.data.remote.responses.pedidos.PisSt
+import com.poli.prevendasomie.data.remote.dto.pedidos.CofinsPadrao
+import com.poli.prevendasomie.data.remote.dto.pedidos.CofinsSt
+import com.poli.prevendasomie.data.remote.dto.pedidos.Csll
+import com.poli.prevendasomie.data.remote.dto.pedidos.Icms
+import com.poli.prevendasomie.data.remote.dto.pedidos.IcmsIe
+import com.poli.prevendasomie.data.remote.dto.pedidos.IcmsSn
+import com.poli.prevendasomie.data.remote.dto.pedidos.IcmsSt
+import com.poli.prevendasomie.data.remote.dto.pedidos.Inss
+import com.poli.prevendasomie.data.remote.dto.pedidos.Ipi
+import com.poli.prevendasomie.data.remote.dto.pedidos.Irrf
+import com.poli.prevendasomie.data.remote.dto.pedidos.Iss
+import com.poli.prevendasomie.data.remote.dto.pedidos.PisPadrao
+import com.poli.prevendasomie.data.remote.dto.pedidos.PisSt
 
 data class Imposto(
     @SerializedName("cofins_padrao")

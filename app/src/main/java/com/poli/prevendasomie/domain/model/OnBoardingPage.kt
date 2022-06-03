@@ -14,17 +14,17 @@ sealed class OnBoardingPage(
 
     object First : OnBoardingPage(
         anim = R.raw.coin,
-        title = "",
+        title = "TESTE",
         description = "",
     )
     object Second : OnBoardingPage(
-        anim = R.raw.coin,
-        title = "",
+        anim = R.raw.scanning,
+        title = "TESTE",
         description = "",
     )
     object Third : OnBoardingPage(
-        anim = R.raw.coin,
-        title = "",
+        anim = R.raw.addtocartanin,
+        title = "TESTE",
         description = "",
     )
 }
