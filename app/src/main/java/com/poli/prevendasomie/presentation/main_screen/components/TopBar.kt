@@ -32,13 +32,14 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun TopBar(
-    navController: NavHostController
+    navController: NavHostController,
+    onNavigationIconClick: () -> Unit
 ) {
 
     TopAppBar(
         title = { Text(text = navController.currentDestination?.route ?: "noo") },
         navigationIcon = {
-            IconButton(onClick = { /* doSomething() */ }) {
+            IconButton(onClick = onNavigationIconClick) {
                 Icon(Icons.Filled.Menu, contentDescription = null)
             }
         },

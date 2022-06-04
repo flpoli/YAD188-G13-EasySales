@@ -18,6 +18,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
+import com.poli.prevendasomie.presentation.components.NavDrawer
 import com.poli.prevendasomie.presentation.login.LoginScreen
 import com.poli.prevendasomie.presentation.main_screen.MainScreen
 import com.poli.prevendasomie.presentation.main_screen.components.BottomNavigationBar
@@ -34,6 +35,8 @@ import com.poli.prevendasomie.presentation.produtos.productdetail.ProductDetailS
 import com.poli.prevendasomie.presentation.produtos.productform.ProductFormScreen
 import com.poli.prevendasomie.presentation.produtos.productslist.ProductListScreen
 import com.poli.prevendasomie.presentation.signup.SignupScreen
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -41,10 +44,10 @@ fun SetupNavGraph(
     navController: NavHostController,
     scaffoldState: ScaffoldState,
     isLogged: Boolean,
+    scope: CoroutineScope
 
 ) {
 
-    val sharedViewModel: SharedViewModel = viewModel()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     Scaffold(
@@ -56,9 +59,26 @@ fun SetupNavGraph(
                 navBackStackEntry?.destination?.route != Screen.LoginScreen.route &&
                 navBackStackEntry?.destination?.route != Screen.SignUpScreen.route
             ) {
-                TopBar(navController = navController)
+                TopBar(
+                    navController = navController,
+                    onNavigationIconClick = {
+                        scope.launch {
+                            scaffoldState.drawerState.open()
+                        }
+                    }
+
+                )
             }
         },
+
+
+        drawerGesturesEnabled = scaffoldState.drawerState.isOpen,
+        drawerContent = {
+
+            NavDrawer()
+
+        },
+
 
         bottomBar = {
             if (
