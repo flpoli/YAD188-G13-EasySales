@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -221,11 +223,16 @@ fun PasswordInputField(
     } else {
         Icons.Filled.VisibilityOff
     }
+
+    val visualTransformation = if(showPassword.value){VisualTransformation.None} else {
+        PasswordVisualTransformation()}
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Password",
+        visualTransformation = visualTransformation,
+
         enabled = enabled,
         trailingIcon = {
 
@@ -253,6 +260,15 @@ fun PasswordValidationInputField(
     errorMessage: String?,
     enabled: Boolean
 ) {
+    val showPassword = remember { mutableStateOf(false) }
+    val icon = if (showPassword.value) {
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
+
+    val visualTransformation = if(showPassword.value){VisualTransformation.None} else {
+        PasswordVisualTransformation()}
 
     AppTextField(
         text = text,
@@ -260,6 +276,22 @@ fun PasswordValidationInputField(
         errorMessage = errorMessage,
         labelText = "Repeat password",
         enabled = enabled,
-        trailingIcon = {}
+        visualTransformation = visualTransformation,
+        trailingIcon = {
+
+            IconButton(
+
+                modifier = Modifier,
+                onClick = { showPassword.value = !showPassword.value },
+
+                ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = "Visibility",
+                    modifier = Modifier.clickable { showPassword.value = !showPassword.value }
+
+                )
+            }
+        }
     )
 }

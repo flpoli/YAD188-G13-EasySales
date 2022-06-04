@@ -1,5 +1,6 @@
 package com.poli.prevendasomie.presentation.login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,14 +9,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.poli.prevendasomie.R
 import com.poli.prevendasomie.core.getString
@@ -144,13 +154,23 @@ private fun PasswordInput(
     errorMessage: String?,
     enabled: Boolean
 ) {
+    val showPassword = remember { mutableStateOf(false) }
+    val icon = if (showPassword.value) {
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
+
+    val visualTransformation = if(showPassword.value){
+        VisualTransformation.None} else {
+        PasswordVisualTransformation()}
     AppTextField(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
         labelText = "Password",
         enabled = enabled,
-        visualTransformation = PasswordVisualTransformation(),
+        visualTransformation = visualTransformation,
         keyboardOptions = KeyboardOptions.Default.copy(
             autoCorrect = false,
             keyboardType = KeyboardType.Password,
@@ -161,6 +181,20 @@ private fun PasswordInput(
                 /*TODO*/
             }
         ),
-        trailingIcon = {}
+        trailingIcon = {
+            IconButton(
+
+                modifier = Modifier,
+                onClick = { showPassword.value = !showPassword.value },
+
+                ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = "Visibility",
+                    modifier = Modifier.clickable { showPassword.value = !showPassword.value }
+
+                )
+            }
+        }
     )
 }
