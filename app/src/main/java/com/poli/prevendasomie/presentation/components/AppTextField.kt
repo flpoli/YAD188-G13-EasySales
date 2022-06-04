@@ -58,13 +58,13 @@ fun AppTextField(
             label = labelComposable,
             shape = TextFieldShape,
 
-            modifier = Modifier
+            modifier = modifier
                 .heightIn(48.dp)
                 .fillMaxWidth(),
             isError = (errorMessage != null),
             enabled = enabled,
             placeholder = placeholderComposable,
-            trailingIcon = null,
+            trailingIcon = trailingIcon,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
             visualTransformation = visualTransformation,
@@ -74,7 +74,7 @@ fun AppTextField(
         if (errorMessage != null) {
             Text(
                 text = errorMessage,
-                modifier = Modifier
+                modifier = modifier
                     .padding(
                         top = 4.dp,
                         start = 16.dp

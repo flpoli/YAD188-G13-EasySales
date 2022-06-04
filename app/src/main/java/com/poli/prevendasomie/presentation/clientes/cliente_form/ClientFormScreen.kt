@@ -1,11 +1,16 @@
 package com.poli.prevendasomie.presentation.clientes.cliente_form
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -20,7 +25,6 @@ import com.poli.prevendasomie.core.UiEvent
 import com.poli.prevendasomie.core.getString
 import com.poli.prevendasomie.presentation.components.AppTextField
 import com.poli.prevendasomie.presentation.components.PrimaryButton
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun ClientFormScreen(
@@ -52,7 +56,7 @@ fun ClientFormScreen(
     InputColumn(
         viewState = viewState.value,
         onEmailChanged = viewModel::onEmailChanged,
-        onRazaoSocalChanged = viewModel::onRazaoSocialChanged,
+        onRazaoSocialChanged = viewModel::onRazaoSocialChanged,
         onNomeFantasiaChanged = viewModel::onNomeFantasiaChanged,
         onCnpjCpfChanged = viewModel::onCnpjCpfChanged,
         onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
@@ -66,7 +70,7 @@ fun ClientFormScreen(
 fun InputColumn(
     viewState: ClienteFormViewState,
     onEmailChanged: (String) -> Unit,
-    onRazaoSocalChanged: (String) -> Unit,
+    onRazaoSocialChanged: (String) -> Unit,
     onNomeFantasiaChanged: (String) -> Unit,
     onCnpjCpfChanged: (String) -> Unit,
     onTelefone1DddChanged: (String) -> Unit,
@@ -84,7 +88,7 @@ fun InputColumn(
 
         RazaoSocialInput(
             text = viewState.cliente.razaoSocial ?: "",
-            onTextChanged = onRazaoSocalChanged,
+            onTextChanged = onRazaoSocialChanged,
             errorMessage = null,
             enabled = true
         )
@@ -193,7 +197,7 @@ fun EmailInput(
         text = text,
         onTextChanged = onTextChanged,
         errorMessage = errorMessage,
-        labelText = "Username",
+        labelText = "Email",
         enabled = enabled,
         trailingIcon = {}
     )
@@ -209,25 +213,30 @@ fun TelefoneInput(
     enabled: Boolean
 ) {
 
-    // esses campos deveriam ficar em uma Row
-    // , cada campo com tamanhos diferentes
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
 
-    AppTextField(
-        modifier = Modifier.size(15.dp),
-        text = textTelefone1Ddd,
-        onTextChanged = onTelefone1DddChanged,
-        errorMessage = errorMessage,
-        labelText = "ddd",
-        enabled = enabled,
-        trailingIcon = {}
-    )
-    AppTextField(
-        modifier = Modifier.size(30.dp),
-        text = textTelefone1Numero,
-        onTextChanged = onTelefone1NumeroChanged,
-        errorMessage = errorMessage,
-        labelText = "Telefone",
-        enabled = enabled,
-        trailingIcon = {}
-    )
+    ) {
+        AppTextField(
+            modifier = Modifier.width(100.dp),
+            text = textTelefone1Ddd,
+            onTextChanged = onTelefone1DddChanged,
+            errorMessage = errorMessage,
+            labelText = "ddd",
+            enabled = enabled,
+            trailingIcon = {}
+        )
+        AppTextField(
+            modifier = Modifier.width(250.dp),
+            text = textTelefone1Numero,
+            onTextChanged = onTelefone1NumeroChanged,
+            errorMessage = errorMessage,
+            labelText = "Telefone",
+            enabled = enabled,
+            trailingIcon = {}
+        )
+    }
+
 }
