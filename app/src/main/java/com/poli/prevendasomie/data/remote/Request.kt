@@ -14,6 +14,8 @@ import kotlin.String
 
 sealed class Request {
 
+
+
     data class ListClientsRequest(
         val call: String = CALL_LISTAR_CLIENTES,
         @SerializedName("app_key")

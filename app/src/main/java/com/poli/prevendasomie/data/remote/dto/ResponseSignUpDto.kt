@@ -5,9 +5,9 @@ import com.poli.prevendasomie.signup.domain.model.SignUpResponse
 
 data class ResponseSignUpDto(
 
-    val id: Int? = 0,
-    val username: String? = "",
-    val email: String? = "",
+    val id: Int = 0,
+    val username: String = "",
+    val email: String = "",
     val phoneNumber: String? = "",
     val status: String? = "",
     val createdAt: String? = "",

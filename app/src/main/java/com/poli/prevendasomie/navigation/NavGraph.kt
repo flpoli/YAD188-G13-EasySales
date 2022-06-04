@@ -39,7 +39,9 @@ import com.poli.prevendasomie.presentation.signup.SignupScreen
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    scaffoldState: ScaffoldState
+    scaffoldState: ScaffoldState,
+    isLogged: Boolean,
+
 ) {
 
     val sharedViewModel: SharedViewModel = viewModel()
@@ -84,7 +86,7 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.LoginScreen.route
+            startDestination = if(isLogged) { Screen.MainScreen.route } else { Screen.LoginScreen.route }
         ) {
 
             composable(Screen.OnBoardingScreen.route) {

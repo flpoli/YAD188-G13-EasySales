@@ -13,14 +13,14 @@ import com.poli.prevendasomie.data.local.dao.UserDao
 import com.poli.prevendasomie.data.remote.BackEndApi
 import com.poli.prevendasomie.data.remote.OmieAPI
 import com.poli.prevendasomie.data.repository.ClientsRepositoryImpl
-import com.poli.prevendasomie.data.repository.DataStoreOperationsImpl
+import com.poli.prevendasomie.data.repository.DefaultPreferences
 import com.poli.prevendasomie.data.repository.LocalDataSourceImpl
 import com.poli.prevendasomie.data.repository.OrdersRepositoryImpl
 import com.poli.prevendasomie.data.repository.ProductsRepositoryImpl
 import com.poli.prevendasomie.data.repository.RemoteDataSourceImpl
 import com.poli.prevendasomie.data.util.GsonParser
 import com.poli.prevendasomie.domain.repository.ClientsRepository
-import com.poli.prevendasomie.domain.repository.DataStoreOperations
+import com.poli.prevendasomie.domain.repository.Preferences
 import com.poli.prevendasomie.domain.repository.LocalDataSource
 import com.poli.prevendasomie.domain.repository.OrdersRepository
 import com.poli.prevendasomie.domain.repository.ProductsRepository
@@ -44,11 +44,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
 
-    @Provides
-    @Singleton
-    fun provideDataStoreOperations(@ApplicationContext context: Context): DataStoreOperations {
-        return DataStoreOperationsImpl(context = context)
-    }
+
 
     @Provides
     @Singleton
@@ -77,13 +73,13 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(api: BackEndApi, dao: UserDao): LoginRepository {
-        return LoginRepositoryImpl(api, dao)
+    fun provideLoginRepository(api: BackEndApi, dao: UserDao, preferences: Preferences): LoginRepository {
+        return LoginRepositoryImpl(api, dao, preferences)
     }
 
     @Provides
     @Singleton
-    fun provideTokenRepository(dataStore: DataStoreOperations): TokenRepository {
+    fun provideTokenRepository(dataStore: Preferences): TokenRepository {
         return TokenRepositoryImpl(dataStore)
     }
     @Provides
