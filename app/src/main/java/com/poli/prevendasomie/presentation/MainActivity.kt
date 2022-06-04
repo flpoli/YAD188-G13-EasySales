@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.navigation.compose.rememberNavController
 import com.poli.prevendasomie.domain.repository.Preferences
@@ -35,11 +36,13 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
+                val scope = rememberCoroutineScope()
 
                 SetupNavGraph(
                     navController = navController,
                     scaffoldState = scaffoldState,
-                    isLogged = isUserLogged
+                    isLogged = isUserLogged,
+                    scope = scope
                 )
             }
         }
