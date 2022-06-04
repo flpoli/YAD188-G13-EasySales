@@ -58,7 +58,7 @@ fun ProductListItem(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
@@ -66,15 +66,15 @@ fun ProductListItem(
                 painter = rememberImagePainter(
                     data = produto.imagens?.firstOrNull()?.urlImagem?.let { parseImageUrl(it) },
                     builder = {
-                        crossfade(true)
+                        crossfade(false)
                         error(R.drawable.no_image_fallback)
                         fallback(R.drawable.no_image_fallback)
                     }
                 ),
                 contentDescription = produto.descricao,
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .size(80.dp)
+                    .size(70.dp)
                     .clip(RoundedCornerShape(topStart = 5.dp, bottomStart = 5.dp))
             )
             Spacer(modifier = Modifier.width(spacing.spaceMedium))
@@ -91,8 +91,8 @@ fun ProductListItem(
                 Text(
                     text = produto.descricao ?: "null?",
                     style = MaterialTheme.typography.body1,
-                    maxLines = 3,
-                    overflow = TextOverflow.Clip
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = stringResource(id = R.string.quantidade, produto.quantidadeEstoque!!),
