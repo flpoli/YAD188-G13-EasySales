@@ -1,8 +1,13 @@
 package com.poli.prevendasomie.di
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import com.poli.prevendasomie.common.Constants.BASE_ERP_URL
 import com.poli.prevendasomie.data.remote.OmieAPI
+import com.poli.prevendasomie.data.repository.DefaultPreferences
+import com.poli.prevendasomie.domain.repository.Preferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +32,19 @@ class AppModule {
             .client(client)
             .build()
             .create(OmieAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(
+        app: Application
+    ): SharedPreferences {
+        return app.getSharedPreferences("shared_pref", Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferences(sharedPreferences: SharedPreferences): Preferences {
+        return DefaultPreferences(sharedPreferences)
     }
 }

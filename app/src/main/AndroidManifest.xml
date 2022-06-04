@@ -14,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PreVendasOmie">
         <meta-data android:name="io.sentry.dsn" android:value="https://6f65f62637604f88b8eeaa4323290a11@o1271297.ingest.sentry.io/6463297" />
-        <!-- Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-           We recommend adjusting this value in production. -->
+        <meta-data android:name="io.sentry.attach-screenshot" android:value="true" />
         <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
         <activity
             android:name="com.poli.prevendasomie.presentation.MainActivity"
