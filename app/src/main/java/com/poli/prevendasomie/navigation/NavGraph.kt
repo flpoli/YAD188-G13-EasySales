@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.poli.prevendasomie.domain.repository.Preferences
 import com.poli.prevendasomie.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.prevendasomie.presentation.clientes.client_list.ClientListScreen
 import com.poli.prevendasomie.presentation.clientes.cliente_form.ClientFormScreen
@@ -44,7 +45,8 @@ fun SetupNavGraph(
     navController: NavHostController,
     scaffoldState: ScaffoldState,
     isLogged: Boolean,
-    scope: CoroutineScope
+    scope: CoroutineScope,
+    preferences: Preferences
 
 ) {
 
@@ -75,7 +77,7 @@ fun SetupNavGraph(
         drawerGesturesEnabled = scaffoldState.drawerState.isOpen,
         drawerContent = {
 
-            NavDrawer()
+            NavDrawer(navController = navController, preferences = preferences, scope = scope, scaffoldState = scaffoldState)
 
         },
 

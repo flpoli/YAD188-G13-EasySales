@@ -42,7 +42,8 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     scaffoldState = scaffoldState,
                     isLogged = isUserLogged,
-                    scope = scope
+                    scope = scope,
+                    preferences = preferences
                 )
             }
         }
