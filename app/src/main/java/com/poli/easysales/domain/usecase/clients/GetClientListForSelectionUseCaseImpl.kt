@@ -1,0 +1,15 @@
+package com.poli.easysales.domain.usecase.clients
+
+import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
+import com.poli.easysales.domain.repository.ClientsRepository
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class GetClientListForSelectionUseCaseImpl
+@Inject constructor(private val repository: ClientsRepository) : GetClientListForSelectionUseCase {
+
+    override operator fun invoke(): Flow<List<ClientesCadastroEntity>> {
+
+        return repository.getNonPaginatedClientList()
+    }
+}
