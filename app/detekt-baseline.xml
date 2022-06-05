@@ -46,30 +46,45 @@
     <ID>MagicNumber:FeatureItem.kt$100f</ID>
     <ID>MagicNumber:FeatureItem.kt$3f</ID>
     <ID>MagicNumber:Shape.kt$50</ID>
-    <ID>PackageNaming:BottonNav.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:ClientDetailScreen.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
-    <ID>PackageNaming:ClientDetailState.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
-    <ID>PackageNaming:ClientDetailViewModel.kt$package com.poli.prevendasomie.presentation.clientes.client_detail</ID>
-    <ID>PackageNaming:ClientEntry.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
-    <ID>PackageNaming:ClientFormScreen.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
-    <ID>PackageNaming:ClientFormViewModel.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
-    <ID>PackageNaming:ClientListItem.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
-    <ID>PackageNaming:ClientListScreen.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
-    <ID>PackageNaming:ClientListState.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
-    <ID>PackageNaming:ClientListViewModel.kt$package com.poli.prevendasomie.presentation.clientes.client_list</ID>
-    <ID>PackageNaming:ClientRow.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
-    <ID>PackageNaming:ClienteFormViewState.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
-    <ID>PackageNaming:Feature.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
-    <ID>PackageNaming:FeatureItem.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:FeatureSection.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
-    <ID>PackageNaming:Features.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:GreetingSection.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:InfoBox.kt$package com.poli.prevendasomie.presentation.clientes.client_detail.components</ID>
-    <ID>PackageNaming:MainScreen.kt$package com.poli.prevendasomie.presentation.main_screen</ID>
-    <ID>PackageNaming:PathUtil.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:SearchBar.kt$package com.poli.prevendasomie.presentation.clientes.client_list.components</ID>
-    <ID>PackageNaming:TopNavBar.kt$package com.poli.prevendasomie.presentation.main_screen.components</ID>
-    <ID>PackageNaming:genCodCli.kt$package com.poli.prevendasomie.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:BottonNav.kt$package com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:ClientDetailScreen.kt$package
+        com.poli.easysales.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientDetailState.kt$package
+        com.poli.easysales.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientDetailViewModel.kt$package
+        com.poli.easysales.presentation.clientes.client_detail</ID>
+    <ID>PackageNaming:ClientEntry.kt$package
+        com.poli.easysales.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClientFormScreen.kt$package
+        com.poli.easysales.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:ClientFormViewModel.kt$package
+        com.poli.easysales.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:ClientListItem.kt$package
+        com.poli.easysales.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClientListScreen.kt$package
+        com.poli.easysales.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientListState.kt$package
+        com.poli.easysales.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientListViewModel.kt$package
+        com.poli.easysales.presentation.clientes.client_list</ID>
+    <ID>PackageNaming:ClientRow.kt$package
+        com.poli.easysales.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:ClienteFormViewState.kt$package
+        com.poli.easysales.presentation.clientes.cliente_form</ID>
+    <ID>PackageNaming:Feature.kt$package com.poli.easysales.presentation.main_screen</ID>
+    <ID>PackageNaming:FeatureItem.kt$package com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:FeatureSection.kt$package com.poli.easysales.presentation.main_screen</ID>
+    <ID>PackageNaming:Features.kt$package com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:GreetingSection.kt$package
+        com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:InfoBox.kt$package
+        com.poli.easysales.presentation.clientes.client_detail.components</ID>
+    <ID>PackageNaming:MainScreen.kt$package com.poli.easysales.presentation.main_screen</ID>
+    <ID>PackageNaming:PathUtil.kt$package com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:SearchBar.kt$package
+        com.poli.easysales.presentation.clientes.client_list.components</ID>
+    <ID>PackageNaming:TopNavBar.kt$package com.poli.easysales.presentation.main_screen.components</ID>
+    <ID>PackageNaming:genCodCli.kt$package com.poli.easysales.presentation.clientes.cliente_form</ID>
     <ID>TooManyFunctions:ClientFormViewModel.kt$ClientFormViewModel : ViewModel</ID>
     <ID>UnusedPrivateMember:AppTextField.kt$placeholderText: String? = null</ID>
     <ID>UnusedPrivateMember:BottonNav.kt$content: (@Composable @ExtensionFunctionType RowScope.() -> Unit)?</ID>
@@ -95,9 +110,9 @@
     <ID>UnusedPrivateMember:SignupScreen.kt$val context = LocalContext.current</ID>
     <ID>VarCouldBeVal:MainActivity.kt$MainActivity$var selectedItem by remember { mutableStateOf(0) }</ID>
     <ID>WildcardImport:ClientFormScreen.kt$import androidx.compose.foundation.layout.*</ID>
-    <ID>WildcardImport:CredentialsLoginUseCaseImpl.kt$import com.poli.prevendasomie.login.domain.model.*</ID>
+    <ID>WildcardImport:CredentialsLoginUseCaseImpl.kt$import com.poli.easysales.login.domain.model.*</ID>
     <ID>WildcardImport:DefaultPreferences.kt$import androidx.datastore.preferences.core.*</ID>
-    <ID>WildcardImport:RepositoryModule.kt$import com.poli.prevendasomie.login.domain.repository.*</ID>
+    <ID>WildcardImport:RepositoryModule.kt$import com.poli.easysales.login.domain.repository.*</ID>
     <ID>WildcardImport:TokenRepositoryImpl.kt$import kotlinx.coroutines.flow.*</ID>
     <ID>WildcardImport:UserDao.kt$import androidx.room.*</ID>
   </CurrentIssues>
