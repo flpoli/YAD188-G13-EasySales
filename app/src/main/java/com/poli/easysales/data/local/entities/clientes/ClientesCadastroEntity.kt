@@ -3,6 +3,7 @@ package com.poli.easysales.data.local.entities.clientes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.easysales.common.Constants.CLIENTS_TABLE
+import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.presentation.util.genCodCli
 
 @Entity(tableName = CLIENTS_TABLE)
@@ -24,6 +25,7 @@ data class ClientesCadastroEntity(
     val bairro: String? = "",
     val cep: String? = "",
     val cidade: String? = "",
-    val complemento: String? = ""
+    val complemento: String? = "",
+    val tags: List<Tag>? = emptyList()
 
 )

@@ -31,6 +31,9 @@ interface OrdersDao {
     @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoPedido = :orderId")
     suspend fun selectOrderById(orderId: Long): PedidoVendaProduto
 
+    @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoCliente = :codigoCliente")
+    suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto>
+
     /**************************************************************/
 
     /* query to  add client in order */

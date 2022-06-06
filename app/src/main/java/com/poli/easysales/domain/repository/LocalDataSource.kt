@@ -13,6 +13,6 @@ interface LocalDataSource {
     fun getProductsForSelection(): Flow<List<ProdutoEntity>>
     suspend fun getSelectedProduct(productId: Long): ProdutoEntity
     suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity)
-
+    suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto>
     suspend fun getOrderById(orderId: Long): PedidoVendaProduto
 }

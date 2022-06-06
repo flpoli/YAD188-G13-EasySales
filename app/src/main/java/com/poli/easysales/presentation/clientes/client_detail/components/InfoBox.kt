@@ -23,11 +23,9 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun InfoBox(
-
     title: String,
     info: String,
     subtitle: String,
-
 ) {
 
     Box(
@@ -53,7 +51,7 @@ fun InfoBox(
                 color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
                 fontWeight = FontWeight.Medium,
 
-            )
+                )
 
             Text(
                 text = info,
@@ -67,7 +65,7 @@ fun InfoBox(
                     .fillMaxWidth()
                     .alpha(1f),
                 color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.8700000047683716f),
-                fontWeight = FontWeight.Normal,
+                fontWeight = FontWeight.Bold,
             )
 
             Text(

@@ -22,7 +22,7 @@ fun ListContent(
     if (result) {
         LazyColumn(
             contentPadding = PaddingValues(all = 10.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp)
 
         ) {
 

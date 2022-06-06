@@ -60,7 +60,6 @@ fun ProdutoEntity.toProdutoModel(): ProdutoServicoCadastro {
         unidade = unidade,
         valorUnitario = valorUnitario,
         imagens = imagens,
-
         descricaoFamilia = descricaoFamilia,
         diasGarantia = diasGarantia,
         altura = altura,
@@ -87,7 +86,6 @@ fun ProdutoServicoCadastroDto.toProdutoCadastro(): ProdutoServicoCadastro {
         unidade = unidade,
         valorUnitario = valorUnitario,
         imagens = imagens,
-
         descricaoFamilia = descricaoFamilia,
         diasGarantia = diasGarantia,
         altura = altura,

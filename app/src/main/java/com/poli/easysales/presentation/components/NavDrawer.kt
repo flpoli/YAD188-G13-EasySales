@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.components
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.poli.easysales.data.util.clearSentryUser
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
 import com.poli.easysales.signup.domain.model.Email
@@ -49,7 +51,7 @@ fun NavDrawer(
 
     )
 
-    DrawerHeader()
+    DrawerHeader(preferences = preferences)
 
     DrawerBody(
         items = items,
@@ -65,7 +67,7 @@ fun NavDrawer(
                     )
                 )
                 scope.launch {
-
+                    clearSentryUser()
                     scaffoldState.drawerState.close()
                     navController.navigate(Screen.LoginScreen.route)
                 }
@@ -77,8 +79,9 @@ fun NavDrawer(
 }
 
 @Composable
-fun DrawerHeader() {
+fun DrawerHeader(preferences: Preferences) {
 
+    val user = preferences.readUserSession()
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -87,7 +90,10 @@ fun DrawerHeader() {
 
     ) {
 
-        Text(text = "Drawer header", fontSize = 60.sp)
+        Column() {
+            Text(text = user.username.value)
+            Text(text = user.email.value)
+        }
     }
 }
 
@@ -100,6 +106,8 @@ fun DrawerBody(
     onItemClick: (DrawerItem) -> Unit
 
 ) {
+
+
 
     Column(modifier) {
 
@@ -127,6 +135,8 @@ fun DrawerBody(
             }
         }
     }
+
+
 }
 
 data class DrawerItem(

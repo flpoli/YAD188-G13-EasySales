@@ -61,7 +61,7 @@ data class ClientesCadastroDto(
     @SerializedName("recomendacoes")
     val recomendacoes: Recomendacoes? = Recomendacoes(),
     @SerializedName("tags")
-    val tags: List<Tag>? = emptyList(),
+    val tags: List<TagDto>? = emptyList(),
     @SerializedName("telefone1_ddd")
     val telefone1Ddd: String? = "",
     @SerializedName("telefone1_numero")

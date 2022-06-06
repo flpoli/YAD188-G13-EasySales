@@ -108,7 +108,11 @@ fun SetupNavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = if (isLogged) { Screen.MainScreen.route } else { Screen.LoginScreen.route }
+            startDestination = if (isLogged) {
+                Screen.MainScreen.route
+            } else {
+                Screen.LoginScreen.route
+            }
         ) {
 
             composable(Screen.OnBoardingScreen.route) {
@@ -183,7 +187,10 @@ fun SetupNavGraph(
 
             composable(Screen.OrderFormScreen.route) {
 
-                OrdersFormScreen(navController = navController, onNavigate = navController::navigate)
+                OrdersFormScreen(
+                    navController = navController,
+                    onNavigate = navController::navigate
+                )
             }
 
             composable(Screen.ClientSelectionScreen.route) {

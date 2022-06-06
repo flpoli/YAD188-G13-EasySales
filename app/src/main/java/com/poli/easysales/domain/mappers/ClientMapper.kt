@@ -1,8 +1,11 @@
 package com.poli.easysales.domain.mappers
 
+import androidx.lifecycle.Transformations.map
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
+import com.poli.easysales.data.remote.dto.clientes.TagDto
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.domain.model.clientes.Tag
 
 fun ClientesCadastroEntity.toClientModel(): ClientesCadastro {
 
@@ -21,7 +24,8 @@ fun ClientesCadastroEntity.toClientModel(): ClientesCadastro {
         bairro = bairro,
         cep = cep,
         cidade = cidade,
-        complemento = complemento
+        complemento = complemento,
+        tags = tags
     )
 }
 
@@ -42,7 +46,8 @@ fun ClientesCadastro.toClientEntity(): ClientesCadastroEntity {
         bairro = bairro,
         cep = cep,
         cidade = cidade,
-        complemento = complemento
+        complemento = complemento,
+        tags = tags
 
     )
 }
@@ -64,7 +69,8 @@ fun ClientesCadastro.toClientDto(): ClientesCadastroDto {
         bairro = bairro,
         cep = cep,
         cidade = cidade,
-        complemento = complemento
+        complemento = complemento,
+        tags = tags?.map { TagDto(it.tag) }
     )
 }
 
@@ -86,6 +92,7 @@ fun ClientesCadastroDto.toClienteModel(): ClientesCadastro {
         estado = estado,
         cep = cep,
         cidade = cidade,
-        complemento = complemento
+        complemento = complemento,
+        tags = tags?.map { Tag(it.tag) }
     )
 }

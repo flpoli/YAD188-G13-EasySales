@@ -20,6 +20,7 @@ data class ClientesCadastro(
     val cep: String? = "",
     val estado: String? = "",
     val cidade: String? = "",
-    val complemento: String? = ""
+    val complemento: String? = "",
+    val tags: List<Tag>? = emptyList()
 
 ) : Parcelable
