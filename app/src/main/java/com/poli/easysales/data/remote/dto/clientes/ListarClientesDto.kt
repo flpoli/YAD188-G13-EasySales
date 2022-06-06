@@ -17,13 +17,4 @@ data class ListarClientesDto(
     val totalDeRegistros: Int
 )
 
-fun ListarClientesDto.toListarClientes(): ListarClientes {
 
-    return ListarClientes(
-        pagina = pagina,
-        registros = registros,
-        totalDePaginas = totalDePaginas,
-        totalDeRegistros = totalDeRegistros,
-        clientes = clientesCadastro.map { it.toClienteModel() }
-    )
-}

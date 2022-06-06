@@ -8,6 +8,7 @@ import com.poli.easysales.data.local.entities.pedidos.FreteEntity
 import com.poli.easysales.data.local.entities.pedidos.InfoCadastroEntity
 import com.poli.easysales.data.remote.dto.produtos.Imagens
 import com.poli.easysales.data.util.JsonParser
+import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.domain.model.pedidos.Det
 import com.poli.easysales.domain.model.pedidos.InformacoesAdicionais
 import com.poli.easysales.domain.model.pedidos.ListaParcelas
@@ -127,7 +128,7 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun fromMeaningsJson(json: String): List<Imagens> {
+    fun fromImagensJson(json: String): List<Imagens> {
         return jsonParser.fromJson<ArrayList<Imagens>>(
             json,
             object : TypeToken<ArrayList<Imagens>>() {}.type
@@ -135,7 +136,7 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun toMeaningsJson(meanings: List<Imagens>): String {
+    fun toImagensJson(meanings: List<Imagens>): String {
         return jsonParser.toJson(
             meanings,
             object : TypeToken<ArrayList<Imagens>>() {}.type
@@ -158,6 +159,25 @@ class DatabaseConverter(
             obj = listaParcelas,
             type = object : TypeToken<ListaParcelas>() {}.type
         )
+    }
+
+    @TypeConverter
+    fun toTagsJson(tags: List<Tag>): String {
+
+        return jsonParser.toJson(
+            obj = tags,
+            type = object : TypeToken<ArrayList<Tag>>() {}.type
+        ) ?: "[]"
+    }
+    @TypeConverter
+    fun fromTagsJson(json: String): List<Tag> {
+
+        return jsonParser.fromJson<ArrayList<Tag>>(
+
+            json = json,
+            type = object : TypeToken<ArrayList<Tag>>() {}.type
+
+        ) ?: emptyList()
     }
 
     @TypeConverter

@@ -5,6 +5,7 @@ import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.ReqResponse
+import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.LocalDataSource
 import com.poli.easysales.domain.repository.RemoteDataSource
@@ -35,5 +36,10 @@ class ClientsRepositoryImpl
     override suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse {
 
         return api.addNewClient(request)
+    }
+
+    override suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto> {
+
+        return local.getOrdersForClient(codigoCliente)
     }
 }

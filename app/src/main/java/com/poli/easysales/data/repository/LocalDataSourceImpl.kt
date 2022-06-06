@@ -39,6 +39,11 @@ class LocalDataSourceImpl
         orderDao.insertClientOnOrder(selectedClient)
     }
 
+    override suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto> {
+
+        return orderDao.getOrdersForClient(codigoClient)
+    }
+
     override suspend fun getOrderById(orderId: Long): PedidoVendaProduto {
 
         return orderDao.selectOrderById(orderId = orderId)

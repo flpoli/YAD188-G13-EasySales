@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
+import com.poli.easysales.data.util.setSentryUser
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.SetupNavGraph
 import com.poli.easysales.ui.theme.PreVendasOmieTheme
@@ -25,6 +26,8 @@ class MainActivity : ComponentActivity() {
         if (isUserLogged) {
 
             preferences.readUserSession()
+            setSentryUser(preferences)
+
         }
 
         setContent {

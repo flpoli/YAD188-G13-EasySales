@@ -66,11 +66,12 @@ android {
     }
     flavorDimensions 'alpha'
     productFlavors {
-        '11-alpha' {
+        "alpha" {
             dimension 'alpha'
             versionNameSuffix 'alpha'
             targetSdk 31
             minSdk 27
+            versionName "1.0.0"
             versionCode 3
         }
     }

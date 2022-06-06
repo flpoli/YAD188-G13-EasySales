@@ -3,6 +3,7 @@ package com.poli.easysales.domain.usecase
 import com.poli.easysales.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientListForSelectionUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientListUseCase
+import com.poli.easysales.domain.usecase.clients.GetOrdersForClient
 import com.poli.easysales.domain.usecase.pedidos.GetOrderDetail
 import com.poli.easysales.domain.usecase.pedidos.GetOrdersListUseCase
 import com.poli.easysales.domain.usecase.pedidos.GetProductListForSelection
@@ -20,6 +21,7 @@ data class UseCases(
     val getClientListForSelectionUseCase: GetClientListForSelectionUseCase,
     val insertSelectedClientUseCase: InsertSelectedClientUseCase,
     val getOrderDetail: GetOrderDetail,
-    val getProductListForSelection: GetProductListForSelection
+    val getProductListForSelection: GetProductListForSelection,
+    val getOrdersForClient: GetOrdersForClient
 
 )

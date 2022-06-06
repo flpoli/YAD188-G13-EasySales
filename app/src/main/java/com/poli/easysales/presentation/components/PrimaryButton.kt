@@ -6,10 +6,12 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import com.poli.easysales.ui.theme.ButtonShape
+import com.poli.prevendasomie.R
 
 @Composable
 fun PrimaryButton(
@@ -22,7 +24,7 @@ fun PrimaryButton(
         onClick = onClick,
         shape = ButtonShape,
         modifier = Modifier
-            .height(48.dp)
+            .height(dimensionResource(id = R.dimen.button_height))
             .fillMaxWidth(),
         enabled = enabled
     ) {
