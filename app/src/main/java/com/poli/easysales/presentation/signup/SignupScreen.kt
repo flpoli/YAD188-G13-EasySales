@@ -204,7 +204,7 @@ fun EmailInputField(
         errorMessage = errorMessage,
         labelText = "Username",
         enabled = enabled,
-        trailingIcon = {}
+
     )
 }
 
@@ -231,7 +231,6 @@ fun PasswordInputField(
         errorMessage = errorMessage,
         labelText = "Password",
         visualTransformation = visualTransformation,
-
         enabled = enabled,
         trailingIcon = {
 

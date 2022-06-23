@@ -26,7 +26,7 @@ data class CabecalhoDto(
     @SerializedName("importado_api")
     val importadoApi: String?,
     @SerializedName("numero_pedido")
-    val numeroPedido: String?,
+    val numeroPedido: String,
     @SerializedName("origem_pedido")
     val origemPedido: String?,
     @SerializedName("qtde_parcelas")

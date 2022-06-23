@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
 
             preferences.readUserSession()
             setSentryUser(preferences)
-
         }
 
         setContent {

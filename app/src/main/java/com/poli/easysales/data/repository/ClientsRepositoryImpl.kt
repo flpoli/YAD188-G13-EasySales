@@ -3,8 +3,10 @@ package com.poli.easysales.data.repository
 import androidx.paging.PagingData
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.OmieAPI
+import com.poli.easysales.data.remote.Param
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.ReqResponse
+import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.LocalDataSource
@@ -31,6 +33,15 @@ class ClientsRepositoryImpl
     override suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity {
 
         return local.getSelectedClient(clientId = clientId)
+    }
+
+    override suspend fun getClientCarac(codigoCliente: Long): CaracteristicasDto {
+
+        val request = Request.CaracteristicasCliente(
+            param = listOf(Param.ParamCaracCliente(codigoCliente))
+        )
+
+        return api.getClientCarac(request = request)
     }
 
     override suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse {

@@ -6,11 +6,11 @@ import com.poli.easysales.login.domain.model.Token
 
 data class ResponseTokenDto(
     @SerializedName("access_token")
-    val authToken: kotlin.String? = "",
+    val authToken: String? = "",
     @SerializedName("token_expiry")
-    val tokenExpiry: kotlin.String? = "",
+    val tokenExpiry: String? = "",
     @SerializedName("token_type")
-    val tokenType: kotlin.String? = ""
+    val tokenType: String? = ""
 )
 
 fun ResponseTokenDto.toToken(): Token {

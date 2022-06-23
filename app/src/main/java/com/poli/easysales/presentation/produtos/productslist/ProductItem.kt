@@ -25,11 +25,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.poli.prevendasomie.R
 import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.easysales.presentation.util.parseImageUrl
 import com.poli.easysales.presentation.util.trimLeadingZeros
 import com.poli.easysales.ui.theme.LocalSpacing
+import com.poli.prevendasomie.R
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable

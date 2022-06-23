@@ -37,11 +37,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.poli.prevendasomie.R
 import com.poli.easysales.presentation.produtos.components.InfoBox
 import com.poli.easysales.presentation.produtos.components.MoreInfoBox
 import com.poli.easysales.presentation.util.parseImageUrl
 import com.poli.easysales.presentation.util.trimLeadingZeros
+import com.poli.prevendasomie.R
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable

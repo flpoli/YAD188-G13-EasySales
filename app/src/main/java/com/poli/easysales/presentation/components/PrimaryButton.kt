@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
-import androidx.compose.ui.unit.dp
 import com.poli.easysales.ui.theme.ButtonShape
 import com.poli.prevendasomie.R
 
@@ -23,7 +22,7 @@ fun PrimaryButton(
     Button(
         onClick = onClick,
         shape = ButtonShape,
-        modifier = Modifier
+        modifier = modifier
             .height(dimensionResource(id = R.dimen.button_height))
             .fillMaxWidth(),
         enabled = enabled

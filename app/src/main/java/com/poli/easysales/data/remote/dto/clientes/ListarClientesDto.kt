@@ -1,8 +1,6 @@
 package com.poli.easysales.data.remote.dto.clientes
 
 import com.google.gson.annotations.SerializedName
-import com.poli.easysales.domain.mappers.toClienteModel
-import com.poli.easysales.domain.model.clientes.ListarClientes
 
 data class ListarClientesDto(
     @SerializedName("clientes_cadastro")
@@ -16,5 +14,3 @@ data class ListarClientesDto(
     @SerializedName("total_de_registros")
     val totalDeRegistros: Int
 )
-
-

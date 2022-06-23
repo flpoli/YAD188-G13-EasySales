@@ -12,4 +12,5 @@
     <string name="on_http_error">An unexpected error occurred</string>
     <string name="quantidade">Quantidade: %d</string>
     <string name="cod_prod">Código: %s</string>
+    <string name="not_informed">Não informado</string>
 </resources>

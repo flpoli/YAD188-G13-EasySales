@@ -53,7 +53,6 @@ class RepositoryModule {
             .addTypeConverter(DatabaseConverter(GsonParser(Gson())))
             .setQueryCallback(
                 {
-
                         sqlQuery, bindArgs ->
                     Log.i("SQL Query: ", "$sqlQuery SQL Args: $bindArgs")
                 },

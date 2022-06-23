@@ -57,13 +57,13 @@ fun ClientListItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "${cliente.endereco}, ${cliente.enderecoNumero}, ${cliente.cidade}",
+                    text = cliente.razaoSocial ?: "",
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = cliente.razaoSocial ?: "",
+                    text = "${cliente.endereco}, ${cliente.enderecoNumero}, ${cliente.cidade}",
                     style = MaterialTheme.typography.body1,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

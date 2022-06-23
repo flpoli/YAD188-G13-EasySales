@@ -21,7 +21,6 @@ fun OrdersListScreen(
     navController: NavHostController,
     viewModel: OrdersListViewModel = hiltViewModel(),
 
-
     // scaffoldState: ScaffoldState
 
     // Navigation callback:

@@ -5,9 +5,6 @@ object Constants {
     const val PREFERENCES_NAME = "app_preferences"
     const val PREFERENCES_KEY = "on_boarding_completed"
 
-    var APP_KEY: String = ""
-    var APP_SECRET: String = ""
-
     // Navigation routes
 
     const val MAIN_SCREEN_ROUTE = "main_screen"
@@ -46,12 +43,15 @@ object Constants {
     const val PRODUCTS_ENDPOINT = "geral/produtos/"
     const val ESTOQUE_ENDPOINT = "estoque/consulta/"
     const val ORDERS_ENDPOINT = "produtos/pedido/"
+    const val CARAC_CLIENTS_ENDPOINT = "geral/clientescaract/"
 
     // ERP API calls
 
     const val CALL_LISTAR_CLIENTES = "ListarClientes"
     const val CALL_CONSULTAR_CLIENTE = "ConsultarCliente"
     const val CALL_INCLUIR_CLIENTE = "IncluirCliente"
+    const val CALL_EXCLUIR_CLIENTE = "ExcluirCliente"
+    const val CALL_CARACTERISTICAS_CLIENTE = "ConsultarCaractCliente"
     const val CALL_LISTAR_PEDIDOS = "ListarPedidos"
     const val CALL_LISTAR_POSICAO = "ListarPosEstoque"
     const val CALL_LISTAR_PRODUTOS = "ListarProdutos"

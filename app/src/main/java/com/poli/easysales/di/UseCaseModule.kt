@@ -4,6 +4,7 @@ import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.OrdersRepository
 import com.poli.easysales.domain.repository.ProductsRepository
 import com.poli.easysales.domain.usecase.UseCases
+import com.poli.easysales.domain.usecase.clients.GetClientCharacterImpl
 import com.poli.easysales.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientListForSelectionUseCaseImpl
 import com.poli.easysales.domain.usecase.clients.GetClientListUseCaseImpl
@@ -75,19 +76,25 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesUseCases(r1: ProductsRepository, r2: ClientsRepository, r3: OrdersRepository): UseCases {
-        // solução provisória aqui ^
+    fun providesUseCases(
+        produtos: ProductsRepository,
+        clientes: ClientsRepository,
+        pedidos: OrdersRepository
+
+    ): UseCases {
+
         return UseCases(
-            getProductListUseCase = GetProductsListUseCaseImpl(r1),
-            getSelectedProduct = GetSelectedProductImpl(r1),
-            getOrderDetail = GetOrderDetailImpl(r3),
-            getClientListUseCase = GetClientListUseCaseImpl(r2),
-            getOrdersListUseCase = GetOrdersListUseCaseImpl(r3),
-            getSelectedClientUseCase = GetClienteDetailUseCaseImpl(r2),
-            getClientListForSelectionUseCase = GetClientListForSelectionUseCaseImpl(r2),
-            insertSelectedClientUseCase = InsertSelectedClientUseCaseImpl(r3),
-            getProductListForSelection = GetProductListForSelectionImpl(r1),
-            getOrdersForClient = GetOrdersForClientImpl(r2)
+            getProductListUseCase = GetProductsListUseCaseImpl(produtos),
+            getSelectedProduct = GetSelectedProductImpl(produtos),
+            getOrderDetail = GetOrderDetailImpl(pedidos),
+            getClientListUseCase = GetClientListUseCaseImpl(clientes),
+            getOrdersListUseCase = GetOrdersListUseCaseImpl(pedidos),
+            getSelectedClientUseCase = GetClienteDetailUseCaseImpl(clientes),
+            getClientCharacter = GetClientCharacterImpl(clientes),
+            getClientListForSelectionUseCase = GetClientListForSelectionUseCaseImpl(clientes),
+            insertSelectedClientUseCase = InsertSelectedClientUseCaseImpl(pedidos),
+            getProductListForSelection = GetProductListForSelectionImpl(produtos),
+            getOrdersForClient = GetOrdersForClientImpl(clientes)
         )
     }
 }

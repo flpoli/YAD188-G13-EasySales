@@ -1,9 +1,9 @@
 package com.poli.easysales.data.remote
 
 import com.google.gson.annotations.SerializedName
-import com.poli.easysales.common.Constants.APP_KEY
-import com.poli.easysales.common.Constants.APP_SECRET
+import com.poli.easysales.common.Constants.CALL_CARACTERISTICAS_CLIENTE
 import com.poli.easysales.common.Constants.CALL_CONSULTAR_CLIENTE
+import com.poli.easysales.common.Constants.CALL_EXCLUIR_CLIENTE
 import com.poli.easysales.common.Constants.CALL_INCLUIR_CLIENTE
 import com.poli.easysales.common.Constants.CALL_LISTAR_CLIENTES
 import com.poli.easysales.common.Constants.CALL_LISTAR_PEDIDOS
@@ -69,4 +69,28 @@ sealed class Request {
         val appSecret: String = APP_SECRET,
         val param: List<Param.ParamListarPosicao>
     )
+
+    data class CaracteristicasCliente(
+        val call: String = CALL_CARACTERISTICAS_CLIENTE,
+        @SerializedName("app_key")
+        val appKey: String = APP_KEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APP_SECRET,
+        val param: List<Param.ParamCaracCliente>
+    )
+
+    data class ExcluirCliente(
+        val call: String = CALL_EXCLUIR_CLIENTE,
+        @SerializedName("app_key")
+        val appKey: String = APP_KEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APP_SECRET,
+        val param: List<Param.ParamCaracCliente>
+    )
+
+    companion object {
+
+        var APP_KEY: String = ""
+        var APP_SECRET: String = ""
+    }
 }

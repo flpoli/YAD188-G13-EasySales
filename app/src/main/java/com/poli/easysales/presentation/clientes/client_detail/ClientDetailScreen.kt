@@ -1,26 +1,26 @@
 package com.poli.easysales.presentation.clientes.client_detail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.poli.easysales.presentation.clientes.client_detail.components.ClientTagChip
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
 import com.poli.easysales.presentation.clientes.client_detail.components.InfoBox
-import com.poli.easysales.ui.theme.BlueViolet3
+import com.poli.prevendasomie.R
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ClientDetailScreen(
     navController: NavHostController,
@@ -29,7 +29,9 @@ fun ClientDetailScreen(
 ) {
 
     val orders by viewModel.orders.collectAsState()
+    val caracteristicas by viewModel.caracteristicas.collectAsState()
     val selectedClient by viewModel.selectedClient.collectAsState()
+    val pagerState = rememberPagerState(initialPage = 0)
 
     Box(
         modifier = Modifier
@@ -46,39 +48,75 @@ fun ClientDetailScreen(
             ) {
                 InfoBox(
                     title = "Nome",
-                    info = client.nomeFantasia ?: "Não informado",
-                    subtitle = client.cnpjCpf ?: "Não informado"
-                )
-                InfoBox(
-                    title = "Contato",
-                    info = "e-mail: ${client.email}" ?: "não informado",
-                    subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
-                )
-                InfoBox(
-                    title = "Endereço",
-                    info = "${ client.endereco }, ${ client.enderecoNumero }, ${client.bairro}",
-                    subtitle = "CEP: ${client.cep}"
+                    info = client.nomeFantasia ?: stringResource(id = R.string.not_informed),
+                    subtitle = client.cnpjCpf ?: stringResource(id = R.string.not_informed)
                 )
 
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
+                Tabs(
 
-                    item {
-                        client.tags?.forEach {
-                            ClientTagChip(tag = it)
-                        }
-                    }
+                    pagerState = pagerState,
+                    client = selectedClient!!, // bad here
+                    orders = orders.orEmpty(),
+                    caracteristicas = caracteristicas.orEmpty(),
+                    modifier = Modifier.fillMaxWidth()
 
+                )
 
-                }
-
-                Text(text = "Pedidos deste cliente:")
-                orders?.forEach {
-                    Text(text = it.cabecalho?.numeroPedido!!)
-                }
-
-
+//                InfoBox(
+//                    title = "Contato",
+//                    info = "e-mail: ${client.email}" ?: "não informado",
+//                    subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
+//                )
+//                InfoBox(
+//                    title = "Endereço",
+//                    info = "${client.endereco}, ${client.enderecoNumero}, ${client.bairro}",
+//                    subtitle = "CEP: ${client.cep}"
+//                )
+//
+//                LazyRow(
+//                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+//                ) {
+//
+//                    item {
+//                        client.tags?.forEach {
+//                            ClientTagChip(tag = it)
+//                        }
+//                    }
+//                }
+//
+//                Text(text = "pedidos deste cliente")
+//                LazyColumn() {
+//
+//                    item {
+//
+//                        orders?.forEach {
+//
+//                            OrderCard(order = it)
+//                        }
+//                    }
+//
+//                    item {
+//
+//                        if (!caracteristicas.isNullOrEmpty()) {
+//                            caracteristicas?.forEach {
+//
+//                                Row {
+//                                    Column() {
+//                                        Text(text = "${it.campo }")
+//                                    }
+//
+//                                    Spacer(Modifier.width(8.dp))
+//
+//                                    Column() {
+//                                        Text(text = "${it.conteudo}")
+//                                    }
+//                                }
+//                            }
+//                        } else {
+//                            Caracteristica("NULL", "NULL")
+//                        }
+//                    }
+//                }
             }
         }
     }

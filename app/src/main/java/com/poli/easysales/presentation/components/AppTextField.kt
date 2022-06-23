@@ -23,7 +23,7 @@ fun AppTextField(
     modifier: Modifier = Modifier,
     errorMessage: String? = null,
     enabled: Boolean = true,
-    trailingIcon: @Composable () -> Unit,
+    trailingIcon: @Composable () -> Unit = {},
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     visualTransformation: VisualTransformation = VisualTransformation.None,

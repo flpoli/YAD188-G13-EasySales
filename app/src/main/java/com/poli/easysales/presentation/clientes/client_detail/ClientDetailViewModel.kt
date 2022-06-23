@@ -3,9 +3,9 @@ package com.poli.easysales.presentation.clientes.client_detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.poli.easysales.domain.model.clientes.Caracteristica
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
-import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.easysales.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +26,9 @@ class ClientDetailViewModel @Inject constructor(
     private val _orders: MutableStateFlow<List<PedidoVendaProduto>?> = MutableStateFlow(null)
     val orders: StateFlow<List<PedidoVendaProduto>?> = _orders
 
+    private val _caracteristicas: MutableStateFlow<List<Caracteristica>?> = MutableStateFlow(null)
+    val caracteristicas = _caracteristicas
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -37,9 +40,9 @@ class ClientDetailViewModel @Inject constructor(
             _orders.value = clientId?.let {
                 useCase.getOrdersForClient(clientId)
             }
-
-
-
+            _caracteristicas.value = clientId?.let {
+                useCase.getClientCharacter(clientId)
+            }
         }
     }
 }

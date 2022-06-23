@@ -40,4 +40,10 @@ sealed class Param {
         val nRegPorPagina: Int = 0,
         val dDataPosicao: Date
     )
+
+    data class ParamCaracCliente(
+
+        @SerializedName("codigo_cliente_omie")
+        val codigoCliente: Long
+    )
 }

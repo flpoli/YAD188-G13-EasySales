@@ -1,6 +1,5 @@
 package com.poli.easysales.presentation.clientes.client_detail.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,15 +18,15 @@ import com.poli.easysales.domain.model.clientes.Tag
 @Composable
 fun ClientTagChip(
     tag: Tag
-){
+) {
 
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(
-            vertical = 2.dp,
-            horizontal = 4.dp
+                vertical = 2.dp,
+                horizontal = 4.dp
             )
             .border(
                 width = 1.dp,
@@ -36,7 +35,7 @@ fun ClientTagChip(
             )
             .clip(RoundedCornerShape(50))
             .padding(6.dp)
-    ){
+    ) {
 
         Text(text = tag.tag)
     }
@@ -44,8 +43,7 @@ fun ClientTagChip(
 
 @Composable
 @Preview(showBackground = true)
-fun PreviewTag(){
+fun PreviewTag() {
 
     ClientTagChip(Tag("Fornecedor"))
-
 }

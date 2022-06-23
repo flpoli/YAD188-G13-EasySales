@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -210,7 +211,7 @@ fun TelefoneInput(
     errorMessage: String?,
     enabled: Boolean
 ) {
-
+    val conf = LocalConfiguration.current
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -218,7 +219,7 @@ fun TelefoneInput(
 
     ) {
         AppTextField(
-            modifier = Modifier.width(100.dp),
+            modifier = Modifier.width(conf.screenWidthDp.dp * .3f),
             text = textTelefone1Ddd,
             onTextChanged = onTelefone1DddChanged,
             errorMessage = errorMessage,
@@ -227,7 +228,7 @@ fun TelefoneInput(
             trailingIcon = {}
         )
         AppTextField(
-            modifier = Modifier.width(250.dp),
+            modifier = Modifier.width(conf.screenWidthDp.dp * .7f),
             text = textTelefone1Numero,
             onTextChanged = onTelefone1NumeroChanged,
             errorMessage = errorMessage,

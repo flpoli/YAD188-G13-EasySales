@@ -1,10 +1,12 @@
 package com.poli.easysales.data.remote
 
+import com.poli.easysales.common.Constants.CARAC_CLIENTS_ENDPOINT
 import com.poli.easysales.common.Constants.CLIENTS_ENDPOINT
 import com.poli.easysales.common.Constants.ESTOQUE_ENDPOINT
 import com.poli.easysales.common.Constants.ORDERS_ENDPOINT
 import com.poli.easysales.common.Constants.PRODUCTS_ENDPOINT
 import com.poli.easysales.data.remote.dto.ReqResponse
+import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
 import com.poli.easysales.data.remote.dto.clientes.ListarClientesDto
 import com.poli.easysales.data.remote.dto.pedidos.ListarPedidosDto
@@ -15,6 +17,8 @@ import retrofit2.http.POST
 
 interface OmieAPI {
 
+    /***************************** Collection of clients api methods *****************************/
+
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
     suspend fun getClientList(@Body requestBody: Request.ListClientsRequest): ListarClientesDto
@@ -24,8 +28,18 @@ interface OmieAPI {
     suspend fun getClientByCode(@Body requestBody: Request.ClientByCodeRequest): ClientesCadastroDto
 
     @Headers("Content-Type:application/json")
+    @POST(CARAC_CLIENTS_ENDPOINT)
+    suspend fun getClientCarac(@Body request: Request.CaracteristicasCliente): CaracteristicasDto
+
+    @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
     suspend fun addNewClient(@Body requestBody: Request.IncluirClienteRequest): ReqResponse
+
+    @Headers("Content-Type:application/json")
+    @POST(CLIENTS_ENDPOINT)
+    suspend fun deleteClient(@Body requestBody: Request.ExcluirCliente)
+
+    /**********************************************************************************************/
 
     @Headers("Content-Type:application/json")
     @POST(PRODUCTS_ENDPOINT)

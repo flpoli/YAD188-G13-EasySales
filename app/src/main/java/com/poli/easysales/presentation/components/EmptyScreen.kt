@@ -47,7 +47,7 @@ fun EmptyScreen(
 ) {
 
     var message by remember {
-        mutableStateOf("Find your favorite Hero!")
+        mutableStateOf("")
     }
     var icon by remember {
         mutableStateOf(R.drawable.ic_search_document)
@@ -99,10 +99,6 @@ fun EmptyContent(
         state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
         swipeEnabled = error != null,
         onRefresh = {
-
-            isRefreshing = true
-            heroes?.refresh()
-            isRefreshing = false
         }
     ) {
         Column(

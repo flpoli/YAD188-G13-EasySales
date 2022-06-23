@@ -95,7 +95,7 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
-    implementation 'io.sentry:sentry-android:5.7.4'
+    implementation 'io.sentry:sentry-android:6.1.2'
 
 
     // Retrofit

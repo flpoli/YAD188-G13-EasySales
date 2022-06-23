@@ -51,7 +51,7 @@ fun InfoBox(
                 color = Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6000000238418579f),
                 fontWeight = FontWeight.Medium,
 
-                )
+            )
 
             Text(
                 text = info,

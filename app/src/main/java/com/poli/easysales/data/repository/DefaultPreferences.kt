@@ -1,8 +1,8 @@
 package com.poli.easysales.data.repository
 
 import android.content.SharedPreferences
-import com.poli.easysales.common.Constants.APP_KEY
-import com.poli.easysales.common.Constants.APP_SECRET
+import com.poli.easysales.data.remote.Request.Companion.APP_KEY
+import com.poli.easysales.data.remote.Request.Companion.APP_SECRET
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.domain.repository.Preferences.Companion.KEY_IS_LOGGED
 import com.poli.easysales.signup.domain.model.Email

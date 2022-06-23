@@ -1,6 +1,6 @@
 package com.poli.easysales.presentation.components
 
-import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,13 @@ import androidx.compose.material.Icon
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FileCopy
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -43,10 +46,22 @@ fun NavDrawer(
 
         DrawerItem(
             id = "1",
-            title = "logout",
-            contentDescription = "logout",
+            title = "Logout",
+            contentDescription = "logout drawer button",
             icon = Icons.Default.Logout
 
+        ),
+        DrawerItem(
+            id = "2",
+            title = "Cadastros auxiliares",
+            contentDescription = "Cadastros auxiliares",
+            icon = Icons.Default.FileCopy
+        ),
+        DrawerItem(
+            id = "3",
+            title = "Configurações",
+            contentDescription = "Configurações",
+            icon = Icons.Default.Settings
         )
 
     )
@@ -86,7 +101,8 @@ fun DrawerHeader(preferences: Preferences) {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 64.dp),
+            .padding(vertical = 64.dp)
+            .background(color = Red),
 
     ) {
 
@@ -107,8 +123,6 @@ fun DrawerBody(
 
 ) {
 
-
-
     Column(modifier) {
 
         items.forEach {
@@ -127,6 +141,7 @@ fun DrawerBody(
                     contentDescription = item.contentDescription
                 )
                 Spacer(modifier = Modifier.width(16.dp))
+
                 Text(
                     text = item.title,
                     style = itemTextStyle,
@@ -135,8 +150,6 @@ fun DrawerBody(
             }
         }
     }
-
-
 }
 
 data class DrawerItem(

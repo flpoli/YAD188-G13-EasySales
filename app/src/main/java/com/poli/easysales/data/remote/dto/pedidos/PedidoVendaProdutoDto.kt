@@ -7,7 +7,7 @@ data class PedidoVendaProdutoDto(
 
     val id: Int = 0,
     @SerializedName("cabecalho")
-    val cabecalho: CabecalhoDto?,
+    val cabecalho: CabecalhoDto,
     @SerializedName("departamentos")
     val departamentos: List<DepartamentoDto>?,
     @SerializedName("det")
@@ -32,7 +32,7 @@ fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
 
     return PedidoVendaProduto(
         id = id,
-        cabecalho = cabecalho?.toCabecalho(),
+        cabecalho = cabecalho.toCabecalho(),
         det = det?.map { it.toDet() },
         frete = frete?.toFrete(),
         infoCadastro = infoCadastro?.toInfoCadastro(),
