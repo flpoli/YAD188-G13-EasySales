@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.clientes.client_list
 
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -22,6 +23,8 @@ fun ClientListScreen(
         navController = navController,
         cliente = allClientes
     )
+
+    
 }
 
 @Composable
@@ -41,6 +44,8 @@ fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {
         return when {
 
             loadState.refresh is LoadState.Loading -> {
+
+                CircularProgressIndicator()
                 false
             }
             error != null -> {
@@ -48,10 +53,11 @@ fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {
                 false
             }
             clientes.itemCount < 1 -> {
-                EmptyScreen()
+                EmptyScreen(error = LoadState.Error(Throwable("Parece que não há cadastros, vamos cadastrar?")))
                 return false
             }
             else -> true
         }
     }
 }
+

@@ -135,15 +135,9 @@ fun EmptyContent(
 fun parseErrorMessage(error: LoadState.Error): String {
 
     return when (error.error) {
-        is SocketTimeoutException -> {
-            "Server Unavailable: $error"
-        }
-        is ConnectException -> {
-            "Internet Unavailable: $error"
-        }
-        is HttpException -> {
-            "Request error: $error"
-        }
-        else -> "Unknown Error: $error"
+        is SocketTimeoutException -> { "Server Unavailable: ${error.error.message}"}
+        is ConnectException -> { "Internet Unavailable: ${error.error.message}" }
+        is HttpException -> { "Request error: ${error.error.message}"}
+        else -> "${error.error.message}" // if clients count < 1
     }
 }

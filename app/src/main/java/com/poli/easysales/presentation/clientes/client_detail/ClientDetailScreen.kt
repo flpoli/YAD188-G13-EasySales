@@ -53,70 +53,12 @@ fun ClientDetailScreen(
                 )
 
                 Tabs(
-
                     pagerState = pagerState,
-                    client = selectedClient!!, // bad here
+                    client = selectedClient!!,
                     orders = orders.orEmpty(),
                     caracteristicas = caracteristicas.orEmpty(),
                     modifier = Modifier.fillMaxWidth()
-
                 )
-
-//                InfoBox(
-//                    title = "Contato",
-//                    info = "e-mail: ${client.email}" ?: "não informado",
-//                    subtitle = "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
-//                )
-//                InfoBox(
-//                    title = "Endereço",
-//                    info = "${client.endereco}, ${client.enderecoNumero}, ${client.bairro}",
-//                    subtitle = "CEP: ${client.cep}"
-//                )
-//
-//                LazyRow(
-//                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-//                ) {
-//
-//                    item {
-//                        client.tags?.forEach {
-//                            ClientTagChip(tag = it)
-//                        }
-//                    }
-//                }
-//
-//                Text(text = "pedidos deste cliente")
-//                LazyColumn() {
-//
-//                    item {
-//
-//                        orders?.forEach {
-//
-//                            OrderCard(order = it)
-//                        }
-//                    }
-//
-//                    item {
-//
-//                        if (!caracteristicas.isNullOrEmpty()) {
-//                            caracteristicas?.forEach {
-//
-//                                Row {
-//                                    Column() {
-//                                        Text(text = "${it.campo }")
-//                                    }
-//
-//                                    Spacer(Modifier.width(8.dp))
-//
-//                                    Column() {
-//                                        Text(text = "${it.conteudo}")
-//                                    }
-//                                }
-//                            }
-//                        } else {
-//                            Caracteristica("NULL", "NULL")
-//                        }
-//                    }
-//                }
             }
         }
     }
