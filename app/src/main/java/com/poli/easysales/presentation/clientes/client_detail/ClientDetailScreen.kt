@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
+import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.clientes.client_detail.components.InfoBox
 import com.poli.prevendasomie.R
 
@@ -54,6 +55,7 @@ fun ClientDetailScreen(
 
                 Tabs(
                     pagerState = pagerState,
+                    navController = navController,
                     client = selectedClient!!,
                     orders = orders.orEmpty(),
                     caracteristicas = caracteristicas.orEmpty(),

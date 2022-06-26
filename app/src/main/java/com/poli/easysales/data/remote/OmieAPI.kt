@@ -2,6 +2,7 @@ package com.poli.easysales.data.remote
 
 import com.poli.easysales.common.Constants.CARAC_CLIENTS_ENDPOINT
 import com.poli.easysales.common.Constants.CLIENTS_ENDPOINT
+import com.poli.easysales.common.Constants.CLIENTS_TAG_ENDPOINT
 import com.poli.easysales.common.Constants.ESTOQUE_ENDPOINT
 import com.poli.easysales.common.Constants.ORDERS_ENDPOINT
 import com.poli.easysales.common.Constants.PRODUCTS_ENDPOINT
@@ -17,7 +18,6 @@ import retrofit2.http.POST
 
 interface OmieAPI {
 
-    /***************************** Collection of clients api methods *****************************/
 
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
@@ -39,7 +39,18 @@ interface OmieAPI {
     @POST(CLIENTS_ENDPOINT)
     suspend fun deleteClient(@Body requestBody: Request.ExcluirCliente)
 
-    /**********************************************************************************************/
+    @Headers("Content-Type:application/json")
+    @POST(CLIENTS_TAG_ENDPOINT)
+    suspend fun addTagCli()
+
+    @Headers("Content-Type:application/json")
+    @POST(CLIENTS_TAG_ENDPOINT)
+    suspend fun deleteAllTagsCli()
+
+    @Headers("Content-Type:application/json")
+    @POST(CLIENTS_TAG_ENDPOINT)
+    suspend fun deleteTagByName()
+
 
     @Headers("Content-Type:application/json")
     @POST(PRODUCTS_ENDPOINT)

@@ -44,6 +44,7 @@ object Constants {
     const val ESTOQUE_ENDPOINT = "estoque/consulta/"
     const val ORDERS_ENDPOINT = "produtos/pedido/"
     const val CARAC_CLIENTS_ENDPOINT = "geral/clientescaract/"
+    const val CLIENTS_TAG_ENDPOINT = "geral/clientetag/"
 
     // ERP API calls
 
@@ -55,6 +56,9 @@ object Constants {
     const val CALL_LISTAR_PEDIDOS = "ListarPedidos"
     const val CALL_LISTAR_POSICAO = "ListarPosEstoque"
     const val CALL_LISTAR_PRODUTOS = "ListarProdutos"
+    const val CALL_EXCLUIR_TAG = "ExcluirTags"
+    const val CALL_EXCLUIR_TAG_ALL = "ExcluirTodas"
+    const val CALL_INCLUIR_TAG_CLI = "IncluirTags"
 
     // Paging config
 

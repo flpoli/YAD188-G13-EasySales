@@ -53,7 +53,7 @@ fun OrderListItem(
             ) {
 
                 Text(
-                    text = "Pedido Nº: ${ trimLeadingZeros(order.cabecalho?.numeroPedido!!) }",
+                    text = "Pedido Nº: ${ trimLeadingZeros(order.cabecalho.numeroPedido) }",
                     style = MaterialTheme.typography.body2,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

@@ -1,28 +1,40 @@
 package com.poli.easysales.presentation.clientes.client_list
 
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.presentation.clientes.client_list.components.ListContent
 import com.poli.easysales.presentation.components.EmptyScreen
+import com.poli.easysales.presentation.components.LoadingProgressIndicator
+import com.poli.easysales.presentation.main_screen.components.TopBar
 
 @Composable
 fun ClientListScreen(
-    navController: NavController,
+    navController: NavHostController,
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
 
     val allClientes = viewModel.clientes.collectAsLazyPagingItems()
 
-    ListContent(
-        navController = navController,
-        cliente = allClientes
-    )
+    Scaffold(
+
+//        topBar = { TopBar(navController = navController, onNavigationIconClick = {}) }
+
+    ) {
+
+        ListContent(
+            navController = navController,
+            cliente = allClientes
+        )
+    }
+
 
     
 }
@@ -45,7 +57,7 @@ fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {
 
             loadState.refresh is LoadState.Loading -> {
 
-                CircularProgressIndicator()
+                LoadingProgressIndicator()
                 false
             }
             error != null -> {

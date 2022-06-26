@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun Tabs(
     pagerState: PagerState,
+    navController: NavHostController,
     client: ClientesCadastro,
     orders: List<PedidoVendaProduto>,
     caracteristicas: List<Caracteristica>,
@@ -78,10 +80,11 @@ fun Tabs(
 
     TabsContent(
         pagerState = pagerState,
+        navController = navController,
         client = client,
         orders = orders,
         caracteristicas = caracteristicas,
-        tabList = tabList
+        tabList = tabList,
     )
 }
 
@@ -89,10 +92,11 @@ fun Tabs(
 @Composable
 fun TabsContent(
     pagerState: PagerState,
+    navController: NavHostController,
     client: ClientesCadastro,
     orders: List<PedidoVendaProduto>,
     caracteristicas: List<Caracteristica>,
-    tabList: List<TabItem>
+    tabList: List<TabItem>,
 
 ) {
 
@@ -106,7 +110,7 @@ fun TabsContent(
         when (page) {
 
             0 -> ClientInfoGeral(client, orders, caracteristicas)
-            1 -> ClientOrders(orders)
+            1 -> ClientOrders(orders = orders, navController = navController)
         }
     }
 }

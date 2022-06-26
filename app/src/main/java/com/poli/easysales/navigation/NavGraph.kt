@@ -1,6 +1,7 @@
 package com.poli.easysales.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FabPosition
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
@@ -47,7 +48,6 @@ fun SetupNavGraph(
     preferences: Preferences
 
 ) {
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     Scaffold(
@@ -106,100 +106,104 @@ fun SetupNavGraph(
 
     ) {
 
-        NavHost(
-            navController = navController,
-            startDestination = if (isLogged) {
-                Screen.MainScreen.route
-            } else {
-                Screen.LoginScreen.route
-            }
-        ) {
-
-            composable(Screen.OnBoardingScreen.route) {
-                OnboardingScreen(navController = navController)
-            }
-
-            composable(Screen.LoginScreen.route) {
-                LoginScreen(navController = navController)
-            }
-            composable(Screen.SignUpScreen.route) {
-                SignupScreen(
-                    navController = navController, scaffoldState = scaffoldState
-                )
-            }
-            composable(Screen.MainScreen.route) {
-                MainScreen(navController = navController)
-            }
-            composable(Screen.ClientListScreen.route) {
-                ClientListScreen(navController = navController)
-            }
-            composable(
-                route = Screen.ClientDetailScreen.route,
-                arguments = listOf(
-                    navArgument("clientId") {
-                        type = NavType.LongType
-                    }
-                )
+        paddingValues ->
+        run {
+            NavHost(
+                navController = navController,
+                startDestination = if (isLogged) {
+                    Screen.MainScreen.route
+                } else {
+                    Screen.LoginScreen.route
+                },
+                modifier = Modifier.padding(paddingValues)
             ) {
 
-                ClientDetailScreen(navController = navController)
-            }
+                composable(Screen.OnBoardingScreen.route) {
+                    OnboardingScreen(navController = navController)
+                }
 
-            composable(Screen.ProductListScreen.route) {
-                ProductListScreen(navController = navController)
-            }
+                composable(Screen.LoginScreen.route) {
+                    LoginScreen(navController = navController)
+                }
+                composable(Screen.SignUpScreen.route) {
+                    SignupScreen(
+                        navController = navController, scaffoldState = scaffoldState
+                    )
+                }
+                composable(Screen.MainScreen.route) {
+                    MainScreen(navController = navController)
+                }
+                composable(Screen.ClientListScreen.route) {
+                    ClientListScreen(navController = navController)
+                }
+                composable(
+                    route = Screen.ClientDetailScreen.route,
+                    arguments = listOf(
+                        navArgument("clientId") {
+                            type = NavType.LongType
+                        }
+                    )
+                ) {
 
-            composable(
-                route = Screen.ProductDetailScreen.route,
-                arguments = listOf(
-                    navArgument("productId") {
-                        type = NavType.LongType
-                    }
-                )
-            ) {
-                ProductDetailScreen(navController = navController)
-            }
+                    ClientDetailScreen(navController = navController)
+                }
 
-            composable(Screen.ProductFormScreen.route) {
-                ProductFormScreen()
-            }
-            composable(Screen.ClientFormScreen.route) {
-                ClientFormScreen(
-                    navController = navController,
-                    scaffoldState = scaffoldState
-                )
-            }
+                composable(Screen.ProductListScreen.route) {
+                    ProductListScreen(navController = navController)
+                }
 
-            composable(Screen.OrdersListScreen.route) {
-                OrdersListScreen(navController = navController)
-            }
+                composable(
+                    route = Screen.ProductDetailScreen.route,
+                    arguments = listOf(
+                        navArgument("productId") {
+                            type = NavType.LongType
+                        }
+                    )
+                ) {
+                    ProductDetailScreen(navController = navController)
+                }
 
-            composable(
-                route = Screen.OrderDetailScreen.route,
-                arguments = listOf(
-                    navArgument("orderId") {
-                        type = NavType.LongType
-                    }
-                )
-            ) {
-                OrderDetailScreen(navController = navController)
-            }
+                composable(Screen.ProductFormScreen.route) {
+                    ProductFormScreen()
+                }
+                composable(Screen.ClientFormScreen.route) {
+                    ClientFormScreen(
+                        navController = navController,
+                        scaffoldState = scaffoldState
+                    )
+                }
 
-            composable(Screen.OrderFormScreen.route) {
+                composable(Screen.OrdersListScreen.route) {
+                    OrdersListScreen(navController = navController)
+                }
 
-                OrdersFormScreen(
-                    navController = navController,
-                    onNavigate = navController::navigate
-                )
-            }
+                composable(
+                    route = Screen.OrderDetailScreen.route,
+                    arguments = listOf(
+                        navArgument("orderId") {
+                            type = NavType.LongType
+                        }
+                    )
+                ) {
+                    OrderDetailScreen(navController = navController)
+                }
 
-            composable(Screen.ClientSelectionScreen.route) {
-                ClientSelectionScreen(navController = navController, /*onNavigateUp = { navController.navigateUp() }*/)
-            }
+                composable(Screen.OrderFormScreen.route) {
 
-            composable(Screen.ProductSelectionScreen.route) {
-                ProductSelectionScreen(navController = navController)
+                    OrdersFormScreen(
+                        navController = navController,
+                        onNavigate = navController::navigate
+                    )
+                }
+
+                composable(Screen.ClientSelectionScreen.route) {
+                    ClientSelectionScreen(navController = navController)
+                }
+
+                composable(Screen.ProductSelectionScreen.route) {
+                    ProductSelectionScreen(navController = navController)
+                }
             }
         }
-    }
+}
 }

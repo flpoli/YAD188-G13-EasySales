@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.pedidos.orderlist
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +15,7 @@ import androidx.paging.compose.items
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.components.EmptyScreen
+import com.poli.easysales.presentation.components.LoadingProgressIndicator
 import io.sentry.Sentry
 
 @Composable
@@ -22,7 +24,6 @@ fun OrdersListScreen(
     viewModel: OrdersListViewModel = hiltViewModel(),
 
     // scaffoldState: ScaffoldState
-
     // Navigation callback:
     // onNavigate: (UiEvent.Navigate) -> Unit
     // should try this instead of passing navController down the composable tree. Lets see...
@@ -56,10 +57,18 @@ fun ListContent(
                 if (pedido != null) {
                     OrderListItem(
                         onItemClick = {
+
+                            Log.d("ORDER LIST SCREEN", "${navController
+                                .navigate(
+                                    Screen.OrderDetailScreen.passOrderId(
+                                        pedido.cabecalho.codigoPedido!!
+                                    )
+                                )}" )
+
                             navController
                                 .navigate(
                                     Screen.OrderDetailScreen.passOrderId(
-                                        pedido.cabecalho?.codigoPedido!!
+                                        pedido.cabecalho.codigoPedido
                                     )
                                 )
                         },
@@ -99,7 +108,7 @@ fun handlePagingResult(pedidos: LazyPagingItems<PedidoVendaProduto>): Boolean {
                 false
             }
             pedidos.itemCount < 1 -> {
-                EmptyScreen()
+                LoadingProgressIndicator()
                 return false
             }
             else -> true
