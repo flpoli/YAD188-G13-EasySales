@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.produtos.productslist
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +16,8 @@ import androidx.paging.compose.items
 import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.components.EmptyScreen
+import com.poli.easysales.presentation.components.LoadingProgressIndicator
+import retrofit2.HttpException
 
 @Composable
 fun ProductListScreen(
@@ -74,7 +77,6 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
             loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
             loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
             loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-
             else -> null
         }
 
@@ -83,12 +85,12 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
             loadState.refresh is LoadState.Loading -> {
                 false
             }
-            error != null -> {
-                EmptyScreen(error = error)
+            error != null  -> {
+
                 false
             }
             produtos.itemCount < 1 -> {
-                EmptyScreen()
+                LoadingProgressIndicator()
                 false
             }
             else -> true

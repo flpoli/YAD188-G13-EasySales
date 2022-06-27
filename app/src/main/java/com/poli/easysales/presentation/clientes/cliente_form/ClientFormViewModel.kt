@@ -1,10 +1,15 @@
 package com.poli.easysales.presentation.clientes.cliente_form
 
+import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dokar.chiptextfield.Chip
+import com.dokar.chiptextfield.ChipTextFieldState
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.core.UiText
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.domain.usecase.clients.IncluirClienteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -21,6 +26,9 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
         MutableStateFlow(ClienteFormViewState.Initial)
 
     val viewState: StateFlow<ClienteFormViewState> = _viewState
+
+    private val _clientTags =  ChipTextFieldState<Chip>()
+    val clientTags = _clientTags
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -40,9 +48,37 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
         }
     }
 
-    fun onEmailChanged(email: String) {
+    fun onTagsChanged(tag: String) {
+
         val currentData = _viewState.value.cliente
 
+        val listTag = mutableListOf<String>()
+
+        listTag.add(tag)
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedTag(listTag)
+        )
+
+        Log.d("OnTagsChanged", "${_viewState.value}")
+    }
+
+    private fun ClientesCadastro.withUpdatedTag(tags: List<String>): ClientesCadastro {
+
+        val listTags = tags.map {
+
+            Tag(it)
+        }
+
+        return this.copy(tags = listTags)
+
+    }
+
+
+    fun onEmailChanged(email: String) {
+        val currentData = _viewState.value.cliente
+        Log.d("EMAIL", "${email}")
         _viewState.value = ClienteFormViewState.Active(
             inputError = null,
             cliente = currentData.withUpdatedEmail(email)
@@ -141,6 +177,8 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
         // _viewStatw.value = when()
     }
+
+
 
     private fun ClientesCadastro.withUpdatedEmail(email: String): ClientesCadastro {
         return this.copy(email = email)

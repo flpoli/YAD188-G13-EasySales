@@ -102,10 +102,10 @@ fun handlePagingResult(pedidos: LazyPagingItems<PedidoVendaProduto>): Boolean {
             error != null -> {
 
                 // scaffoldState.snackbarHostState.showSnackbar("a")
-                EmptyScreen(error = error)
+                //EmptyScreen(error = error)
 
                 Sentry.captureException(error.error)
-                false
+                true
             }
             pedidos.itemCount < 1 -> {
                 LoadingProgressIndicator()

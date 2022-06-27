@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,10 +21,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.dokar.chiptextfield.Chip
+import com.dokar.chiptextfield.ChipTextFieldState
+import com.dokar.chiptextfield.OutlinedChipTextField
+import com.dokar.chiptextfield.rememberChipTextFieldState
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.core.getString
+import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.presentation.components.AppTextField
+import com.poli.easysales.presentation.components.EndOfScreen
 import com.poli.easysales.presentation.components.PrimaryButton
+import com.poli.easysales.ui.theme.TextFieldShape
 
 @Composable
 fun ClientFormScreen(
@@ -34,6 +42,7 @@ fun ClientFormScreen(
 
     // val spacing = LocalSpacing.current
 
+    val tagState = rememberChipTextFieldState<Chip>(viewModel.clientTags.chips)
     val context = LocalContext.current
     val viewState = viewModel.viewState.collectAsState()
 
@@ -60,6 +69,8 @@ fun ClientFormScreen(
         onCnpjCpfChanged = viewModel::onCnpjCpfChanged,
         onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
         onTelefone1Numero = viewModel::ontelefone1NumeroChanged,
+        onTagChanged = viewModel::onTagsChanged,
+        clientTag = tagState,
         onBtnClicked = viewModel::onRegisterClicked
 
     )
@@ -74,6 +85,8 @@ fun InputColumn(
     onCnpjCpfChanged: (String) -> Unit,
     onTelefone1DddChanged: (String) -> Unit,
     onTelefone1Numero: (String) -> Unit,
+    onTagChanged: (String) -> Unit,
+    clientTag:  ChipTextFieldState<Chip>,
     onBtnClicked: () -> Unit
 
 ) {
@@ -84,6 +97,8 @@ fun InputColumn(
             .padding(start = 15.dp, end = 15.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         RazaoSocialInput(
             text = viewState.cliente.razaoSocial ?: "",
@@ -129,10 +144,22 @@ fun InputColumn(
 
         Spacer(modifier = Modifier.height(12.dp))
 
+
+        TagInputField(
+
+            tags = viewState.cliente.tags!!,
+            onTagsChange = onTagChanged,
+
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
         PrimaryButton(
             onClick = onBtnClicked,
             text = "cadastrar",
         )
+
+        EndOfScreen()
     }
 }
 
@@ -238,3 +265,28 @@ fun TelefoneInput(
         )
     }
 }
+
+@Composable
+fun TagInputField(
+
+    tags: List<Tag>,
+    onTagsChange: (String) -> Unit,
+
+
+){
+
+    val state = rememberChipTextFieldState<Chip>()
+
+    OutlinedChipTextField(
+        state = state,
+        onCreateChip = {
+            onTagsChange(it)
+            Chip(it)
+        },
+        shape = TextFieldShape,
+        label = {Text(text = "Tags")},
+
+    )
+
+}
+

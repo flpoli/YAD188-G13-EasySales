@@ -43,7 +43,7 @@ import java.net.SocketTimeoutException
 @Composable
 fun EmptyScreen(
     error: LoadState.Error? = null,
-    heroes: LazyPagingItems<ProdutoServicoCadastro>? = null
+
 ) {
 
     var message by remember {
@@ -76,7 +76,6 @@ fun EmptyScreen(
         alphaAnim = alphaAnim,
         icon = icon,
         message = message,
-        heroes = heroes,
         error = error
     )
 }
@@ -86,7 +85,6 @@ fun EmptyContent(
     alphaAnim: Float,
     icon: Int,
     message: String,
-    heroes: LazyPagingItems<ProdutoServicoCadastro>? = null,
     error: LoadState.Error? = null
 
 ) {
