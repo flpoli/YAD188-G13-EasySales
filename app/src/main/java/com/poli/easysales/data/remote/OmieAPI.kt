@@ -18,7 +18,6 @@ import retrofit2.http.POST
 
 interface OmieAPI {
 
-
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
     suspend fun getClientList(@Body requestBody: Request.ListClientsRequest): ListarClientesDto
@@ -50,7 +49,6 @@ interface OmieAPI {
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_TAG_ENDPOINT)
     suspend fun deleteTagByName()
-
 
     @Headers("Content-Type:application/json")
     @POST(PRODUCTS_ENDPOINT)

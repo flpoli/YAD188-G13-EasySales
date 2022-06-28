@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
@@ -37,6 +39,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.poli.easysales.presentation.main_screen.components.BottomNavigationBar
 import com.poli.easysales.presentation.produtos.components.InfoBox
 import com.poli.easysales.presentation.produtos.components.MoreInfoBox
 import com.poli.easysales.presentation.util.parseImageUrl
@@ -54,135 +57,148 @@ fun ProductDetailScreen(
 
     val selectedProduct by viewModel.selectedProduct.collectAsState()
 
-    Column(
+    Scaffold(
 
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.Start,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-
+        topBar = {
+            TopAppBar(title = { Text(text = "Produtos") })
+        },
+        bottomBar = {
+            BottomNavigationBar(navController = navController)
+        }
     ) {
 
-        Box(
-            contentAlignment = Alignment.TopCenter,
+        it.calculateBottomPadding()
+
+        Column(
+
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
 
         ) {
-            Image(
-                painter = rememberImagePainter(
-                    data = selectedProduct?.imagens?.firstOrNull()?.urlImagem?.let {
-                        parseImageUrl(
-                            it
-                        )
-                    },
-                    builder = {
-                        crossfade(true)
-                        error(R.drawable.no_image_fallback)
-                        fallback(R.drawable.no_image_fallback)
-                    }
-                ),
-                contentDescription = selectedProduct?.descricao,
-                contentScale = ContentScale.Fit,
+
+            Box(
+                contentAlignment = Alignment.TopCenter,
                 modifier = Modifier
-                    .fillMaxWidth()
 
-            )
-        }
+            ) {
+                Image(
+                    painter = rememberImagePainter(
+                        data = selectedProduct?.imagens?.firstOrNull()?.urlImagem?.let {
+                            parseImageUrl(
+                                it
+                            )
+                        },
+                        builder = {
+                            crossfade(true)
+                            error(R.drawable.no_image_fallback)
+                            fallback(R.drawable.no_image_fallback)
+                        }
+                    ),
+                    contentDescription = selectedProduct?.descricao,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
 
-        Divider()
-
-        Text(
-            text = "Código",
-            style = TextStyle(
-                color = Color.Gray,
-                textAlign = TextAlign.Left
-            )
-        )
-        Text(
-            text = trimLeadingZeros(selectedProduct?.codigo),
-            style = TextStyle(
-                color = Color.Black,
-                fontSize = 16.sp,
-                textAlign = TextAlign.Left
-            )
-        )
-
-        Divider()
-
-        Text(
-            text = "Descrição:",
-            style = TextStyle(
-                color = Color.Gray,
-                textAlign = TextAlign.Left
-            )
-
-        )
-        Text(
-            text = selectedProduct?.descricao ?: ""
-        )
-
-        Divider()
-
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 10.dp),
-        ) {
-            InfoBox(
-                icon = Icons.Default.AttachMoney,
-                iconColor = MaterialTheme.colors.primary,
-                bigText = selectedProduct?.valorUnitario.toString(),
-                smallText = "preço unitário",
-                textColor = Color.Black
-            )
-            InfoBox(
-                icon = Icons.Default.Inventory,
-                iconColor = MaterialTheme.colors.primary,
-                bigText = "${selectedProduct?.quantidadeEstoque}${selectedProduct?.unidade}",
-                smallText = "estoque disponível",
-                textColor = Color.Black
-            )
-        }
-
-        Column() {
-
-            val isVisible = remember { mutableStateOf(false) }
-
-            val icon = if (isVisible.value) {
-                Icons.Default.ArrowDropUp
-            } else {
-                Icons.Default.ArrowDropDown
+                )
             }
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.clickable {
+            Divider()
 
-                    isVisible.value = !isVisible.value
-                }
-            ) {
-                Text(
-                    text = "Outras informações"
+            Text(
+                text = "Código",
+                style = TextStyle(
+                    color = Color.Gray,
+                    textAlign = TextAlign.Left
+                )
+            )
+            Text(
+                text = trimLeadingZeros(selectedProduct?.codigo),
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Left
+                )
+            )
+
+            Divider()
+
+            Text(
+                text = "Descrição:",
+                style = TextStyle(
+                    color = Color.Gray,
+                    textAlign = TextAlign.Left
                 )
 
-                Icon(
-                    modifier = Modifier
-                        .padding(end = 10.dp)
-                        .size(32.dp),
-                    imageVector = icon,
-                    contentDescription = "Info Icon",
-                    tint = Color.Gray
+            )
+            Text(
+                text = selectedProduct?.descricao ?: ""
+            )
+
+            Divider()
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 10.dp),
+            ) {
+                InfoBox(
+                    icon = Icons.Default.AttachMoney,
+                    iconColor = MaterialTheme.colors.primary,
+                    bigText = selectedProduct?.valorUnitario.toString(),
+                    smallText = "preço unitário",
+                    textColor = Color.Black
+                )
+                InfoBox(
+                    icon = Icons.Default.Inventory,
+                    iconColor = MaterialTheme.colors.primary,
+                    bigText = "${selectedProduct?.quantidadeEstoque}${selectedProduct?.unidade}",
+                    smallText = "estoque disponível",
+                    textColor = Color.Black
                 )
             }
 
             Column() {
-                AnimatedVisibility(visible = isVisible.value) {
 
-                    MoreInfoBox(
-                        selectedProduct = selectedProduct!!
+                val isVisible = remember { mutableStateOf(false) }
+
+                val icon = if (isVisible.value) {
+                    Icons.Default.ArrowDropUp
+                } else {
+                    Icons.Default.ArrowDropDown
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable {
+
+                        isVisible.value = !isVisible.value
+                    }
+                ) {
+                    Text(
+                        text = "Outras informações"
                     )
+
+                    Icon(
+                        modifier = Modifier
+                            .padding(end = 10.dp)
+                            .size(32.dp),
+                        imageVector = icon,
+                        contentDescription = "Info Icon",
+                        tint = Color.Gray
+                    )
+                }
+
+                Column() {
+                    AnimatedVisibility(visible = isVisible.value) {
+
+                        MoreInfoBox(
+                            selectedProduct = selectedProduct!!
+                        )
+                    }
                 }
             }
         }

@@ -29,10 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.easysales.ui.theme.DarkGrey
 import com.poli.easysales.ui.theme.LightGrey
 import com.poli.prevendasomie.R
@@ -89,7 +87,7 @@ fun EmptyContent(
 
 ) {
 
-    var isRefreshing by remember {
+    val isRefreshing by remember {
         mutableStateOf(false)
     }
 
@@ -133,9 +131,9 @@ fun EmptyContent(
 fun parseErrorMessage(error: LoadState.Error): String {
 
     return when (error.error) {
-        is SocketTimeoutException -> { "Server Unavailable: ${error.error.message}"}
+        is SocketTimeoutException -> { "Server Unavailable: ${error.error.message}" }
         is ConnectException -> { "Internet Unavailable: ${error.error.message}" }
-        is HttpException -> { "Request error: ${error.error.message}"}
+        is HttpException -> { "Request error: ${error.error.message}" }
         else -> "${error.error.message}" // if clients count < 1
     }
 }

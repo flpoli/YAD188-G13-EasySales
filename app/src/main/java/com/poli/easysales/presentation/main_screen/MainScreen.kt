@@ -1,51 +1,35 @@
 package com.poli.easysales.presentation.main_screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.poli.easysales.domain.model.UserDataModel
+import com.poli.easysales.domain.repository.Preferences
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.main_screen.components.GreetingSection
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun MainScreen(
     navController: NavHostController,
-    // viewModel: null = HiltViewModel()
+    scaffoldState: ScaffoldState,
+    preferences: Preferences,
+    scope: CoroutineScope
 ) {
 
-    val selectedItem by remember { mutableStateOf(0) }
-    val items = listOf("Home", "Clientes", "Produtos", "Pedidos")
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
 
-    Scaffold(
-//        topBar = {
-//            TopAppBar(
-//                title = { Text(text = items[selectedItem]) },
-//                navigationIcon = {
-//                    IconButton(onClick = { /* doSomething() */ }) {
-//                        Icon(Icons.Filled.Menu, contentDescription = null)
-//                    }
-//                },
-//                actions = {
-//                    IconButton(
-//                        onClick = {}
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Filled.Search,
-//                            contentDescription = "Search"
-//                        )
-//                    }
-//                }
-//            )
-//        },
-        bottomBar = {
-
-            // BottomNavigationBar(navController = navController)
-        }
     ) {
-        Column() {
+
+        Column(modifier = Modifier.padding(it)) {
             GreetingSection(name = UserDataModel().username ?: "XYZZZZ")
         }
     }

@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun LoadingProgressIndicator(){
+fun LoadingProgressIndicator() {
 
     Column(
         verticalArrangement = Arrangement.Center,

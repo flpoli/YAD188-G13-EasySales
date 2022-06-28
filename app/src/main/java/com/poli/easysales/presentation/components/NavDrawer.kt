@@ -38,8 +38,8 @@ import kotlinx.coroutines.launch
 fun NavDrawer(
     navController: NavHostController,
     preferences: Preferences,
-    scope: CoroutineScope,
-    scaffoldState: ScaffoldState
+    scaffoldState: ScaffoldState,
+    scope: CoroutineScope
 ) {
 
     val items = listOf(

@@ -1,10 +1,12 @@
 package com.poli.easysales.presentation.produtos.productslist
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -14,28 +16,45 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
-import com.poli.easysales.presentation.components.EmptyScreen
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.LoadingProgressIndicator
-import retrofit2.HttpException
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun ProductListScreen(
     navController: NavHostController,
+    scaffoldState: ScaffoldState,
+    preferences: Preferences,
+    scope: CoroutineScope,
     viewModel: ProductsListViewModel = hiltViewModel()
 ) {
 
     val allProducts = viewModel.produtos?.collectAsLazyPagingItems()
 
-    if (allProducts != null) {
-        ListContent(navController = navController, produto = allProducts)
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
+
+    ) {
+        if (allProducts != null) {
+            ListContent(
+                navController = navController,
+                produto = allProducts,
+                modifier = Modifier.padding()
+            )
+        }
     }
 }
 
 @Composable
 fun ListContent(
     navController: NavController,
-    produto: LazyPagingItems<ProdutoServicoCadastro>
+    produto: LazyPagingItems<ProdutoServicoCadastro>,
+    modifier: Modifier = Modifier
 ) {
 
     val result = handlePagingResult(produtos = produto)
@@ -85,7 +104,7 @@ fun handlePagingResult(produtos: LazyPagingItems<ProdutoServicoCadastro>): Boole
             loadState.refresh is LoadState.Loading -> {
                 false
             }
-            error != null  -> {
+            error != null -> {
 
                 false
             }

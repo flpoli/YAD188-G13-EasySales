@@ -28,15 +28,20 @@ import com.dokar.chiptextfield.rememberChipTextFieldState
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.core.getString
 import com.poli.easysales.domain.model.clientes.Tag
+import com.poli.easysales.domain.repository.Preferences
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.AppTextField
 import com.poli.easysales.presentation.components.EndOfScreen
 import com.poli.easysales.presentation.components.PrimaryButton
 import com.poli.easysales.ui.theme.TextFieldShape
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun ClientFormScreen(
     navController: NavHostController,
     scaffoldState: ScaffoldState,
+    scope: CoroutineScope,
+    preferences: Preferences,
     viewModel: ClientFormViewModel = hiltViewModel()
 ) {
 
@@ -61,19 +66,30 @@ fun ClientFormScreen(
         }
     }
 
-    InputColumn(
-        viewState = viewState.value,
-        onEmailChanged = viewModel::onEmailChanged,
-        onRazaoSocialChanged = viewModel::onRazaoSocialChanged,
-        onNomeFantasiaChanged = viewModel::onNomeFantasiaChanged,
-        onCnpjCpfChanged = viewModel::onCnpjCpfChanged,
-        onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
-        onTelefone1Numero = viewModel::ontelefone1NumeroChanged,
-        onTagChanged = viewModel::onTagsChanged,
-        clientTag = tagState,
-        onBtnClicked = viewModel::onRegisterClicked
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
 
-    )
+    ) {
+
+            paddingValues ->
+        InputColumn(
+            viewState = viewState.value,
+            onEmailChanged = viewModel::onEmailChanged,
+            onRazaoSocialChanged = viewModel::onRazaoSocialChanged,
+            onNomeFantasiaChanged = viewModel::onNomeFantasiaChanged,
+            onCnpjCpfChanged = viewModel::onCnpjCpfChanged,
+            onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
+            onTelefone1Numero = viewModel::ontelefone1NumeroChanged,
+            onTagChanged = viewModel::onTagsChanged,
+            clientTag = tagState,
+            onBtnClicked = viewModel::onRegisterClicked,
+            modifier = Modifier.padding(paddingValues)
+
+        )
+    }
 }
 
 @Composable
@@ -86,13 +102,14 @@ fun InputColumn(
     onTelefone1DddChanged: (String) -> Unit,
     onTelefone1Numero: (String) -> Unit,
     onTagChanged: (String) -> Unit,
-    clientTag:  ChipTextFieldState<Chip>,
-    onBtnClicked: () -> Unit
+    clientTag: ChipTextFieldState<Chip>,
+    onBtnClicked: () -> Unit,
+    modifier: Modifier = Modifier
 
 ) {
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(start = 15.dp, end = 15.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -143,7 +160,6 @@ fun InputColumn(
         )
 
         Spacer(modifier = Modifier.height(12.dp))
-
 
         TagInputField(
 
@@ -272,8 +288,7 @@ fun TagInputField(
     tags: List<Tag>,
     onTagsChange: (String) -> Unit,
 
-
-){
+) {
 
     val state = rememberChipTextFieldState<Chip>()
 
@@ -284,9 +299,7 @@ fun TagInputField(
             Chip(it)
         },
         shape = TextFieldShape,
-        label = {Text(text = "Tags")},
+        label = { Text(text = "Tags") },
 
     )
-
 }
-

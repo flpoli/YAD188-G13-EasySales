@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
@@ -15,7 +16,8 @@ import com.poli.easysales.presentation.clientes.client_list.handlePagingResult
 @Composable
 fun ListContent(
     navController: NavController,
-    cliente: LazyPagingItems<ClientesCadastro>?
+    cliente: LazyPagingItems<ClientesCadastro>?,
+    modifier: Modifier = Modifier
 ) {
 
     val result = handlePagingResult(clientes = cliente!!)

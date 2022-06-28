@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,14 +18,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
-import com.poli.easysales.navigation.Screen
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.presentation.clientes.client_detail.components.InfoBox
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.prevendasomie.R
+import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ClientDetailScreen(
     navController: NavHostController,
+    scope: CoroutineScope,
+    preferences: Preferences,
+    scaffoldState: ScaffoldState,
     viewModel: ClientDetailViewModel = hiltViewModel(),
 
 ) {
@@ -34,33 +40,45 @@ fun ClientDetailScreen(
     val selectedClient by viewModel.selectedClient.collectAsState()
     val pagerState = rememberPagerState(initialPage = 0)
 
-    Box(
-        modifier = Modifier
-            .background(color = MaterialTheme.colors.surface)
-            .fillMaxSize()
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
+
     ) {
 
-        selectedClient?.let { client ->
+            paddingValues ->
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(20.dp),
-            ) {
-                InfoBox(
-                    title = "Nome",
-                    info = client.nomeFantasia ?: stringResource(id = R.string.not_informed),
-                    subtitle = client.cnpjCpf ?: stringResource(id = R.string.not_informed)
-                )
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .background(color = MaterialTheme.colors.surface)
+                .fillMaxSize()
+        ) {
 
-                Tabs(
-                    pagerState = pagerState,
-                    navController = navController,
-                    client = selectedClient!!,
-                    orders = orders.orEmpty(),
-                    caracteristicas = caracteristicas.orEmpty(),
-                    modifier = Modifier.fillMaxWidth()
-                )
+            selectedClient?.let { client ->
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(20.dp),
+                ) {
+                    InfoBox(
+                        title = "Nome",
+                        info = client.nomeFantasia ?: stringResource(id = R.string.not_informed),
+                        subtitle = client.cnpjCpf ?: stringResource(id = R.string.not_informed)
+                    )
+
+                    Tabs(
+                        pagerState = pagerState,
+                        navController = navController,
+                        client = selectedClient!!,
+                        orders = orders.orEmpty(),
+                        caracteristicas = caracteristicas.orEmpty(),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
     }

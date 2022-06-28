@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
@@ -33,23 +32,17 @@ fun ClientOrders(
 
                         try {
 
-                            Log.d("ORDER ID - navgate?" ,"${it.cabecalho.codigoPedido}")
+                            Log.d("ORDER ID - navgate?", "${it.cabecalho.codigoPedido}")
 
                             navController.navigate(Screen.OrderDetailScreen.passOrderId(it.cabecalho.codigoPedido!!))
-
-                        }catch(e: Exception){
+                        } catch (e: Exception) {
 
                             e.printStackTrace()
                         }
-
                     }
                 )
             }
-
         }
-
-
     }
     EndOfScreen()
-
 }

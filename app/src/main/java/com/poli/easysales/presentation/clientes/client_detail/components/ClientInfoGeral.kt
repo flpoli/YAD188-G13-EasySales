@@ -13,9 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.res.TypedArrayUtils.getString
-import com.poli.easysales.core.UiText
-import com.poli.easysales.core.getString
 import com.poli.easysales.domain.model.clientes.Caracteristica
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
@@ -36,10 +33,9 @@ fun ClientInfoGeral(
         modifier = modifier.padding(top = 12.dp)
     ) {
 
-        val telefone = if(!client.telefone1Ddd.isNullOrBlank() || !client.telefone1Numero.isNullOrBlank()) {
+        val telefone = if (!client.telefone1Ddd.isNullOrBlank() || !client.telefone1Numero.isNullOrBlank()) {
 
             "Telefone: (${client.telefone1Ddd})${client.telefone1Numero}"
-
         } else {
             "Telefone: ${stringResource(id = R.string.not_informed)}"
         }
@@ -85,5 +81,4 @@ fun ClientInfoGeral(
             Caracteristica("NULL", "NULL")
         }
     }
-
 }

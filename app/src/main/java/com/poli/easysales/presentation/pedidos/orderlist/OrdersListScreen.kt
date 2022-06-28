@@ -1,9 +1,9 @@
 package com.poli.easysales.presentation.pedidos.orderlist
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,17 +13,21 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
-import com.poli.easysales.presentation.components.EmptyScreen
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.LoadingProgressIndicator
 import io.sentry.Sentry
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun OrdersListScreen(
     navController: NavHostController,
     viewModel: OrdersListViewModel = hiltViewModel(),
+    scaffoldState: ScaffoldState,
+    preferences: Preferences,
+    scope: CoroutineScope,
 
-    // scaffoldState: ScaffoldState
     // Navigation callback:
     // onNavigate: (UiEvent.Navigate) -> Unit
     // should try this instead of passing navController down the composable tree. Lets see...
@@ -31,13 +35,23 @@ fun OrdersListScreen(
 
     val allOrders = viewModel.pedidos.collectAsLazyPagingItems()
 
-    ListContent(navController = navController, pedidos = allOrders)
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
+
+    ) {
+
+        ListContent(navController = navController, pedidos = allOrders)
+    }
 }
 
 @Composable
 fun ListContent(
     navController: NavHostController,
-    pedidos: LazyPagingItems<PedidoVendaProduto>
+    pedidos: LazyPagingItems<PedidoVendaProduto>,
+
 ) {
 
     val result = handlePagingResult(pedidos = pedidos)
@@ -57,18 +71,10 @@ fun ListContent(
                 if (pedido != null) {
                     OrderListItem(
                         onItemClick = {
-
-                            Log.d("ORDER LIST SCREEN", "${navController
-                                .navigate(
-                                    Screen.OrderDetailScreen.passOrderId(
-                                        pedido.cabecalho.codigoPedido!!
-                                    )
-                                )}" )
-
                             navController
                                 .navigate(
                                     Screen.OrderDetailScreen.passOrderId(
-                                        pedido.cabecalho.codigoPedido
+                                        pedido.cabecalho.codigoPedido!!
                                     )
                                 )
                         },
@@ -102,7 +108,7 @@ fun handlePagingResult(pedidos: LazyPagingItems<PedidoVendaProduto>): Boolean {
             error != null -> {
 
                 // scaffoldState.snackbarHostState.showSnackbar("a")
-                //EmptyScreen(error = error)
+                // EmptyScreen(error = error)
 
                 Sentry.captureException(error.error)
                 true

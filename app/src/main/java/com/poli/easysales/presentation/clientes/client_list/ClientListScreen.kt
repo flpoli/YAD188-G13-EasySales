@@ -1,42 +1,48 @@
 package com.poli.easysales.presentation.clientes.client_list
 
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.presentation.clientes.client_list.components.ListContent
+import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.EmptyScreen
 import com.poli.easysales.presentation.components.LoadingProgressIndicator
-import com.poli.easysales.presentation.main_screen.components.TopBar
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun ClientListScreen(
     navController: NavHostController,
+    scaffoldState: ScaffoldState,
+    preferences: Preferences,
+    scope: CoroutineScope,
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
 
     val allClientes = viewModel.clientes.collectAsLazyPagingItems()
 
-    Scaffold(
-
-//        topBar = { TopBar(navController = navController, onNavigationIconClick = {}) }
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
 
     ) {
 
+            paddingValues ->
         ListContent(
             navController = navController,
-            cliente = allClientes
+            cliente = allClientes,
+            modifier = Modifier.padding(paddingValues)
         )
     }
-
-
-    
 }
 
 @Composable
@@ -72,4 +78,3 @@ fun handlePagingResult(clientes: LazyPagingItems<ClientesCadastro>): Boolean {
         }
     }
 }
-

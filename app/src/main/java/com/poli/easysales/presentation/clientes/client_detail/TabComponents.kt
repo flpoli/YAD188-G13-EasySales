@@ -1,7 +1,5 @@
 package com.poli.easysales.presentation.clientes.client_detail
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -51,7 +49,7 @@ fun Tabs(
                     color = Color.White
                 )
             },
-            //modifier = modifier.fillMaxWidth(),
+            // modifier = modifier.fillMaxWidth(),
 
             tabs = {
 
@@ -75,8 +73,6 @@ fun Tabs(
             }
         )
     }
-
-
 
     TabsContent(
         pagerState = pagerState,

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,10 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.easysales.core.UiEvent
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
+import com.poli.easysales.presentation.components.AppScaffold
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun OrdersFormScreen(
+    scaffoldState: ScaffoldState,
+    preferences: Preferences,
+    scope: CoroutineScope,
     navController: NavHostController,
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: OrdersFormViewModel = hiltViewModel()
@@ -53,19 +60,27 @@ fun OrdersFormScreen(
         }
     }
 
-    Column {
+    AppScaffold(
+        scaffoldState = scaffoldState,
+        navController = navController,
+        scope = scope,
+        preferences = preferences
 
-        ClientBox(
+    ) {
+        Column {
 
-            state = state,
-            onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
-        )
-        Spacer(modifier = Modifier.height(12.dp))
+            ClientBox(
 
-        ProductBox(
-            state = state,
-            onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
-        )
+                state = state,
+                onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+
+            ProductBox(
+                state = state,
+                onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
+            )
+        }
     }
 }
 

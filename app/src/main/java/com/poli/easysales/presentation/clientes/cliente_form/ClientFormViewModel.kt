@@ -1,7 +1,6 @@
 package com.poli.easysales.presentation.clientes.cliente_form
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dokar.chiptextfield.Chip
@@ -27,7 +26,7 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
     val viewState: StateFlow<ClienteFormViewState> = _viewState
 
-    private val _clientTags =  ChipTextFieldState<Chip>()
+    private val _clientTags = ChipTextFieldState<Chip>()
     val clientTags = _clientTags
 
     private val _uiEvent = Channel<UiEvent>()
@@ -72,13 +71,11 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
         }
 
         return this.copy(tags = listTags)
-
     }
-
 
     fun onEmailChanged(email: String) {
         val currentData = _viewState.value.cliente
-        Log.d("EMAIL", "${email}")
+        Log.d("EMAIL", "$email")
         _viewState.value = ClienteFormViewState.Active(
             inputError = null,
             cliente = currentData.withUpdatedEmail(email)
@@ -177,8 +174,6 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
         // _viewStatw.value = when()
     }
-
-
 
     private fun ClientesCadastro.withUpdatedEmail(email: String): ClientesCadastro {
         return this.copy(email = email)
