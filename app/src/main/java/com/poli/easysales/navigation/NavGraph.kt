@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.poli.easysales.domain.repository.Preferences
@@ -40,7 +39,6 @@ fun SetupNavGraph(
     preferences: Preferences
 
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     NavHost(
         navController = navController,
@@ -161,15 +159,18 @@ fun SetupNavGraph(
                 onNavigate = navController::navigate,
                 preferences = preferences,
                 scaffoldState = scaffoldState,
-                scope = scope
+                scope = scope,
+                savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
             )
         }
 
         composable(Screen.ClientSelectionScreen.route) {
+
             ClientSelectionScreen(navController = navController)
         }
 
         composable(Screen.ProductSelectionScreen.route) {
+
             ProductSelectionScreen(navController = navController)
         }
     }

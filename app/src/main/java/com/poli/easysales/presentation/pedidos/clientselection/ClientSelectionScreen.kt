@@ -8,19 +8,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.poli.easysales.navigation.Screen
-import com.poli.easysales.presentation.pedidos.OrderOverviewEvent
-import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
 
 @Composable
 fun ClientSelectionScreen(
     navController: NavHostController,
-    // onNavigateUp: () -> Unit,
-    viewModel: OrdersFormViewModel = hiltViewModel(),
+    // onSelectClient: (ClientesCadastro) -> Unit,
+    viewModel: ClientSelectionViewModel = hiltViewModel(),
 
 ) {
 
-    val stateKey = viewModel.key
     LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect { event ->
@@ -33,7 +30,19 @@ fun ClientSelectionScreen(
         }
     }
 
-    val clientState = viewModel.clientState
+    val clientState = viewModel.state
+
+    fun onSelectClient(cliente: ClientesCadastro?) {
+
+        if (cliente != null) {
+
+            navController.previousBackStackEntry?.savedStateHandle?.let {
+
+                it["cliente"] = cliente
+            }
+        }
+        navController.popBackStack()
+    }
 
     LazyColumn(modifier = Modifier.padding()) {
 
@@ -43,14 +52,7 @@ fun ClientSelectionScreen(
             SelectableClientItem(
                 selectableClientUiState = cliente,
                 onClick = {
-
-                    viewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
-                    stateKey.value = !stateKey.value
-                    navController.currentBackStackEntry?.savedStateHandle?.set(
-                        key = "cliente",
-                        value = cliente.cliente
-                    )
-                    navController.navigate(Screen.OrderFormScreen.route)
+                    onSelectClient(cliente.cliente)
                 }
             )
         }

@@ -31,6 +31,8 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+    val listTag = mutableListOf<String>()
+
 
     fun onRegisterClicked() {
 
@@ -51,7 +53,7 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
         val currentData = _viewState.value.cliente
 
-        val listTag = mutableListOf<String>()
+        //need to handle delete tag here
 
         listTag.add(tag)
 
@@ -59,8 +61,6 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
             inputError = null,
             cliente = currentData.withUpdatedTag(listTag)
         )
-
-        Log.d("OnTagsChanged", "${_viewState.value}")
     }
 
     private fun ClientesCadastro.withUpdatedTag(tags: List<String>): ClientesCadastro {
@@ -69,13 +69,13 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
             Tag(it)
         }
-
+        //need to handle delete tag here
+        Log.d("TAG", "$listTags")
         return this.copy(tags = listTags)
     }
 
     fun onEmailChanged(email: String) {
         val currentData = _viewState.value.cliente
-        Log.d("EMAIL", "$email")
         _viewState.value = ClienteFormViewState.Active(
             inputError = null,
             cliente = currentData.withUpdatedEmail(email)

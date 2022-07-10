@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -33,6 +35,7 @@ import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.AppTextField
 import com.poli.easysales.presentation.components.EndOfScreen
 import com.poli.easysales.presentation.components.PrimaryButton
+import com.poli.easysales.ui.theme.LocalSpacing
 import com.poli.easysales.ui.theme.TextFieldShape
 import kotlinx.coroutines.CoroutineScope
 
@@ -45,8 +48,7 @@ fun ClientFormScreen(
     viewModel: ClientFormViewModel = hiltViewModel()
 ) {
 
-    // val spacing = LocalSpacing.current
-
+    val spacing = LocalSpacing.current
     val tagState = rememberChipTextFieldState<Chip>(viewModel.clientTags.chips)
     val context = LocalContext.current
     val viewState = viewModel.viewState.collectAsState()
@@ -70,10 +72,10 @@ fun ClientFormScreen(
         scaffoldState = scaffoldState,
         navController = navController,
         scope = scope,
-        preferences = preferences
+        preferences = preferences,
+        showFab = false
 
     ) {
-
             paddingValues ->
         InputColumn(
             viewState = viewState.value,
@@ -108,74 +110,98 @@ fun InputColumn(
 
 ) {
 
-    Column(
+    LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(start = 15.dp, end = 15.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Spacer(modifier = Modifier.height(12.dp))
+        item() {
 
-        RazaoSocialInput(
-            text = viewState.cliente.razaoSocial ?: "",
-            onTextChanged = onRazaoSocialChanged,
-            errorMessage = null,
-            enabled = true
-        )
-        Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-        NomeFantasiaInput(
-            text = viewState.cliente.nomeFantasia ?: "",
-            onTextChanged = onNomeFantasiaChanged,
-            errorMessage = null,
-            enabled = true
-        )
+            RazaoSocialInput(
+                text = viewState.cliente.razaoSocial ?: "",
+                onTextChanged = onRazaoSocialChanged,
+                errorMessage = null,
+                enabled = true
+            )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
+            NomeFantasiaInput(
+                text = viewState.cliente.nomeFantasia ?: "",
+                onTextChanged = onNomeFantasiaChanged,
+                errorMessage = null,
+                enabled = true
+            )
 
-        CpfCnpjInput(
-            text = viewState.cliente.cnpjCpf ?: "",
-            onTextChanged = onCnpjCpfChanged,
-            errorMessage = null,
-            enabled = true
-        )
-        Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-        EmailInput(
-            text = viewState.cliente.email ?: "",
-            onTextChanged = onEmailChanged,
-            errorMessage = null,
-            enabled = true
-        )
-        Spacer(modifier = Modifier.height(12.dp))
+            CpfCnpjInput(
+                text = viewState.cliente.cnpjCpf ?: "",
+                onTextChanged = onCnpjCpfChanged,
+                errorMessage = null,
+                enabled = true
+            )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        TelefoneInput(
-            textTelefone1Ddd = viewState.cliente.telefone1Ddd ?: "",
-            textTelefone1Numero = viewState.cliente.telefone1Numero ?: "",
-            onTelefone1DddChanged,
-            onTelefone1Numero,
-            errorMessage = null,
-            enabled = true
-        )
+            EmailInput(
+                text = viewState.cliente.email ?: "",
+                onTextChanged = onEmailChanged,
+                errorMessage = null,
+                enabled = true
+            )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
+            TelefoneInput(
+                textTelefone1Ddd = viewState.cliente.telefone1Ddd ?: "",
+                textTelefone1Numero = viewState.cliente.telefone1Numero ?: "",
+                onTelefone1DddChanged,
+                onTelefone1Numero,
+                errorMessage = null,
+                enabled = true
+            )
 
-        TagInputField(
+            Spacer(modifier = Modifier.height(12.dp))
 
-            tags = viewState.cliente.tags!!,
-            onTagsChange = onTagChanged,
+            EnderecoInput(
+                endereco = "",
+                numero = "",
+                bairro = "",
+                cidade = "",
+                estado = "",
+                complemento = "",
+                cep = "",
+                onEnderecoChanged = {},
+                onNumeroChanged = {},
+                onBairroChanged = {},
+                onCidadeChanged = {},
+                onEstadoChanged = {},
+                onComplementoChanged = {},
+                onCepChanged = {},
+                errorMessage = "",
+                enabled = true
+            )
 
-        )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
+            TagInputField(
 
-        PrimaryButton(
-            onClick = onBtnClicked,
-            text = "cadastrar",
-        )
+                tags = viewState.cliente.tags!!,
+                onTagsChange = onTagChanged,
 
-        EndOfScreen()
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            PrimaryButton(
+                onClick = onBtnClicked,
+                text = "cadastrar",
+            )
+
+            EndOfScreen()
+        }
     }
 }
 
@@ -246,6 +272,102 @@ fun EmailInput(
 }
 
 @Composable
+fun EnderecoInput(
+    endereco: String,
+    numero: String,
+    bairro: String,
+    cidade: String,
+    estado: String,
+    complemento: String,
+    cep: String,
+    onEnderecoChanged: (String) -> Unit,
+    onNumeroChanged: (String) -> Unit,
+    onBairroChanged: (String) -> Unit,
+    onCidadeChanged: (String) -> Unit,
+    onEstadoChanged: (String) -> Unit,
+    onComplementoChanged: (String) -> Unit,
+    onCepChanged: (String) -> Unit,
+    errorMessage: String?,
+    enabled: Boolean
+) {
+
+    val conf = LocalConfiguration.current
+
+    Column {
+
+        AppTextField(
+            text = endereco,
+            onTextChanged = onEnderecoChanged,
+            errorMessage = errorMessage,
+            labelText = "Endereco",
+            enabled = enabled,
+            trailingIcon = {}
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+
+//            AppTextField(
+//                text = numero,
+//                onTextChanged = onEnderecoChanged,
+//                errorMessage = errorMessage,
+//                labelText = "Número",
+//                enabled = enabled,
+//                trailingIcon = {}
+//            )
+            AppTextField(
+                text = complemento,
+                onTextChanged = onEnderecoChanged,
+                errorMessage = errorMessage,
+                labelText = "Complemento",
+                enabled = enabled,
+                trailingIcon = {},
+                modifier = Modifier.width(conf.screenWidthDp.dp * .3f),
+
+            )
+            AppTextField(
+                text = cep,
+                onTextChanged = onEnderecoChanged,
+                errorMessage = errorMessage,
+                labelText = "Cep",
+                enabled = enabled,
+                trailingIcon = {},
+                modifier = Modifier.width(conf.screenWidthDp.dp * .7f),
+            )
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+
+            AppTextField(
+                text = estado,
+                onTextChanged = onEnderecoChanged,
+                errorMessage = errorMessage,
+                labelText = "UF",
+                enabled = enabled,
+                trailingIcon = {},
+                modifier = Modifier.width(conf.screenWidthDp.dp * .2f),
+            )
+            AppTextField(
+                text = cidade,
+                onTextChanged = onEnderecoChanged,
+                errorMessage = errorMessage,
+                labelText = "Cidade",
+                enabled = enabled,
+                trailingIcon = {},
+                modifier = Modifier.width(conf.screenWidthDp.dp * .7f),
+
+            )
+        }
+    }
+}
+
+@Composable
 fun TelefoneInput(
     textTelefone1Ddd: String,
     textTelefone1Numero: String,
@@ -301,5 +423,29 @@ fun TagInputField(
         shape = TextFieldShape,
         label = { Text(text = "Tags") },
 
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewEnderecoInput() {
+
+    EnderecoInput(
+        endereco = "Av. Paulista",
+        numero = "819",
+        bairro = "Centro",
+        cidade = "São Paulo",
+        estado = "SP",
+        complemento = "Apto 50",
+        cep = "02920-45",
+        onEnderecoChanged = {},
+        onNumeroChanged = {},
+        onBairroChanged = {},
+        onCidadeChanged = {},
+        onEstadoChanged = {},
+        onComplementoChanged = {},
+        onCepChanged = {},
+        errorMessage = "Erro",
+        enabled = true
     )
 }

@@ -5,6 +5,7 @@ import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 data class SelectableProductUiState(
 
     val produto: ProdutoServicoCadastro,
+    val isSelected: Boolean = false,
     val isExpanded: Boolean = false,
     val amount: String = ""
 )

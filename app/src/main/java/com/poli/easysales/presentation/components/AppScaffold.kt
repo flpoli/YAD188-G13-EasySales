@@ -20,6 +20,7 @@ fun AppScaffold(
     navController: NavHostController,
     scope: CoroutineScope,
     preferences: Preferences,
+    showFab: Boolean = true,
     content: @Composable (PaddingValues) -> Unit
 ) {
 
@@ -53,8 +54,11 @@ fun AppScaffold(
         },
         floatingActionButtonPosition = FabPosition.End,
         isFloatingActionButtonDocked = false,
+
         floatingActionButton = {
-            FabButton(navController = navController)
+
+            if (showFab)
+                FabButton(navController = navController)
         }
     ) {
 

@@ -62,6 +62,6 @@ object Constants {
 
     // Paging config
 
-    const val API_PAGE_SIZE: Int = 300
+    const val API_PAGE_SIZE: Int = 10
     const val CACHE_TIMEOUT: Int = 1440
 }

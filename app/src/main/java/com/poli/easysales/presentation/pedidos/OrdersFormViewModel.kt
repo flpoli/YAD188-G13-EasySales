@@ -23,7 +23,6 @@ import javax.inject.Inject
 class OrdersFormViewModel
 @Inject constructor(
     private val useCase: UseCases,
-
     private val savedStateHandle: SavedStateHandle
 
 ) : ViewModel() {
@@ -32,12 +31,9 @@ class OrdersFormViewModel
     val uiEvent = _uiEvent.receiveAsFlow()
 
     private val _state = mutableStateOf(OrderOverviewState())
-    val state = _state
-
-    val key = mutableStateOf(false)
+    var state = _state
 
     var clientState by mutableStateOf(SelectionState())
-    val selecionado = savedStateHandle.get<ClientesCadastro>("cliente")
 
     init {
 
@@ -45,16 +41,21 @@ class OrdersFormViewModel
     }
 
     fun onEvent(event: OrderOverviewEvent) {
-        Log.d("SELECIONADO", "$selecionado")
         when (event) {
 
             is OrderOverviewEvent.OnClientSelected -> {
 
                 onClientSelected(event)
+                Log.d("VM - Event", "$event")
             }
             is OrderOverviewEvent.OnProductSelected -> {
             }
         }
+    }
+
+    fun getClientData(): ClientesCadastro? {
+        Log.d("VM - getClientData", "${savedStateHandle.get<ClientesCadastro>("cliente")}")
+        return savedStateHandle["cliente"]
     }
 
     private fun onClientSelected(event: OrderOverviewEvent.OnClientSelected) {
@@ -65,11 +66,11 @@ class OrdersFormViewModel
                 cliente = event.cliente
             )
 
-            val x = savedStateHandle.set("cliente", event.cliente)
+            savedStateHandle["cliente"] = event.cliente
 
-            Log.d("SAVED VM", "${savedStateHandle.get<ClientesCadastro>("cliente")}")
+            Log.d("VM - onSelect", "${savedStateHandle.get<ClientesCadastro>("cliente")}")
 
-            // _uiEvent.send(UiEvent.NavigateUp)
+            Log.d("VM - STATE", "$state")
         }
     }
 

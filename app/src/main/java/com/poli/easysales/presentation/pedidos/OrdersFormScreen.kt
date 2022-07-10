@@ -1,35 +1,54 @@
 package com.poli.easysales.presentation.pedidos
 
-import android.util.Log
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import coil.annotation.ExperimentalCoilApi
 import com.poli.easysales.core.UiEvent
+import com.poli.easysales.data.remote.dto.produtos.Imagens
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.components.AppScaffold
+import com.poli.easysales.presentation.components.EndOfScreen
+import com.poli.easysales.presentation.components.HorizontalSpacer
+import com.poli.easysales.presentation.components.ProductImage
+import com.poli.easysales.presentation.components.VerticalSpacer
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun OrdersFormScreen(
+
+    savedStateHandle: SavedStateHandle?,
+
     scaffoldState: ScaffoldState,
     preferences: Preferences,
     scope: CoroutineScope,
@@ -38,14 +57,10 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel()
 ) {
 
-    val key = viewModel.key
+    val selectedClient = savedStateHandle?.getStateFlow<ClientesCadastro?>("cliente", null)?.collectAsState()
+    val selectedProductList = savedStateHandle?.getStateFlow<MutableList<ProdutoServicoCadastro>>("produtos", mutableListOf())?.collectAsState()
 
-    val state by remember(key) { viewModel.state }
-
-    // val test = produceState(initialValue = true) { value = viewModel.state }.value
-
-    Log.d("STATE", "$state")
-    Log.d("STATE - KEY", "$key")
+    val state by remember { viewModel.state }
 
     LaunchedEffect(key1 = true) {
 
@@ -64,33 +79,41 @@ fun OrdersFormScreen(
         scaffoldState = scaffoldState,
         navController = navController,
         scope = scope,
-        preferences = preferences
+        preferences = preferences,
+        showFab = false
 
     ) {
         Column {
 
-            ClientBox(
-
-                state = state,
-                onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
-            )
             Spacer(modifier = Modifier.height(12.dp))
 
-            ProductBox(
-                state = state,
-                onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
+            ClientBox(
+                state = selectedClient?.value,
+                onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
             )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            if (selectedProductList != null) {
+                ProductBox(
+                    state = selectedProductList.value,
+                    onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
+                )
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+
         }
     }
 }
 
 @Composable
 fun ClientBox(
-    state: OrderOverviewState,
+    state: ClientesCadastro?,
     onClick: () -> Unit
 ) {
+
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .fillMaxWidth()
@@ -100,53 +123,199 @@ fun ClientBox(
             }
     ) {
 
-        Spacer(modifier = Modifier.height(12.dp))
-        Row(
-            modifier = Modifier
-                .background(color = Color.LightGray)
-                .fillMaxWidth()
-                .padding(20.dp)
+        Text(
+            text = "Cliente",
+            fontSize = 32.sp,
+            textAlign = TextAlign.Left
+        )
 
-        ) {
+        if(state != null){
 
-            Text(text = "selecionar?   ")
+            ClientItem(cliente = state)
 
-            Text(text = "${state.cliente.nomeFantasia}")
         }
     }
 }
 
 @Composable
+fun ClientItem(
+    cliente: ClientesCadastro
+) {
+
+    Text(text = cliente.nomeFantasia ?: "")
+
+}
+
+
+@Composable
 fun ProductBox(
-    state: OrderOverviewState,
+    state: MutableList<ProdutoServicoCadastro>,
     onClick: () -> Unit
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
-                onClick()
-            }
+
     ) {
 
-        Spacer(modifier = Modifier.height(12.dp))
-        Row(
+        HorizontalSpacer(16.dp)
+
+        Text(
+            text = "Produtos",
+            fontSize = 32.sp,
+            textAlign = TextAlign.Left
+
+        )
+
+
+        state.onEach {
+
+            ProductItem(it)
+        }
+
+
+        Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
-                .background(color = Color.LightGray)
                 .fillMaxWidth()
-                .padding(20.dp)
+                .clickable {
+                    onClick()
+                }
+        ){
 
-        ) {
+            Text(text = "+ Adicionar produto")
 
-            println(state.produtos)
-            if (state.produtos.isEmpty()) {
-                Text(text = "Selecionar produto")
-            } else {
-
-                Text(text = "${state.produtos}")
-            }
         }
     }
+}
+
+@ExperimentalCoilApi
+@Composable
+fun ProductItem(
+    produto: ProdutoServicoCadastro
+) {
+
+    Column {
+
+
+        Row {
+
+            ProductImage(produto = produto)
+
+            Column() {
+
+                Text(
+                    text = produto.descricao.orEmpty()
+                )
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Text(
+                        text = "Em Estoque: ${produto.quantidadeEstoque}"
+                    )
+                    Text(
+                        text = " - "
+                    )
+                    Text(
+                        text = "R$${produto.valorUnitario}"
+                    )
+                }
+
+                Text(
+                    text = "SKU: ${produto.codigoProduto}"
+                )
+
+
+            }
+
+            Box(
+                modifier = Modifier
+                    .border(
+                        width = 1.dp,
+                        shape = RoundedCornerShape(5.dp),
+                        brush = SolidColor(Color.Black)
+                    )
+            ) {}
+
+
+        }
+
+        EndOfScreen(4.dp)
+
+        Divider(
+            thickness = 2.dp,
+            color = Color.LightGray
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PreviewClientBox(){
+
+    val cliente = ClientesCadastro(
+        nomeFantasia = "Cerealista Pirituba"
+    )
+
+    ClientBox(state = cliente, onClick ={ })
+
+}
+
+@ExperimentalCoilApi
+@Composable
+@Preview(showBackground = true)
+fun PreviewProductItem() {
+
+    val produto = ProdutoServicoCadastro(
+        codigo = "123456",
+        codigoProduto = 12345678,
+        descricao = "Ração CatChow Frango",
+        descrDetalhada = "Ração catchow frango 1kg",
+        unidade = "UN",
+        quantidadeEstoque = 500,
+        valorUnitario = 23.45,
+        marca = "Purina",
+        imagens = listOf(Imagens("https://images.tcdn.com.br/img/img_prod/804492/cat_chow_filhotes_frango_e_leite_10_1kg_707_1_20200727151737.jpg"))
+    )
+
+    ProductItem(produto = produto)
+}
+
+@Composable
+@ExperimentalCoilApi
+@Preview(showBackground = true)
+fun PreviewProductBox() {
+
+    val produtos = mutableListOf(
+
+        ProdutoServicoCadastro(
+        codigo = "123456",
+        codigoProduto = 12345678,
+        descricao = "Ração CatChow Frango",
+        descrDetalhada = "Ração catchow frango 1kg",
+        unidade = "UN",
+        quantidadeEstoque = 500,
+        valorUnitario = 23.45,
+        marca = "Purina",
+        imagens = listOf(
+            Imagens("https://images.tcdn.com.br/img/img_prod/804492/cat_chow_filhotes_frango_e_leite_10_1kg_707_1_20200727151737.jpg"))
+        ),
+        ProdutoServicoCadastro(
+            codigo = "123456",
+            codigoProduto = 12345678,
+            descricao = "Ração CatChow Frango",
+            descrDetalhada = "Ração catchow frango 1kg",
+            unidade = "UN",
+            quantidadeEstoque = 500,
+            valorUnitario = 23.45,
+            marca = "Purina",
+            imagens = listOf(Imagens("https://images.tcdn.com.br/img/img_prod/804492/cat_chow_filhotes_frango_e_leite_10_1kg_707_1_20200727151737.jpg"))
+        )
+    )
+
+    ProductBox(state = produtos, onClick = {} )
+
 }

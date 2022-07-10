@@ -22,10 +22,18 @@ class ProductSelectionViewModel
         loadProductList()
     }
 
-    var state by mutableStateOf(ProductSelectionState())
+    private var _state by mutableStateOf(ProductSelectionState())
+    var state = _state
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+
+
+    fun onProductQuantityChanged(quantity: String){
+
+        val currentData = _state.selectableProduct.forEach { it.amount }
+
+    }
 
     private fun loadProductList() {
 

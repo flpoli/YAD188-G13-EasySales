@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.poli.easysales.domain.model.UserDataModel
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.main_screen.components.GreetingSection
@@ -25,12 +24,15 @@ fun MainScreen(
         scaffoldState = scaffoldState,
         navController = navController,
         scope = scope,
-        preferences = preferences
+        preferences = preferences,
+        showFab = false
 
     ) {
 
+        val currentUser = preferences.readUserSession().username.value
+
         Column(modifier = Modifier.padding(it)) {
-            GreetingSection(name = UserDataModel().username ?: "XYZZZZ")
+            GreetingSection(name = currentUser)
         }
     }
 }
