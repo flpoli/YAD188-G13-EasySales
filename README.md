@@ -1,5 +1,5 @@
 <h1 align="center">EasySales</h1>
-<h2 align="center"> Pre and Post Sales App with ERP integration </h2>
+<h2 align="center"> Sales App with ERP integration </h2>
 
 
   
