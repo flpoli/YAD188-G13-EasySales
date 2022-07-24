@@ -8,29 +8,33 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.poli.easysales.core.UiEvent
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.presentation.pedidos.OrderOverviewEvent
+import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
 
 @Composable
 fun ClientSelectionScreen(
     navController: NavHostController,
     // onSelectClient: (ClientesCadastro) -> Unit,
-    viewModel: ClientSelectionViewModel = hiltViewModel(),
+    viewModel: OrdersFormViewModel = hiltViewModel(),
 
-) {
+    ) {
 
     LaunchedEffect(key1 = true) {
 
+        viewModel.loadClientList()
         viewModel.uiEvent.collect { event ->
 
             when (event) {
 
-                // is UiEvent.NavigateUp -> onNavigateUp()
+                is UiEvent.NavigateUp -> {navController.popBackStack()}
                 else -> Unit
             }
         }
     }
 
-    val clientState = viewModel.state
+    val clientState = viewModel.clientState
 
     fun onSelectClient(cliente: ClientesCadastro?) {
 
@@ -52,6 +56,9 @@ fun ClientSelectionScreen(
             SelectableClientItem(
                 selectableClientUiState = cliente,
                 onClick = {
+
+                    viewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
+
                     onSelectClient(cliente.cliente)
                 }
             )

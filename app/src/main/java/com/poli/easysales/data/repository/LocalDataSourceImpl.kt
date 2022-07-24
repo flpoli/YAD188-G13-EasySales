@@ -34,10 +34,18 @@ class LocalDataSourceImpl
         return productDao.getProductById(id = productId)
     }
 
-    override suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity) {
+    override suspend fun insertSelectedCliente(orderId: Int, codigoClient: Long) {
 
-        orderDao.insertClientOnOrder(selectedClient)
+        orderDao.insertClientOnOrder(orderId, codigoClient)
     }
+
+//    override suspend fun insertProductOnOrder(
+//        orderId: Int,
+//        codigoProduto: Long,
+//        quantidade: Int,
+//        valorUnitario: Double
+//    ) = orderDao.insertProductOnOrder(orderId, codigoProduto, quantidade, valorUnitario)
+
 
     override suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto> {
 
@@ -47,5 +55,9 @@ class LocalDataSourceImpl
     override suspend fun getOrderById(orderId: Long): PedidoVendaProduto {
 
         return orderDao.selectOrderById(orderId = orderId)
+    }
+
+    override suspend fun insertNewOrder(order: PedidoVendaProduto) {
+        orderDao.persistOrder(order)
     }
 }

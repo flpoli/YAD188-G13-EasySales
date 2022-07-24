@@ -7,7 +7,7 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.poli.easysales.common.Constants.CACHE_TIMEOUT
 import com.poli.easysales.data.local.ErpDatabase
-import com.poli.easysales.data.local.entities.ProductsRemoteKeys
+import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Param

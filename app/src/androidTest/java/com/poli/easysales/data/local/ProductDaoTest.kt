@@ -9,7 +9,7 @@ import com.google.common.truth.Truth.assertThat
 import com.google.gson.Gson
 import com.poli.easysales.data.local.dao.ProductRemoteKeyDao
 import com.poli.easysales.data.local.dao.ProductsDao
-import com.poli.easysales.data.local.entities.ProductsRemoteKeys
+import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.remote.dto.produtos.Imagens
 import com.poli.easysales.data.util.GsonParser
 import com.poli.easysales.domain.mappers.toProdutoEntity

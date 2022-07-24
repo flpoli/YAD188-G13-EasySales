@@ -49,13 +49,18 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
         }
     }
 
-    fun onTagsChanged(tag: String) {
+    fun onTagsChanged(action: String, tag: String) {
 
         val currentData = _viewState.value.cliente
 
         //need to handle delete tag here
 
-        listTag.add(tag)
+        if(action =="add"){
+            listTag.add(tag)
+
+        } else {
+            listTag.remove(tag)
+        }
 
         _viewState.value = ClienteFormViewState.Active(
             inputError = null,

@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.pedidos.productselection
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,7 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -29,6 +32,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,6 +46,7 @@ fun SelectableProductItem(
 
     selectableProductUiState: SelectableProductUiState,
     onClick: () -> Unit,
+    onSelectProduct: (Boolean) -> Unit,
     onQuantityChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -58,8 +64,8 @@ fun SelectableProductItem(
             )
             .background(MaterialTheme.colors.surface)
             .clickable {
-                onClick()
-                selectableProductUiState.isExpanded
+
+
             }
             .padding(end = spacing.spaceMedium)
     ) {
@@ -71,97 +77,84 @@ fun SelectableProductItem(
 
             Column {
                 Text(
-                    text = produto.codigoProduto.toString()
+                    text = produto?.codigoProduto.toString()
                 )
                 Text(
-                    text = produto.descricao!!
+                    text = produto?.descricao!!
                 )
-
-                // mudar para AnimatedVisibility dps;
 
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    QuantityField(selectableProductUiState = selectableProductUiState, onQuantityChange = onQuantityChange)
+                    QuantityField(
+                        selectableProductUiState = selectableProductUiState,
+                        onQuantityChange = onQuantityChange
+                    )
 
-                    IconButton(
-                        onClick = {}
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Check,
-                            contentDescription = "",
-                            tint = Color.Green
-                        )
+
+                    Checkbox(
+                        checked = selectableProductUiState.isSelected,
+                        onCheckedChange = onSelectProduct
+                    )
+
+
+                    AnimatedVisibility(visible = selectableProductUiState.isExpanded) {
+
                     }
                 }
-            }
-
-            AnimatedVisibility(visible = selectableProductUiState.isExpanded) {
-
-//                Column {
-//                    Text(
-//                        text = produto.codigoProduto.toString()
-//                    )
-//                    Text(
-//                        text = produto.descricao!!
-//                    )
             }
         }
     }
 }
 
 
-@Composable
-fun QuantityField(
-    selectableProductUiState: SelectableProductUiState,
-    onQuantityChange: (String) -> Unit
-
-    ){
-
-    OutlinedTextField(
-
-        value = selectableProductUiState.amount,
-        onValueChange = { onQuantityChange(it) },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        leadingIcon = {
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Remove,
-                    contentDescription = "",
-                    tint = Color.Red
-                )
-            }
-        },
-
-        trailingIcon = {
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "",
-                    tint = Color.Green
-                )
-            }
-        },
-        modifier = Modifier
-            .height(32.dp)
-            .fillMaxWidth(.4f)
-            .border(
-                shape = RoundedCornerShape(5.dp),
-                width = 0.5.dp,
-                color = MaterialTheme.colors.onSurface
-            )
-
-    )
+    @Composable
+    fun QuantityField(
+        selectableProductUiState: SelectableProductUiState,
+        onQuantityChange: (String) -> Unit,
 
 
-}
+        ) {
+
+        OutlinedTextField(
+            value = selectableProductUiState.amount,
+            onValueChange = onQuantityChange,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            leadingIcon = {
+                IconButton(
+                    onClick = {}
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Remove,
+                        contentDescription = "",
+                        tint = Color.Red
+                    )
+                }
+            },
+
+            trailingIcon = {
+                IconButton(
+                    onClick = {}
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "",
+                        tint = Color.Green
+                    )
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth(.4f)
+
+
+        )
+
+
+    }
+
 
 
 @Composable

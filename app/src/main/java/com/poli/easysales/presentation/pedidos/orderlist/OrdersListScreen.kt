@@ -64,7 +64,7 @@ fun ListContent(
         ) {
             items(
                 items = pedidos,
-                key = { pedidos -> pedidos.id }
+//                key = { pedidos -> pedidos.id }
             ) {
 
                     pedido ->

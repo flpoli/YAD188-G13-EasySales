@@ -12,7 +12,12 @@ interface LocalDataSource {
     fun getNonPaginatedClients(): Flow<List<ClientesCadastroEntity>>
     fun getProductsForSelection(): Flow<List<ProdutoEntity>>
     suspend fun getSelectedProduct(productId: Long): ProdutoEntity
-    suspend fun insertSelectedCliente(selectedClient: ClientesCadastroEntity)
     suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto>
     suspend fun getOrderById(orderId: Long): PedidoVendaProduto
+
+
+    suspend fun insertNewOrder(order: PedidoVendaProduto)
+    suspend fun insertSelectedCliente(orderId: Int, codigoClient: Long)
+
+//    suspend fun insertProductOnOrder(orderId: Int, codigoProduto: Long, quantidade: Int, valorUnitario: Double)
 }

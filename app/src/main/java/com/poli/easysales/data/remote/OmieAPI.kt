@@ -59,6 +59,10 @@ interface OmieAPI {
     suspend fun getOrderList(@Body requestBody: Request.ListarPedidosRequest): ListarPedidosDto
 
     @Headers("Content-Type:application/json")
+    @POST(ORDERS_ENDPOINT)
+    suspend fun addNewOrder(@Body requestBody: Request.IncluirPedidosRequest)
+
+    @Headers("Content-Type:application/json")
     @POST(ESTOQUE_ENDPOINT)
     suspend fun getStockList(@Body requestBody: Request.ListarPosicaoEstoque)
 }

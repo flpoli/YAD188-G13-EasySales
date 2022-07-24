@@ -103,7 +103,7 @@ fun InputColumn(
     onCnpjCpfChanged: (String) -> Unit,
     onTelefone1DddChanged: (String) -> Unit,
     onTelefone1Numero: (String) -> Unit,
-    onTagChanged: (String) -> Unit,
+    onTagChanged: (String, String) -> Unit,
     clientTag: ChipTextFieldState<Chip>,
     onBtnClicked: () -> Unit,
     modifier: Modifier = Modifier
@@ -408,7 +408,7 @@ fun TelefoneInput(
 fun TagInputField(
 
     tags: List<Tag>,
-    onTagsChange: (String) -> Unit,
+    onTagsChange: (String, String) -> Unit,
 
 ) {
 
@@ -417,11 +417,13 @@ fun TagInputField(
     OutlinedChipTextField(
         state = state,
         onCreateChip = {
-            onTagsChange(it)
+            onTagsChange("add", it)
             Chip(it)
         },
         shape = TextFieldShape,
         label = { Text(text = "Tags") },
+        onChipClick = { onTagsChange("delete", state.textFieldValue.text)
+        }
 
     )
 }

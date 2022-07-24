@@ -10,24 +10,26 @@ import com.poli.easysales.data.local.dao.OrdersRemoteKeyDao
 import com.poli.easysales.data.local.dao.ProductRemoteKeyDao
 import com.poli.easysales.data.local.dao.ProductsDao
 import com.poli.easysales.data.local.dao.UserDao
-import com.poli.easysales.data.local.entities.ClientsRemoteKeys
-import com.poli.easysales.data.local.entities.OrdersRemoteKeys
-import com.poli.easysales.data.local.entities.ProductsRemoteKeys
+import com.poli.easysales.data.local.entities.clientes.ClientsRemoteKeys
+import com.poli.easysales.data.local.entities.pedidos.OrdersRemoteKeys
+import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
 import com.poli.easysales.domain.model.UserDataModel
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
+import com.poli.easysales.domain.model.pedidos.Det
 
 @Database(
     entities = [
-
         UserDataModel::class,
         ProductsRemoteKeys::class,
         ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
         ProdutoEntity::class,
         OrdersRemoteKeys::class,
-        PedidoVendaProduto::class
+        PedidoVendaProduto::class,
+
+//        Det::class,
 
 //        PedidoVendaEntity::class,
 //        ClienteEntity::class

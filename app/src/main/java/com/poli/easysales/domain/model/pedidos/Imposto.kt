@@ -1,5 +1,6 @@
 package com.poli.easysales.domain.model.pedidos
 
+import androidx.room.Embedded
 import com.google.gson.annotations.SerializedName
 import com.poli.easysales.data.remote.dto.pedidos.CofinsPadrao
 import com.poli.easysales.data.remote.dto.pedidos.CofinsSt
@@ -16,30 +17,17 @@ import com.poli.easysales.data.remote.dto.pedidos.PisPadrao
 import com.poli.easysales.data.remote.dto.pedidos.PisSt
 
 data class Imposto(
-    @SerializedName("cofins_padrao")
-    val cofinsPadrao: CofinsPadrao?,
-    @SerializedName("cofins_st")
-    val cofinsSt: CofinsSt?,
-    @SerializedName("csll")
-    val csll: Csll?,
-    @SerializedName("icms")
-    val icms: Icms?,
-    @SerializedName("icms_ie")
-    val icmsIe: IcmsIe?,
-    @SerializedName("icms_sn")
-    val icmsSn: IcmsSn?,
-    @SerializedName("icms_st")
-    val icmsSt: IcmsSt?,
-    @SerializedName("inss")
-    val inss: Inss?,
-    @SerializedName("ipi")
-    val ipi: Ipi?,
-    @SerializedName("irrf")
-    val irrf: Irrf?,
-    @SerializedName("iss")
-    val iss: Iss?,
-    @SerializedName("pis_padrao")
-    val pisPadrao: PisPadrao?,
-    @SerializedName("pis_st")
-    val pisSt: PisSt?
+    @Embedded val cofinsPadrao: CofinsPadrao? = null,
+    @Embedded val cofinsSt: CofinsSt? = null,
+    @Embedded val csll: Csll? = null,
+    @Embedded val icms: Icms? = null,
+    @Embedded val icmsIe: IcmsIe? = null,
+    @Embedded val icmsSn: IcmsSn? = null,
+    @Embedded val icmsSt: IcmsSt? = null,
+    @Embedded val inss: Inss? = null,
+    @Embedded val ipi: Ipi? = null,
+    @Embedded val irrf: Irrf? = null,
+    @Embedded val iss: Iss? = null,
+    @Embedded val pisPadrao: PisPadrao? = null,
+    @Embedded val pisSt: PisSt? = null
 )

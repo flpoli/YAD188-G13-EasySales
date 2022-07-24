@@ -94,7 +94,7 @@ class RepositoryModule {
 
         return LocalDataSourceImpl(db)
     }
-    /********************************************************/
+    /* ****************************************************** */
 
     @Provides
     @Singleton
@@ -111,10 +111,10 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource):
+    fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource, api: OmieAPI):
         OrdersRepository {
 
-        return OrdersRepositoryImpl(remote, local)
+        return OrdersRepositoryImpl(api, remote, local)
     }
 
     /*******************************************************/

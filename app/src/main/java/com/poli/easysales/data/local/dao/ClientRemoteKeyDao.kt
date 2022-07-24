@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.easysales.common.Constants.CLIENT_KEY_TABLE
-import com.poli.easysales.data.local.entities.ClientsRemoteKeys
+import com.poli.easysales.data.local.entities.clientes.ClientsRemoteKeys
 
 @Dao
 interface ClientRemoteKeyDao {

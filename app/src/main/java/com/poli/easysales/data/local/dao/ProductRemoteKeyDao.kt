@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.poli.easysales.common.Constants.PRODUCTS_KEY_TABLE
-import com.poli.easysales.data.local.entities.ProductsRemoteKeys
+import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 
 @Dao
 interface ProductRemoteKeyDao {

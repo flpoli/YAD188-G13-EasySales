@@ -1,6 +1,8 @@
 package com.poli.easysales.data.repository
 
 import androidx.paging.PagingData
+import com.poli.easysales.data.remote.OmieAPI
+import com.poli.easysales.data.remote.Request
 import com.poli.easysales.domain.mappers.toClientEntity
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
@@ -12,6 +14,7 @@ import javax.inject.Inject
 
 class OrdersRepositoryImpl
 @Inject constructor(
+    private val api: OmieAPI,
     private val remote: RemoteDataSource,
     private val local: LocalDataSource,
 ) : OrdersRepository {
@@ -27,6 +30,16 @@ class OrdersRepositoryImpl
     }
 
     override suspend fun insertSelectedClient(selectedClient: ClientesCadastro) {
-        local.insertSelectedCliente(selectedClient.toClientEntity())
     }
+
+
+    override suspend fun insertNewOrder(request: Request.IncluirPedidosRequest) {
+        api.addNewOrder(request)
+    }
+
+    override suspend fun addClientOnOrder(orderId: Int, codigoCliente: Long) {
+        local.insertSelectedCliente(orderId, codigoCliente)
+    }
+
+
 }

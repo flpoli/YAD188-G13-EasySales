@@ -10,6 +10,8 @@ import com.poli.easysales.common.Constants.CALL_LISTAR_PEDIDOS
 import com.poli.easysales.common.Constants.CALL_LISTAR_POSICAO
 import com.poli.easysales.common.Constants.CALL_LISTAR_PRODUTOS
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
+import com.poli.easysales.data.remote.dto.pedidos.PedidoVendaProdutoDto
+import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import kotlin.String
 
 sealed class Request {
@@ -57,6 +59,15 @@ sealed class Request {
         @SerializedName("app_secret")
         val appSecret: String = APP_SECRET,
         val param: List<Param.ParamListarPedidos>
+
+    )
+    data class IncluirPedidosRequest(
+        val call: String = "IncluirPedido",
+        @SerializedName("app_key")
+        val appKey: String = APP_KEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APP_SECRET,
+        val param: PedidoVendaProduto
 
     )
 

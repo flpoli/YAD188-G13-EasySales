@@ -1,34 +1,43 @@
 package com.poli.easysales.presentation.pedidos
 
+import android.app.DatePickerDialog
+import android.util.Log
+import android.widget.DatePicker
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import com.poli.easysales.core.UiEvent
@@ -39,28 +48,35 @@ import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.EndOfScreen
-import com.poli.easysales.presentation.components.HorizontalSpacer
+import com.poli.easysales.presentation.components.PrimaryButton
 import com.poli.easysales.presentation.components.ProductImage
-import com.poli.easysales.presentation.components.VerticalSpacer
+import com.poli.easysales.presentation.pedidos.productselection.ProductSelectionEvent
+import com.poli.easysales.presentation.pedidos.productselection.SelectableProductUiState
 import kotlinx.coroutines.CoroutineScope
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.math.roundToInt
+import kotlin.math.ulp
 
 @Composable
 fun OrdersFormScreen(
 
     savedStateHandle: SavedStateHandle?,
-
     scaffoldState: ScaffoldState,
     preferences: Preferences,
     scope: CoroutineScope,
     navController: NavHostController,
     onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: OrdersFormViewModel = hiltViewModel()
+    viewModel: OrdersFormViewModel = hiltViewModel(),
 ) {
 
-    val selectedClient = savedStateHandle?.getStateFlow<ClientesCadastro?>("cliente", null)?.collectAsState()
-    val selectedProductList = savedStateHandle?.getStateFlow<MutableList<ProdutoServicoCadastro>>("produtos", mutableListOf())?.collectAsState()
+    val state = viewModel.state
 
-    val state by remember { viewModel.state }
+
+    val selectedClient = savedStateHandle?.get<ClientesCadastro>("cliente")
+    val selectedProducts = savedStateHandle?.get<List<SelectableProductUiState>>("produtos")
+
 
     LaunchedEffect(key1 = true) {
 
@@ -72,6 +88,8 @@ fun OrdersFormScreen(
                 is UiEvent.Navigate -> onNavigate(event)
                 else -> Unit
             }
+
+
         }
     }
 
@@ -83,32 +101,48 @@ fun OrdersFormScreen(
         showFab = false
 
     ) {
+
         Column {
 
             Spacer(modifier = Modifier.height(12.dp))
 
             ClientBox(
-                state = selectedClient?.value,
+                cliente = selectedClient,
                 onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            if (selectedProductList != null) {
-                ProductBox(
-                    state = selectedProductList.value,
-                    onClick = { onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route)) }
-                )
-            }
-            Spacer(modifier = Modifier.height(12.dp))
+            ProductBox(
+                produtos = selectedProducts,
+                onClick = {
 
+                    onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route))
+
+                }
+            )
+//            viewModel.onEvent(OrderOverviewEvent.OnProductSelected(selectedProducts))
+
+            PrimaryButton(
+                text = "Enviar pedido",
+                onClick = {
+
+                    viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
+
+
+                }
+
+            )
         }
+
+        Spacer(modifier = Modifier.height(12.dp))
     }
-}
+    }
+
 
 @Composable
 fun ClientBox(
-    state: ClientesCadastro?,
+    cliente: ClientesCadastro?,
     onClick: () -> Unit
 ) {
 
@@ -129,10 +163,8 @@ fun ClientBox(
             textAlign = TextAlign.Left
         )
 
-        if(state != null){
-
-            ClientItem(cliente = state)
-
+        if (cliente != null) {
+            ClientItem(cliente = cliente)
         }
     }
 }
@@ -147,9 +179,10 @@ fun ClientItem(
 }
 
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun ProductBox(
-    state: MutableList<ProdutoServicoCadastro>,
+    produtos: List<SelectableProductUiState>?,
     onClick: () -> Unit
 ) {
     Column(
@@ -160,7 +193,7 @@ fun ProductBox(
 
     ) {
 
-        HorizontalSpacer(16.dp)
+
 
         Text(
             text = "Produtos",
@@ -168,14 +201,26 @@ fun ProductBox(
             textAlign = TextAlign.Left
 
         )
+        Spacer(Modifier.height(16.dp))
 
 
-        state.onEach {
+        LazyColumn(
+            contentPadding = PaddingValues(all = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ){
 
-            ProductItem(it)
+            if(produtos != null)
+            items(
+                items = produtos,
+
+            )  {
+                produto -> ProductItem(produto)
+            }
+            }
+
+        if (produtos != null) {
+            TotalSection(produtos)
         }
-
-
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -194,7 +239,7 @@ fun ProductBox(
 @ExperimentalCoilApi
 @Composable
 fun ProductItem(
-    produto: ProdutoServicoCadastro
+    produto: SelectableProductUiState
 ) {
 
     Column {
@@ -202,33 +247,31 @@ fun ProductItem(
 
         Row {
 
-            ProductImage(produto = produto)
+            ProductImage(produto = produto.produto)
 
             Column() {
 
                 Text(
-                    text = produto.descricao.orEmpty()
+                    text = produto.produto.descricao.orEmpty()
                 )
 
                 Row(
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     Text(
-                        text = "Em Estoque: ${produto.quantidadeEstoque}"
+                        text = "Quantidade: ${produto.amount} ${produto.produto.unidade}"
                     )
                     Text(
                         text = " - "
                     )
                     Text(
-                        text = "R$${produto.valorUnitario}"
+                        text = "R$${produto.produto.valorUnitario}"
                     )
                 }
 
                 Text(
-                    text = "SKU: ${produto.codigoProduto}"
+                    text = "SKU: ${produto.produto.codigoProduto}"
                 )
-
-
             }
 
             Box(
@@ -238,7 +281,10 @@ fun ProductItem(
                         shape = RoundedCornerShape(5.dp),
                         brush = SolidColor(Color.Black)
                     )
-            ) {}
+            ) {
+
+
+            }
 
 
         }
@@ -253,6 +299,86 @@ fun ProductItem(
 }
 
 @Composable
+fun DateSection(){
+    val mContext = LocalContext.current
+
+    // Declaring integer values
+    // for year, month and day
+    val mYear: Int
+    val mMonth: Int
+    val mDay: Int
+
+    // Initializing a Calendar
+    val mCalendar = Calendar.getInstance()
+
+    // Fetching current year, month and day
+    mYear = mCalendar.get(Calendar.YEAR)
+    mMonth = mCalendar.get(Calendar.MONTH)
+    mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
+
+    mCalendar.time = Date()
+
+    // Declaring a string value to
+    // store date in string format
+    val mDate = remember { mutableStateOf("") }
+
+    // Declaring DatePickerDialog and setting
+    // initial values as current values (present year, month and day)
+    val mDatePickerDialog = DatePickerDialog(
+        mContext,
+        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
+            mDate.value = "$mDayOfMonth/${mMonth+1}/$mYear"
+        }, mYear, mMonth, mDay
+    )
+
+    Column() {
+
+        // Creating a button that on
+        // click displays/shows the DatePickerDialog
+        Button(
+            onClick = { mDatePickerDialog.show() },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0XFF0F9D58))
+        ) {
+            Text(text = "Open Date Picker", color = Color.White)
+        }
+
+        // Adding a space of 100dp height
+        Spacer(modifier = Modifier.size(10.dp))
+
+        // Displaying the mDate value in the Text
+        Text(text = "Selected Date: ${mDate.value}", fontSize = 30.sp, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+fun TotalSection(produtos: List<SelectableProductUiState>){
+
+
+    fun calcOrderTotal(): String {
+        val total =  produtos.sumOf {
+            (it.amount.toDouble() * it.produto.valorUnitario!!)
+        }
+
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
+
+        return df.format(total)
+    }
+
+    Text(text = "Total: ${calcOrderTotal()}")
+
+}
+
+
+@Composable
+@Preview(showBackground = true)
+fun previewTotalSection(){
+
+//    TotalSection()
+
+}
+
+@Composable
 @Preview(showBackground = true)
 fun PreviewClientBox(){
 
@@ -260,7 +386,7 @@ fun PreviewClientBox(){
         nomeFantasia = "Cerealista Pirituba"
     )
 
-    ClientBox(state = cliente, onClick ={ })
+//    ClientBox(state = cliente, onClick ={ })
 
 }
 
@@ -281,7 +407,7 @@ fun PreviewProductItem() {
         imagens = listOf(Imagens("https://images.tcdn.com.br/img/img_prod/804492/cat_chow_filhotes_frango_e_leite_10_1kg_707_1_20200727151737.jpg"))
     )
 
-    ProductItem(produto = produto)
+//    ProductItem(produto = produto)
 }
 
 @Composable
@@ -316,6 +442,6 @@ fun PreviewProductBox() {
         )
     )
 
-    ProductBox(state = produtos, onClick = {} )
+//    ProductBox(state = produtos, onClick = {} )
 
 }
