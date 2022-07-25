@@ -1,0 +1,934 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d507c5263a2b5ac661fdce025363e59d",
+    "entities": [
+      {
+        "tableName": "user_tb",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `email` TEXT, `username` TEXT, `appKey` TEXT, `appSecret` TEXT, `accessToken` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "appKey",
+            "columnName": "appKey",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "appSecret",
+            "columnName": "appSecret",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "accessToken",
+            "columnName": "accessToken",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "products_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, `lastUpdated` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevPage",
+            "columnName": "prevPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPage",
+            "columnName": "nextPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "lastUpdated",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "clients_tb",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `codCliIntegracao` TEXT, `codClienteOmie` INTEGER, `nomeFantasia` TEXT, `razaoSocial` TEXT, `cnpjCpf` TEXT, `telefone1Ddd` TEXT, `telefone1Numero` TEXT, `email` TEXT, `endereco` TEXT, `estado` TEXT, `enderecoNumero` TEXT, `bairro` TEXT, `cep` TEXT, `cidade` TEXT, `complemento` TEXT, `tags` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codCliIntegracao",
+            "columnName": "codCliIntegracao",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codClienteOmie",
+            "columnName": "codClienteOmie",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nomeFantasia",
+            "columnName": "nomeFantasia",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "razaoSocial",
+            "columnName": "razaoSocial",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cnpjCpf",
+            "columnName": "cnpjCpf",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "telefone1Ddd",
+            "columnName": "telefone1Ddd",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "telefone1Numero",
+            "columnName": "telefone1Numero",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "endereco",
+            "columnName": "endereco",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "estado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "enderecoNumero",
+            "columnName": "enderecoNumero",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bairro",
+            "columnName": "bairro",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cep",
+            "columnName": "cep",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cidade",
+            "columnName": "cidade",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "complemento",
+            "columnName": "complemento",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tags",
+            "columnName": "tags",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "clients_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, `lastUpdated` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevPage",
+            "columnName": "prevPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPage",
+            "columnName": "nextPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "lastUpdated",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "products_tb",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `codigo` TEXT, `codigoProduto` INTEGER NOT NULL, `codigoProdutoIntegracao` TEXT, `descricao` TEXT, `descrDetalhada` TEXT, `quantidadeEstoque` INTEGER, `unidade` TEXT, `valorUnitario` REAL, `descricaoFamilia` TEXT, `diasGarantia` INTEGER, `altura` INTEGER, `largura` INTEGER, `profundidade` INTEGER, `pesoBruto` REAL, `pesoLiq` REAL, `marca` TEXT, `modelo` TEXT, `obsInternas` TEXT, `imagens` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codigo",
+            "columnName": "codigo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codigoProduto",
+            "columnName": "codigoProduto",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codigoProdutoIntegracao",
+            "columnName": "codigoProdutoIntegracao",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descricao",
+            "columnName": "descricao",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descrDetalhada",
+            "columnName": "descrDetalhada",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quantidadeEstoque",
+            "columnName": "quantidadeEstoque",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unidade",
+            "columnName": "unidade",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "valorUnitario",
+            "columnName": "valorUnitario",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descricaoFamilia",
+            "columnName": "descricaoFamilia",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "diasGarantia",
+            "columnName": "diasGarantia",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "altura",
+            "columnName": "altura",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "largura",
+            "columnName": "largura",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profundidade",
+            "columnName": "profundidade",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pesoBruto",
+            "columnName": "pesoBruto",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pesoLiq",
+            "columnName": "pesoLiq",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "marca",
+            "columnName": "marca",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "modelo",
+            "columnName": "modelo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "obsInternas",
+            "columnName": "obsInternas",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imagens",
+            "columnName": "imagens",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "orders_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, `lastUpdated` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevPage",
+            "columnName": "prevPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPage",
+            "columnName": "nextPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "lastUpdated",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "orders_tb",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `det` TEXT, `listaParcelas` TEXT, `bloqueado` TEXT, `codigoCenarioImpostos` TEXT, `codigoCliente` INTEGER, `codigoEmpresa` INTEGER, `codigoParcela` TEXT, `codigoPedido` INTEGER, `codigoPedidoIntegracao` TEXT, `dataPrevisao` TEXT, `etapa` TEXT, `importadoApi` TEXT, `numeroPedido` TEXT, `origemPedido` TEXT, `qtdeParcelas` INTEGER, `quantidadeItens` INTEGER, `codigoRastreio` TEXT, `codigoTipoEntrega` INTEGER, `codigoTransportadora` INTEGER, `especieVolumes` TEXT, `marcaVolumes` TEXT, `modalidade` TEXT, `numeracaoVolumes` TEXT, `numeroLacre` TEXT, `outrasDespesas` REAL, `pesoBruto` REAL, `pesoLiquido` REAL, `placa` TEXT, `placaEstado` TEXT, `previsaoEntrega` TEXT, `quantidadeVolumes` INTEGER, `registroTransportador` TEXT, `valorFrete` REAL, `valorSeguro` REAL, `veiculoProprio` TEXT, `autorizado` TEXT, `cImpAPI` TEXT, `cancelado` TEXT, `dAlt` TEXT, `dCan` TEXT, `dFat` TEXT, `dInc` TEXT, `denegado` TEXT, `devolvido` TEXT, `devolvidoParcial` TEXT, `faturado` TEXT, `hAlt` TEXT, `hCan` TEXT, `hFat` TEXT, `hInc` TEXT, `uAlt` TEXT, `uCan` TEXT, `uFat` TEXT, `uInc` TEXT, `codProj` INTEGER, `codVend` INTEGER, `codigoCategoria` TEXT, `codigoContaCorrente` INTEGER, `consumidorFinal` TEXT, `contato` TEXT, `dadosAdicionaisNf` TEXT, `enviarEmail` TEXT, `numeroContrato` TEXT, `numeroPedidoCliente` TEXT, `utilizarEmails` TEXT, `obsVenda` TEXT, `baseCalculoIcms` REAL, `baseCalculoSt` REAL, `valorCofins` REAL, `valorCsll` REAL, `valorDeducoes` REAL, `valorDescontos` REAL, `valorIPI` REAL, `valorIcms` REAL, `valorInss` REAL, `valorIr` REAL, `valorIss` REAL, `valorMercadorias` REAL, `valorPis` REAL, `valorSt` REAL, `valorTotalPedido` REAL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "det",
+            "columnName": "det",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "listaParcelas",
+            "columnName": "listaParcelas",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.bloqueado",
+            "columnName": "bloqueado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoCenarioImpostos",
+            "columnName": "codigoCenarioImpostos",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoCliente",
+            "columnName": "codigoCliente",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoEmpresa",
+            "columnName": "codigoEmpresa",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoParcela",
+            "columnName": "codigoParcela",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoPedido",
+            "columnName": "codigoPedido",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.codigoPedidoIntegracao",
+            "columnName": "codigoPedidoIntegracao",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.dataPrevisao",
+            "columnName": "dataPrevisao",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.etapa",
+            "columnName": "etapa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.importadoApi",
+            "columnName": "importadoApi",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.numeroPedido",
+            "columnName": "numeroPedido",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.origemPedido",
+            "columnName": "origemPedido",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.qtdeParcelas",
+            "columnName": "qtdeParcelas",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabecalho.quantidadeItens",
+            "columnName": "quantidadeItens",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.codigoRastreio",
+            "columnName": "codigoRastreio",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.codigoTipoEntrega",
+            "columnName": "codigoTipoEntrega",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.codigoTransportadora",
+            "columnName": "codigoTransportadora",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.especieVolumes",
+            "columnName": "especieVolumes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.marcaVolumes",
+            "columnName": "marcaVolumes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.modalidade",
+            "columnName": "modalidade",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.numeracaoVolumes",
+            "columnName": "numeracaoVolumes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.numeroLacre",
+            "columnName": "numeroLacre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.outrasDespesas",
+            "columnName": "outrasDespesas",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.pesoBruto",
+            "columnName": "pesoBruto",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.pesoLiquido",
+            "columnName": "pesoLiquido",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.placa",
+            "columnName": "placa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.placaEstado",
+            "columnName": "placaEstado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.previsaoEntrega",
+            "columnName": "previsaoEntrega",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.quantidadeVolumes",
+            "columnName": "quantidadeVolumes",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.registroTransportador",
+            "columnName": "registroTransportador",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.valorFrete",
+            "columnName": "valorFrete",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.valorSeguro",
+            "columnName": "valorSeguro",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frete.veiculoProprio",
+            "columnName": "veiculoProprio",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.autorizado",
+            "columnName": "autorizado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.cImpAPI",
+            "columnName": "cImpAPI",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.cancelado",
+            "columnName": "cancelado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.dAlt",
+            "columnName": "dAlt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.dCan",
+            "columnName": "dCan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.dFat",
+            "columnName": "dFat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.dInc",
+            "columnName": "dInc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.denegado",
+            "columnName": "denegado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.devolvido",
+            "columnName": "devolvido",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.devolvidoParcial",
+            "columnName": "devolvidoParcial",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.faturado",
+            "columnName": "faturado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.hAlt",
+            "columnName": "hAlt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.hCan",
+            "columnName": "hCan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.hFat",
+            "columnName": "hFat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.hInc",
+            "columnName": "hInc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.uAlt",
+            "columnName": "uAlt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.uCan",
+            "columnName": "uCan",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.uFat",
+            "columnName": "uFat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "infoCadastro.uInc",
+            "columnName": "uInc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.codProj",
+            "columnName": "codProj",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.codVend",
+            "columnName": "codVend",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.codigoCategoria",
+            "columnName": "codigoCategoria",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.codigoContaCorrente",
+            "columnName": "codigoContaCorrente",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.consumidorFinal",
+            "columnName": "consumidorFinal",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.contato",
+            "columnName": "contato",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.dadosAdicionaisNf",
+            "columnName": "dadosAdicionaisNf",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.enviarEmail",
+            "columnName": "enviarEmail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.numeroContrato",
+            "columnName": "numeroContrato",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.numeroPedidoCliente",
+            "columnName": "numeroPedidoCliente",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "informacoesAdicionais.utilizarEmails",
+            "columnName": "utilizarEmails",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "observacoes.obsVenda",
+            "columnName": "obsVenda",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.baseCalculoIcms",
+            "columnName": "baseCalculoIcms",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.baseCalculoSt",
+            "columnName": "baseCalculoSt",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorCofins",
+            "columnName": "valorCofins",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorCsll",
+            "columnName": "valorCsll",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorDeducoes",
+            "columnName": "valorDeducoes",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorDescontos",
+            "columnName": "valorDescontos",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorIPI",
+            "columnName": "valorIPI",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorIcms",
+            "columnName": "valorIcms",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorInss",
+            "columnName": "valorInss",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorIr",
+            "columnName": "valorIr",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorIss",
+            "columnName": "valorIss",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorMercadorias",
+            "columnName": "valorMercadorias",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorPis",
+            "columnName": "valorPis",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorSt",
+            "columnName": "valorSt",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalPedido.valorTotalPedido",
+            "columnName": "valorTotalPedido",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd507c5263a2b5ac661fdce025363e59d')"
+    ]
+  }
+}

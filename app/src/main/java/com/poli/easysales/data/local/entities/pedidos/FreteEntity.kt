@@ -5,10 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "frete_entity")
 data class FreteEntity(
-    @PrimaryKey(autoGenerate = true)
-    val freteId: Int,
-    val orderId: Int,
-
     val codigoRastreio: String?,
     val codigoTipoEntrega: Int?,
     val codigoTransportadora: Long?,
