@@ -11,6 +11,7 @@ import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.domain.usecase.UseCases
 import com.poli.easysales.domain.usecase.pedidos.CreateNewOrderUseCaseImpl
 import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
+import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

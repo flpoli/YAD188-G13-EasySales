@@ -142,7 +142,11 @@ fun OrdersFormScreen(
             PrimaryButton(
                 text = "Enviar pedido",
                 onClick = {
-                    viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
+
+
+                        viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
+
+
                 }
 
             )

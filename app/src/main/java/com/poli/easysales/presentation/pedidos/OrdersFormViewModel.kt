@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewModelScope
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.domain.mappers.toClientModel
+import com.poli.easysales.domain.mappers.toPedidoDto
 import com.poli.easysales.domain.model.pedidos.Cabecalho
 import com.poli.easysales.domain.model.pedidos.Det
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
@@ -20,8 +21,10 @@ import com.poli.easysales.domain.usecase.pedidos.CreateNewOrderUseCaseImpl
 import com.poli.easysales.presentation.pedidos.clientselection.SelectableClientUiState
 import com.poli.easysales.presentation.pedidos.clientselection.SelectionState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -62,7 +65,11 @@ class OrdersFormViewModel
             }
             is OrderOverviewEvent.OnSubmitOrder -> {
 
-                onSubmitOrder()
+                CoroutineScope(Dispatchers.Main).launch {
+                    onSubmitOrder()
+
+                }
+
 
             }
             else -> {}
@@ -97,9 +104,11 @@ class OrdersFormViewModel
 
     }
 
-    private fun onSubmitOrder() {
+    private suspend fun onSubmitOrder() {
 
-     val det = state.produtos.map {
+        Log.d("VM - onSubmitOrder", "${state}")
+
+        val det = state.produtos.map {
                 Det(
                     produto = Produto(
                         codigo = it.produto.codigo,
@@ -110,16 +119,16 @@ class OrdersFormViewModel
                     )
                 )
             }
-            val order = PedidoVendaProduto(
+            val order = listOf(PedidoVendaProduto(
                 id = 1,
                 cabecalho = Cabecalho(
                     codigoCliente = state.cliente.codClienteOmie
                 ),
                 det = det
-            )
-        viewModelScope.launch(Dispatchers.IO) {
+            ))
+
             useCase.createNewOrderUsecase(order)
-        }
+
 
 
     }

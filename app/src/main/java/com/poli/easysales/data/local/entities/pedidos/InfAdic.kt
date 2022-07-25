@@ -8,11 +8,11 @@ data class InfAdic(
     @SerializedName("codigo_cenario_impostos_item")
     val codigoCenarioImpostosItem: String?,
     @SerializedName("codigo_local_estoque")
-    val codigoLocalEstoque: Int?,
+    val codigoLocalEstoque: Long?,
     @SerializedName("dados_adicionais_item")
     val dadosAdicionaisItem: String?,
     @SerializedName("item_pedido_compra")
-    val itemPedidoCompra: Int?,
+    val itemPedidoCompra: Long?,
     @SerializedName("nao_gerar_financeiro")
     val naoGerarFinanceiro: String?,
     @SerializedName("nao_movimentar_estoque")
@@ -20,7 +20,7 @@ data class InfAdic(
     @SerializedName("numero_pedido_compra")
     val numeroPedidoCompra: String?,
     @SerializedName("peso_bruto")
-    val pesoBruto: Int?,
+    val pesoBruto: Double?,
     @SerializedName("peso_liquido")
-    val pesoLiquido: Int?
+    val pesoLiquido: Double?
 )

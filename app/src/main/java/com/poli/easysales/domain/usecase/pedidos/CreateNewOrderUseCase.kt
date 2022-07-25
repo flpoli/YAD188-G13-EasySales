@@ -4,7 +4,7 @@ import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 
 interface CreateNewOrderUseCase {
 
-     operator fun invoke(order: PedidoVendaProduto)
+     suspend operator fun invoke(order: List<PedidoVendaProduto>)
 
 
 }

@@ -33,7 +33,7 @@ class OrdersRepositoryImpl
     }
 
 
-    override  fun insertNewOrder(request: Request.IncluirPedidosRequest) {
+    override suspend fun insertNewOrder(request: Request.IncluirPedidosRequest) {
         api.addNewOrder(request)
     }
 
