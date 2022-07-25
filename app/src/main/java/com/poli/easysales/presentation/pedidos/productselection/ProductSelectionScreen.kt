@@ -31,25 +31,12 @@ fun ProductSelectionScreen(
 
 ) {
 
-    val state = viewModel.state
-
-
+    val state = remember {
+        viewModel.state
+    }
 
     val selecionados = state.selectableProduct.filter { it.isSelected }
 
-    Log.d("selecionados", "${selecionados}")
-
-    fun onFinishSelection(listaProdutos: List<SelectableProductUiState>) {
-
-            navController.previousBackStackEntry?.savedStateHandle?.let {
-
-                it["produtos"] = listaProdutos
-            }
-
-        navController.popBackStack()
-
-        Log.d("OnFinishSelection", "${listaProdutos}")
-    }
 
     Column(
         verticalArrangement = Arrangement.SpaceAround,
@@ -94,7 +81,6 @@ fun ProductSelectionScreen(
 
                 viewModel.onEvent(ProductSelectionEvent.OnFinishSelection(selecionados))
                 orderViewModel.onEvent(OrderOverviewEvent.OnProductSelected(selecionados))
-                onFinishSelection(selecionados)
 
             }
 

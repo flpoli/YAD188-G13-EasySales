@@ -60,7 +60,7 @@ interface OmieAPI {
 
     @Headers("Content-Type:application/json")
     @POST(ORDERS_ENDPOINT)
-    suspend fun addNewOrder(@Body requestBody: Request.IncluirPedidosRequest)
+     fun addNewOrder(@Body requestBody: Request.IncluirPedidosRequest)
 
     @Headers("Content-Type:application/json")
     @POST(ESTOQUE_ENDPOINT)

@@ -16,7 +16,6 @@ import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
 @Composable
 fun ClientSelectionScreen(
     navController: NavHostController,
-    // onSelectClient: (ClientesCadastro) -> Unit,
     viewModel: OrdersFormViewModel = hiltViewModel(),
 
     ) {
@@ -36,17 +35,7 @@ fun ClientSelectionScreen(
 
     val clientState = viewModel.clientState
 
-    fun onSelectClient(cliente: ClientesCadastro?) {
 
-        if (cliente != null) {
-
-            navController.previousBackStackEntry?.savedStateHandle?.let {
-
-                it["cliente"] = cliente
-            }
-        }
-        navController.popBackStack()
-    }
 
     LazyColumn(modifier = Modifier.padding()) {
 
@@ -58,8 +47,6 @@ fun ClientSelectionScreen(
                 onClick = {
 
                     viewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
-
-                    onSelectClient(cliente.cliente)
                 }
             )
         }

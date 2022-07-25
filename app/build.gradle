@@ -43,7 +43,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
-        useIR = true
+//        useIR = true
     }
     buildFeatures {
         compose true

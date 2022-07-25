@@ -11,7 +11,7 @@ interface OrdersRepository {
     fun getOrderList(): Flow<PagingData<PedidoVendaProduto>>
     suspend fun getOrderById(orderId: Long): PedidoVendaProduto
     suspend fun insertSelectedClient(selectedClient: ClientesCadastro)
-    suspend fun insertNewOrder(request: Request.IncluirPedidosRequest)
+     fun insertNewOrder(request: Request.IncluirPedidosRequest)
 
     //db operations for create new orders
 

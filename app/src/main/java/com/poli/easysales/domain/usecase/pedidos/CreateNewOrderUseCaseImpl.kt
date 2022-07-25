@@ -5,9 +5,9 @@ import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.OrdersRepository
 import javax.inject.Inject
 
-class CreateNewOrderUseCaseImpl @Inject constructor(private val repository: OrdersRepository) {
+class CreateNewOrderUseCaseImpl @Inject constructor(private val repository: OrdersRepository): CreateNewOrderUseCase {
 
-    suspend operator fun invoke(order: PedidoVendaProduto){
+    override operator fun invoke(order: PedidoVendaProduto){
 
 
         val request = Request.IncluirPedidosRequest(param = order)

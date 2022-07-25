@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewModelScope
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.domain.mappers.toClientModel
@@ -18,31 +20,33 @@ import com.poli.easysales.domain.usecase.pedidos.CreateNewOrderUseCaseImpl
 import com.poli.easysales.presentation.pedidos.clientselection.SelectableClientUiState
 import com.poli.easysales.presentation.pedidos.clientselection.SelectionState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
+
 
 @HiltViewModel
 class OrdersFormViewModel
 @Inject constructor(
     private val useCase: UseCases,
-    private val newOrderUseCase: CreateNewOrderUseCaseImpl,
-    savedStateHandle: SavedStateHandle
 
 ) : ViewModel() {
+
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-     var state by mutableStateOf(OrderOverviewState())
+    var state by mutableStateOf(OrderOverviewState())
         private set
 
     val cliente = state.cliente
 
     var clientState by mutableStateOf(SelectionState())
-
 
 
     fun onEvent(event: OrderOverviewEvent) {
@@ -61,17 +65,23 @@ class OrdersFormViewModel
                 onSubmitOrder()
 
             }
+            else -> {}
         }
     }
 
     private fun onClientSelected(event: OrderOverviewEvent.OnClientSelected) {
 
+        viewModelScope.launch {
 
             state = state.copy(
                 cliente = event.cliente
             )
 
-            Log.d("VM - CLIENTE","${state}" )
+            Log.d("VM - CLIENTE - STATE", "${state}")
+
+            _uiEvent.send(UiEvent.NavigateUp)
+        }
+
 
 
     }
@@ -83,30 +93,23 @@ class OrdersFormViewModel
             produtos = event.produtos
         )
 
-        Log.d("VM - produtos", "${state}")
+        Log.d("VM - PRODUTOS - STATE", "${state}")
 
-        }
+    }
 
     private fun onSubmitOrder() {
 
+     val det = state.produtos.map {
+                Det(
+                    produto = Produto(
+                        codigo = it.produto.codigo,
+                        codigoProduto = it.produto.codigoProduto,
+                        quantidade = it.amount.toInt(),
+                        valorUnitario = it.produto.valorUnitario
 
-        Log.d("OnSubmitOrder", "${state}")
-        viewModelScope.launch {
-
-
-            val det = state.produtos.map {
-
-                     Det(
-                        produto = Produto(
-                            codigo = it.produto.codigo,
-                            codigoProduto = it.produto.codigoProduto,
-                            quantidade = it.amount.toInt(),
-                            valorUnitario = it.produto.valorUnitario
-
-                        )
                     )
-                }
-
+                )
+            }
             val order = PedidoVendaProduto(
                 id = 1,
                 cabecalho = Cabecalho(
@@ -114,13 +117,12 @@ class OrdersFormViewModel
                 ),
                 det = det
             )
-
-            newOrderUseCase(order)
+        viewModelScope.launch(Dispatchers.IO) {
+            useCase.createNewOrderUsecase(order)
         }
+
+
     }
-
-
-
     fun loadClientList() {
         viewModelScope.launch {
 

@@ -12,6 +12,7 @@ import com.poli.easysales.domain.usecase.clients.GetClienteDetailUseCaseImpl
 import com.poli.easysales.domain.usecase.clients.GetOrdersForClientImpl
 import com.poli.easysales.domain.usecase.clients.IncluirClienteUseCase
 import com.poli.easysales.domain.usecase.clients.IncluirClienteUseCaseImpl
+import com.poli.easysales.domain.usecase.pedidos.CreateNewOrderUseCaseImpl
 import com.poli.easysales.domain.usecase.pedidos.GetOrderDetailImpl
 import com.poli.easysales.domain.usecase.pedidos.GetOrdersListUseCaseImpl
 import com.poli.easysales.domain.usecase.pedidos.GetProductListForSelectionImpl
@@ -94,7 +95,8 @@ object UseCaseModule {
             getClientListForSelectionUseCase = GetClientListForSelectionUseCaseImpl(clientes),
             insertSelectedClientUseCase = InsertSelectedClientUseCaseImpl(pedidos),
             getProductListForSelection = GetProductListForSelectionImpl(produtos),
-            getOrdersForClient = GetOrdersForClientImpl(clientes)
+            getOrdersForClient = GetOrdersForClientImpl(clientes),
+            createNewOrderUsecase = CreateNewOrderUseCaseImpl(pedidos)
         )
     }
 }
