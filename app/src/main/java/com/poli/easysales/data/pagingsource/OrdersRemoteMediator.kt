@@ -8,10 +8,12 @@ import androidx.room.withTransaction
 import com.poli.easysales.common.Constants.CACHE_TIMEOUT
 import com.poli.easysales.data.local.ErpDatabase
 import com.poli.easysales.data.local.entities.pedidos.OrdersRemoteKeys
+import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Param
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.pedidos.toPedidoVendaProduto
+import com.poli.easysales.domain.mappers.toPedidoEntity
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import java.lang.Exception
 import javax.inject.Inject
@@ -21,7 +23,7 @@ class OrdersRemoteMediator
 @Inject constructor(
     private val api: OmieAPI,
     private val db: ErpDatabase
-) : RemoteMediator<Int, PedidoVendaProduto>() {
+) : RemoteMediator<Int, PedidoVendaProdutoEntity>() {
 
     private val orderDao = db.ordersDao()
     private val remoteKeysDao = db.ordersRemoteKeysDao()
@@ -41,7 +43,7 @@ class OrdersRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PedidoVendaProduto>
+        state: PagingState<Int, PedidoVendaProdutoEntity>
     ): MediatorResult {
 
         try {
@@ -97,7 +99,7 @@ class OrdersRemoteMediator
 
                             pedido ->
                         OrdersRemoteKeys(
-                            id = pedido.id,
+
                             prevPage = prevPage,
                             nextPage = nextPage,
                             lastUpdated = System.currentTimeMillis()
@@ -105,7 +107,11 @@ class OrdersRemoteMediator
                         )
                     }
 
-                    val pedido = response.pedidoVendaProduto.map { it.toPedidoVendaProduto() }
+                    val pedido = response.pedidoVendaProduto.map {
+                        it
+                            .toPedidoVendaProduto()
+                            .toPedidoEntity()
+                    }
 
                     remoteKeysDao.addAllRemoteKeys(keys)
                     orderDao.persistOrderList(pedido)

@@ -5,24 +5,20 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.poli.easysales.common.Constants.ORDERS_TABLE
-import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.easysales.data.local.entities.pedidos.relations.OrderWithDets
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
+import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
 
 @Dao
 interface OrdersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun persistOrderList(orders: List<PedidoVendaProduto>)
+    suspend fun persistOrderList(orders: List<PedidoVendaProdutoEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun persistOrder(order: PedidoVendaProduto)
+    suspend fun persistOrder(order: PedidoVendaProdutoEntity)
 
     @Query("SELECT * FROM $ORDERS_TABLE")
-    fun getAllOrders(): PagingSource<Int, PedidoVendaProduto>
+    fun getAllOrders(): PagingSource<Int, PedidoVendaProdutoEntity>
 
     @Query("DELETE FROM $ORDERS_TABLE")
     suspend fun deleteAllOrders()
@@ -32,27 +28,14 @@ interface OrdersDao {
 
     /***************************************************************/
     @Query("SELECT * FROM $ORDERS_TABLE")
-    fun getAllOrdersWithoutPagination(): List<PedidoVendaProduto>
+    fun getAllOrdersWithoutPagination(): List<PedidoVendaProdutoEntity>
 
     @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoPedido = :orderId")
-    suspend fun selectOrderById(orderId: Long): PedidoVendaProduto
+    suspend fun selectOrderById(orderId: Long): PedidoVendaProdutoEntity
 
     @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoCliente = :codigoCliente")
-    suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto>
-
-    /**************************************************************/
-
-    @Query("UPDATE $ORDERS_TABLE SET codigoCliente = :codigoCliente WHERE id = :orderId")
-    suspend fun insertClientOnOrder(orderId: Int, codigoCliente: Long)
-
-//    @Transaction
-//    @Query("SELECT * FROM $ORDERS_TABLE WHERE id = :orderId ")
-//    suspend fun getOrderWithDets(orderId: Int): OrderWithDets
+    suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProdutoEntity>
 
 
-//    @Query("UPDATE $ORDERS_TABLE SET codigoProduto = :codigoProduto")
-//    suspend fun insertProductOnOrder(orderId: Int, codigoProduto: Long, quantidade: Int, valorUnitario: Double)
-
-    /**********************************/
 }
 

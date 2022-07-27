@@ -8,7 +8,7 @@ import androidx.room.withTransaction
 import com.poli.easysales.common.Constants.CACHE_TIMEOUT
 import com.poli.easysales.data.local.ErpDatabase
 import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Param
 import com.poli.easysales.data.remote.Request
@@ -21,7 +21,7 @@ class ProductsRemoteMediator
 @Inject constructor(
     private val api: OmieAPI,
     private val db: ErpDatabase
-) : RemoteMediator<Int, ProdutoEntity>() {
+) : RemoteMediator<Int, ProdutoVendaEntity>() {
 
     private val productDao = db.productsDao()
     private val remoteKeysDao = db.productRemoteKeysDao()
@@ -41,7 +41,7 @@ class ProductsRemoteMediator
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ProdutoEntity>
+        state: PagingState<Int, ProdutoVendaEntity>
     ): MediatorResult {
 
         try {

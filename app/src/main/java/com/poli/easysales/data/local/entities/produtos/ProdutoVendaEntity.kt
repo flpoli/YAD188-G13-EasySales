@@ -6,7 +6,7 @@ import com.poli.easysales.common.Constants.PRODUCTS_TABLE
 import com.poli.easysales.data.remote.dto.produtos.Imagens
 
 @Entity(PRODUCTS_TABLE)
-data class ProdutoEntity(
+data class ProdutoVendaEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val codigo: String?,

@@ -58,8 +58,6 @@ fun CabecalhoDto.toCabecalho(): Cabecalho {
 fun CabecalhoDto.toCabecalhoEntity(): CabecalhoEntity {
 
     return CabecalhoEntity(
-        cabecalhoId = 0,
-        orderId = 0,
         bloqueado = bloqueado,
         codigoCenarioImpostos = codigoCenarioImpostos,
         codigoCliente = codigoCliente,

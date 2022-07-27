@@ -8,6 +8,10 @@ import com.poli.easysales.common.Constants.BASE_ERP_URL
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.repository.DefaultPreferences
 import com.poli.easysales.domain.repository.Preferences
+import com.poli.easysales.domain.usecase.UseCases
+import com.poli.easysales.domain.usecase.pedidos.CreateNewOrderUseCaseImpl
+import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
+import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +50,13 @@ class AppModule {
     @Singleton
     fun providePreferences(sharedPreferences: SharedPreferences): Preferences {
         return DefaultPreferences(sharedPreferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrderViewModel(useCase: UseCases): OrdersFormViewModel {
+
+        return OrdersFormViewModel(useCase)
+
     }
 }

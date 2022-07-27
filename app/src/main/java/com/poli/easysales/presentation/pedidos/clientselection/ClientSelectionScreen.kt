@@ -6,47 +6,43 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.easysales.core.UiEvent
-import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.presentation.pedidos.OrderOverviewEvent
 import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newCoroutineContext
+import kotlin.coroutines.CoroutineContext
 
 @Composable
 fun ClientSelectionScreen(
     navController: NavHostController,
-    // onSelectClient: (ClientesCadastro) -> Unit,
-    viewModel: OrdersFormViewModel = hiltViewModel(),
+    clientsViewModel: ClientSelectionViewModel = hiltViewModel(),
+    orderViewModel: OrdersFormViewModel = hiltViewModel(),
 
     ) {
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = orderViewModel.state) {
 
-        viewModel.loadClientList()
-        viewModel.uiEvent.collect { event ->
+        orderViewModel.uiEvent.collect { event ->
 
             when (event) {
 
-                is UiEvent.NavigateUp -> {navController.popBackStack()}
+                is UiEvent.NavigateUp -> {}
                 else -> Unit
             }
         }
     }
 
-    val clientState = viewModel.clientState
+    val clientState = clientsViewModel.state
 
-    fun onSelectClient(cliente: ClientesCadastro?) {
 
-        if (cliente != null) {
-
-            navController.previousBackStackEntry?.savedStateHandle?.let {
-
-                it["cliente"] = cliente
-            }
-        }
-        navController.popBackStack()
-    }
 
     LazyColumn(modifier = Modifier.padding()) {
 
@@ -57,9 +53,9 @@ fun ClientSelectionScreen(
                 selectableClientUiState = cliente,
                 onClick = {
 
-                    viewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
 
-                    onSelectClient(cliente.cliente)
+                    orderViewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
+                    navController.popBackStack()
                 }
             )
         }

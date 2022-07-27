@@ -27,6 +27,11 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -43,7 +48,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
-        useIR = true
+//        useIR = true
     }
     buildFeatures {
         compose true

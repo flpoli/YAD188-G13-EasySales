@@ -52,8 +52,6 @@ fun InformacoesAdicionaisDto.toInformacoesAdicionais(): InformacoesAdicionais {
 fun InformacoesAdicionaisDto.toInformacoesAdicionaisEntity(): InformacoesAdicionaisEntity {
 
     return InformacoesAdicionaisEntity(
-        infoId = 0,
-        orderId = 0,
         codProj = codProj,
         codVend = codVend,
         codigoCategoria = codigoCategoria,

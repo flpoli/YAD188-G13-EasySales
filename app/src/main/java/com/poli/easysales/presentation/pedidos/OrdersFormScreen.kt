@@ -24,7 +24,11 @@ import androidx.compose.material.Divider
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,12 +36,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import com.poli.easysales.core.UiEvent
@@ -53,6 +65,10 @@ import com.poli.easysales.presentation.components.ProductImage
 import com.poli.easysales.presentation.pedidos.productselection.ProductSelectionEvent
 import com.poli.easysales.presentation.pedidos.productselection.SelectableProductUiState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.observeOn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
@@ -61,7 +77,6 @@ import kotlin.math.ulp
 
 @Composable
 fun OrdersFormScreen(
-
     savedStateHandle: SavedStateHandle?,
     scaffoldState: ScaffoldState,
     preferences: Preferences,
@@ -71,27 +86,26 @@ fun OrdersFormScreen(
     viewModel: OrdersFormViewModel = hiltViewModel(),
 ) {
 
-    val state = viewModel.state
 
-
-    val selectedClient = savedStateHandle?.get<ClientesCadastro>("cliente")
-    val selectedProducts = savedStateHandle?.get<List<SelectableProductUiState>>("produtos")
-
+    val state = remember {
+        viewModel.state
+    }
 
     LaunchedEffect(key1 = true) {
 
         viewModel.uiEvent.collect {
 
                 event ->
-            when (event) {
+                    when (event) {
 
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
-
-
+                        is UiEvent.Navigate -> onNavigate(event)
+                        else -> Unit
+                    }
         }
     }
+//    DisposableEffect(key1 = true) {
+//
+//    }
 
     AppScaffold(
         scaffoldState = scaffoldState,
@@ -102,19 +116,21 @@ fun OrdersFormScreen(
 
     ) {
 
+
+
         Column {
 
             Spacer(modifier = Modifier.height(12.dp))
 
             ClientBox(
-                cliente = selectedClient,
+                cliente = state.cliente,
                 onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             ProductBox(
-                produtos = selectedProducts,
+                produtos = state.produtos,
                 onClick = {
 
                     onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route))
@@ -127,7 +143,8 @@ fun OrdersFormScreen(
                 text = "Enviar pedido",
                 onClick = {
 
-                    viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
+
+                        viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
 
 
                 }

@@ -1,6 +1,6 @@
 package com.poli.easysales.domain.mappers
 
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.data.remote.dto.produtos.ProdutoServicoCadastroDto
 import com.poli.easysales.domain.model.produtos.ProdutoServicoCadastro
 
@@ -21,9 +21,9 @@ fun ProdutoServicoCadastro.toProdutoDto(): ProdutoServicoCadastroDto {
     )
 }
 
-fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
+fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoVendaEntity {
 
-    return ProdutoEntity(
+    return ProdutoVendaEntity(
         codigo = codigo,
         codigoProduto = codigoProduto,
         codigoProdutoIntegracao = codigoProdutoIntegracao,
@@ -48,7 +48,7 @@ fun ProdutoServicoCadastro.toProdutoEntity(): ProdutoEntity {
     )
 }
 
-fun ProdutoEntity.toProdutoModel(): ProdutoServicoCadastro {
+fun ProdutoVendaEntity.toProdutoModel(): ProdutoServicoCadastro {
 
     return ProdutoServicoCadastro(
         codigo = codigo,

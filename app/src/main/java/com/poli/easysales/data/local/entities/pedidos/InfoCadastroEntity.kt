@@ -7,10 +7,6 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "info_cadastro_entity")
 data class InfoCadastroEntity(
 
-    @PrimaryKey(autoGenerate = true)
-    val infoCadastroId: Int,
-    val orderId: Int,
-
     @SerializedName("autorizado")
     val autorizado: String?,
     @SerializedName("cImpAPI")

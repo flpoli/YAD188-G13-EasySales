@@ -1,8 +1,8 @@
 package com.poli.easysales.domain.usecase.products
 
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 
 interface GetSelectedProduct {
 
-    suspend operator fun invoke(productId: Long): ProdutoEntity
+    suspend operator fun invoke(productId: Long): ProdutoVendaEntity
 }

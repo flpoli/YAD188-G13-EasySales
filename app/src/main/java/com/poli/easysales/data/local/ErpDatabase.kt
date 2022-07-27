@@ -14,30 +14,27 @@ import com.poli.easysales.data.local.entities.clientes.ClientsRemoteKeys
 import com.poli.easysales.data.local.entities.pedidos.OrdersRemoteKeys
 import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
+import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.domain.model.UserDataModel
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
-import com.poli.easysales.domain.model.pedidos.Det
 
 @Database(
+    version = 1,
     entities = [
         UserDataModel::class,
         ProductsRemoteKeys::class,
         ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
-        ProdutoEntity::class,
+        ProdutoVendaEntity::class,
         OrdersRemoteKeys::class,
-        PedidoVendaProduto::class,
-
-//        Det::class,
-
-//        PedidoVendaEntity::class,
-//        ClienteEntity::class
-
+        PedidoVendaProdutoEntity::class,
     ],
 
-    version = 1,
-    exportSchema = false
+//    autoMigrations = [
+//        AutoMigration (from = 1, to = 2)
+//    ],
+
+    exportSchema = true
 )
 
 @TypeConverters(DatabaseConverter::class)

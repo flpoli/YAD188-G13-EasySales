@@ -5,7 +5,6 @@ import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 
 data class PedidoVendaProdutoDto(
 
-    val id: Int = 0,
     @SerializedName("cabecalho")
     val cabecalho: CabecalhoDto,
     @SerializedName("departamentos")
@@ -31,7 +30,6 @@ data class PedidoVendaProdutoDto(
 fun PedidoVendaProdutoDto.toPedidoVendaProduto(): PedidoVendaProduto {
 
     return PedidoVendaProduto(
-        id = id,
         cabecalho = cabecalho.toCabecalho(),
         det = det?.map { it.toDet() },
         frete = frete?.toFrete(),

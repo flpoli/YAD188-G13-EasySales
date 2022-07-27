@@ -67,7 +67,7 @@ sealed class Request {
         val appKey: String = APP_KEY,
         @SerializedName("app_secret")
         val appSecret: String = APP_SECRET,
-        val param: PedidoVendaProduto
+        val param: List<PedidoVendaProdutoDto>
 
     )
 
@@ -100,7 +100,6 @@ sealed class Request {
     )
 
     companion object {
-
         var APP_KEY: String = ""
         var APP_SECRET: String = ""
     }

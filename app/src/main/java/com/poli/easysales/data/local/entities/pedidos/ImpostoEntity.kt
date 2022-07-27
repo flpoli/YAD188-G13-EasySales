@@ -15,7 +15,7 @@ import com.poli.easysales.data.remote.dto.pedidos.Iss
 import com.poli.easysales.data.remote.dto.pedidos.PisPadrao
 import com.poli.easysales.data.remote.dto.pedidos.PisSt
 
-data class Imposto(
+data class ImpostoEntity(
     @SerializedName("cofins_padrao")
     val cofinsPadrao: CofinsPadrao?,
     @SerializedName("cofins_st")

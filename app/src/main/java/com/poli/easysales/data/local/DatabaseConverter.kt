@@ -4,17 +4,18 @@ import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.reflect.TypeToken
 import com.poli.easysales.data.local.entities.pedidos.CabecalhoEntity
+import com.poli.easysales.data.local.entities.pedidos.DetEntity
 import com.poli.easysales.data.local.entities.pedidos.FreteEntity
 import com.poli.easysales.data.local.entities.pedidos.InfoCadastroEntity
+import com.poli.easysales.data.local.entities.pedidos.ListaParcelasEntity
+import com.poli.easysales.data.local.entities.pedidos.OutrosDetalhes
+import com.poli.easysales.data.local.entities.pedidos.Parcela
+import com.poli.easysales.data.local.entities.pedidos.TotalPedidoEntity
 import com.poli.easysales.data.remote.dto.produtos.Imagens
 import com.poli.easysales.data.util.JsonParser
 import com.poli.easysales.domain.model.clientes.Tag
-import com.poli.easysales.domain.model.pedidos.Det
 import com.poli.easysales.domain.model.pedidos.InformacoesAdicionais
-import com.poli.easysales.domain.model.pedidos.ListaParcelas
-import com.poli.easysales.domain.model.pedidos.OutrosDetalhes
-import com.poli.easysales.domain.model.pedidos.Parcela
-import com.poli.easysales.domain.model.pedidos.TotalPedido
+
 
 @ProvidedTypeConverter
 class DatabaseConverter(
@@ -110,20 +111,20 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun fromTotalPedidoJson(json: String): TotalPedido? {
+    fun fromTotalPedidoJson(json: String): TotalPedidoEntity? {
 
-        return jsonParser.fromJson<TotalPedido>(
+        return jsonParser.fromJson<TotalPedidoEntity>(
             json = json,
-            type = object : TypeToken<TotalPedido>() {}.type
+            type = object : TypeToken<TotalPedidoEntity>() {}.type
         )
     }
 
     @TypeConverter
-    fun toTotalPedidoJson(totalPedido: TotalPedido): String? {
+    fun toTotalPedidoJson(totalPedido: TotalPedidoEntity): String? {
 
         return jsonParser.toJson(
             obj = totalPedido,
-            type = object : TypeToken<TotalPedido>() {}.type
+            type = object : TypeToken<TotalPedidoEntity>() {}.type
         )
     }
 
@@ -144,20 +145,20 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun fromListaParcelasJson(json: String): ListaParcelas? {
+    fun fromListaParcelasJson(json: String): ListaParcelasEntity? {
 
-        return jsonParser.fromJson<ListaParcelas>(
+        return jsonParser.fromJson<ListaParcelasEntity>(
             json = json,
-            type = object : TypeToken<ListaParcelas>() {}.type
+            type = object : TypeToken<ListaParcelasEntity>() {}.type
 
         )
     }
     @TypeConverter
-    fun toListarParcelasJson(listaParcelas: ListaParcelas): String? {
+    fun toListarParcelasJson(listaParcelas: ListaParcelasEntity): String? {
 
         return jsonParser.toJson(
             obj = listaParcelas,
-            type = object : TypeToken<ListaParcelas>() {}.type
+            type = object : TypeToken<ListaParcelasEntity>() {}.type
         )
     }
 
@@ -181,19 +182,19 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun toDetJson(det: List<Det>): String {
+    fun toDetJson(det: List<DetEntity>): String {
         return jsonParser.toJson(
             obj = det,
-            type = object : TypeToken<ArrayList<Det>>() {}.type
+            type = object : TypeToken<ArrayList<DetEntity>>() {}.type
         ) ?: "[]"
     }
     @TypeConverter
-    fun fromDetJson(json: String): List<Det> {
+    fun fromDetJson(json: String): List<DetEntity> {
 
-        return jsonParser.fromJson<ArrayList<Det>>(
+        return jsonParser.fromJson<ArrayList<DetEntity>>(
 
             json = json,
-            type = object : TypeToken<ArrayList<Det>>() {}.type
+            type = object : TypeToken<ArrayList<DetEntity>>() {}.type
 
         ) ?: emptyList()
     }

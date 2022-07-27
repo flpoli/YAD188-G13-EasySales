@@ -96,7 +96,7 @@ class ProductSelectionViewModel
 
     }
 
-    private fun loadProductList() {
+    fun loadProductList() {
 
         viewModelScope.launch {
 
