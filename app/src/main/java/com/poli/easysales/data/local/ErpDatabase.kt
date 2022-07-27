@@ -1,6 +1,5 @@
 package com.poli.easysales.data.local
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -16,11 +15,8 @@ import com.poli.easysales.data.local.entities.pedidos.OrdersRemoteKeys
 import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
-import com.poli.easysales.data.remote.dto.pedidos.PedidoVendaProdutoDto
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.domain.model.UserDataModel
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
-import com.poli.easysales.domain.model.pedidos.Det
 
 @Database(
     version = 1,
@@ -29,14 +25,14 @@ import com.poli.easysales.domain.model.pedidos.Det
         ProductsRemoteKeys::class,
         ClientesCadastroEntity::class,
         ClientsRemoteKeys::class,
-        ProdutoEntity::class,
+        ProdutoVendaEntity::class,
         OrdersRemoteKeys::class,
         PedidoVendaProdutoEntity::class,
     ],
 
-    autoMigrations = [
-        AutoMigration (from = 1, to = 2)
-    ],
+//    autoMigrations = [
+//        AutoMigration (from = 1, to = 2)
+//    ],
 
     exportSchema = true
 )

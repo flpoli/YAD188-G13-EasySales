@@ -1,6 +1,7 @@
 package com.poli.easysales.data.repository
 
 import androidx.paging.PagingData
+import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.domain.mappers.toClientEntity
@@ -19,7 +20,7 @@ class OrdersRepositoryImpl
     private val local: LocalDataSource,
 ) : OrdersRepository {
 
-    override fun getOrderList(): Flow<PagingData<PedidoVendaProduto>> {
+    override fun getOrderList(): Flow<PagingData<PedidoVendaProdutoEntity>> {
 
         return remote.getAllOrders()
     }
@@ -36,10 +37,5 @@ class OrdersRepositoryImpl
     override suspend fun insertNewOrder(request: Request.IncluirPedidosRequest) {
         api.addNewOrder(request)
     }
-
-    override suspend fun addClientOnOrder(orderId: Int, codigoCliente: Long) {
-        local.insertSelectedCliente(orderId, codigoCliente)
-    }
-
 
 }

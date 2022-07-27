@@ -2,7 +2,7 @@ package com.poli.easysales.data.local.entities.pedidos
 
 import com.google.gson.annotations.SerializedName
 
-data class InfAdic(
+data class InfAdicEntity(
     @SerializedName("codigo_categoria_item")
     val codigoCategoriaItem: String?,
     @SerializedName("codigo_cenario_impostos_item")

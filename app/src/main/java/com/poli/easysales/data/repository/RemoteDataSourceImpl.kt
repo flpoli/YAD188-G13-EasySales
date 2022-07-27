@@ -7,12 +7,12 @@ import androidx.paging.PagingData
 import com.poli.easysales.common.Constants.API_PAGE_SIZE
 import com.poli.easysales.data.local.ErpDatabase
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
-import com.poli.easysales.data.local.entities.produtos.ProdutoEntity
+import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.data.pagingsource.ClientsRemoteMediator
 import com.poli.easysales.data.pagingsource.OrdersRemoteMediator
 import com.poli.easysales.data.pagingsource.ProductsRemoteMediator
 import com.poli.easysales.data.remote.OmieAPI
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 
@@ -42,7 +42,7 @@ class RemoteDataSourceImpl(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    override fun getAllProducts(): Flow<PagingData<ProdutoEntity>> {
+    override fun getAllProducts(): Flow<PagingData<ProdutoVendaEntity>> {
 
         val pagingSourceFactory = { productDao.getAllProducts() }
 
@@ -60,7 +60,7 @@ class RemoteDataSourceImpl(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    override fun getAllOrders(): Flow<PagingData<PedidoVendaProduto>> {
+    override fun getAllOrders(): Flow<PagingData<PedidoVendaProdutoEntity>> {
 
         val pagingSourceFactory = { orderDao.getAllOrders() }
 

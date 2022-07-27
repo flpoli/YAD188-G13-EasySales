@@ -73,8 +73,6 @@ fun FreteDto.toFrete(): Frete {
 fun FreteDto.toFreteEntity(): FreteEntity {
 
     return FreteEntity(
-        freteId = 0,
-        orderId = 0,
         codigoRastreio = codigoRastreio,
         codigoTipoEntrega = codigoTipoEntrega,
         codigoTransportadora = codigoTransportadora,

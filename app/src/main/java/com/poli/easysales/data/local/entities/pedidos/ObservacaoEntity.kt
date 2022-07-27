@@ -1,6 +1,6 @@
 package com.poli.easysales.data.local.entities.pedidos
 
-data class Observacao(
+data class ObservacaoEntity(
     val obsItem: String?
 
 )

@@ -7,9 +7,9 @@ data class DetEntity(
 
 
     @Embedded val ide: Ide?,
-    @Embedded val imposto: Imposto?,
-    @Embedded val infAdic: InfAdic?,
-    @Embedded val observacao: Observacao?,
-    @Embedded val produto: Produto?,
+    @Embedded val imposto: ImpostoEntity?,
+    @Embedded val infAdic: InfAdicEntity?,
+    @Embedded val observacao: ObservacaoEntity?,
+    @Embedded val produto: ProdutoEntity?,
 
     )

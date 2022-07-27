@@ -120,7 +120,7 @@ class OrdersFormViewModel
                 )
             }
             val order = listOf(PedidoVendaProduto(
-                id = 1,
+
                 cabecalho = Cabecalho(
                     codigoCliente = state.cliente.codClienteOmie
                 ),
