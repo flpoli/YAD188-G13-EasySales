@@ -1,7 +1,9 @@
 package com.poli.easysales.di
 
+import com.poli.easysales.common.Constants.BASE_CEP_URL
 import com.poli.easysales.common.Constants.LOGIN_URL
 import com.poli.easysales.data.remote.BackEndApi
+import com.poli.easysales.data.remote.CepApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,4 +47,16 @@ object NetworkModule {
             .build()
             .create(BackEndApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideViaCepApi(client: OkHttpClient): CepApi {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_CEP_URL)
+            .client(client)
+            .build()
+            .create(CepApi::class.java)
+    }
+
 }

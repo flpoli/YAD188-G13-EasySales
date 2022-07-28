@@ -10,6 +10,7 @@ import com.poli.easysales.data.local.DatabaseConverter
 import com.poli.easysales.data.local.ErpDatabase
 import com.poli.easysales.data.local.dao.UserDao
 import com.poli.easysales.data.remote.BackEndApi
+import com.poli.easysales.data.remote.CepApi
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.repository.ClientsRepositoryImpl
 import com.poli.easysales.data.repository.LocalDataSourceImpl
@@ -94,14 +95,17 @@ class RepositoryModule {
 
         return LocalDataSourceImpl(db)
     }
-    /* ****************************************************** */
 
     @Provides
     @Singleton
-    fun provideClientsRepository(api: OmieAPI, remote: RemoteDataSource, local: LocalDataSource):
+    fun provideClientsRepository(
+        api: OmieAPI,
+        cepApi: CepApi,
+        remote: RemoteDataSource,
+        local: LocalDataSource):
         ClientsRepository {
 
-        return ClientsRepositoryImpl(api, remote, local)
+        return ClientsRepositoryImpl(api, cepApi, remote, local)
     }
     @Provides
     @Singleton
@@ -111,7 +115,10 @@ class RepositoryModule {
     }
     @Provides
     @Singleton
-    fun provideOrdersRepository(local: LocalDataSource, remote: RemoteDataSource, api: OmieAPI):
+    fun provideOrdersRepository(
+        local: LocalDataSource,
+        remote: RemoteDataSource,
+        api: OmieAPI):
         OrdersRepository {
 
         return OrdersRepositoryImpl(api, remote, local)

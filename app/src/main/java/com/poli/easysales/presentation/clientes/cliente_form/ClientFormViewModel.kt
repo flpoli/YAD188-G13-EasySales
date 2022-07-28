@@ -3,12 +3,15 @@ package com.poli.easysales.presentation.clientes.cliente_form
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dokar.chiptextfield.Chip
 import com.dokar.chiptextfield.ChipTextFieldState
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.core.UiText
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.clientes.Tag
+import com.poli.easysales.domain.usecase.clients.GetAddressByCepImpl
+import com.poli.easysales.domain.usecase.clients.GetAddressByCepUseCase
 import com.poli.easysales.domain.usecase.clients.IncluirClienteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -19,7 +22,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ClientFormViewModel @Inject constructor(private val useCase: IncluirClienteUseCase) : ViewModel() {
+class ClientFormViewModel
+@Inject constructor(
+    private val useCase: IncluirClienteUseCase,
+    private val getAddress: GetAddressByCepImpl
+
+    ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<ClienteFormViewState> =
         MutableStateFlow(ClienteFormViewState.Initial)
@@ -32,6 +40,8 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
     val listTag = mutableListOf<String>()
+
+
 
     fun onRegisterClicked() {
 
@@ -46,6 +56,23 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
                 )
             }
         }
+    }
+
+    fun searchAddress(){
+
+        val currentData = _viewState.value.cliente
+        viewModelScope.launch {
+            if(currentData.cep?.length == 8){
+
+                val addressData = getAddress(currentData.cep)
+
+                currentData.copy(endereco = addressData?.logradouro.orEmpty())
+
+            }
+
+        }
+
+        Log.d("OnSearchAddres", "Foi?")
     }
 
     fun onTagsChanged(action: String, tag: String) {
@@ -148,6 +175,14 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
             cliente = currentData.withUpdatedBairro(bairro)
         )
     }
+    fun onEstadoChanged(estado: String) {
+        val currentData = _viewState.value.cliente
+
+        _viewState.value = ClienteFormViewState.Active(
+            inputError = null,
+            cliente = currentData.withUpdatedEstado(estado)
+        )
+    }
     fun onCepChanged(cep: String) {
         val currentData = _viewState.value.cliente
 
@@ -205,6 +240,9 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
     }
     private fun ClientesCadastro.withUpdatedBairro(bairro: String): ClientesCadastro {
         return this.copy(bairro = bairro)
+    }
+    private fun ClientesCadastro.withUpdatedEstado(estado: String): ClientesCadastro {
+        return this.copy(bairro = estado)
     }
     private fun ClientesCadastro.withUpdatedCep(cep: String): ClientesCadastro {
         return this.copy(cep = cep)

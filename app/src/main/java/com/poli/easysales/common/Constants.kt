@@ -37,6 +37,7 @@ object Constants {
 
     // ERP Api http routes
     const val BASE_ERP_URL: String = "https://app.omie.com.br/api/v1/"
+    const val BASE_CEP_URL = "https://viacep.com.br/ws/"
     const val LOGIN_URL: String = "https://eazysales-api.herokuapp.com/"
     const val LOGIN_URL_LOCAL: String = "http://10.0.2.2:9000/"
     const val CLIENTS_ENDPOINT = "geral/clientes/"

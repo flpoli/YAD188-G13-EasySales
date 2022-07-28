@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.clientes.cliente_form
 
+import android.graphics.Color
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,18 +11,25 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Upload
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.dokar.chiptextfield.Chip
 import com.dokar.chiptextfield.ChipTextFieldState
@@ -86,6 +94,14 @@ fun ClientFormScreen(
             onTelefone1DddChanged = viewModel::onTelefone1DddChanged,
             onTelefone1Numero = viewModel::ontelefone1NumeroChanged,
             onTagChanged = viewModel::onTagsChanged,
+            onBairroChanged = viewModel::onBairroChanged,
+            onEnderecoChanged = viewModel::onEnderecoChanged,
+            onNumeroChanged = viewModel::onEnderecoNumeroChanged,
+            onCidadeChanged = viewModel::onCidadeChanged,
+            onCepChanged = viewModel::onCepChanged,
+            onSearchAddress = viewModel::searchAddress,
+            onComplementoChanged = viewModel::onComplementoChanged,
+            onEstadoChanged = viewModel::onEstadoChanged,
             clientTag = tagState,
             onBtnClicked = viewModel::onRegisterClicked,
             modifier = Modifier.padding(paddingValues)
@@ -104,11 +120,21 @@ fun InputColumn(
     onTelefone1DddChanged: (String) -> Unit,
     onTelefone1Numero: (String) -> Unit,
     onTagChanged: (String, String) -> Unit,
+    onEnderecoChanged: (String) -> Unit,
+    onNumeroChanged: (String) -> Unit,
+    onCepChanged: (String) -> Unit,
+    onEstadoChanged: (String) -> Unit,
+    onBairroChanged: (String) -> Unit,
+    onComplementoChanged: (String) -> Unit,
+    onSearchAddress: () -> Unit,
+    onCidadeChanged: (String) -> Unit,
     clientTag: ChipTextFieldState<Chip>,
     onBtnClicked: () -> Unit,
     modifier: Modifier = Modifier
 
 ) {
+
+
 
     LazyColumn(
         modifier = modifier
@@ -166,21 +192,22 @@ fun InputColumn(
             Spacer(modifier = Modifier.height(12.dp))
 
             EnderecoInput(
-                endereco = "",
-                numero = "",
-                bairro = "",
-                cidade = "",
-                estado = "",
-                complemento = "",
-                cep = "",
-                onEnderecoChanged = {},
-                onNumeroChanged = {},
-                onBairroChanged = {},
-                onCidadeChanged = {},
-                onEstadoChanged = {},
-                onComplementoChanged = {},
-                onCepChanged = {},
-                errorMessage = "",
+                endereco = viewState.cliente.endereco.orEmpty(),
+                numero = viewState.cliente.enderecoNumero.orEmpty(),
+                bairro = viewState.cliente.bairro.orEmpty(),
+                cidade = viewState.cliente.cidade.orEmpty(),
+                estado = viewState.cliente.estado.orEmpty(),
+                complemento = viewState.cliente.complemento.orEmpty(),
+                cep = viewState.cliente.cep.orEmpty(),
+                onEnderecoChanged = onEnderecoChanged,
+                onNumeroChanged = onNumeroChanged,
+                onBairroChanged = onBairroChanged,
+                onCidadeChanged = onCidadeChanged,
+                onEstadoChanged = onEstadoChanged,
+                onComplementoChanged = onComplementoChanged,
+                onCepChanged = onCepChanged,
+                onSearchAddress = onSearchAddress,
+                errorMessage = null,
                 enabled = true
             )
 
@@ -280,6 +307,7 @@ fun EnderecoInput(
     estado: String,
     complemento: String,
     cep: String,
+    onSearchAddress: () -> Unit,
     onEnderecoChanged: (String) -> Unit,
     onNumeroChanged: (String) -> Unit,
     onBairroChanged: (String) -> Unit,
@@ -323,7 +351,7 @@ fun EnderecoInput(
 
             AppTextField(
                 text = complemento,
-                onTextChanged = onEnderecoChanged,
+                onTextChanged = onComplementoChanged,
                 errorMessage = errorMessage,
                 labelText = "Complemento",
                 enabled = enabled,
@@ -333,11 +361,21 @@ fun EnderecoInput(
             )
             AppTextField(
                 text = cep,
-                onTextChanged = onEnderecoChanged,
+                onTextChanged = onCepChanged,
                 errorMessage = errorMessage,
                 labelText = "Cep",
                 enabled = enabled,
-                trailingIcon = {},
+                trailingIcon = {
+                    IconButton(onClick = { onSearchAddress() }) {
+                        Icon(
+                            Icons.Filled.Search,
+                            contentDescription = null,
+                            tint = Red
+                        )
+
+                    }
+
+                },
                 modifier = Modifier.width(conf.screenWidthDp.dp * .4f),
             )
         }
@@ -349,7 +387,7 @@ fun EnderecoInput(
 
             AppTextField(
                 text = estado,
-                onTextChanged = onEnderecoChanged,
+                onTextChanged = onEstadoChanged,
                 errorMessage = errorMessage,
                 labelText = "UF",
                 enabled = enabled,
@@ -358,7 +396,7 @@ fun EnderecoInput(
             )
             AppTextField(
                 text = cidade,
-                onTextChanged = onEnderecoChanged,
+                onTextChanged = onCidadeChanged,
                 errorMessage = errorMessage,
                 labelText = "Cidade",
                 enabled = enabled,
@@ -444,6 +482,7 @@ fun PreviewEnderecoInput() {
         estado = "SP",
         complemento = "Apto 50",
         cep = "02920-45",
+        onSearchAddress = {},
         onEnderecoChanged = {},
         onNumeroChanged = {},
         onBairroChanged = {},
