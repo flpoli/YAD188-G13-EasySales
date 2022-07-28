@@ -46,6 +46,4 @@ sealed class Param {
         @SerializedName("codigo_cliente_omie")
         val codigoCliente: Long
     )
-
-
 }

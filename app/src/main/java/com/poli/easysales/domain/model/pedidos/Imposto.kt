@@ -1,7 +1,6 @@
 package com.poli.easysales.domain.model.pedidos
 
 import androidx.room.Embedded
-import com.google.gson.annotations.SerializedName
 import com.poli.easysales.data.remote.dto.pedidos.CofinsPadrao
 import com.poli.easysales.data.remote.dto.pedidos.CofinsSt
 import com.poli.easysales.data.remote.dto.pedidos.Csll

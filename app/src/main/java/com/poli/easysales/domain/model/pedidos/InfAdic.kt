@@ -1,7 +1,5 @@
 package com.poli.easysales.domain.model.pedidos
 
-import com.google.gson.annotations.SerializedName
-
 data class InfAdic(
     val codigoCategoriaItem: String? = "",
     val codigoCenarioImpostosItem: String? = "",

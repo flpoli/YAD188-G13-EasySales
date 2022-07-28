@@ -36,7 +36,6 @@ class LocalDataSourceImpl
         return productDao.getProductById(id = productId)
     }
 
-
     override suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto> {
 
         return orderDao.getOrdersForClient(codigoClient).map { it.toPedidoModel() }

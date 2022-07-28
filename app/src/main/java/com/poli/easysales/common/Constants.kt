@@ -64,4 +64,6 @@ object Constants {
 
     const val API_PAGE_SIZE: Int = 10
     const val CACHE_TIMEOUT: Int = 1440
+
+    const val DEFAULT_DF = "dd/MM/yyyy"
 }

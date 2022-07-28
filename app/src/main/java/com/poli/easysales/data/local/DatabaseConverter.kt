@@ -9,13 +9,12 @@ import com.poli.easysales.data.local.entities.pedidos.FreteEntity
 import com.poli.easysales.data.local.entities.pedidos.InfoCadastroEntity
 import com.poli.easysales.data.local.entities.pedidos.ListaParcelasEntity
 import com.poli.easysales.data.local.entities.pedidos.OutrosDetalhes
-import com.poli.easysales.data.local.entities.pedidos.Parcela
+import com.poli.easysales.data.local.entities.pedidos.ParcelaEntity
 import com.poli.easysales.data.local.entities.pedidos.TotalPedidoEntity
 import com.poli.easysales.data.remote.dto.produtos.Imagens
 import com.poli.easysales.data.util.JsonParser
 import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.domain.model.pedidos.InformacoesAdicionais
-
 
 @ProvidedTypeConverter
 class DatabaseConverter(
@@ -200,10 +199,10 @@ class DatabaseConverter(
     }
 
     @TypeConverter
-    fun toParcelaJson(parcela: List<Parcela>): String {
+    fun toParcelaJson(parcela: List<ParcelaEntity>): String {
         return jsonParser.toJson(
             obj = parcela,
-            type = object : TypeToken<ArrayList<Parcela>>() {}.type
+            type = object : TypeToken<ArrayList<ParcelaEntity>>() {}.type
         ) ?: "[]"
     }
 }

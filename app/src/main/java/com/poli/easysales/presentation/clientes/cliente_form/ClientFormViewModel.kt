@@ -33,7 +33,6 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
     val uiEvent = _uiEvent.receiveAsFlow()
     val listTag = mutableListOf<String>()
 
-
     fun onRegisterClicked() {
 
         viewModelScope.launch {
@@ -53,11 +52,10 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
         val currentData = _viewState.value.cliente
 
-        //need to handle delete tag here
+        // need to handle delete tag here
 
-        if(action =="add"){
+        if (action == "add") {
             listTag.add(tag)
-
         } else {
             listTag.remove(tag)
         }
@@ -74,7 +72,7 @@ class ClientFormViewModel @Inject constructor(private val useCase: IncluirClient
 
             Tag(it)
         }
-        //need to handle delete tag here
+        // need to handle delete tag here
         Log.d("TAG", "$listTags")
         return this.copy(tags = listTags)
     }

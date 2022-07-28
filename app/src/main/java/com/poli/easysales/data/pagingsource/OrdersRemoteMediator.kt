@@ -14,7 +14,6 @@ import com.poli.easysales.data.remote.Param
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.pedidos.toPedidoVendaProduto
 import com.poli.easysales.domain.mappers.toPedidoEntity
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -97,7 +96,6 @@ class OrdersRemoteMediator
 
                     val keys = response.pedidoVendaProduto.map {
 
-                            pedido ->
                         OrdersRemoteKeys(
 
                             prevPage = prevPage,

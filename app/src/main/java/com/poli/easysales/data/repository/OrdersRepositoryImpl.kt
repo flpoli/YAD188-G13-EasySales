@@ -4,7 +4,6 @@ import androidx.paging.PagingData
 import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
 import com.poli.easysales.data.remote.OmieAPI
 import com.poli.easysales.data.remote.Request
-import com.poli.easysales.domain.mappers.toClientEntity
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.LocalDataSource
@@ -33,9 +32,7 @@ class OrdersRepositoryImpl
     override suspend fun insertSelectedClient(selectedClient: ClientesCadastro) {
     }
 
-
     override suspend fun insertNewOrder(request: Request.IncluirPedidosRequest) {
         api.addNewOrder(request)
     }
-
 }

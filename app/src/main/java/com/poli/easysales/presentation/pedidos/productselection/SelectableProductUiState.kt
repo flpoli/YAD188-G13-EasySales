@@ -12,4 +12,4 @@ data class SelectableProductUiState(
     val isExpanded: Boolean = false,
     val amount: String = "",
     val price: String = ""
-): Parcelable
+) : Parcelable

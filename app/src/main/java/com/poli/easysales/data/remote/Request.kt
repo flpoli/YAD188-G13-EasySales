@@ -11,7 +11,6 @@ import com.poli.easysales.common.Constants.CALL_LISTAR_POSICAO
 import com.poli.easysales.common.Constants.CALL_LISTAR_PRODUTOS
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
 import com.poli.easysales.data.remote.dto.pedidos.PedidoVendaProdutoDto
-import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import kotlin.String
 
 sealed class Request {

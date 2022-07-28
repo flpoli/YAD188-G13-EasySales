@@ -6,19 +6,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.presentation.pedidos.OrderOverviewEvent
 import com.poli.easysales.presentation.pedidos.OrdersFormViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newCoroutineContext
-import kotlin.coroutines.CoroutineContext
 
 @Composable
 fun ClientSelectionScreen(
@@ -26,7 +18,7 @@ fun ClientSelectionScreen(
     clientsViewModel: ClientSelectionViewModel = hiltViewModel(),
     orderViewModel: OrdersFormViewModel = hiltViewModel(),
 
-    ) {
+) {
 
     LaunchedEffect(key1 = orderViewModel.state) {
 
@@ -42,8 +34,6 @@ fun ClientSelectionScreen(
 
     val clientState = clientsViewModel.state
 
-
-
     LazyColumn(modifier = Modifier.padding()) {
 
         items(clientState.selectableClient) {
@@ -52,7 +42,6 @@ fun ClientSelectionScreen(
             SelectableClientItem(
                 selectableClientUiState = cliente,
                 onClick = {
-
 
                     orderViewModel.onEvent(OrderOverviewEvent.OnClientSelected(cliente.cliente))
                     navController.popBackStack()

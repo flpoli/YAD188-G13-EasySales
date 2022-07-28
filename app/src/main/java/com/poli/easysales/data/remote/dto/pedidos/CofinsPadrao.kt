@@ -1,7 +1,6 @@
 package com.poli.easysales.data.remote.dto.pedidos
 
 import androidx.room.Embedded
-import com.google.gson.annotations.SerializedName
 
 data class CofinsPadrao(
     @Embedded val aliqCofins: Double?,

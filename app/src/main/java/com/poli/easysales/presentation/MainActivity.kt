@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.poli.easysales.data.util.setSentryUser
 import com.poli.easysales.domain.repository.Preferences
@@ -21,6 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+
         val isUserLogged = preferences.readLoginStatus()
 
         if (isUserLogged) {
@@ -30,6 +33,9 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
+
+//      TODO      val windowSize = rememberWindowSizeClass()
+
             PreVendasOmieTheme {
 
                 val navController = rememberNavController()

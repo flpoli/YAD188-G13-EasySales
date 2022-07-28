@@ -13,5 +13,4 @@ interface OrdersRepository {
     suspend fun getOrderById(orderId: Long): PedidoVendaProduto
     suspend fun insertSelectedClient(selectedClient: ClientesCadastro)
     suspend fun insertNewOrder(request: Request.IncluirPedidosRequest)
-
 }

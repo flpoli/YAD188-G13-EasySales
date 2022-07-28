@@ -38,7 +38,7 @@ fun OrderCard(
 
             Column {
 
-                Text(text = order.cabecalho.numeroPedido)
+                Text(text = order.cabecalho.numeroPedido.orEmpty())
                 Text(text = order.totalPedido?.valorTotalPedido.toString())
             }
 

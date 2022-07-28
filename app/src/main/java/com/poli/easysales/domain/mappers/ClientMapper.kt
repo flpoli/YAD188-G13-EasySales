@@ -1,6 +1,5 @@
 package com.poli.easysales.domain.mappers
 
-import androidx.lifecycle.Transformations.map
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.dto.clientes.CaracteristicaDto
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto

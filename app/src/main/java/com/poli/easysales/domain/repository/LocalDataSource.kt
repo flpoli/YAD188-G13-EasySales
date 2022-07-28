@@ -15,5 +15,4 @@ interface LocalDataSource {
     suspend fun getOrdersForClient(codigoClient: Long): List<PedidoVendaProduto>
     suspend fun getOrderById(orderId: Long): PedidoVendaProduto
     suspend fun insertNewOrder(order: PedidoVendaProduto)
-
 }

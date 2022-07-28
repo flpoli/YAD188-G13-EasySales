@@ -33,7 +33,8 @@ data class OutrosDetalhesDto(
 fun OutrosDetalhesDto.toOutrosDetalhes(): OutrosDetalhes {
 
     return OutrosDetalhes(
-        cBairroOd, cCEPOd,
+        cBairroOd = cBairroOd,
+        cCEPOd = cCEPOd,
         cCidadeOd = cCidadeOd,
         cCnpjCpfOd = cCnpjCpfOd,
         cEnderecoOd = cEnderecoOd,
