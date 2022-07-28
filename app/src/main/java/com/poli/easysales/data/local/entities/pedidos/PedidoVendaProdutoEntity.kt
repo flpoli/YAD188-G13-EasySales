@@ -5,11 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.poli.easysales.common.Constants
 
-
 @Entity(tableName = Constants.ORDERS_TABLE)
 data class PedidoVendaProdutoEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     @Embedded val cabecalho: CabecalhoEntity,
     val det: List<DetEntity>? = emptyList(),
     @Embedded val frete: FreteEntity?,

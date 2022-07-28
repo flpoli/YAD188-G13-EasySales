@@ -13,13 +13,11 @@ class OrdersListViewModel @Inject constructor(
     useCase: UseCases
 ) : ViewModel() {
 
-
     val pedidos = useCase.getOrdersListUseCase().map { it ->
 
         it.map {
 
             it.toPedidoModel()
         }
-
     }
 }

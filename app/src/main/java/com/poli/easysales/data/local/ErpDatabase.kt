@@ -10,11 +10,11 @@ import com.poli.easysales.data.local.dao.OrdersRemoteKeyDao
 import com.poli.easysales.data.local.dao.ProductRemoteKeyDao
 import com.poli.easysales.data.local.dao.ProductsDao
 import com.poli.easysales.data.local.dao.UserDao
+import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.local.entities.clientes.ClientsRemoteKeys
 import com.poli.easysales.data.local.entities.pedidos.OrdersRemoteKeys
-import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
-import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
+import com.poli.easysales.data.local.entities.produtos.ProductsRemoteKeys
 import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
 import com.poli.easysales.domain.model.UserDataModel
 

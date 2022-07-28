@@ -1,7 +1,6 @@
 package com.poli.easysales.data.local.entities.pedidos
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "info_cadastro_entity")

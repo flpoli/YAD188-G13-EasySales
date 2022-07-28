@@ -12,7 +12,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.poli.easysales.data.local.entities.pedidos.PedidoVendaProdutoEntity
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.navigation.Screen

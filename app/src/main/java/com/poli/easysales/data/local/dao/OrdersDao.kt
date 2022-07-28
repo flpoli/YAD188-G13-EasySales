@@ -35,7 +35,4 @@ interface OrdersDao {
 
     @Query("SELECT * FROM $ORDERS_TABLE WHERE codigoCliente = :codigoCliente")
     suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProdutoEntity>
-
-
 }
-

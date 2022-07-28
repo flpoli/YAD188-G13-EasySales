@@ -1,8 +1,5 @@
 package com.poli.easysales.domain.model.pedidos
 
-import androidx.room.Embedded
-import com.google.gson.annotations.SerializedName
-
 data class Produto(
     val cfop: String? = "",
     val cnpjFabricante: String? = "",

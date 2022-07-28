@@ -8,6 +8,5 @@ class InsertProductsOnOrderUseCase @Inject constructor(private val repository: O
     suspend operator fun invoke(orderId: Int, codigoProduto: Long, quantidade: Int, valorUnitario: Double) {
 
 //        repository.addProdutoOnOrder(orderId, codigoProduto, quantidade, valorUnitario)
-
     }
 }

@@ -1,6 +1,5 @@
 package com.poli.easysales.data.local.entities.pedidos
 
-
 data class ProdutoEntity(
     val cfop: String?,
     val cnpjFabricante: String?,

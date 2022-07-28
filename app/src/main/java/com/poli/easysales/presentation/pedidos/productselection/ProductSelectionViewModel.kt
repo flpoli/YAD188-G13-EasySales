@@ -14,7 +14,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +22,7 @@ class ProductSelectionViewModel
     private val useCase: UseCases,
     private val savedStateHandle: SavedStateHandle
 
-    ) : ViewModel() {
+) : ViewModel() {
 
     init {
         loadProductList()
@@ -37,8 +36,6 @@ class ProductSelectionViewModel
 
 //    var selecionados: List<SelectableProductUiState> = listOf(SelectableProductUiState())
 
-
-
     fun onEvent(event: ProductSelectionEvent) {
 
         when (event) {
@@ -48,12 +45,10 @@ class ProductSelectionViewModel
                 state = state.copy(
                     selectableProduct = state.selectableProduct.map {
 
-                        if(it.produto == event.produto) {
+                        if (it.produto == event.produto) {
 
                             it.copy(amount = event.amount)
-
                         } else it
-
                     }
                 )
             }
@@ -63,22 +58,18 @@ class ProductSelectionViewModel
                 state = state.copy(
                     selectableProduct = state.selectableProduct.map {
 
-                        if(it.produto == event.produto) {
+                        if (it.produto == event.produto) {
 
                             it.copy(isSelected = !it.isSelected)
-
                         } else it
-
                     }
 
                 )
 
-                Log.d("ViewModel - OnSelectProduct", "${state}")
-
+                Log.d("ViewModel - OnSelectProduct", "$state")
             }
 
             is ProductSelectionEvent.OnFinishSelection -> {
-
 
 //                state = state.copy(
 //                    selectableProduct = state.selectableProduct.filter { it.isSelected }
@@ -89,11 +80,8 @@ class ProductSelectionViewModel
 //                selecionados =  state.selectableProduct.filter { it.isSelected }
 
                 Log.d("sabedStateHandle - OnSelectProduct", "${savedStateHandle.get<SelectableProductUiState>("produtos")}")
-
             }
-
         }
-
     }
 
     fun loadProductList() {

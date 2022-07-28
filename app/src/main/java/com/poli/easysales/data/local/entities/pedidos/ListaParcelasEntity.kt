@@ -1,6 +1,6 @@
 package com.poli.easysales.data.local.entities.pedidos
 
 data class ListaParcelasEntity(
-    val parcela: List<Parcela>?
+    val parcela: List<ParcelaEntity>?
 
 )

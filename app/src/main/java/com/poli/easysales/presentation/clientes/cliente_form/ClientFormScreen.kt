@@ -157,8 +157,8 @@ fun InputColumn(
             TelefoneInput(
                 textTelefone1Ddd = viewState.cliente.telefone1Ddd ?: "",
                 textTelefone1Numero = viewState.cliente.telefone1Numero ?: "",
-                onTelefone1DddChanged,
-                onTelefone1Numero,
+                onTelefone1DddChanged = onTelefone1DddChanged,
+                onTelefone1NumeroChanged = onTelefone1Numero,
                 errorMessage = null,
                 enabled = true
             )
@@ -316,8 +316,11 @@ fun EnderecoInput(
 //                errorMessage = errorMessage,
 //                labelText = "Número",
 //                enabled = enabled,
-//                trailingIcon = {}
-//            )
+//                trailingIcon = {},
+//                modifier = Modifier.width(conf.screenWidthDp.dp * .5f),
+//
+//                )
+
             AppTextField(
                 text = complemento,
                 onTextChanged = onEnderecoChanged,
@@ -325,7 +328,7 @@ fun EnderecoInput(
                 labelText = "Complemento",
                 enabled = enabled,
                 trailingIcon = {},
-                modifier = Modifier.width(conf.screenWidthDp.dp * .3f),
+                modifier = Modifier.width(conf.screenWidthDp.dp * .5f),
 
             )
             AppTextField(
@@ -335,7 +338,7 @@ fun EnderecoInput(
                 labelText = "Cep",
                 enabled = enabled,
                 trailingIcon = {},
-                modifier = Modifier.width(conf.screenWidthDp.dp * .7f),
+                modifier = Modifier.width(conf.screenWidthDp.dp * .4f),
             )
         }
         Row(
@@ -351,7 +354,7 @@ fun EnderecoInput(
                 labelText = "UF",
                 enabled = enabled,
                 trailingIcon = {},
-                modifier = Modifier.width(conf.screenWidthDp.dp * .2f),
+                modifier = Modifier.width(conf.screenWidthDp.dp * .3f),
             )
             AppTextField(
                 text = cidade,
@@ -360,7 +363,7 @@ fun EnderecoInput(
                 labelText = "Cidade",
                 enabled = enabled,
                 trailingIcon = {},
-                modifier = Modifier.width(conf.screenWidthDp.dp * .7f),
+                modifier = Modifier.width(conf.screenWidthDp.dp * .6f),
 
             )
         }
@@ -422,7 +425,8 @@ fun TagInputField(
         },
         shape = TextFieldShape,
         label = { Text(text = "Tags") },
-        onChipClick = { onTagsChange("delete", state.textFieldValue.text)
+        onChipClick = {
+            onTagsChange("delete", state.textFieldValue.text)
         }
 
     )

@@ -30,7 +30,6 @@ fun ProductSelectionScreen(
 
     val state = productsViewModel.state
 
-
     val selecionados = state.selectableProduct.filter { it.isSelected }
 
     LaunchedEffect(key1 = true) {
@@ -40,7 +39,7 @@ fun ProductSelectionScreen(
 
             when (event) {
 
-                is UiEvent.NavigateUp -> {navController.popBackStack()}
+                is UiEvent.NavigateUp -> { navController.popBackStack() }
                 else -> Unit
             }
         }
@@ -50,7 +49,7 @@ fun ProductSelectionScreen(
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
-    ){
+    ) {
 
         LazyColumn(
             contentPadding = PaddingValues(8.dp),
@@ -64,9 +63,6 @@ fun ProductSelectionScreen(
                 SelectableProductItem(
                     selectableProductUiState = produto,
                     onClick = {
-
-
-
                     },
                     onQuantityChange = {
                         productsViewModel.onEvent(ProductSelectionEvent.OnAmountForProductChange(produto.produto, it))
@@ -74,13 +70,9 @@ fun ProductSelectionScreen(
                     onSelectProduct = {
 
                         productsViewModel.onEvent(ProductSelectionEvent.OnSelectProduct(produto.produto))
-
                     }
                 )
             }
-
-
-
         }
 
         PrimaryButton(
@@ -92,11 +84,6 @@ fun ProductSelectionScreen(
                 navController.popBackStack()
             }
 
-            )
+        )
     }
-
-
-
-
-    
 }

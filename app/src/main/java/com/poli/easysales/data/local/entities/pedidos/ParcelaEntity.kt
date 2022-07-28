@@ -2,11 +2,11 @@ package com.poli.easysales.data.local.entities.pedidos
 
 import androidx.room.Embedded
 
-data class Parcela(
+data class ParcelaEntity(
     @Embedded("categoria_adiantamento")
     val categoriaAdiantamento: String?,
     @Embedded("conta_corrente_adiantamento")
-    val contaCorrenteAdiantamento: Int?,
+    val contaCorrenteAdiantamento: Long?,
     @Embedded("data_vencimento")
     val dataVencimento: String?,
     @Embedded("meio_pagamento")
