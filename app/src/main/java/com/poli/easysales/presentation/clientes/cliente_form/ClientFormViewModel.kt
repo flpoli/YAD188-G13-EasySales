@@ -63,16 +63,19 @@ class ClientFormViewModel
         val currentData = _viewState.value.cliente
         viewModelScope.launch {
             if(currentData.cep?.length == 8){
-
                 val addressData = getAddress(currentData.cep)
-
-                currentData.copy(endereco = addressData?.logradouro.orEmpty())
+                _viewState.value = ClienteFormViewState.Active(
+                    inputError = null,
+                    cliente = currentData.copy(
+                        endereco = addressData?.logradouro,
+                        cidade = addressData?.localidade,
+                        estado = addressData?.uf,
+                        bairro = addressData?.bairro
+                    )
+                )
 
             }
-
         }
-
-        Log.d("OnSearchAddres", "Foi?")
     }
 
     fun onTagsChanged(action: String, tag: String) {
