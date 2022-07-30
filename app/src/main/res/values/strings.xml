@@ -13,4 +13,6 @@
     <string name="quantidade">Quantidade: %d</string>
     <string name="cod_prod">Código: %s</string>
     <string name="not_informed">Não informado</string>
+
+    <string name="desc_screen_keys">Aqui você pode informar as chaves de integração do seu ERP</string>
 </resources>

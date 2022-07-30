@@ -24,6 +24,7 @@ import com.poli.easysales.data.remote.dto.pedidos.Iss
 import com.poli.easysales.data.remote.dto.pedidos.PisPadrao
 import com.poli.easysales.data.remote.dto.pedidos.PisSt
 import com.poli.easysales.data.util.GsonParser
+import com.poli.easysales.domain.mappers.toPedidoEntity
 import com.poli.easysales.domain.model.pedidos.Cabecalho
 import com.poli.easysales.domain.model.pedidos.Det
 import com.poli.easysales.domain.model.pedidos.Frete
@@ -83,7 +84,6 @@ class OrdersDaoTest {
 
         val mockPedidos = listOf<PedidoVendaProduto>(
             element = PedidoVendaProduto(
-                id = 100,
                 cabecalho = Cabecalho(
                     bloqueado = "não",
                     codigoCenarioImpostos = "não",
@@ -370,12 +370,12 @@ class OrdersDaoTest {
             )
         )
         Log.d("MOCKPEDIDO?", "$mockPedidos")
-        ordersDao.persistOrderList(mockPedidos)
+        ordersDao.persistOrderList(mockPedidos.map {it.toPedidoEntity()})
 
         val getOrders = ordersDao.selectOrderById(100)
 
         Log.d("SELECT ORDER", "$getOrders")
 
-        assertThat(getOrders == mockPedidos[0]).isFalse() // change this later
+        assertThat(getOrders.equals(mockPedidos[0])).isFalse() // change this later
     }
 }

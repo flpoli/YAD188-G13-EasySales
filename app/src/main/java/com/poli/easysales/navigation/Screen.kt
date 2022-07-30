@@ -58,4 +58,6 @@ sealed class Screen(val route: String) {
             return "$ORDER_DETAIL_ROUTE/$orderId"
         }
     }
+
+    object SecretKeysScreen: Screen("secret_keys_screen")
 }

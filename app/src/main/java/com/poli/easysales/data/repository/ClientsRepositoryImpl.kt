@@ -9,6 +9,7 @@ import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.CepResponse
 import com.poli.easysales.data.remote.dto.ReqResponse
 import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.LocalDataSource
@@ -62,5 +63,9 @@ class ClientsRepositoryImpl
     override suspend fun getAddressByCep(cep: String): Response<CepResponse> {
 
         return cepApi.getAddressByCode(cep)
+    }
+
+    override suspend fun insertNewClient(client: ClientesCadastro) {
+        local.insertNewClient(client)
     }
 }

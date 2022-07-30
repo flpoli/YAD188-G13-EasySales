@@ -21,6 +21,9 @@ interface ClientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun persistClientList(cliente: List<ClientesCadastroEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNewClient(client: ClientesCadastroEntity)
+
     @Query("SELECT * FROM $CLIENTS_TABLE WHERE codClienteOmie = :id")
     suspend fun getClientById(id: Long): ClientesCadastroEntity
 

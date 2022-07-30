@@ -3,8 +3,10 @@ package com.poli.easysales.data.repository
 import com.poli.easysales.data.local.ErpDatabase
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.local.entities.produtos.ProdutoVendaEntity
+import com.poli.easysales.domain.mappers.toClientEntity
 import com.poli.easysales.domain.mappers.toPedidoEntity
 import com.poli.easysales.domain.mappers.toPedidoModel
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import com.poli.easysales.domain.repository.LocalDataSource
 import kotlinx.coroutines.flow.Flow
@@ -48,5 +50,9 @@ class LocalDataSourceImpl
 
     override suspend fun insertNewOrder(order: PedidoVendaProduto) {
         orderDao.persistOrder(order.toPedidoEntity())
+    }
+
+    override suspend fun insertNewClient(client: ClientesCadastro) {
+        clientDao.insertNewClient(client.toClientEntity())
     }
 }

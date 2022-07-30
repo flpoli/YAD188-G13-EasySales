@@ -98,6 +98,15 @@ sealed class Request {
         val param: List<Param.ParamCaracCliente>
     )
 
+    data class ListarCategorias(
+        val call: String = "ListarCategorias",
+        @SerializedName("app_key")
+        val appKey: String = APP_KEY,
+        @SerializedName("app_secret")
+        val appSecret: String = APP_SECRET,
+        val param: List<Param.ParamListarCategorias>
+    )
+
     companion object {
         var APP_KEY: String = ""
         var APP_SECRET: String = ""

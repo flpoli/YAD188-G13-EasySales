@@ -47,13 +47,15 @@ class ClientFormViewModel
 
         viewModelScope.launch {
 
-            useCase(clienteCadastro = _viewState.value.cliente)?.run {
+            useCase(clienteCadastro = _viewState.value.cliente)?.also {
 
                 _uiEvent.send(
                     UiEvent.ShowSnackbar(
                         UiText.StringText("SOME THING HAPPENED")
-                    )
+                    ),
+
                 )
+                _uiEvent.send(UiEvent.NavigateUp)
             }
         }
     }

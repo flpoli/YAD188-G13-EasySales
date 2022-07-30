@@ -7,6 +7,7 @@ import com.poli.easysales.common.Constants.ESTOQUE_ENDPOINT
 import com.poli.easysales.common.Constants.ORDERS_ENDPOINT
 import com.poli.easysales.common.Constants.PRODUCTS_ENDPOINT
 import com.poli.easysales.data.remote.dto.ReqResponse
+import com.poli.easysales.data.remote.dto.categorias.ListaCategorias
 import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
 import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
 import com.poli.easysales.data.remote.dto.clientes.ListarClientesDto
@@ -65,4 +66,8 @@ interface OmieAPI {
     @Headers("Content-Type:application/json")
     @POST(ESTOQUE_ENDPOINT)
     suspend fun getStockList(@Body requestBody: Request.ListarPosicaoEstoque)
+
+    @Headers("Content-Type:application/json")
+    @POST("geral/categorias")
+    suspend fun getCategoryList(@Body requestBody: Request.ListarCategorias): ListaCategorias
 }

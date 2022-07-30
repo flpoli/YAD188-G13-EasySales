@@ -48,20 +48,24 @@ fun NavDrawer(
             id = "1",
             title = "Logout",
             contentDescription = "logout drawer button",
-            icon = Icons.Default.Logout
+            icon = Icons.Default.Logout,
+            onNavigate = {}
 
         ),
         DrawerItem(
             id = "2",
             title = "Cadastros auxiliares",
             contentDescription = "Cadastros auxiliares",
-            icon = Icons.Default.FileCopy
+            icon = Icons.Default.FileCopy,
+            onNavigate = {}
         ),
         DrawerItem(
             id = "3",
             title = "Configurações",
             contentDescription = "Configurações",
-            icon = Icons.Default.Settings
+            icon = Icons.Default.Settings,
+            onNavigate = {}
+
         )
 
     )
@@ -87,6 +91,9 @@ fun NavDrawer(
                     navController.navigate(Screen.LoginScreen.route)
                 }
                 // BackHandler(true, onBack = {})
+            }
+            if (it.id == "3") {
+                navController.navigate(Screen.SecretKeysScreen.route)
             }
         }
 
@@ -157,6 +164,7 @@ data class DrawerItem(
     val id: String,
     val title: String,
     val contentDescription: String,
-    val icon: ImageVector
+    val icon: ImageVector,
+    val onNavigate: () -> Unit
 
 )

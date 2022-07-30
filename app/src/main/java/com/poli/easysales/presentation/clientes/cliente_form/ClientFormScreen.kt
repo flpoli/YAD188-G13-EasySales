@@ -39,6 +39,7 @@ import com.poli.easysales.core.UiEvent
 import com.poli.easysales.core.getString
 import com.poli.easysales.domain.model.clientes.Tag
 import com.poli.easysales.domain.repository.Preferences
+import com.poli.easysales.navigation.Screen
 import com.poli.easysales.presentation.components.AppScaffold
 import com.poli.easysales.presentation.components.AppTextField
 import com.poli.easysales.presentation.components.EndOfScreen
@@ -70,7 +71,10 @@ fun ClientFormScreen(
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.getString(context)
                     )
-                    //    navController.navigate(Screen.ClientListScreen.route)
+
+                }
+                is UiEvent.NavigateUp -> {
+                        navController.popBackStack()
                 }
             }
         }
@@ -84,6 +88,7 @@ fun ClientFormScreen(
         showFab = false
 
     ) {
+
             paddingValues ->
         InputColumn(
             viewState = viewState.value,
@@ -145,7 +150,7 @@ fun InputColumn(
 
         item() {
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             RazaoSocialInput(
                 text = viewState.cliente.razaoSocial ?: "",
@@ -153,7 +158,7 @@ fun InputColumn(
                 errorMessage = null,
                 enabled = true
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             NomeFantasiaInput(
                 text = viewState.cliente.nomeFantasia ?: "",
@@ -162,7 +167,7 @@ fun InputColumn(
                 enabled = true
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             CpfCnpjInput(
                 text = viewState.cliente.cnpjCpf ?: "",
@@ -170,7 +175,7 @@ fun InputColumn(
                 errorMessage = null,
                 enabled = true
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             EmailInput(
                 text = viewState.cliente.email ?: "",
@@ -178,7 +183,7 @@ fun InputColumn(
                 errorMessage = null,
                 enabled = true
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             TelefoneInput(
                 textTelefone1Ddd = viewState.cliente.telefone1Ddd ?: "",
@@ -189,7 +194,7 @@ fun InputColumn(
                 enabled = true
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             EnderecoInput(
                 endereco = viewState.cliente.endereco.orEmpty(),
@@ -211,7 +216,7 @@ fun InputColumn(
                 enabled = true
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             TagInputField(
 
@@ -220,10 +225,10 @@ fun InputColumn(
 
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             PrimaryButton(
-                onClick = onBtnClicked,
+                onClick = { onBtnClicked() },
                 text = "cadastrar",
             )
 

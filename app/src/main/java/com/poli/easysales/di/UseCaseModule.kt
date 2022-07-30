@@ -2,6 +2,7 @@ package com.poli.easysales.di
 
 import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.OrdersRepository
+import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.domain.repository.ProductsRepository
 import com.poli.easysales.domain.usecase.UseCases
 import com.poli.easysales.domain.usecase.clients.GetClientCharacterImpl
@@ -55,10 +56,11 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideIncluirClienteUseCase(
-        repository: ClientsRepository
+        repository: ClientsRepository,
+        preferences: Preferences
     ): IncluirClienteUseCase {
 
-        return IncluirClienteUseCaseImpl(repository)
+        return IncluirClienteUseCaseImpl(repository, preferences)
     }
 
     @Provides
@@ -80,7 +82,8 @@ object UseCaseModule {
     fun providesUseCases(
         produtos: ProductsRepository,
         clientes: ClientsRepository,
-        pedidos: OrdersRepository
+        pedidos: OrdersRepository,
+        preferences: Preferences
 
     ): UseCases {
 
@@ -88,7 +91,7 @@ object UseCaseModule {
             getProductListUseCase = GetProductsListUseCaseImpl(produtos),
             getSelectedProduct = GetSelectedProductImpl(produtos),
             getOrderDetail = GetOrderDetailImpl(pedidos),
-            getClientListUseCase = GetClientListUseCaseImpl(clientes),
+            getClientListUseCase = GetClientListUseCaseImpl(clientes, preferences),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(pedidos),
             getSelectedClientUseCase = GetClienteDetailUseCaseImpl(clientes),
             getClientCharacter = GetClientCharacterImpl(clientes),

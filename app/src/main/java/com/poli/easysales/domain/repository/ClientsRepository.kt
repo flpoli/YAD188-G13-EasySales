@@ -6,6 +6,7 @@ import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.CepResponse
 import com.poli.easysales.data.remote.dto.ReqResponse
 import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.PedidoVendaProduto
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
@@ -19,4 +20,6 @@ interface ClientsRepository {
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
     suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto>
     suspend fun getAddressByCep(cep: String): Response<CepResponse>
+
+    suspend fun insertNewClient(client: ClientesCadastro)
 }

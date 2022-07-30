@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.poli.easysales.domain.repository.Preferences
+import com.poli.easysales.presentation.auxiliares.secretkeys.SecretKeyScreen
 import com.poli.easysales.presentation.clientes.client_detail.ClientDetailScreen
 import com.poli.easysales.presentation.clientes.client_list.ClientListScreen
 import com.poli.easysales.presentation.clientes.cliente_form.ClientFormScreen
@@ -172,6 +173,11 @@ fun SetupNavGraph(
         composable(Screen.ProductSelectionScreen.route) {
 
             ProductSelectionScreen(navController = navController)
+        }
+
+        composable(Screen.SecretKeysScreen.route){
+
+            SecretKeyScreen()
         }
     }
 }
