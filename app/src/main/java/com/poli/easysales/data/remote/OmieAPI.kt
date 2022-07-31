@@ -13,6 +13,7 @@ import com.poli.easysales.data.remote.dto.clientes.ClientesCadastroDto
 import com.poli.easysales.data.remote.dto.clientes.ListarClientesDto
 import com.poli.easysales.data.remote.dto.pedidos.ListarPedidosDto
 import com.poli.easysales.data.remote.dto.produtos.ListarProdutosDto
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -26,6 +27,10 @@ interface OmieAPI {
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
     suspend fun getClientByCode(@Body requestBody: Request.ClientByCodeRequest): ClientesCadastroDto
+
+    @Headers("Content-Type:application/json")
+    @POST(CLIENTS_ENDPOINT)
+    suspend fun deleteClientByCode(@Body requestBody: Request.ExcluirCliente): Response<Unit>
 
     @Headers("Content-Type:application/json")
     @POST(CARAC_CLIENTS_ENDPOINT)

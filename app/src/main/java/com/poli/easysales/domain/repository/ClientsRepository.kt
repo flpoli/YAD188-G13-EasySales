@@ -17,6 +17,7 @@ interface ClientsRepository {
     fun getNonPaginatedClientList(): Flow<List<ClientesCadastroEntity>>
     suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity
     suspend fun getClientCarac(codigoCliente: Long): CaracteristicasDto?
+    suspend fun deleteClientByCode(codigoCliente: Long)
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
     suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto>
     suspend fun getAddressByCep(cep: String): Response<CepResponse>

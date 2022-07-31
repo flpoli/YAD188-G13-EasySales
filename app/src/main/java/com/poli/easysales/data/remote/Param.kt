@@ -14,8 +14,6 @@ sealed class Param {
     data class ParamListarClientes(
         @SerializedName("apenas_importado_api")
         val apenasImportadoApi: String = "N",
-        @SerializedName("filtrar_apenas_ativo")
-        val filtrarApenasAtivo: String = "S",
         val pagina: String,
         @SerializedName("registros_por_pagina")
         val registrosPorPagina: String
@@ -25,8 +23,6 @@ sealed class Param {
         val apenasImportadoApi: String = "N",
         @SerializedName("filtrar_apenas_omiepdv")
         val filtrarApenasOmiepdv: String = "N",
-        @SerializedName("filtrar_apenas_ativo")
-        val filtrarApenasAtivo: String = "S",
         val pagina: String,
         @SerializedName("registros_por_pagina")
         val registrosPorPagina: String

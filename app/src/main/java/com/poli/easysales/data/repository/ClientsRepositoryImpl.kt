@@ -50,6 +50,10 @@ class ClientsRepositoryImpl
         return api.getClientCarac(request = request)
     }
 
+    override suspend fun deleteClientByCode(codigoCliente: Long) {
+
+    }
+
     override suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse {
 
         return api.addNewClient(request)

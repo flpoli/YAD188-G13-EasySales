@@ -40,6 +40,7 @@ fun ClientListScreen(
         ListContent(
             navController = navController,
             cliente = allClientes,
+            onDismiss = viewModel::onSwipeToDelete,
             modifier = Modifier.padding(paddingValues)
         )
     }

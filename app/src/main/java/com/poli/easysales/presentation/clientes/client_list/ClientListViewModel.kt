@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.clientes.client_list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.paging.map
 import com.poli.easysales.domain.mappers.toClientModel
@@ -18,5 +19,10 @@ class ClientListViewModel
 
             it.toClientModel()
         }
+    }
+
+    fun onSwipeToDelete(codCli: Long, id: Int) {
+
+        Log.d("EXECUTOU ON DELETE", "${codCli}")
     }
 }
