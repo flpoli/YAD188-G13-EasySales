@@ -1,5 +1,6 @@
 package com.poli.easysales.domain.usecase
 
+import com.poli.easysales.domain.usecase.clients.DeleteClientByCodeUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientCharacter
 import com.poli.easysales.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientListForSelectionUseCase
@@ -19,6 +20,7 @@ data class UseCases(
     val getSelectedProduct: GetSelectedProduct,
     val getClientListUseCase: GetClientListUseCase,
     val getClientCharacter: GetClientCharacter,
+    val deleteClientByCode: DeleteClientByCodeUseCase,
     val getOrdersListUseCase: GetOrdersListUseCase,
     val getSelectedClientUseCase: GetClientDetailsUseCase,
     val getClientListForSelectionUseCase: GetClientListForSelectionUseCase,

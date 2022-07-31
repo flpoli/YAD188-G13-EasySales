@@ -6,6 +6,7 @@ import com.poli.easysales.common.Constants.CLIENTS_TAG_ENDPOINT
 import com.poli.easysales.common.Constants.ESTOQUE_ENDPOINT
 import com.poli.easysales.common.Constants.ORDERS_ENDPOINT
 import com.poli.easysales.common.Constants.PRODUCTS_ENDPOINT
+import com.poli.easysales.common.Resource
 import com.poli.easysales.data.remote.dto.ReqResponse
 import com.poli.easysales.data.remote.dto.categorias.ListaCategorias
 import com.poli.easysales.data.remote.dto.clientes.CaracteristicasDto
@@ -30,7 +31,7 @@ interface OmieAPI {
 
     @Headers("Content-Type:application/json")
     @POST(CLIENTS_ENDPOINT)
-    suspend fun deleteClientByCode(@Body requestBody: Request.ExcluirCliente): Response<Unit>
+    suspend fun deleteClientByCode(@Body requestBody: Request.ExcluirCliente): Resource<ReqResponse>
 
     @Headers("Content-Type:application/json")
     @POST(CARAC_CLIENTS_ENDPOINT)

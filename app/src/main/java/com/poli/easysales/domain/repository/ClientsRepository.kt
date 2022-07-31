@@ -1,6 +1,7 @@
 package com.poli.easysales.domain.repository
 
 import androidx.paging.PagingData
+import com.poli.easysales.common.Resource
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.Request
 import com.poli.easysales.data.remote.dto.CepResponse
@@ -17,7 +18,7 @@ interface ClientsRepository {
     fun getNonPaginatedClientList(): Flow<List<ClientesCadastroEntity>>
     suspend fun getSelectedClient(clientId: Long): ClientesCadastroEntity
     suspend fun getClientCarac(codigoCliente: Long): CaracteristicasDto?
-    suspend fun deleteClientByCode(codigoCliente: Long)
+    suspend fun deleteClientByCode(codigoCliente: Long): Resource<ReqResponse?>
     suspend fun addNewClient(request: Request.IncluirClienteRequest): ReqResponse
     suspend fun getOrdersForClient(codigoCliente: Long): List<PedidoVendaProduto>
     suspend fun getAddressByCep(cep: String): Response<CepResponse>

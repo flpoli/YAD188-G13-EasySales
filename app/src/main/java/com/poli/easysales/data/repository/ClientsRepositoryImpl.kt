@@ -1,6 +1,7 @@
 package com.poli.easysales.data.repository
 
 import androidx.paging.PagingData
+import com.poli.easysales.common.Resource
 import com.poli.easysales.data.local.entities.clientes.ClientesCadastroEntity
 import com.poli.easysales.data.remote.CepApi
 import com.poli.easysales.data.remote.OmieAPI
@@ -15,6 +16,7 @@ import com.poli.easysales.domain.repository.ClientsRepository
 import com.poli.easysales.domain.repository.LocalDataSource
 import com.poli.easysales.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import retrofit2.HttpException
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -50,7 +52,22 @@ class ClientsRepositoryImpl
         return api.getClientCarac(request = request)
     }
 
-    override suspend fun deleteClientByCode(codigoCliente: Long) {
+    override suspend fun deleteClientByCode(codigoCliente: Long): Resource<ReqResponse?> {
+
+        val request = Request.ExcluirCliente(param = listOf(Param.ParamCaracCliente(codigoCliente)))
+
+        return try {
+            val call = api.deleteClientByCode(request)
+            Resource.Success(call.data)
+
+        } catch (e: HttpException){
+
+            Resource.Error(
+                message = "REPOSITORY: Não foi possível" +
+                        " excluir este cliente. Provavelmente o registro tem amarrações")
+
+        }
+
 
     }
 

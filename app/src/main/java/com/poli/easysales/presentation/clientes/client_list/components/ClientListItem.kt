@@ -1,5 +1,6 @@
 package com.poli.easysales.presentation.clientes.client_list.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissState
 import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -38,7 +40,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
+import com.poli.easysales.presentation.components.AlertModalDialog
 import com.poli.easysales.ui.theme.LocalSpacing
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newCoroutineContext
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -50,16 +58,22 @@ fun ClientListItem(
 
 ) {
 
-    var unread by remember { mutableStateOf(false) }
+    val alertState = remember { mutableStateOf(false) }
+    var alertCallBack = false
+
     val dismissState = rememberDismissState(
+        initialValue = DismissValue.Default,
         confirmStateChange = {
             if (it == DismissValue.DismissedToEnd)  {
 
-                cliente.codClienteOmie?.let { it1 -> onDismiss(it1) }
+                    alertState.value = true
+
+
 
             }
-            true
+            alertCallBack
         }
+
     )
 
     val spacing = LocalSpacing.current
@@ -121,52 +135,63 @@ fun ClientListItem(
                     }
                 }
             }
-        },
+        }
 
 
-        dismissContent = {
-            Column(
-                modifier = modifier
-                    .clip(RoundedCornerShape(5.dp))
-                    .padding(spacing.spaceExtraSmall)
-                    .shadow(
-                        elevation = 1.dp,
-                        shape = RoundedCornerShape(5.dp)
-                    )
-                    .background(MaterialTheme.colors.surface)
-                    .clickable { onItemClick() }
-                    .padding(end = spacing.spaceMedium)
+    ) {
+
+
+        AlertModalDialog(
+            onDismissCallBack = {alertCallBack.not()},
+            onConfirmAction = { onDismiss(cliente.codClienteOmie!!)},
+            state = alertState,
+            title = "Alert",
+            text = "TESTE"
+        )
+
+        Column(
+            modifier = modifier
+                .clip(RoundedCornerShape(5.dp))
+                .padding(spacing.spaceExtraSmall)
+                .shadow(
+                    elevation = 1.dp,
+                    shape = RoundedCornerShape(5.dp)
+                )
+                .background(MaterialTheme.colors.surface)
+                .clickable { onItemClick() }
+                .padding(end = spacing.spaceMedium)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.align(Alignment.CenterVertically)
                 ) {
-                    Column(
-                        modifier = Modifier.align(Alignment.CenterVertically)
-                    ) {
-                        Text(
-                            text = cliente.nomeFantasia ?: "",
-                            style = MaterialTheme.typography.body2,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = cliente.razaoSocial ?: "",
-                            style = MaterialTheme.typography.body1,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = "${cliente.endereco}, ${cliente.enderecoNumero}, ${cliente.cidade}",
-                            style = MaterialTheme.typography.body1,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
+                    Text(
+                        text = cliente.nomeFantasia ?: "",
+                        style = MaterialTheme.typography.body2,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = cliente.razaoSocial ?: "",
+                        style = MaterialTheme.typography.body1,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = "${cliente.endereco}, ${cliente.enderecoNumero}, ${cliente.cidade}",
+                        style = MaterialTheme.typography.body1,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
         }
-    )
+    }
 
 }

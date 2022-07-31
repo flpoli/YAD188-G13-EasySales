@@ -5,6 +5,7 @@ import com.poli.easysales.domain.repository.OrdersRepository
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.domain.repository.ProductsRepository
 import com.poli.easysales.domain.usecase.UseCases
+import com.poli.easysales.domain.usecase.clients.DeleteClientByCodeImpl
 import com.poli.easysales.domain.usecase.clients.GetClientCharacterImpl
 import com.poli.easysales.domain.usecase.clients.GetClientDetailsUseCase
 import com.poli.easysales.domain.usecase.clients.GetClientListForSelectionUseCaseImpl
@@ -92,6 +93,7 @@ object UseCaseModule {
             getSelectedProduct = GetSelectedProductImpl(produtos),
             getOrderDetail = GetOrderDetailImpl(pedidos),
             getClientListUseCase = GetClientListUseCaseImpl(clientes, preferences),
+            deleteClientByCode = DeleteClientByCodeImpl(clientes, preferences),
             getOrdersListUseCase = GetOrdersListUseCaseImpl(pedidos),
             getSelectedClientUseCase = GetClienteDetailUseCaseImpl(clientes),
             getClientCharacter = GetClientCharacterImpl(clientes),
