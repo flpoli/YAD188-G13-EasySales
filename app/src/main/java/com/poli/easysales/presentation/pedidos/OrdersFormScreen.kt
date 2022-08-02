@@ -1,5 +1,8 @@
 package com.poli.easysales.presentation.pedidos
 
+import android.content.Context
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -8,21 +11,38 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowCircleDown
+import androidx.compose.material.icons.filled.ArrowCircleUp
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowDropDownCircle
+import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,6 +64,7 @@ import com.poli.easysales.presentation.components.EndOfScreen
 import com.poli.easysales.presentation.components.PrimaryButton
 import com.poli.easysales.presentation.components.ProductImage
 import com.poli.easysales.presentation.pedidos.productselection.SelectableProductUiState
+import com.poli.easysales.ui.theme.secondaryDarkColor
 import kotlinx.coroutines.CoroutineScope
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -84,49 +105,58 @@ fun OrdersFormScreen(
         navController = navController,
         scope = scope,
         preferences = preferences,
-        showFab = false
+        showFab = false,
+        showBottomBar = false
 
     ) {
 
-        Column {
+        Column(
+            modifier = Modifier
+            .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
 
-            Spacer(modifier = Modifier.height(12.dp))
+            HeaderSection(viewModel, context)
 
-            ClientBox(
-                cliente = state.cliente,
-                onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
-            )
+            Column( modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)){
 
-            Spacer(modifier = Modifier.height(12.dp))
+                Row(
+//                    verticalAlignment = Alignment.,
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
 
-            ProductBox(
+                    ClientBox(
+                        cliente = state.cliente,
+                        onClick = { onNavigate(UiEvent.Navigate(Screen.ClientSelectionScreen.route)) }
+                    )
+
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                ProductBox(
+                    produtos = state.produtos,
+                    onClick = {
+
+                        onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route))
+                    }
+                )
+
+            }
+            DatePaymentSection(viewModel, context)
+
+
+            CheckoutSection(
                 produtos = state.produtos,
-                onClick = {
-
-                    onNavigate(UiEvent.Navigate(Screen.ProductSelectionScreen.route))
-                }
-            )
-
-            DatePicker(
-                modifier = Modifier
-                    .fillMaxWidth(.4f)
-                    .clickable { viewModel.showDatePickerDialog(context) },
-                isEnabled = true,
-                value = viewModel.previsaoFaturamento,
-                label = "Previsão",
-                placeHolder = "Data Previsão",
-                onValueChange = { viewModel.previsaoFaturamento = it }
-            )
-
-            PrimaryButton(
-                text = "Enviar pedido",
-                onClick = {
-
-                    viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
-                }
+                viewModel = viewModel,
+                modifier = Modifier.weight(.2f)
 
             )
         }
+
 
         Spacer(modifier = Modifier.height(12.dp))
     }
@@ -143,17 +173,37 @@ fun ClientBox(
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
-
-                onClick()
-            }
+//            .clickable {}
     ) {
 
-        Text(
-            text = "Cliente",
-            fontSize = 32.sp,
-            textAlign = TextAlign.Left
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+
+
+        ){
+            Text(
+                text = "Cliente",
+                fontSize = 24.sp,
+                textAlign = TextAlign.Left
+            )
+
+            IconButton(onClick = { onClick() }) {
+                Icon(
+                    modifier = Modifier
+                        .padding(end = 10.dp)
+                        .size(32.dp),
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "add Icon",
+                    tint = Color.Gray
+                )
+
+            }
+        }
+
 
         if (cliente != null) {
             ClientItem(cliente = cliente)
@@ -175,6 +225,15 @@ fun ProductBox(
     produtos: List<SelectableProductUiState>?,
     onClick: () -> Unit
 ) {
+
+    var isVisible by remember {
+        mutableStateOf(true)
+    }
+    val icon = if (isVisible) {
+        Icons.Default.ArrowCircleDown
+    } else {
+        Icons.Default.ArrowCircleUp
+    }
     Column(
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -182,33 +241,53 @@ fun ProductBox(
             .fillMaxWidth()
 
     ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .clickable {
+                isVisible = !isVisible
+            }
+        ){
+            Text(
+                text = "Produtos",
+                fontSize = 24.sp,
+                textAlign = TextAlign.Left
 
-        Text(
-            text = "Produtos",
-            fontSize = 32.sp,
-            textAlign = TextAlign.Left
+            )
+            Icon(
+                modifier = Modifier
+                    .padding(end = 10.dp)
+                    .size(32.dp),
+                imageVector = icon,
+                contentDescription = "Info Icon",
+                tint = Color.Gray
+            )
+        }
 
-        )
+
         Spacer(Modifier.height(16.dp))
 
-        LazyColumn(
-            contentPadding = PaddingValues(all = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
+        AnimatedVisibility(visible = isVisible ) {
 
-            if (produtos != null)
-                items(
-                    items = produtos,
 
-                ) {
-                        produto ->
-                    ProductItem(produto)
-                }
+            LazyColumn(
+                contentPadding = PaddingValues(all = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+
+                if (produtos != null)
+                    items(
+                        items = produtos,
+
+                        ) { produto ->
+                        ProductItem(produto)
+                    }
+            }
         }
 
-        if (produtos != null) {
-            TotalSection(produtos)
-        }
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -220,7 +299,47 @@ fun ProductBox(
 
             Text(text = "+ Adicionar produto")
         }
+
     }
+
+}
+
+@Composable
+fun HeaderSection(viewModel: OrdersFormViewModel, context: Context){
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = secondaryDarkColor)
+    ){
+
+        Text(
+            text = "Pedido N° XXX",
+            fontSize = 24.sp,
+            color = Color.White,
+            modifier = Modifier.padding(12.dp)
+            )
+
+        DatePicker(
+            modifier = Modifier
+                .width(170.dp)
+                .padding(12.dp)
+                .clickable { viewModel.showDatePickerDialog(context) },
+            isEnabled = true,
+            value = viewModel.previsaoFaturamento,
+            label = "Previsão",
+            placeHolder = "Data Previsão",
+            onValueChange = { viewModel.previsaoFaturamento = it }
+
+        )
+    }
+
+}
+@Composable
+fun DatePaymentSection(viewModel: OrdersFormViewModel, context: Context){
+
+
 }
 
 @ExperimentalCoilApi
@@ -286,7 +405,11 @@ fun PreviewScreen() {
 }
 
 @Composable
-fun TotalSection(produtos: List<SelectableProductUiState>) {
+fun CheckoutSection(
+    produtos: List<SelectableProductUiState>,
+    viewModel: OrdersFormViewModel,
+    modifier: Modifier
+) {
 
     fun calcOrderTotal(): String {
         val total = produtos.sumOf {
@@ -299,7 +422,37 @@ fun TotalSection(produtos: List<SelectableProductUiState>) {
         return df.format(total)
     }
 
-    Text(text = "Total: ${calcOrderTotal()}")
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = secondaryDarkColor)
+    ){
+        Text(
+            text = "Total: ${calcOrderTotal()}",
+            fontSize = 32.sp,
+            color = Color.White,
+            modifier = Modifier
+                .padding(12.dp)
+                .fillMaxWidth(.6f)
+
+        )
+
+        PrimaryButton(
+            text = "Enviar",
+            onClick = {
+
+                viewModel.onEvent(OrderOverviewEvent.OnSubmitOrder)
+            },
+            modifier = Modifier
+                .fillMaxWidth(.9f)
+                .padding(12.dp)
+
+
+        )
+    }
+
 }
 
 @Composable

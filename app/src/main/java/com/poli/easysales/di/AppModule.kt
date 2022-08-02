@@ -53,7 +53,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideOrderViewModel(useCase: UseCases): OrdersFormViewModel {
-
         return OrdersFormViewModel(useCase)
     }
 }

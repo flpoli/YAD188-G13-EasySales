@@ -21,6 +21,7 @@ fun AppScaffold(
     scope: CoroutineScope,
     preferences: Preferences,
     showFab: Boolean = true,
+    showBottomBar: Boolean = true,
     content: @Composable (PaddingValues) -> Unit
 ) {
 
@@ -50,7 +51,10 @@ fun AppScaffold(
         },
         bottomBar = {
 
-            BottomNavigationBar(navController = navController)
+            if (showBottomBar) {
+                BottomNavigationBar(navController = navController)
+
+            }
         },
         floatingActionButtonPosition = FabPosition.End,
         isFloatingActionButtonDocked = false,
@@ -65,3 +69,4 @@ fun AppScaffold(
         content(it)
     }
 }
+

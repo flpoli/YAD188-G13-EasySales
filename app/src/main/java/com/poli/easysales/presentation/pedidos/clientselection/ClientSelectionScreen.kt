@@ -22,6 +22,7 @@ fun ClientSelectionScreen(
 
     LaunchedEffect(key1 = orderViewModel.state) {
 
+        clientsViewModel
         orderViewModel.uiEvent.collect { event ->
 
             when (event) {

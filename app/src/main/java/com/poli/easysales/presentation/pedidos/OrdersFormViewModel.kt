@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.poli.easysales.common.Constants.DEFAULT_DF
 import com.poli.easysales.core.UiEvent
 import com.poli.easysales.data.remote.dto.pedidos.Ide
+import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.model.pedidos.Cabecalho
 import com.poli.easysales.domain.model.pedidos.Det
 import com.poli.easysales.domain.model.pedidos.InformacoesAdicionais
@@ -155,5 +156,14 @@ class OrdersFormViewModel
         val calendar = Calendar.getInstance()
         calendar.time = dateFormat.parse(previsaoFaturamento)
         return calendar
+    }
+
+    fun onVmCleared() {
+
+        state = state.copy(
+            cliente = ClientesCadastro(),
+            produtos = emptyList()
+        )
+
     }
 }

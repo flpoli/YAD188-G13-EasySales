@@ -3,12 +3,16 @@ package com.poli.easysales.presentation.clientes.client_list
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.poli.easysales.core.UiEvent
+import com.poli.easysales.core.getString
 import com.poli.easysales.domain.model.clientes.ClientesCadastro
 import com.poli.easysales.domain.repository.Preferences
 import com.poli.easysales.presentation.clientes.client_list.components.ListContent
@@ -25,9 +29,26 @@ fun ClientListScreen(
     scope: CoroutineScope,
     viewModel: ClientListViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
 
     val allClientes = viewModel.clientes.collectAsLazyPagingItems()
 
+    LaunchedEffect(key1 = true) {
+
+        viewModel.uiEvent.collect {
+
+                event ->
+            when (event) {
+
+                is UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message.getString(context)
+                    )
+                }
+                else -> Unit
+            }
+        }
+    }
     AppScaffold(
         scaffoldState = scaffoldState,
         navController = navController,
